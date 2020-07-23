@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Obtención y Análisis de Rendimientos R &mdash; Material Cursos 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Material Curso Teoría y Estructuración de Portafolios" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Material Cursos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Obtención y Análisis de Rendimientos R</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Material Cursos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Obtención y Análisis de Rendimientos R</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Obtención y Analisis de Rendimientos/Obtención y Análisis de Rendimientos R.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="obtencion-y-analisis-de-rendimientos-r">
+<h1>Obtención y Análisis de Rendimientos R<a class="headerlink" href="#obtencion-y-analisis-de-rendimientos-r" title="Permalink to this headline">¶</a></h1>
+<p>Preparación de librerías</p>
+<p>Antes de comenzar, se deben tener instaladas las siguientes librerías
+para que el código funcione correctamente:</p>
+<ol class="arabic simple">
+<li><p>Librería <code class="docutils literal notranslate"><span class="pre">quantmod</span></code></p></li>
+<li><p>Librería <code class="docutils literal notranslate"><span class="pre">fBasics</span></code></p></li>
+<li><p>Librería <code class="docutils literal notranslate"><span class="pre">fPortfolio</span></code></p></li>
+</ol>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;quantmod&#39;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;fBasics&#39;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;fPortfolio&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="s1">&#39;C:/Users/Natalia/Documents/R/win-library/3.6&#39;</span>
+<span class="p">(</span><span class="k">as</span> <span class="s1">&#39;lib&#39;</span> <span class="ow">is</span> <span class="n">unspecified</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">package 'quantmod' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:UsersNataliaAppDataLocalTempRtmpecDAiYdownloaded_packages</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="s1">&#39;C:/Users/Natalia/Documents/R/win-library/3.6&#39;</span>
+<span class="p">(</span><span class="k">as</span> <span class="s1">&#39;lib&#39;</span> <span class="ow">is</span> <span class="n">unspecified</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">package 'fBasics' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:UsersNataliaAppDataLocalTempRtmpecDAiYdownloaded_packages</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="s1">&#39;C:/Users/Natalia/Documents/R/win-library/3.6&#39;</span>
+<span class="p">(</span><span class="k">as</span> <span class="s1">&#39;lib&#39;</span> <span class="ow">is</span> <span class="n">unspecified</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">package 'fPortfolio' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:UsersNataliaAppDataLocalTempRtmpecDAiYdownloaded_packages</pre>
+<p>Siempre que se vaya utilizar una librería debe ser llamada por medio del
+comando library, en este caso para obtener los datos de los precios de
+acciones de Yahoo Finance, se llamará a la librería Quantmod</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&#39;quantmod&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Loading required package: xts
+
+Warning message:
+&quot;package &#39;xts&#39; was built under R version 4.0.2&quot;
+Loading required package: zoo
+
+Warning message:
+&quot;package &#39;zoo&#39; was built under R version 4.0.2&quot;
+
+Attaching package: &#39;zoo&#39;
+
+
+The following objects are masked from &#39;package:base&#39;:
+
+    as.Date, as.Date.numeric
+
+
+Loading required package: TTR
+
+Warning message:
+&quot;package &#39;TTR&#39; was built under R version 4.0.2&quot;
+Registered S3 method overwritten by &#39;quantmod&#39;:
+  method            from
+  as.zoo.data.frame zoo
+
+Version 0.4-0 included new data defaults. See ?getSymbols.
+</pre></div>
+</div>
+<p>Ya con la librería cargada en R, se procede con la obtención de los precios de las acciones con la función getsymbols:</p>
+<ul class="simple">
+<li><p>Los símbolos de los nombres de las acciones, deben ser extraídos de
+la página Yahoo Finance</p></li>
+<li><p>Se debe ingresar a la función como una lista de elementos entre
+comillas y separados por comas (,) dentro de un vector, por ello
+<code class="docutils literal notranslate"><span class="pre">c('simbolos')</span></code></p></li>
+<li><p>Se cambia las fechas según lo deseado, desde el inicio <code class="docutils literal notranslate"><span class="pre">from=</span></code> y la
+fecha en formato “AAAA-MM-DD”. Igualmente, con la fecha final
+<code class="docutils literal notranslate"><span class="pre">to=</span></code>. en este caso particular la función, <code class="docutils literal notranslate"><span class="pre">Sys.Date()</span></code>, obtiene
+la fecha de su sistema.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">getSymbols.yahoo</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;BABA&#39;</span><span class="p">,</span><span class="s">&#39;AAPL&#39;</span><span class="p">,</span><span class="s">&#39;WMT&#39;</span><span class="p">,</span> <span class="s">&#39;WBA&#39;</span><span class="p">,</span> <span class="s">&#39;TSLA&#39;</span><span class="p">,</span><span class="s">&#39;PEP&#39;</span><span class="p">),</span><span class="n">env</span><span class="o">=</span><span class="nf">globalenv</span><span class="p">(),</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2019-02-12&quot;</span><span class="p">,</span><span class="n">to</span> <span class="o">=</span> <span class="nf">Sys.Date</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pausing</span> <span class="mi">1</span> <span class="n">second</span> <span class="n">between</span> <span class="n">requests</span> <span class="k">for</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">5</span> <span class="n">symbols</span>
+
+<span class="n">pausing</span> <span class="mi">1</span> <span class="n">second</span> <span class="n">between</span> <span class="n">requests</span> <span class="k">for</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">5</span> <span class="n">symbols</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'BABA'</li><li>'AAPL'</li><li>'WMT'</li><li>'WBA'</li><li>'TSLA'</li><li>'PEP'</li></ol><p>Una vez obtenidos los datos de cada una de las acciones que se escogen,
+se procede a crear un objeto de formato DataFrame DF (similar a una
+matriz) llamado <code class="docutils literal notranslate"><span class="pre">cartera</span></code>, que incluya los precios ajustados de cada
+acción, con la función merge.</p>
+<p>Para que los nombres de la cartera queden con un mejor formato, se
+procede a renombrar las columnas del objeto <code class="docutils literal notranslate"><span class="pre">cartera</span></code> con la función
+<code class="docutils literal notranslate"><span class="pre">names()</span></code> e ingresando el vector con la lista de nombres
+<code class="docutils literal notranslate"><span class="pre">c(&quot;</span> <span class="pre">nombre&quot;,</span> <span class="pre">&quot;nombre&quot;)</span></code>.</p>
+<p>Por último, se extraen las fechas de los precios de las acciones, para
+crear un objeto con ellas que mas adelante permita graficar.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cartera</span><span class="o">=</span> <span class="nf">merge</span><span class="p">(</span><span class="n">BABA</span><span class="o">$</span><span class="n">BABA.Adjusted</span><span class="p">,</span> <span class="n">AAPL</span><span class="o">$</span><span class="n">AAPL.Adjusted</span><span class="p">,</span> <span class="n">WMT</span><span class="o">$</span><span class="n">WMT.Adjusted</span><span class="p">,</span> <span class="n">WBA</span><span class="o">$</span><span class="n">WBA.Adjusted</span><span class="p">,</span><span class="n">TSLA</span><span class="o">$</span><span class="n">TSLA.Adjusted</span><span class="p">,</span> <span class="n">PEP</span><span class="o">$</span><span class="n">PEP.Adjusted</span><span class="p">)</span><span class="c1"># el simbolo $ extrae una columna de una matriz</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">cartera</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;BABA&quot;</span><span class="p">,</span> <span class="s">&quot;AAPL&quot;</span><span class="p">,</span> <span class="s">&quot;WMT&quot;</span><span class="p">,</span> <span class="s">&quot;WBA&quot;</span><span class="p">,</span> <span class="s">&quot;TSLA&quot;</span><span class="p">,</span> <span class="s">&quot;PEP&quot;</span><span class="p">)</span> <span class="c1">#vector de nombres digitados</span>
+<span class="n">fechas</span><span class="o">=</span><span class="nf">index</span><span class="p">(</span><span class="n">cartera</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Con el fin de crear una paleta, que ayude a realizar gráficos de
+distintos colores, se usa la función qualiPalette() perteneciente a la
+libreria fBasics. El parámetro <code class="docutils literal notranslate"><span class="pre">n=ncol(cartera)</span></code> crea tantos colores
+como acciones se tengan en el objeto cartera, y el argumento
+<code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">c(&quot;Dark2&quot;)</span></code> escoge la paleta de colores a utilizar. Para ver
+mas colores disponibles visite la librería colorPalette <a class="reference external" href="https://www.rdocumentation.org/packages/fBasics/versions/3011.87/topics/colorPalette">Ver
+aquí</a></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&#39;fBasics&#39;</span><span class="p">)</span>
+<span class="n">colores</span><span class="o">=</span> <span class="nf">qualiPalette</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">cartera</span><span class="p">),</span> <span class="n">name</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Dark2&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeDate</span>
+
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;timeDate&#39; was built under R version 4.0.0&quot;</span>
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeSeries</span>
+
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;timeSeries&#39; was built under R version 4.0.2&quot;</span>
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;replacing previous import &#39;graphics::plot&#39; by &#39;timeDate::plot&#39; when loading &#39;timeSeries&#39;&quot;</span>
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;timeSeries&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:zoo&#39;</span><span class="p">:</span>
+
+    <span class="n">time</span><span class="o">&lt;-</span>
+
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;fBasics&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:TTR&#39;</span><span class="p">:</span>
+
+    <span class="n">volatility</span>
+</pre></div>
+</div>
+<p>Creación de la matriz de rendimientos y gráfica de Rdtos</p>
+<p>Como ya se creó el objeto <code class="docutils literal notranslate"><span class="pre">cartera</span></code> como DF, se pueden utilizar las
+funciones <code class="docutils literal notranslate"><span class="pre">diff()</span></code> y <code class="docutils literal notranslate"><span class="pre">log()</span></code>, directamente sobre <code class="docutils literal notranslate"><span class="pre">cartera</span></code> y de
+esta forma, obtener los rendimientos logarítmicos sobre los precios
+ajustados.</p>
+<p>Cuando se obtienen los rendimientos, siempre hay un dato menos, dentro
+de la matriz, por lo que se redefine el objeto <code class="docutils literal notranslate"><span class="pre">Rdtos</span></code> usando
+<code class="docutils literal notranslate"><span class="pre">Rdtos=Rdtos[-1,]</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Rdtos</span><span class="o">=</span><span class="nf">diff</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">cartera</span><span class="p">))</span>
+<span class="n">Rdtos</span><span class="o">=</span><span class="n">Rdtos</span><span class="p">[</span><span class="m">-1</span><span class="p">,]</span>
+</pre></div>
+</div>
+<p>Preparación de la ventana de gráficos. (imagen 1)</p>
+<p>Con el fin de crear una ventana, que coloque los rendimientos en una
+matríz gráfica de 6x2, se crean el objeto
+<code class="docutils literal notranslate"><span class="pre">tamano=c(seq(ncol(cartera)))</span></code>, crea una secuencia de 1 hasta el
+número total de acciones con el que cuenta <code class="docutils literal notranslate"><span class="pre">cartera</span></code>, es decir, si se
+cuentan con 10 acciones en <code class="docutils literal notranslate"><span class="pre">cartera</span></code>, la secuencia será de 1 hasta 10.
+de esta forma, la ventana gráfica que se crea con las funciones
+<code class="docutils literal notranslate"><span class="pre">matrix</span> <span class="pre">(filas,</span> <span class="pre">columnas)</span></code>, <code class="docutils literal notranslate"><span class="pre">layout(matrix)</span></code>, y
+<code class="docutils literal notranslate"><span class="pre">layout.show()</span></code>será de 10x2.</p>
+<p>Gráficos de rendimientos (imagen 2)</p>
+<p>Para el gráfico de los rendimientos se hace uso de un ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code>,
+para que recorra el objeto <code class="docutils literal notranslate"><span class="pre">cartera</span></code> y grafique las acciones que se
+encuentran en cada una de las columnas. Así lo hará dentro de la ventana
+gráfica como se muestra en la segunda imagen. la función <code class="docutils literal notranslate"><span class="pre">plot()</span></code>,
+permite realizar las gráficas de tipo X contra Y, que en este caso sería
+el objeto <code class="docutils literal notranslate"><span class="pre">fechas</span></code>creado anteriormente, contra la matríz de
+rendimientos en la columna i <code class="docutils literal notranslate"><span class="pre">Rdtos[,i]</span></code> dentro de los argumentos
+principales se encuentran: * <code class="docutils literal notranslate"><span class="pre">main=</span></code>, que corresponde al título, para
+este caso particular tomará los nombres que tiene el objeto <code class="docutils literal notranslate"><span class="pre">cartera</span></code>
+en la posicón i, es decir, el nombre que se le asignó a cada columna
+anteriormente. * <code class="docutils literal notranslate"><span class="pre">t=</span></code> es el tipo de gáfico a usar, en este caso es
+<code class="docutils literal notranslate"><span class="pre">&quot;h&quot;</span></code>, pero puede cambiarse, dependiendo del gusto. * <code class="docutils literal notranslate"><span class="pre">col=</span></code>
+pertenece al argumento color del grafico, que se usarán en este caso los
+colores definidos anteriormente, por la paleta almacenada en el objeto
+<code class="docutils literal notranslate"><span class="pre">colores</span></code>. * <code class="docutils literal notranslate"><span class="pre">xlab=</span></code> es el título del eje x. Para conocer mas
+argumentos de la función <code class="docutils literal notranslate"><span class="pre">plot()</span></code> visite la doumentación <a class="reference external" href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot">Ver
+aquí</a></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#dev.off()</span>
+<span class="n">tamano</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">cartera</span><span class="p">)))</span>
+<span class="n">matriz</span><span class="o">=</span><span class="nf">matrix</span><span class="p">(</span><span class="n">tamano</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">layout</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">cartera</span><span class="p">)){</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">fechas</span><span class="p">[</span><span class="m">-1</span><span class="p">],</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">cartera</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span> <span class="n">col</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Fecha&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_14_0.png"><img alt="../_images/output_14_0.png" src="../_images/output_14_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Histograma de los rendimientos</p>
+<p>Al igual que con el gráfico anterior, puede crearse la ventana de
+preparación de gráficos.
+<code class="docutils literal notranslate"><span class="pre">dev.off()</span> <span class="pre">win.graph(15,13)</span> <span class="pre">tamano=c(seq(ncol(cartera)))</span> <span class="pre">matriz=matrix(tamano,</span> <span class="pre">ncol=2)</span> <span class="pre">C=layout(matriz)</span> <span class="pre">layout.show(C)</span></code></p>
+<p>Igualmente, para la creación de cada uno de los histogramas, dada la
+cantidad de acciones , se realizan por medio de un ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code>, esta
+vez se hace uso de la función <code class="docutils literal notranslate"><span class="pre">hist()</span></code>, para los rendimientos en la
+posición i <code class="docutils literal notranslate"><span class="pre">Rdtos[,i]</span></code> con 40 intervalos o barras <code class="docutils literal notranslate"><span class="pre">breaks=40</span></code>, los
+demás argumentos son iguales a los de la función <code class="docutils literal notranslate"><span class="pre">plot()</span></code>. *
+Adicionalmente, al gráfico de histograma se le ajustan las gráficas de
+densidad distribución empírica de los datos (línea negra) con las
+funciones <code class="docutils literal notranslate"><span class="pre">lines()</span></code> <code class="docutils literal notranslate"><span class="pre">density()</span></code>, el argumento <code class="docutils literal notranslate"><span class="pre">lwd=</span></code> determina el
+grosor de la línea. * También, se le ajusta la curva de distribución
+normal teórica (línea roja) haciendo uso de la función
+<code class="docutils literal notranslate"><span class="pre">curve=(dnorm(x,...))</span></code>el resto de argumentos son similares a la
+función <code class="docutils literal notranslate"><span class="pre">plot()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">cartera</span><span class="p">)){</span>
+  <span class="nf">hist</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span><span class="n">breaks</span> <span class="o">=</span> <span class="m">40</span><span class="p">,</span><span class="n">col</span> <span class="o">=</span> <span class="n">colores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Rendimientos&quot;</span><span class="p">,</span><span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">cartera</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span><span class="n">freq</span> <span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+  <span class="nf">lines</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+  <span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span> <span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span><span class="n">sd</span><span class="o">=</span><span class="nf">sd</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">])),</span><span class="n">add</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+  <span class="nf">legend</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;topleft&quot;</span><span class="p">,</span><span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Distribución empírica&quot;</span><span class="p">,</span><span class="s">&quot;Distribución Normal&quot;</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Black&quot;</span><span class="p">,</span><span class="s">&quot;darkred&quot;</span><span class="p">),</span><span class="n">lwd</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="n">bty</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_16_0.png"><img alt="../_images/output_16_0.png" src="../_images/output_16_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_16_1.png"><img alt="../_images/output_16_1.png" src="../_images/output_16_1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_16_2.png"><img alt="../_images/output_16_2.png" src="../_images/output_16_2.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_16_3.png"><img alt="../_images/output_16_3.png" src="../_images/output_16_3.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_16_4.png"><img alt="../_images/output_16_4.png" src="../_images/output_16_4.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_16_5.png"><img alt="../_images/output_16_5.png" src="../_images/output_16_5.png" style="width: 420px; height: 420px;" /></a>
+<p>Estadíticas Básicas</p>
+<p>Las diversas estadísticas básicas que sirven para el análisis de los
+redimientos, pueden ser obtenidas con las funciones: 1.
+<code class="docutils literal notranslate"><span class="pre">sumary()</span></code>estadíticas descriptivas como el mínimo, el primer
+cuantil, mediana, media, tercer cuantil y el maximo de cada una de los
+rendimientos individuales de las acciones. 2. <code class="docutils literal notranslate"><span class="pre">apply(Rdtos,2,mean)</span></code>
+aplica la función <code class="docutils literal notranslate"><span class="pre">mean()</span></code>a la matríz de rendimientos por columnas
+(2), para encontrar el vector de los rendimientos promedios. 3.
+<code class="docutils literal notranslate"><span class="pre">apply(Rdtos,2,mean)</span></code>aplica la función <code class="docutils literal notranslate"><span class="pre">sd()</span></code>a la matríz de
+rendimientos por columnas (2), para encontrar el vector de las
+volatilidades. 4. <code class="docutils literal notranslate"><span class="pre">cor(Rdtos)</span></code> obtiene la matriz de correlaciones de
+los rendimientos</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. estadisticas básicas</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)</span>
+<span class="c1">#2. media</span>
+<span class="n">media_rdto</span><span class="o">=</span><span class="nf">apply</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">media_rdto</span>
+<span class="c1"># 3. volatilidad</span>
+<span class="n">volatilidades</span><span class="o">=</span><span class="nf">apply</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">sd</span><span class="p">)</span>
+<span class="n">volatilidades</span>
+<span class="c1">#4. matriz de correlaciones</span>
+<span class="n">correlacion</span><span class="o">=</span> <span class="nf">cor</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">correlacion</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Index</span>                 <span class="n">BABA</span>                <span class="n">AAPL</span>
+<span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">13</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.081311</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.137708</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">24</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.011338</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.006290</span>
+<span class="n">Median</span> <span class="p">:</span><span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">31</span>   <span class="n">Median</span> <span class="p">:</span> <span class="mf">0.001810</span>   <span class="n">Median</span> <span class="p">:</span> <span class="mf">0.002733</span>
+<span class="n">Mean</span>   <span class="p">:</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">02</span>   <span class="n">Mean</span>   <span class="p">:</span> <span class="mf">0.001102</span>   <span class="n">Mean</span>   <span class="p">:</span> <span class="mf">0.002310</span>
+<span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">12</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.013891</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.012811</span>
+<span class="n">Max</span><span class="o">.</span>   <span class="p">:</span><span class="mi">2020</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">22</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.085728</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.113157</span>
+     <span class="n">WMT</span>                  <span class="n">WBA</span>                 <span class="n">TSLA</span>
+<span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.0950917</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.137025</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.205522</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.0049172</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.011249</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.012547</span>
+<span class="n">Median</span> <span class="p">:</span> <span class="mf">0.0006852</span>   <span class="n">Median</span> <span class="p">:</span> <span class="mf">0.001121</span>   <span class="n">Median</span> <span class="p">:</span> <span class="mf">0.003455</span>
+<span class="n">Mean</span>   <span class="p">:</span> <span class="mf">0.0009428</span>   <span class="n">Mean</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.001415</span>   <span class="n">Mean</span>   <span class="p">:</span> <span class="mf">0.004492</span>
+<span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.0063665</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.010271</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.022869</span>
+<span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.1107227</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.118704</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.181445</span>
+     <span class="n">PEP</span>
+<span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="o">-</span><span class="mf">0.1213581</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="o">-</span><span class="mf">0.0051923</span>
+<span class="n">Median</span> <span class="p">:</span> <span class="mf">0.0007529</span>
+<span class="n">Mean</span>   <span class="p">:</span> <span class="mf">0.0006118</span>
+<span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span> <span class="mf">0.0060943</span>
+<span class="n">Max</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">0.1216565</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>BABA</dt><dd>0.00110208425375515</dd><dt>AAPL</dt><dd>0.00230991189029808</dd><dt>WMT</dt><dd>0.000942815971362458</dd><dt>WBA</dt><dd>-0.00141468898900828</dd><dt>TSLA</dt><dd>0.00449189967544632</dd><dt>PEP</dt><dd>0.000611771676540034</dd></dl><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>BABA</dt><dd>0.0212841779249829</dd><dt>AAPL</dt><dd>0.0227867058816919</dd><dt>WMT</dt><dd>0.0163090807889491</dd><dt>WBA</dt><dd>0.0259798714576607</dd><dt>TSLA</dt><dd>0.0448845730943132</dd><dt>PEP</dt><dd>0.0195726841839839</dd></dl><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">BABA</span>      <span class="n">AAPL</span>       <span class="n">WMT</span>       <span class="n">WBA</span>      <span class="n">TSLA</span>       <span class="n">PEP</span>
+<span class="n">BABA</span> <span class="mf">1.0000000</span> <span class="mf">0.6488253</span> <span class="mf">0.2960607</span> <span class="mf">0.3524695</span> <span class="mf">0.4124726</span> <span class="mf">0.3680538</span>
+<span class="n">AAPL</span> <span class="mf">0.6488253</span> <span class="mf">1.0000000</span> <span class="mf">0.5255732</span> <span class="mf">0.5021039</span> <span class="mf">0.4668292</span> <span class="mf">0.6942764</span>
+<span class="n">WMT</span>  <span class="mf">0.2960607</span> <span class="mf">0.5255732</span> <span class="mf">1.0000000</span> <span class="mf">0.4570652</span> <span class="mf">0.1471808</span> <span class="mf">0.6833585</span>
+<span class="n">WBA</span>  <span class="mf">0.3524695</span> <span class="mf">0.5021039</span> <span class="mf">0.4570652</span> <span class="mf">1.0000000</span> <span class="mf">0.2122326</span> <span class="mf">0.4697712</span>
+<span class="n">TSLA</span> <span class="mf">0.4124726</span> <span class="mf">0.4668292</span> <span class="mf">0.1471808</span> <span class="mf">0.2122326</span> <span class="mf">1.0000000</span> <span class="mf">0.2793722</span>
+<span class="n">PEP</span>  <span class="mf">0.3680538</span> <span class="mf">0.6942764</span> <span class="mf">0.6833585</span> <span class="mf">0.4697712</span> <span class="mf">0.2793722</span> <span class="mf">1.0000000</span>
+</pre></div>
+</div>
+<p>Matríz de varianzas y covarianzas</p>
+<p>Para obtener la matriz de varianzas y covarianzas se hace uso de la
+función <code class="docutils literal notranslate"><span class="pre">cov(Rdtos)</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">covarianza</span><span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">covarianza</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="n">BABA</span>         <span class="n">AAPL</span>          <span class="n">WMT</span>          <span class="n">WBA</span>         <span class="n">TSLA</span>
+<span class="n">BABA</span> <span class="mf">0.0004530162</span> <span class="mf">0.0003146779</span> <span class="mf">0.0001027702</span> <span class="mf">0.0001949016</span> <span class="mf">0.0003940480</span>
+<span class="n">AAPL</span> <span class="mf">0.0003146779</span> <span class="mf">0.0005192340</span> <span class="mf">0.0001953189</span> <span class="mf">0.0002972434</span> <span class="mf">0.0004774596</span>
+<span class="n">WMT</span>  <span class="mf">0.0001027702</span> <span class="mf">0.0001953189</span> <span class="mf">0.0002659861</span> <span class="mf">0.0001936621</span> <span class="mf">0.0001077402</span>
+<span class="n">WBA</span>  <span class="mf">0.0001949016</span> <span class="mf">0.0002972434</span> <span class="mf">0.0001936621</span> <span class="mf">0.0006749537</span> <span class="mf">0.0002474834</span>
+<span class="n">TSLA</span> <span class="mf">0.0003940480</span> <span class="mf">0.0004774596</span> <span class="mf">0.0001077402</span> <span class="mf">0.0002474834</span> <span class="mf">0.0020146249</span>
+<span class="n">PEP</span>  <span class="mf">0.0001533270</span> <span class="mf">0.0003096452</span> <span class="mf">0.0002181366</span> <span class="mf">0.0002388767</span> <span class="mf">0.0002454317</span>
+              <span class="n">PEP</span>
+<span class="n">BABA</span> <span class="mf">0.0001533270</span>
+<span class="n">AAPL</span> <span class="mf">0.0003096452</span>
+<span class="n">WMT</span>  <span class="mf">0.0002181366</span>
+<span class="n">WBA</span>  <span class="mf">0.0002388767</span>
+<span class="n">TSLA</span> <span class="mf">0.0002454317</span>
+<span class="n">PEP</span>  <span class="mf">0.0003830900</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Material Curso Teoría y Estructuración de Portafolios" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
