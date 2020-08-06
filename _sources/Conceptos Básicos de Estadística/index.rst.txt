@@ -1,0 +1,23 @@
+Conceptos Básicos de Estadística
+==========================================================
+
+Para la estructuración de portafolios, es importante tener conceptos claros de estadística, por ello, 
+en esta sección se presentará un breve resumen con algunos de los conceptos a recordar.
+
+**El tiempo recomendado para el estudio de esta unidad temática es de 2 semanas.**
+
+En primer lugar, se debe estudiar el material aquí presentado y luego realizar la Práctica.
+
+**Material**
+
+	**Vídeos:**
+
+	**Diapositivas:** Descargue :download:`aquí <Conceptos estadísticos .pptx>` las dipositivas.
+
+**Práctica:**
+----------------
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Practica Rstudio/Obtención y Análisis de Rendimientos R

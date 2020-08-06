@@ -1,0 +1,40 @@
+Conceptos Previos: Introducción a R y R-Studio
+==========================================================
+Durante el curso se estará utilizando R. Por tanto, se requiere del desarrollo de competencias básicas en
+el manejo de este lenguaje de programación.  En esta sección, se encontrarán las instrucciones para la 
+instalación, material de estudio y talleres de práctica. 
+
+**El tiempo recomendado para el estudio de esta unidad temática es de 2 semanas.**
+
+Instalación de R y R-Studio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Para obtener R y R-Studio se cuenta con dos alternativas:
+
+1. Instalación en el PC:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+En este caso, requerirá instalar el software dentro de su PC, y no requerirá de una conexión a Internet constante.
+
+* Primero se debe instalar `R <https://www.r-project.org>`_ 
+* Luego de tener instalado R, se deberá instalar `R-Studio <https://rstudio.com/products/rstudio/download/>`_
+
+Para ello, siga las instrucciones de la presentación que encontrarán :download:`aquí <Instalación de R y R Studio.pptx>` 
+
+2. R-Studio en la Nube:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si decide utilizar R-Studio en la nube, este no se instalará dentro del PC, sin embargo; si deberá contar con una conexión constante a Internet. Para crear su cuenta en `R-Studio Cloud <https://rstudio.cloud/>`_ siga las siguientes instrucciones
+
+  * Descargue :download:`aquí <RStudio Cloud.pptx>` las presentaciones para usar R-Studio Cloud.
+
+3. Práctica R-Studio:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :titlesonly:
+   
+   Carga de Datos/Prática R-studio.rst
+   Carga de Datos/manipulacion objeto.rst
+
+
+   
