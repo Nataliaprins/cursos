@@ -12,12 +12,28 @@ En primer lugar, se debe estudiar el material aquí presentado y luego realizar 
 
 	**Vídeos:**
 
-	**Diapositivas:** Descargue :download:`aquí <Conceptos estadísticos .pptx>` las dipositivas.
+	Ver vídeo explicativo `Conceptos básicos estadística parte 1 <https://youtu.be/Qn0UiL1ySGQ>`_
+
+	Ver vídeo explicativo `Conceptos básicos estadística parte 2 <https://youtu.be/bay8333t1Yc>`_
+	
+	Ver vídeo explicativo `Concepto de rendimientos continuo <https://youtu.be/AomN6J3oRS4>`_
+
+	**Diapositivas:** 
+
+	Descargue :download:`aquí <Conceptos estadísticos .pptx>` las dipositivas.
+
+	**Archivos de excel**
+	
+	Descargue :download:`aquí <Acciones.csv>` el archivo de con las acciones usadas en la Práctica 3.
+
+ 
 
 **Práctica:**
 ----------------
 .. toctree::
    :maxdepth: 1
    :titlesonly:
+   
+   practica 3/Estadisticas despriptivas.rst
 
    Practica Rstudio/Obtención y Análisis de Rendimientos R

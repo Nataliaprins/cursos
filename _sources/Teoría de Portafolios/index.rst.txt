@@ -1,9 +1,36 @@
 Teoría de Portafolios
 ==========================================================
 
+La teoría para la estructuración de portafolios, se basa en la relación de riesgo y rendimiento existente entre los 
+activos que lo componen. En esta sección se presenta los conceptos básicos de la optimización de portafolios basado
+en la Frontera Eficiente de Harry Markowitz.
+
+**El tiempo recomendado para el estudio de esta unidad temática es de 2 semanas.**  
+
+En primer lugar, se debe estudiar el material aquí presentado y luego realizar la Práctica.
+
+**Material:**
+
+	**Lecturas**
+
+	**1.** 
+	
+	**2.**
+
+
+	**Vídeos:**
+
+	Ver vídeo explicativo: `Obtención de rendimientos y volatilidad del portafolio en Excel <https://youtu.be/6iyse4eo0Ak>`_
+
+	Ver vídeo explicativo: `Construcción de frontera eficiente en Excel <https://youtu.be/NI7Du6IcinQ>`_
+
+	**Diapositivas:**
+
+Práctica:
+^^^^^^^^^^^^ 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contenido:
+   :titlesonly:
 
-
+   Optimización/Optimización de portafolios.rst

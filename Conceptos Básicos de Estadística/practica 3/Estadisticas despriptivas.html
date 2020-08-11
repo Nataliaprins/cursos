@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Práctica 3: Estadísticas Descriptivas para Rendimientos. &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Práctica 4: Obtención y Análisis de Rendimientos R" href="../Practica Rstudio/Obtención y Análisis de Rendimientos R.html" />
+    <link rel="prev" title="Conceptos Básicos de Estadística" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Conceptos Básicos de Estadística</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#practica"><strong>Práctica:</strong></a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Práctica 3: Estadísticas Descriptivas para Rendimientos.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Practica Rstudio/Obtención y Análisis de Rendimientos R.html">Práctica 4: Obtención y Análisis de Rendimientos R</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Conceptos Básicos de Estadística</a> &raquo;</li>
+        
+      <li>Práctica 3: Estadísticas Descriptivas para Rendimientos.</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Conceptos Básicos de Estadística/practica 3/Estadisticas despriptivas.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="practica-3-estadisticas-descriptivas-para-rendimientos">
+<h1>Práctica 3: Estadísticas Descriptivas para Rendimientos.<a class="headerlink" href="#practica-3-estadisticas-descriptivas-para-rendimientos" title="Permalink to this headline">¶</a></h1>
+<p>En esta sección se aplicarán las estadísticas descriptivas y conceptos
+básicos que se están estudiando. Además, se estudirá la diferencia entre
+rendimientos contínuos y discretos.</p>
+<p><strong>Estadísticas para los precios de las acciones:</strong></p>
+<p>Para comenzar, se llama la libería <code class="docutils literal notranslate"><span class="pre">fBasics</span></code></p>
+<p>Luego, se cargan los datos de las acciones con la función
+<code class="docutils literal notranslate"><span class="pre">read.csv()</span></code>, en un objeto llamado <code class="docutils literal notranslate"><span class="pre">datos=</span></code> tal como se vió en la
+sección anterior <a class="reference external" href="https://nataliaprins.github.io/cursos/Manejo%20de%20R-Studio/Carga%20de%20Datos/Pr%C3%A1tica%20R-studio.html">Conceptos Previos: Introducción a R y
+R-Studio</a>.
+El archivo con el cual se trabajó se encuentra en
+<a class="reference external" href="https://nataliaprins.github.io/cursos/Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">aquí</a>.</p>
+<p>y se define el objeto <code class="docutils literal notranslate"><span class="pre">precios</span> <span class="pre">=</span></code> como una serie de tiempo con la
+función <code class="docutils literal notranslate"><span class="pre">ts()</span></code> aplicada a <code class="docutils literal notranslate"><span class="pre">datos</span></code> para las columnas 2 a la 5, las
+cuales contienen las acciones, ya que en el archivo la columna 1 solo es
+una columna de numeración.</p>
+<p>Se muestra los 5 primeros registros de <code class="docutils literal notranslate"><span class="pre">precios</span></code> con la función
+<code class="docutils literal notranslate"><span class="pre">head</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&#39;fBasics&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span><span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span> <span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span><span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">precios</span><span class="o">=</span> <span class="nf">ts</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">precios</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">WMT</span><span class="o">.</span><span class="n">Adjusted</span> <span class="n">PG</span><span class="o">.</span><span class="n">Adjusted</span> <span class="n">NFLX</span><span class="o">.</span><span class="n">Adjusted</span> <span class="n">KO</span><span class="o">.</span><span class="n">Adjusted</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>     <span class="mf">95.04511</span>    <span class="mf">96.73402</span>        <span class="mf">359.97</span>    <span class="mf">47.71631</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>     <span class="mf">95.99585</span>    <span class="mf">96.71452</span>        <span class="mf">351.77</span>    <span class="mf">47.84123</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span>     <span class="mf">96.56432</span>    <span class="mf">95.95438</span>        <span class="mf">359.07</span>    <span class="mf">43.80561</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span>     <span class="mf">98.00515</span>    <span class="mf">95.97388</span>        <span class="mf">356.87</span>    <span class="mf">43.46932</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span>    <span class="mf">100.17127</span>    <span class="mf">97.44544</span>        <span class="mf">361.92</span>    <span class="mf">43.07536</span>
+</pre></div>
+</div>
+<p><strong>Histograma:</strong></p>
+<p>Se realiza el histograma de los precios de la acción 1 que para este
+caso particular pertenece a Walmart. Aqui se usa la función <code class="docutils literal notranslate"><span class="pre">hist()</span></code>
+sobre el objeto <code class="docutils literal notranslate"><span class="pre">precios[,1]</span></code> en la posición 1 (WMT), se le aplican
+los argumentos:título del gráfico “histograma Precios WMT”
+(<code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">=</span> <span class="pre">&quot;histograma</span> <span class="pre">Precios</span> <span class="pre">WMT&quot;</span></code>), color en azul (<code class="docutils literal notranslate"><span class="pre">col='blue'</span></code>),
+bordes en negro (<code class="docutils literal notranslate"><span class="pre">border='black'</span></code>), etiqueta del eje X en USD
+(<code class="docutils literal notranslate"><span class="pre">xlab=</span> <span class="pre">USD</span></code>) y tamaño del eje Y (<code class="docutils literal notranslate"><span class="pre">ylim</span> <span class="pre">=</span> <span class="pre">c(0,50)</span></code>)</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">precios</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;histograma Precios WMT&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;USD&#39;</span><span class="p">,</span><span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_6_0.png"><img alt="../../_images/output_6_0.png" src="../../_images/output_6_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Con el fin de graficar los histogrmas con diferentes colores, se hace
+uso de la librería <code class="docutils literal notranslate"><span class="pre">qualiPalette()</span></code> para crear una paleta de n colores
+dentro de la gama <em>Dark2</em> , los cuales están determinados por el número
+de acciones que contenga el objeto <code class="docutils literal notranslate"><span class="pre">precios</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">colores</span><span class="o">=</span> <span class="nf">qualiPalette</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">precios</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Dark2&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Preparación de la ventana de gráficos.</strong></p>
+<p>Con el fin de crear una ventana, que coloque los histogramas de los
+precios en una matríz gráfica de 4x2, se crean el objeto
+<code class="docutils literal notranslate"><span class="pre">tamano=c(seq(ncol(cartera)))</span></code>, el cual crea una secuencia de 1 hasta
+el número total de acciones con el que cuenta el objeto <code class="docutils literal notranslate"><span class="pre">precios</span></code>, y
+luego con el objeto <code class="docutils literal notranslate"><span class="pre">matriz</span></code> se crea la matriz gráfica.</p>
+<p>Con la ayuda de un ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> se crean los histogramas para cada una
+de las acciones pertenecientes a <code class="docutils literal notranslate"><span class="pre">precios</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">win.graph</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="m">13</span><span class="p">)</span>
+<span class="n">tamano</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">precios</span><span class="p">)))</span>
+<span class="n">matriz</span><span class="o">=</span><span class="nf">matrix</span><span class="p">(</span><span class="n">tamano</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">layout</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+<span class="c1">#layout.show(C) opcional para Rstudio en consola.</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">precios</span><span class="p">)){</span>
+  <span class="nf">hist</span><span class="p">(</span><span class="n">precios</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span><span class="o">=</span><span class="m">40</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Precios&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span><span class="s">&quot;Frecuencia&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">precios</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span> <span class="n">freq</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_10_0.png"><img alt="../../_images/output_10_0.png" src="../../_images/output_10_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Estadísticas Descriptivas:</strong></p>
+<p>Con el fin de obtener un resumen general de las estadísticas principales
+como media, mediana, mínimo, máximo y cuartiles, se utiliza la función
+<code class="docutils literal notranslate"><span class="pre">summary()</span></code> sobre <code class="docutils literal notranslate"><span class="pre">precios</span></code>, para todas las acciones.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#estadísticas</span>
+<span class="n">descriptivos</span><span class="o">=</span> <span class="nf">summary</span><span class="p">(</span><span class="n">precios</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">descriptivos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">WMT</span><span class="o">.</span><span class="n">Adjusted</span>     <span class="n">PG</span><span class="o">.</span><span class="n">Adjusted</span>     <span class="n">NFLX</span><span class="o">.</span><span class="n">Adjusted</span>    <span class="n">KO</span><span class="o">.</span><span class="n">Adjusted</span>
+<span class="n">Min</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">95.05</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span> <span class="mf">95.91</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="mf">254.6</span>   <span class="n">Min</span><span class="o">.</span>   <span class="p">:</span><span class="mf">42.94</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">101.39</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">104.12</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">299.1</span>   <span class="mi">1</span><span class="n">st</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">47.64</span>
+<span class="n">Median</span> <span class="p">:</span><span class="mf">113.30</span>   <span class="n">Median</span> <span class="p">:</span><span class="mf">116.09</span>   <span class="n">Median</span> <span class="p">:</span><span class="mf">343.3</span>   <span class="n">Median</span> <span class="p">:</span><span class="mf">52.18</span>
+<span class="n">Mean</span>   <span class="p">:</span><span class="mf">110.27</span>   <span class="n">Mean</span>   <span class="p">:</span><span class="mf">113.76</span>   <span class="n">Mean</span>   <span class="p">:</span><span class="mf">333.5</span>   <span class="n">Mean</span>   <span class="p">:</span><span class="mf">51.13</span>
+<span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">117.51</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">121.93</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">362.8</span>   <span class="mi">3</span><span class="n">rd</span> <span class="n">Qu</span><span class="o">.</span><span class="p">:</span><span class="mf">53.73</span>
+<span class="n">Max</span><span class="o">.</span>   <span class="p">:</span><span class="mf">121.28</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span><span class="mf">127.14</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span><span class="mf">387.8</span>   <span class="n">Max</span><span class="o">.</span>   <span class="p">:</span><span class="mf">59.61</span>
+</pre></div>
+</div>
+<p>Con la función <code class="docutils literal notranslate"><span class="pre">range()</span></code> se puede obtener el rango en el que se mueve
+el precio de una acción, en este caso la acción ubicada en la posición 3
+(<code class="docutils literal notranslate"><span class="pre">precios[,3]</span></code>) NFLX.Adjusted que irá desde el mín= 254.6 a max=
+387.8, esta información se observa igualmente en el recuadro anterior de
+las estadísticas resumen.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rango</span><span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">precios</span><span class="p">[,</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">rango</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">254.59</span> <span class="mf">387.78</span>
+</pre></div>
+</div>
+<p>La varianza de una acción se puede hallar con la función <code class="docutils literal notranslate"><span class="pre">var()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Matriz de varianzas</span>
+<span class="n">varianza</span><span class="o">=</span> <span class="nf">var</span><span class="p">(</span><span class="n">precios</span><span class="p">[</span> <span class="p">,</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">varianza</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1227.86</span>
+</pre></div>
+</div>
+<p>Asimismo, la desviación estandar de una acción se puede hallar con la
+función <code class="docutils literal notranslate"><span class="pre">sd()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span><span class="o">=</span><span class="nf">sd</span><span class="p">(</span><span class="n">precios</span><span class="p">[</span> <span class="p">,</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">35.04084</span>
+</pre></div>
+</div>
+<p>La asimetría o sesgo, se puede hallar con la función <code class="docutils literal notranslate"><span class="pre">skewness()</span></code>,
+pero hay que aclarar que esta función no se encuentra dentro de los
+paquetes básicos de R, por tanto, siempre antes de utilizar esta
+función, se debe instalar el paquete <code class="docutils literal notranslate"><span class="pre">'fBasics'</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">asimetria</span><span class="o">=</span> <span class="nf">skewness</span><span class="p">(</span><span class="n">precios</span><span class="p">[,</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">asimetria</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mf">0.3791279</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;moment&quot;</span>
+</pre></div>
+</div>
+<p>Igualmente con la función <code class="docutils literal notranslate"><span class="pre">kurtosis()</span></code> se debe tener instalado la
+librería <code class="docutils literal notranslate"><span class="pre">'fBasics'</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">curtosis</span><span class="o">=</span> <span class="nf">kurtosis</span><span class="p">(</span><span class="n">precios</span><span class="p">[</span> <span class="p">,</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">curtosis</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mf">1.177376</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;excess&quot;</span>
+</pre></div>
+</div>
+<p>Los cuantiles o percentiles del precio de una acción o de cualquier
+variable, se pueden calcular con la función <code class="docutils literal notranslate"><span class="pre">quantile()</span></code>, lo
+importante es indicar el percentil que se desea hallar, para ello, se
+utiliza el argumento <code class="docutils literal notranslate"><span class="pre">prob</span> <span class="pre">=</span> <span class="pre">c()</span></code>, en donde se colocará el valor de
+los perncentiles entre 0 y 1.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="o">=</span><span class="nf">quantile</span><span class="p">(</span><span class="n">precios</span><span class="p">[</span><span class="m">3</span><span class="p">],</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.75</span><span class="p">),</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="mi">25</span><span class="o">%</span>      <span class="mi">50</span><span class="o">%</span>      <span class="mi">75</span><span class="o">%</span>
+<span class="mf">96.56432</span> <span class="mf">96.56432</span> <span class="mf">96.56432</span>
+</pre></div>
+</div>
+<p><strong>Rendimientos:</strong></p>
+<p>Los rendimientos calculados en esta sección, son basados en las
+distribuciones continuas por lo que se utilizan los rendimientos
+logarítmicos, determinados por la fórmula:</p>
+<div class="math notranslate nohighlight">
+\[Rdto = ln(Vf/Vi)\]</div>
+<p>La funciones <code class="docutils literal notranslate"><span class="pre">diff()</span></code> y <code class="docutils literal notranslate"><span class="pre">log()</span></code> aplicadas de forma anidada sobre el
+objeto <code class="docutils literal notranslate"><span class="pre">precios</span></code>, producen la matriz de rendimientos continuos, que se
+observa a continuación.</p>
+<p>Para comprender el uso de los rendimientos logarítmicos ver el vídeo
+explicativo: <a class="reference external" href="https://nataliaprins.github.io/cursos/Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Rendimientos discreto vs
+continuos</a>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Rdtos</span><span class="o">=</span><span class="nf">diff</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">precios</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">WMT</span><span class="o">.</span><span class="n">Adjusted</span>   <span class="n">PG</span><span class="o">.</span><span class="n">Adjusted</span> <span class="n">NFLX</span><span class="o">.</span><span class="n">Adjusted</span>  <span class="n">KO</span><span class="o">.</span><span class="n">Adjusted</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>  <span class="mf">0.009953393</span> <span class="o">-</span><span class="mf">0.0002015316</span>  <span class="o">-</span><span class="mf">0.023043176</span>  <span class="mf">0.002614405</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>  <span class="mf">0.005904385</span> <span class="o">-</span><span class="mf">0.0078906655</span>   <span class="mf">0.020539853</span> <span class="o">-</span><span class="mf">0.088125733</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span>  <span class="mf">0.014810682</span>  <span class="mf">0.0002031280</span>  <span class="o">-</span><span class="mf">0.006145819</span> <span class="o">-</span><span class="mf">0.007706627</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span>  <span class="mf">0.021861413</span>  <span class="mf">0.0152165405</span>   <span class="mf">0.014051673</span> <span class="o">-</span><span class="mf">0.009104239</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="o">-</span><span class="mf">0.022962154</span> <span class="o">-</span><span class="mf">0.0071259700</span>  <span class="o">-</span><span class="mf">0.005569218</span>  <span class="mf">0.006004729</span>
+</pre></div>
+</div>
+<p>A modo de ejemplo, aquí se crean los histogramas para los rendimientos
+de las acciones, de forma similar a la ya vista.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">win.graph</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="m">13</span><span class="p">)</span>
+<span class="n">tamano</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)))</span>
+<span class="n">matriz</span><span class="o">=</span><span class="nf">matrix</span><span class="p">(</span><span class="n">tamano</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">layout</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+<span class="c1">#layout.show(C) opcional para Rstudio en consola.</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)){</span>
+  <span class="nf">hist</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span><span class="o">=</span><span class="m">40</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Rendimientos&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span><span class="s">&quot;Frecuencia&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">]),</span> <span class="n">freq</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_28_0.png"><img alt="../../_images/output_28_0.png" src="../../_images/output_28_0.png" style="width: 420px; height: 420px;" /></a>
+<p>con el objetivo de obtener una matriz que reúna los coeficientes de
+curtosis y asimetría en una sola tabla se hace uso de un ciclo
+<code class="docutils literal notranslate"><span class="pre">For{}</span></code>, ya que estas funciones por si solas solo se aplican a los
+activos individuales.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">asimetria</span><span class="o">=</span><span class="nf">vector</span><span class="p">()</span>
+<span class="n">curtosis</span><span class="o">=</span><span class="nf">vector</span><span class="p">()</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">asimetria</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="nf">skewness</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[,</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">curtosis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="nf">kurtosis</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[</span> <span class="p">,</span><span class="n">i</span><span class="p">])</span>
+    <span class="p">}</span>
+
+<span class="n">matriz</span><span class="o">=</span><span class="nf">cbind</span><span class="p">(</span><span class="n">asimetria</span><span class="p">,</span> <span class="n">curtosis</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">asimetria</span>  <span class="n">curtosis</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>  <span class="mf">0.02079609</span> <span class="mf">17.580065</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>  <span class="mf">0.02442168</span> <span class="mf">15.601142</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="o">-</span><span class="mf">0.94786033</span>  <span class="mf">4.384105</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="o">-</span><span class="mf">2.06507309</span> <span class="mf">14.358641</span>
+</pre></div>
+</div>
+<p><strong>Práctica:</strong></p>
+<p>Con las acciones que descargaron y manipularon en las <a class="reference external" href="https://nataliaprins.github.io/cursos/Manejo%20de%20R-Studio/index.html">Prácticas 1y
+2</a>,
+saque los rendimientos logarítmicos de las acciones que eligió y
+responda lo siguiente:</p>
+<p><strong>1.</strong> Los histogrmas muestran un comportamiento platicúrtico,
+mesocúrtico o leptocúrtico.</p>
+<p><strong>2.</strong> Concluya sobre las estadísticas descriptivas básicas de los
+rendimientos (summary).</p>
+<p><strong>3.</strong> Confirme por medio de los coeficientes de asimetría y curtosis,
+si los rendimientos de sus acciones contienen colas pesadas (sesgo) o
+estan demasiado centradas(curtosis altas)</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Practica Rstudio/Obtención y Análisis de Rendimientos R.html" class="btn btn-neutral float-right" title="Práctica 4: Obtención y Análisis de Rendimientos R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Conceptos Básicos de Estadística" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

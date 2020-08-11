@@ -15,9 +15,9 @@ nataliaacevedo@itm.edu.co
 .. toctree::
    :maxdepth: 1
    :caption: Contenido:
-
-   Manejo de R-Studio/index
+   
    Generalidades del Mercado Colombiano/index
+   Manejo de R-Studio/index
    Conceptos Básicos de Estadística/index
    Teoría de Portafolios/index
    Selección de Carteras/index

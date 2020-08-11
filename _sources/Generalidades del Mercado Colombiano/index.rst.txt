@@ -24,9 +24,7 @@ afianzar los conocimientos previos acerca de los mercados financieros.
 
     	* **En esta guía** :download:`(aquí) <Guia_Mercado_de_Valores.pdf>` podrá profundizar en detalle cada uno de los instrumentos que componen el mercado colombiano; sin embargo, para esta primera unidad, se recomienda la lectura del **capítulo 2: Fondos de Inversión Colectiva.**
 
-    ** Vídeos:**
-
-    **Diapositivas:**
+    
 
 **Práctica:**
 ----------------
