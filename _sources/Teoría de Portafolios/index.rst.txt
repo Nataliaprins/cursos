@@ -11,20 +11,33 @@ En primer lugar, se debe estudiar el material aquí presentado y luego realizar 
 
 **Material:**
 
-	**Lecturas**
+	**Lecturas:**
 
-	**1.** 
-	
-	**2.**
+	**1. Capítulo: Teoría de cartera.** Mercado de capitales. Court y Tarradellas. **Descargue** :download:`aquí <Teoría de Cartera.pdf>` el capítulo.
 
+	**2. Guía de estudio: Administración de portafolios.** AMV. **Descargue** :download:`aquí <Guía-Administración-de-Portafolios.pdf>` la guía.
+
+	**3. Capítulo: Teoría de portafolios.** Inversiones en renta variable: fundamentos y aplicaciones al mercado accionario colombiano. Diego A. Agudelo R. **Descargue** :download:`aquí <Teoría de portafolios-Diego A. Agudelo R.pdf>` el documento.
 
 	**Vídeos:**
+
+	Ver vídeo explicativo: `Introducción a la Teoría de Portafolio Moderna <https://youtu.be/rloP_secZvk>`_
 
 	Ver vídeo explicativo: `Obtención de rendimientos y volatilidad del portafolio en Excel <https://youtu.be/6iyse4eo0Ak>`_
 
 	Ver vídeo explicativo: `Construcción de frontera eficiente en Excel <https://youtu.be/NI7Du6IcinQ>`_
 
+	Ver vídeo explicativo: `Ampliación del concepto de Rendimiento <https://youtu.be/AomN6J3oRS4>`_
+
 	**Diapositivas:**
+
+	* **Descargue** :download:`aquí <4. Introducción a la teoría de portafolios.pdf>` las diapositivas de introducción a la teoría de portafolios 
+
+	* **Descargue** :download:`aquí <5. Frontera eficiente.pdf>` las diapositivas de frontera eficiente.
+
+	**Archivos:**
+
+	* **Descargue** :download:`aquí <Construccion frontera.xlsx>` el archivo con el que se contruyó la frontera eficiente en Excel.
 
 Práctica:
 ^^^^^^^^^^^^ 

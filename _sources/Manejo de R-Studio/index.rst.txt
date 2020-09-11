@@ -18,14 +18,14 @@ En este caso, requerirá instalar el software dentro de su PC, y no requerirá d
 * Primero se debe instalar `R <https://www.r-project.org>`_ 
 * Luego de tener instalado R, se deberá instalar `R-Studio <https://rstudio.com/products/rstudio/download/>`_
 
-Para ello, siga las instrucciones de la presentación que encontrarán :download:`aquí <Instalación de R y R Studio.pptx>` 
+Para ello, siga las instrucciones de la presentación que encontrarán :download:`aquí <Instalación de R y R Studio.pdf>` 
 
 2. R-Studio en la Nube:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Si decide utilizar R-Studio en la nube, este no se instalará dentro del PC, sin embargo; si deberá contar con una conexión constante a Internet. Para crear su cuenta en `R-Studio Cloud <https://rstudio.cloud/>`_ siga las siguientes instrucciones
 
-  * Descargue :download:`aquí <RStudio Cloud.pptx>` las presentaciones para usar R-Studio Cloud.
+  * Descargue :download:`aquí <RStudio Cloud.pdf>` las presentaciones para usar R-Studio Cloud.
 
 3. Práctica R-Studio:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

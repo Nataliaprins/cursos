@@ -20,9 +20,9 @@ En primer lugar, se debe estudiar el material aquí presentado y luego realizar 
 
 	**Diapositivas:** 
 
-	Descargue :download:`aquí <Conceptos estadísticos .pptx>` las dipositivas de conceptos estadísticos.
+	Descargue :download:`aquí <3.Conceptos estadísticos .pdf>` las dipositivas de conceptos estadísticos.
 
-	Descargue :download:`aquí <Rendimientos.pptx>` las dipositivas de Rendimientos.
+	Descargue :download:`aquí <Rendimientos.pdf>` las dipositivas de Rendimientos.
 
 	**Archivos de excel**
 	
