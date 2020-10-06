@@ -1,9 +1,54 @@
 Selección de Cartera
 ==========================================================
 
+Ratios de desempeño de portafolios.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Existen medidas que permiten la evaluación del desempeño de los portafolios, al igual que las comparaciones entre ellos, en esta unidad 
+se estudiaran 3 de las medidas mas importantes para la medición y comparación, esto con el fin de asegurar a los inversionistas el 
+cumplimiento del objetivo básico financiero.
+
+**El tiempo recomendado para el estudio de esta unidad temática es de 2 semanas.**  
+
+
+**Material:**
+
+	**Lecturas:**
+
+	**1. CAPM:** Inversiones en renta variable: fundamentos y aplicaciones al mercado accionario colombiano. Diego A. Agudelo R.
+    	**Descargue** :download:`aquí <CAPM-Diego A. Agudelo R.pdf>` el documento.
+
+	**2. Chapter 7:** Portfolio Evaluation.** EQUITY MARKETS AND PORTFOLIO ANALYSIS. R. Stafford Johnson.
+	**Descargue** :download:`aquí <Teoría de portafolio-R. Stafford Johnson.pdf>` el capítulo.
+
+
+	**Videos:**
+
+	* **Ver vídeo explicativo:** `Ratio de Sharpe <https://youtu.be/NZSeZvaHioE>`_
+
+	* **Ver vídeo explicativo:** `Línea del Mercado de capitales <https://youtu.be/rP7UIIVpmm8>`_
+
+	* **Ver vídeo explicativo:** `Beta del portafolio <https://youtu.be/1OLfRaSowLA>`_
+
+	* **Ver vídeo explicativo:** `Ratio de Treynor <https://youtu.be/l75HcaR_lLY>`_
+
+
+	**Diapositivas:**
+
+	* **Descargue** :download:`aquí <6. CAPM.pdf>` las diapositivas del modelo CAPM.
+
+	* **Descargue** :download:`aquí <7. Línea de Mercado de Capitales.pdf>` las diapositivas de la línea del mercado de capitales- LMC.
+
+	* **Descargue** :download:`aquí <8. Indicadores de desempeño.pdf>` las diapositivas de los indicadores de desempeño.
+
+
+En la siguiente práctica, encontrán ampliación teórica de los conceptos vistos.
+
+Práctica:
+^^^^^^^^^^^^ 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contenido:
+   :titlesonly:
 
-
+   Seleccion de portafolios/Análisis y Selección de Portafolios.rst
