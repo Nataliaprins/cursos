@@ -1,0 +1,23 @@
+Práctica 7: Valoración de Bonos y Principios de Bonos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*1.* Bono con vencimiento a 30 años y un cupón del 8%, se vende a un rendimiento inicial al vencimiento del 8%. Como el tipo de cupón es igual al rendimiento al vencimiento, el bono se vende a la par, $1.000. La duración modificada del bono a su rendimiento inicial es 11,26 años. si el rendimiento del bono aumenta del 8% al 10%. Calcule la variación porcentual y el precio, utilizando la duración, la duración modificada y la convexidad. 
+
+*2.* El 20/03/2019 se vende el siguiente bono: Vencimiento el 15/07/2023, nominal de $100, tasa cupón de 9% y TIR de 9,17%. Los cupones se pagan cada año. Calcule el precio limpio y el precio sucio.
+
+*3.* Descargue de la `Bolsa de Valores de Colombia <https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/rentafija?action=dummy>`_ un TES, en cualquier fecha de valoración, encuentre la tasa de rendimiento al que se negoció ese día, y Calcule lo siguiente:
+
+	*a.* Precio Limpio
+
+	*b.* Cupón Corrido
+
+	*c.* A partir del precio Limpio, halle el precio sucio.
+
+	*d.* Duración
+
+	*e.* Duración Modificada
+
+	*f.* Convexidad
+
+Con los datos hallados, indique que tan sensible es ese bono, y si se conoce que hay expectativas alcistas en los tipos de interés ¿convendría invertir en ese bono? ¿y por qué?  
+
