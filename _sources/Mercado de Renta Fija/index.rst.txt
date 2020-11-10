@@ -22,7 +22,7 @@ los tipos de instrumentos de renta fija existentes en el mercado, asimismo, la v
 
 	* **1. Ver vídeo explicativo:** `Generalidades Renta fija <https://youtu.be/bssU4X5xlac>`_
 
-	* **2. Ver vídeo explicativo:** `Generalidades Bonos <https://youtu.be/rP7UIIVpmm8>`_
+	* **2. Ver vídeo explicativo:** `Generalidades Bonos <https://youtu.be/yUI7jBsyHTE>`_
 
 	* **3. Ver vídeo explicativo:** `Comportamiento de precios <https://youtu.be/3Z7RvhIF7Pc>`_
 
@@ -45,6 +45,20 @@ los tipos de instrumentos de renta fija existentes en el mercado, asimismo, la v
 	* **Descargue** :download:`aquí <Precio Sucio y Limpio.xlsx>` el archivo de ejemplo para precio sucio y limpio.
 	
 	* **Descargue** :download:`aquí <Duración y convexidad.xlsx>` el archivo de ejemplo para duración y convexidad.
+
+**Diapositivas**
+
+	* **Descargue** :download:`aquí <1.Mercado de Renta fija.pptx>` las diapositivas de Generalidades del mercado de renta fija.
+	
+	* **Descargue** :download:`aquí <2.Generalidades bonos.pptx>` las diapositivas de Generalidades de los bonos.
+
+	* **Descargue** :download:`aquí <3.Comportamiento precios.pptx>` las diapositivas de comportamiento preciso de bonos.
+
+	* **Descargue** :download:`aquí <4. Precio Sucio y Limpio de los Bonos.pptx>` las diapositivas de precio sucio y limpio.
+
+	* **Descargue** :download:`aquí <5. Principios de los bonos.pptx>` las diapositivas de Principios de los bonos.
+
+	* **Descargue** :download:`aquí <6. Duración y Sensibilidad de los Bonos.pptx>` las diapositivas de duración y sensibilidad.
 
 
 .. toctree::
