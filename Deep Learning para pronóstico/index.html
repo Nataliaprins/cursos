@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generalidades del Mercado Colombiano &mdash; Material Curso 1 documentation</title>
+  <title>Deep Learning para pronóstico &mdash; Material Curso 1 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Práctica 3: Fondos de Inversión Colectivos-FIC" href="Práctica fondos colectivos/fondos colectivos.html" />
-    <link rel="prev" title="Material cursos" href="../index.html" /> 
+    <link rel="next" title="Introducción a los modelos de Deep Learning para pronóstico" href="Introducción a los modelos de Deep Learning para pronóstico.html" />
+    <link rel="prev" title="ARIMA: autoregresivo integrado de medias móviles" href="../Modelos autorregresivos/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,15 +84,8 @@
             
             
               <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Generalidades del Mercado Colombiano</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#material"><strong>Material:</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#practica"><strong>Práctica:</strong></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Práctica fondos colectivos/fondos colectivos.html">Práctica 3: Fondos de Inversión Colectivos-FIC</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
@@ -100,10 +93,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modelación:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deep Learning para pronóstico</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introducción a los modelos de Deep Learning para pronóstico.html">Introducción a los modelos de Deep Learning para pronóstico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LSTM/index.html">LSTM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LSTM/index.html#rnn">RNN:</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -150,13 +148,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Generalidades del Mercado Colombiano</li>
+      <li>Deep Learning para pronóstico</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Generalidades del Mercado Colombiano/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Deep Learning para pronóstico/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -169,40 +167,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="generalidades-del-mercado-colombiano">
-<h1>Generalidades del Mercado Colombiano<a class="headerlink" href="#generalidades-del-mercado-colombiano" title="Permalink to this headline">¶</a></h1>
-<p>Es importante que para este curso se tenga claro la dinámica general del mercado de valores;
-sin embargo, haremos énfasis en los instrumentos de renta variable y renta fija.</p>
-<p>Para ello, se encuentra a continuación, una serie de documentos, que les permitirán
-afianzar los conocimientos previos acerca de los mercados financieros.</p>
-<p><strong>El tiempo recomendado para el estudio de esta unidad temática es de 1 semana.</strong></p>
-<div class="section" id="material">
-<h2><strong>Material:</strong><a class="headerlink" href="#material" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>Lecturas:</strong></p>
-<blockquote>
-<div><p><strong>1. Capítulo 3: Introducción al mercado de valores colombiano</strong>. Finanzas para no financieros: el caso colombiano. Daniel Armando Chicaiza Cosme.</p>
-<ul class="simple">
-<li><p><strong>En este capítulo</strong> <a class="reference download internal" download="" href="../_downloads/8dce5ff8ec1a7f45245e8b42a8d066a6/Introducción al mercado de valores colombiano-Chicaiza.pdf"><code class="xref download docutils literal notranslate"><span class="pre">(aquí)</span></code></a> encontrará un breve resumen de la dinámica del mercado colombiano.</p></li>
-</ul>
-<p><strong>2. Características generales del mercado de acciones en Colombia</strong>. Inversiones en renta variable: Fundamentos y aplicaciones al mercado accionario colombiano. Diego A. Agudelo R.</p>
-<ul class="simple">
-<li><p><strong>En este capítulo</strong> <a class="reference download internal" download="" href="../_downloads/20eca0b47f8f2a63c97c28eddd66dba3/Mercado de acciones de Colombia-Agudelo.pdf"><code class="xref download docutils literal notranslate"><span class="pre">(aquí)</span></code></a> encontrará más detalle de las características generales del mercado de Renta variable.</p></li>
-</ul>
-<p><strong>3. Guía de Mercado de Valores.</strong> Bolsa de Valores de Colombia (BVC).</p>
-<ul class="simple">
-<li><p><strong>En esta guía</strong> <a class="reference download internal" download="" href="../_downloads/066f51b51636c238cd2f4d29c409c6c1/Guia_Mercado_de_Valores.pdf"><code class="xref download docutils literal notranslate"><span class="pre">(aquí)</span></code></a> podrá profundizar en detalle cada uno de los instrumentos que componen el mercado colombiano; sin embargo, para esta primera unidad, se recomienda la lectura del <strong>capítulo 2: Fondos de Inversión Colectiva.</strong></p></li>
-</ul>
-</div></blockquote>
-</div></blockquote>
-</div>
-<div class="section" id="practica">
-<h2><strong>Práctica:</strong><a class="headerlink" href="#practica" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="deep-learning-para-pronostico">
+<h1>Deep Learning para pronóstico<a class="headerlink" href="#deep-learning-para-pronostico" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contenido:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Práctica fondos colectivos/fondos colectivos.html">Práctica 3: Fondos de Inversión Colectivos-FIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introducción a los modelos de Deep Learning para pronóstico.html">Introducción a los modelos de Deep Learning para pronóstico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LSTM/index.html">LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LSTM/index.html#rnn">RNN:</a></li>
 </ul>
-</div>
 </div>
 </div>
 
@@ -214,10 +187,10 @@ afianzar los conocimientos previos acerca de los mercados financieros.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Práctica fondos colectivos/fondos colectivos.html" class="btn btn-neutral float-right" title="Práctica 3: Fondos de Inversión Colectivos-FIC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Introducción a los modelos de Deep Learning para pronóstico.html" class="btn btn-neutral float-right" title="Introducción a los modelos de Deep Learning para pronóstico" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral float-left" title="Material cursos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Modelos autorregresivos/index.html" class="btn btn-neutral float-left" title="ARIMA: autoregresivo integrado de medias móviles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

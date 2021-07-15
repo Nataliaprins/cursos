@@ -1,4 +1,4 @@
-Curso Teoría y Estructuración de Portafolios
+Material cursos
 ==========================================================
 **Docente: Natalia Acevedo Prins**
 
@@ -14,7 +14,7 @@ nataliaacevedo@itm.edu.co
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contenido:
+   :caption: Teoría de portafolios:
    
    Generalidades del Mercado Colombiano/index
    Manejo de R-Studio/index
@@ -22,3 +22,14 @@ nataliaacevedo@itm.edu.co
    Teoría de Portafolios/index
    Selección de Carteras/index
    Mercado de Renta Fija/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Modelación:
+   :titlesonly:
+
+   
+   Caracterización de las series de tiempo/index
+   Modelos autorregresivos/index
+   Deep Learning para pronóstico/index
+   
