@@ -1,0 +1,647 @@
+Regresión Lineal Simple (RLS)
+-----------------------------
+
+1. **Modelación:** Desarrollar un modelo de regresión.
+
+-  **Estimación:** Usar R para estimar el modelo.
+
+-  **Inferencia:** Interpretar el modelo de regresión estimado.
+
+-  **Predicción:** Realizar predicciones sobre la variable de interés.
+
+Con la regresión lineal se busca modelar la relación entre una o
+múltiples variables independientes (:math:`X_i`) y una variable
+dependiente (:math:`y`). También se puede predecir resultados en una
+escala continua.
+
+De forma **univariada** se modela la relación entre una característica
+simple (una sola variable explicativa :math:`X`) y una respuesta de
+valor continua (variable dependiente :math:`y`). La relación lineal se
+define con la siguiente ecuación:
+
+.. math::  y = \beta_0+\beta_1X 
+
+:math:`y`: variable dependiente o de respuesta.También llamada variable
+regresora.
+
+:math:`X`: variable independiente.
+
+Esta es la ecuación de una línea recta de la forma pendiente-intercepto.
+La variable aleatoria :math:`y` es una función lineal de :math:`X` con
+términos independientes :math:`\beta_0` y pendiente :math:`\beta_1`.
+Estos dos parámetros son los que se deben estimar en la regresión lineal
+para describir la relación entre las variables :math:`X` y :math:`y`.
+Dicho de otra forma, con la regresión lineal se busca la recta de mejor
+ajuste por medio de la búsqueda de los pesos óptimos (:math:`\beta_0` y
+:math:`\beta_1`).
+
+Las regresiones lineales hacen parte del aprendizaje automático
+supervisado.
+
+Las estimaciones de los pesos óptimos de :math:`\beta_0` y
+:math:`\beta_1` se realizan a partir de la muestra
+:math:`(X_i, y_i)_{i=1,2,...n}`.
+
+Los pesos estimados son :math:`\hat{\beta_0}` y :math:`\hat{\beta_1}` y
+la ecuación de la recta estimada es:
+
+.. math::  \hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i 
+
+Con esta ecuación, con un valor dado de :math:`X_i` se estima el valor
+de :math:`\hat{y_i}` de la variable :math:`y`.
+
+|image1|
+
+.. |image1| image:: recta.png
+
+Mínimos Cuadrados Ordinarios:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Para ajustar el método de Regresión Lineal se usa el método de Mínimos
+Cuadrados Ordinarios (MCO) o en inglés **Ordinary Least Squares (OLS).**
+Con esta técnica se busca encontrar la línea recta que minimiza la suma
+de las distancias verticales cuadradas (residuos o errores) en los
+puntos de la muestra. De esta forma se hallan los parámetros
+:math:`\beta_0` y :math:`\beta_1`.
+
+**:math:`SSE`:** es la suma de los errores al cuadrado (mínimas
+distancias verticales al cuadrado). En inglés *Sum of Squared Errors*.
+Estas distancias que son los errores se muestran en la siguiente
+**Figura.**
+
+Como el error es: :math:`\hat{\varepsilon_i} = y_i-\hat{y_i}`, entonces:
+
+.. math::  SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2 
+
+Si :math:`SSE = 0`, entonces todos los puntos de la muestra están sobre
+la línea de ajuste.
+
+|image1|
+
+.. |image1| image:: estimada.png
+
+Lo que se busca es hallar los :math:`\beta_0` y :math:`\beta_1` que
+minimicen el :math:`SSE`, esto se hace derivando :math:`SSE` con
+respecto a :math:`\beta_0` y :math:`\beta_1` y luego igualando a cero.
+El resultado es el siguiente:
+
+.. math::  chat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)} 
+
+También se puede expresar como:
+
+.. math::  \hat{\beta_1} = \frac{\sum_{}y_i(X_i-\overline{X})}{\sum_{}(X_i-\overline{X})^2} 
+
+Donde,
+
+**:math:`\overline{X}`:** media de la :math:`X`.
+
+**:math:`\overline{y}`:** media de la :math:`y`.
+
+:math:`\hat{\beta_1}` es la pendiente de la línea recta. Luego, se halla
+el intercepto :math:`\hat{\beta_0}`:
+
+.. math::  \hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{X} 
+
+**Nota:** no necesitamos usar estas fórmulas para estimar los parámetros
+de la Regresión Lineal Simple porque tenemos códigos que lo hacen
+
+Código en R:
+~~~~~~~~~~~~
+
+.. code:: r
+
+    datos = read.csv("DatosCafe.csv", sep = ";", dec = ",", header = T)
+    head(datos)
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 6 × 7</caption>
+    <thead>
+    	<tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
+    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
+    	<tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
+    	<tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
+    	<tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
+    	<tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
+    	<tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
+    </tbody>
+    </table>
+    
+
+
+**Unidades de las variables:**
+
+-  **Precio Interno:** COP/125Kg.
+
+-  **PrecioInternacional:** ¢USD/lb.
+
+-  **Producción:** Miles de sacos de 60 Kg de café verde.
+
+-  **Exportaciones:** Miles de sacos de 60 Kg de café verde.
+
+-  **TRM:** USDCOP.
+
+-  **EUR:** EURCOP.
+
+Análisis exploratorio:
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: r
+
+    library(fBasics)
+
+
+.. parsed-literal::
+
+    Loading required package: timeDate
+    
+    Loading required package: timeSeries
+    
+    
+
+.. code:: r
+
+    basicStats(datos[,2:5])
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 16 × 4</caption>
+    <thead>
+    	<tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+    	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>nobs</th><td>2.640000e+02</td><td>  264.000000</td><td>   264.000000</td><td>   264.000000</td></tr>
+    	<tr><th scope=row>NAs</th><td>0.000000e+00</td><td>    0.000000</td><td>     0.000000</td><td>     0.000000</td></tr>
+    	<tr><th scope=row>Minimum</th><td>2.601850e+05</td><td>   58.920000</td><td>   345.000000</td><td>   345.000000</td></tr>
+    	<tr><th scope=row>Maximum</th><td>2.116484e+06</td><td>  314.260000</td><td>  1743.000000</td><td>  1449.960000</td></tr>
+    	<tr><th scope=row>1. Quartile</th><td>4.169284e+05</td><td>  112.405000</td><td>   775.500000</td><td>   735.630000</td></tr>
+    	<tr><th scope=row>3. Quartile</th><td>7.965564e+05</td><td>  176.352500</td><td>  1136.250000</td><td>  1059.245000</td></tr>
+    	<tr><th scope=row>Mean</th><td>6.426094e+05</td><td>  148.611250</td><td>   969.553030</td><td>   891.613106</td></tr>
+    	<tr><th scope=row>Median</th><td>6.273718e+05</td><td>  143.415000</td><td>   992.000000</td><td>   893.290000</td></tr>
+    	<tr><th scope=row>Sum</th><td>1.696489e+08</td><td>39233.370000</td><td>255962.000000</td><td>235385.860000</td></tr>
+    	<tr><th scope=row>SE Mean</th><td>1.875037e+04</td><td>    3.511034</td><td>    16.400809</td><td>    13.603671</td></tr>
+    	<tr><th scope=row>LCL Mean</th><td>6.056894e+05</td><td>  141.697937</td><td>   937.259428</td><td>   864.827138</td></tr>
+    	<tr><th scope=row>UCL Mean</th><td>6.795293e+05</td><td>  155.524563</td><td>  1001.846633</td><td>   918.399074</td></tr>
+    	<tr><th scope=row>Variance</th><td>9.281617e+10</td><td> 3254.422053</td><td> 71012.445846</td><td> 48855.803340</td></tr>
+    	<tr><th scope=row>Stdev</th><td>3.046575e+05</td><td>   57.047542</td><td>   266.481605</td><td>   221.033489</td></tr>
+    	<tr><th scope=row>Skewness</th><td>1.478976e+00</td><td>    0.622361</td><td>     0.083746</td><td>    -0.069626</td></tr>
+    	<tr><th scope=row>Kurtosis</th><td>3.823024e+00</td><td>    0.159010</td><td>    -0.381387</td><td>    -0.656356</td></tr>
+    </tbody>
+    </table>
+    
+
+
+**Correlación entre variables:**
+
+La función más básica es ``cor(datos)``
+
+.. code:: r
+
+    cor(datos[,2:5])
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A matrix: 4 × 4 of type dbl</caption>
+    <thead>
+    	<tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>PrecioInterno</th><td>1.0000000</td><td> 0.7702993</td><td> 0.1474286</td><td> 0.2105824</td></tr>
+    	<tr><th scope=row>PrecioInternacional</th><td>0.7702993</td><td> 1.0000000</td><td>-0.2000946</td><td>-0.1789351</td></tr>
+    	<tr><th scope=row>Producción</th><td>0.1474286</td><td>-0.2000946</td><td> 1.0000000</td><td> 0.8160430</td></tr>
+    	<tr><th scope=row>Exportaciones</th><td>0.2105824</td><td>-0.1789351</td><td> 0.8160430</td><td> 1.0000000</td></tr>
+    </tbody>
+    </table>
+    
+
+
+.. code:: r
+
+    round(cor(datos[,2:5]), 2) # Aproximar a dos dígitos
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A matrix: 4 × 4 of type dbl</caption>
+    <thead>
+    	<tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>PrecioInterno</th><td>1.00</td><td> 0.77</td><td> 0.15</td><td> 0.21</td></tr>
+    	<tr><th scope=row>PrecioInternacional</th><td>0.77</td><td> 1.00</td><td>-0.20</td><td>-0.18</td></tr>
+    	<tr><th scope=row>Producción</th><td>0.15</td><td>-0.20</td><td> 1.00</td><td> 0.82</td></tr>
+    	<tr><th scope=row>Exportaciones</th><td>0.21</td><td>-0.18</td><td> 0.82</td><td> 1.00</td></tr>
+    </tbody>
+    </table>
+    
+
+
+Instalar la siguiente librería para graficar una matríz de correlación:
+``install.packages("PerformanceAnalytics")``
+
+.. code:: r
+
+    library(PerformanceAnalytics)
+
+
+.. parsed-literal::
+
+    Loading required package: xts
+    
+    Loading required package: zoo
+    
+    
+    Attaching package: 'zoo'
+    
+    
+    The following object is masked from 'package:timeSeries':
+    
+        time<-
+    
+    
+    The following objects are masked from 'package:base':
+    
+        as.Date, as.Date.numeric
+    
+    
+    
+    Attaching package: 'PerformanceAnalytics'
+    
+    
+    The following objects are masked from 'package:timeDate':
+    
+        kurtosis, skewness
+    
+    
+    The following object is masked from 'package:graphics':
+    
+        legend
+    
+    
+    
+
+.. code:: r
+
+    chart.Correlation(datos[,2:7])
+
+
+
+.. image:: output_20_0.png
+   :width: 420px
+   :height: 420px
+
+
+1. Modelación:
+~~~~~~~~~~~~~~
+
+Se buscará la relación entre las Exportaciones y la Producción de la
+forma que las Exportaciones, :math:`y`, dependen de la Producción,
+:math:`y`.
+
+.. math::  Exportaciones = \hat{\beta_0}+\hat{\beta_1}Producción 
+
+.. code:: r
+
+    X = datos$Producción
+    y = datos$Exportaciones
+
+.. code:: r
+
+    par(bg = "#f7f7f7")   # Fondo gris para el gráfico
+    plot(X, y,
+        xlab = "Producción",
+        ylab = "Exportaciones")
+
+
+
+.. image:: output_24_0.png
+   :width: 420px
+   :height: 420px
+
+
+2. Estimación:
+~~~~~~~~~~~~~~
+
+**Ajuste modelo de Regresión Lineal Simple:**
+
+En R se utiliza la función ``lm(y ~ X)``
+
+.. code:: r
+
+    regression <- lm(y ~ X)
+    regression
+
+
+
+.. parsed-literal::
+
+    
+    Call:
+    lm(formula = y ~ X)
+    
+    Coefficients:
+    (Intercept)            X  
+       235.3538       0.6769  
+    
+
+
+Otra forma para usar ``lm()``:
+
+``lm(formula = nombre_columna_y ~ nombre_columna_X, data = datos)``
+
+``regression <- lm(formula = Exportaciones ~ Producción, data = datos)``
+
+.. code:: r
+
+    summary(regression)
+
+
+
+.. parsed-literal::
+
+    
+    Call:
+    lm(formula = y ~ X)
+    
+    Residuals:
+        Min      1Q  Median      3Q     Max 
+    -492.02  -85.38   -9.89   82.85  407.53 
+    
+    Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+    (Intercept) 235.35384   29.77755   7.904 7.54e-14 ***
+    X             0.67687    0.02962  22.853  < 2e-16 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    
+    Residual standard error: 128 on 262 degrees of freedom
+    Multiple R-squared:  0.6659,	Adjusted R-squared:  0.6647 
+    F-statistic: 522.3 on 1 and 262 DF,  p-value: < 2.2e-16
+    
+
+
+.. math::  \hat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)} 
+
+.. math::  \hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{X} 
+
+.. code:: r
+
+    cov(X, y)/var(X)
+
+
+
+.. raw:: html
+
+    0.676867843609397
+
+
+.. code:: r
+
+    mean(y) - cov(X, y)/var(X) * mean(X)
+
+
+
+.. raw:: html
+
+    235.353837174438
+
+
+3. Interpretación:
+~~~~~~~~~~~~~~~~~~
+
+:math:`\hat{\beta_0} = 235,3538`
+
+:math:`\hat{\beta_1} = 0.6769`
+
+.. math::  Exportaciones = 235.3538+0.6769\times Producción 
+
+**Interpretación:** Cuando la variable :math:`X` incrementa en una
+unidad, la variable :math:`y` incrementa (disminuye)
+:math:`\hat{\beta_1}` unidades.
+
+Cuando la producción aumenta en 100 unidades, las exportaciones
+incrementan 67,69.
+
+Los parámetros se extraen con ``$coefficients``
+
+.. code:: r
+
+    regression$coefficients  # Los dos Betas
+
+
+
+.. raw:: html
+
+    <style>
+    .dl-inline {width: auto; margin:0; padding: 0}
+    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+    </style><dl class=dl-inline><dt>(Intercept)</dt><dd>235.353837174437</dd><dt>X</dt><dd>0.676867843609397</dd></dl>
+    
+
+
+.. code:: r
+
+    regression$coefficients[1] # Beta cero (intercepto)
+
+
+
+.. raw:: html
+
+    <strong>(Intercept):</strong> 235.353837174437
+
+
+**:math:`\hat{\beta_0}`:**
+
+.. code:: r
+
+    beta_0 = as.numeric(regression$coefficients[1])  # Beta cero (intercepto)
+    beta_0
+
+
+
+.. raw:: html
+
+    235.353837174437
+
+
+**:math:`\hat{\beta_1}`:**
+
+.. code:: r
+
+    beta_1 = as.numeric(regression$coefficients[2]) # Beta 1 (pendiente)
+    beta_1
+
+
+
+.. raw:: html
+
+    0.676867843609397
+
+
+.. code:: r
+
+    # abline - permite agregar una línea recta con solo tener intercepto - pendiente
+    
+    par(bg = "#f7f7f7") 
+    plot(X, y,
+        xlab = "Producción",
+        ylab = "Exportaciones")
+    abline(beta_0, beta_1, col = "darkred", lwd = 5)
+
+
+
+.. image:: output_44_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Dentro de la muestra, para una Producción de 1500, ¿cuál es la
+Exportación?**
+
+.. code:: r
+
+    y_hat = beta_0 + beta_1 * 1500
+    y_hat 
+
+
+
+.. raw:: html
+
+    1250.65560258853
+
+
+.. code:: r
+
+    par(bg = "#f7f7f7") 
+    plot(X, y,
+        xlab = "Producción",
+        ylab = "Exportaciones",
+        main = "Predicción por dentro de la muestra")
+    abline(beta_0, beta_1, col = "darkred", lwd = 5)
+    points(1500, y_hat, pch = 2, col = "blue", bg = "darkgreen", lwd = 7)
+
+
+
+.. image:: output_47_0.png
+   :width: 420px
+   :height: 420px
+
+
+4. Predicción:
+~~~~~~~~~~~~~~
+
+**Predicción dentro de la muestra:**
+
+.. code:: r
+
+    y_pred = beta_0 + beta_1 * X
+    head(y_pred)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>680.73287826942</li><li>736.236041445391</li><li>636.0596005912</li><li>949.449412182351</li><li>989.384614955306</li><li>974.493522395899</li></ol>
+    
+
+
+Una forma de extraer los valores predichos o ajustados es con
+``$fitted.values``
+
+.. code:: r
+
+    head(regression$fitted.values)
+
+
+
+.. raw:: html
+
+    <style>
+    .dl-inline {width: auto; margin:0; padding: 0}
+    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+    </style><dl class=dl-inline><dt>1</dt><dd>680.732878269429</dd><dt>2</dt><dd>736.236041445392</dd><dt>3</dt><dd>636.0596005912</dd><dt>4</dt><dd>949.449412182351</dd><dt>5</dt><dd>989.384614955306</dd><dt>6</dt><dd>974.493522395899</dd></dl>
+    
+
+
+**Predicción por fuera de la muestra:**
+
+.. code:: r
+
+    nuevos_datos = c(1800.25, 1900, 2005.58, 2200.258, 2300, 2500, 2501.87, 2587, 2600, 2800)  # Datos nuevo para la X (Producción)
+
+.. code:: r
+
+    y_pred = beta_0 + beta_1 * nuevos_datos 
+    y_pred
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>1453.88517263225</li><li>1521.40274003229</li><li>1592.86644696057</li><li>1724.63772501876</li><li>1792.14987747605</li><li>1927.52344619793</li><li>1928.78918906548</li><li>1986.41094859195</li><li>1995.21023055887</li><li>2130.58379928075</li></ol>
+    
+
+
+.. code:: r
+
+    par(bg = "#f7f7f7") 
+    plot(X, y,
+        xlab = "Producción",
+        ylab = "Exportaciones",
+        xlim = c(300, 3000),        # Cambio de los límites para observar las predicciones por fuera de la muestra
+        ylim = c(300, 2200),
+        main = "Predicción por fuera de la muestra")
+    abline(beta_0, beta_1, col = "darkred", lwd = 5)
+    points(nuevos_datos, y_pred, pch = 2, col = "blue", bg = "darkgreen", lwd = 7)
+
+
+
+.. image:: output_56_0.png
+   :width: 420px
+   :height: 420px
+
+
+--------------
+
+.. math::  Producción = 430,25248+0,21526\times TRM 
+
+.. math::  Producción = 462,74538+0,16929\times EUR 
+
+.. math::  Producción = 1108,4579-0,9347\times PrecioInternacional 
+
+.. math::  Exportaciones = 994,6442-0,6933\times PrecioInternacional 
+
+.. math::  PrecioInterno = -21999,93+265,28\times TRM 
+
+.. math::  PrecioInterno = -262947,44+302,49\times EUR 
+
+.. math::  PrecioInterno = 31264,8+4113,7\times PrecioInternacional 

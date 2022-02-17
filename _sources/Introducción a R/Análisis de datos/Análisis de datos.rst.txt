@@ -1,0 +1,400 @@
+Análisis de datos
+-----------------
+
+======================== ==========================
+Función                  Significado
+======================== ==========================
+``summary(data)``        Resumen estadístico
+``min(data)``            Mínimo
+``max(data)``            Máximo
+``mean(data)``           Media aritmética
+``median(data)``         Mediana
+``range(data)``          Rango
+``sd(data)``             Desviación estándar
+``var(data)``            Varianza
+``cov(data)``            Covarianza
+``cor(data)``            Coeficiente de correlación
+``quantile(data, 0.05)`` Percentil del 5%
+``quantile(data, 0.80)`` Percentil del 80%
+``skewness(data)``       Asimetría
+``kurtosis(data)``       Curtosis
+======================== ==========================
+
+**Cargar datos:**
+
+.. code:: r
+
+    datos = read.csv("Datos.csv", sep = ";", dec = ",", header = T)
+    datos
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 8 × 5</caption>
+    <thead>
+    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    	<tr><td>Antonio</td><td>45</td><td>M</td><td>180.0</td><td>4</td></tr>
+    	<tr><td>Alicia </td><td> 1</td><td>F</td><td> 15.7</td><td>1</td></tr>
+    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+    </tbody>
+    </table>
+    
+
+
+summary:
+~~~~~~~~
+
+.. code:: r
+
+    summary(datos$Peso)
+
+
+
+.. parsed-literal::
+
+       Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      15.70   60.48   71.80   79.44   82.72  180.00 
+
+
+La función ``basicStats()``\ calcula más estadíticos que ``summary()``.
+
+Primero se instala el siguiente paquete: ``install.packages("fBasics")``
+
+.. code:: r
+
+    library(fBasics)
+
+.. code:: r
+
+    basicStats(datos$Peso)
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 16 × 1</caption>
+    <thead>
+    	<tr><th></th><th scope=col>X..datos.Peso</th></tr>
+    	<tr><th></th><th scope=col>&lt;dbl&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>nobs</th><td>   8.000000</td></tr>
+    	<tr><th scope=row>NAs</th><td>   0.000000</td></tr>
+    	<tr><th scope=row>Minimum</th><td>  15.700000</td></tr>
+    	<tr><th scope=row>Maximum</th><td> 180.000000</td></tr>
+    	<tr><th scope=row>1. Quartile</th><td>  60.475000</td></tr>
+    	<tr><th scope=row>3. Quartile</th><td>  82.725000</td></tr>
+    	<tr><th scope=row>Mean</th><td>  79.437500</td></tr>
+    	<tr><th scope=row>Median</th><td>  71.800000</td></tr>
+    	<tr><th scope=row>Sum</th><td> 635.500000</td></tr>
+    	<tr><th scope=row>SE Mean</th><td>  16.799457</td></tr>
+    	<tr><th scope=row>LCL Mean</th><td>  39.713096</td></tr>
+    	<tr><th scope=row>UCL Mean</th><td> 119.161904</td></tr>
+    	<tr><th scope=row>Variance</th><td>2257.774107</td></tr>
+    	<tr><th scope=row>Stdev</th><td>  47.516041</td></tr>
+    	<tr><th scope=row>Skewness</th><td>   0.874260</td></tr>
+    	<tr><th scope=row>Kurtosis</th><td>  -0.067399</td></tr>
+    </tbody>
+    </table>
+    
+
+
+Medidas de tendencia central:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Media.
+
+-  Mediana.
+
+-  Moda.
+
+.. code:: r
+
+    # Media:
+    
+    mean(datos$Peso)
+
+
+
+.. raw:: html
+
+    79.4375
+
+
+.. code:: r
+
+    # Mediana:
+    
+    median(datos$Peso)
+
+
+
+.. raw:: html
+
+    71.8
+
+
+La moda es el valor que más se repite, es decir, el de mayor frecuencia.
+
+Con la función ``table()`` se calculan las frecuencias.
+
+.. code:: r
+
+    table(datos$Estrato)
+
+
+
+.. parsed-literal::
+
+    
+    1 3 4 5 
+    1 3 2 2 
+
+
+El Estrato 3 es el de mayor frecuencia. Esta es la moda, entonces la
+moda es el máximo de las frecuencias.
+
+.. code:: r
+
+    moda <- max(table(datos$Estrato))
+    moda
+
+
+
+.. raw:: html
+
+    3
+
+
+Medidas de dispersión:
+~~~~~~~~~~~~~~~~~~~~~~
+
+-  Rango.
+
+-  Varianza.
+
+-  Desviación estándar.
+
+-  Coeficiente de variación.
+
+.. code:: r
+
+    # Rango:
+    
+    range(datos$Peso)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>15.7</li><li>180</li></ol>
+    
+
+
+.. code:: r
+
+    # Varianza:
+    
+    var(datos$Peso)
+
+
+
+.. raw:: html
+
+    2257.77410714286
+
+
+.. code:: r
+
+    # Desviación estándar:
+    
+    sd(datos$Peso)
+
+
+
+.. raw:: html
+
+    47.5160405246782
+
+
+.. code:: r
+
+    # Desviación estándar:
+    
+    sqrt(var(datos$Peso))
+
+
+
+.. raw:: html
+
+    47.5160405246782
+
+
+.. math::  coeficienteVariación = \frac{DesviaciónEstándar}{Media} 
+
+.. code:: r
+
+    # Coeficiente de variación:
+    
+    coef_var <- sd(datos$Peso)/mean(datos$Peso)
+    coef_var
+
+
+
+.. raw:: html
+
+    0.598156292993588
+
+
+Medidas de posición:
+~~~~~~~~~~~~~~~~~~~~
+
+-  Cuartiles.
+
+Los diagramas de cajas y bigotes es una forma visual de analizar las
+medidas de posición.
+
+.. code:: r
+
+    # Cuartiles.
+    
+    quantile(datos$Peso)
+
+
+
+.. raw:: html
+
+    <style>
+    .dl-inline {width: auto; margin:0; padding: 0}
+    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+    </style><dl class=dl-inline><dt>0%</dt><dd>15.7</dd><dt>25%</dt><dd>60.475</dd><dt>50%</dt><dd>71.8</dd><dt>75%</dt><dd>82.725</dd><dt>100%</dt><dd>180</dd></dl>
+    
+
+
+.. code:: r
+
+    # Q1 - primer cuartil - percentil del 25%:
+    
+    quantile(datos$Peso, 0.25)
+
+
+
+.. raw:: html
+
+    <strong>25%:</strong> 60.475
+
+
+.. code:: r
+
+    # Q2 - segundo cuartil - percentil del 50%:
+    
+    quantile(datos$Peso, 0.50)   # Este es el valor de la mediana.
+
+
+
+.. raw:: html
+
+    <strong>50%:</strong> 71.8
+
+
+.. code:: r
+
+    # Q3 - tercer cuartil - percentil del 75%:
+    
+    quantile(datos$Peso, 0.75)
+
+
+
+.. raw:: html
+
+    <strong>75%:</strong> 82.725
+
+
+**Rango intercuatil (RIC):**
+
+.. math::  RIC = Q_3 - Q_1 
+
+.. code:: r
+
+    RIC = quantile(datos$Peso, 0.75) - quantile(datos$Peso, 0.25)
+    RIC  # Rango de un 50%
+
+
+
+.. raw:: html
+
+    <strong>75%:</strong> 22.25
+
+
+.. code:: r
+
+    RIC = as.numeric(RIC) # para quitarle la etiqueta de 75%
+    RIC
+
+
+
+.. raw:: html
+
+    22.25
+
+
+Medidas de forma:
+~~~~~~~~~~~~~~~~~
+
+-  Sesgo (asimetría): skewness.
+
+-  Curtosis: kurtosis.
+
+|image1|
+
+.. |image1| image:: asimetria.png
+
+|image1|
+
+.. |image1| image:: curtosis.jpg
+
+.. code:: r
+
+    # Asimetría:
+    
+    skewness(datos$Peso) # Resultados: sesgo positivo.
+
+
+
+.. raw:: html
+
+    0.874260494208836
+
+
+.. code:: r
+
+    # Curtosis:
+    
+    kurtosis(datos$Peso) # Resultado: platicúrtica.
+
+
+
+.. raw:: html
+
+    -0.0673990420899138
+
+
+

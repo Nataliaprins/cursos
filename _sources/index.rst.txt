@@ -1,16 +1,25 @@
 Material cursos
 ==========================================================
-**Docente: Natalia Acevedo Prins**
+**Profesora: Natalia Acevedo Prins**
 
-Docente de carrera 
+Profesora de carrera UdeA
 
-Facultad de Ciencias Económicas y Administrativas
+Facultad de Ciencias Económicas
 
-Instituto Tecnológico Metropolitano-ITM
+Departamento de Estadística y Matemáticas
 
 Contacto:
 ^^^^^^^^^^^^^^^^^^^^^
-nataliaacevedo@itm.edu.co
+natalia.acevedop@udea.edu.co
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Análisis de datos:
+   
+   Introducción a R/index
+   Regresión lineal/index
+
+
 
 .. toctree::
    :maxdepth: 1

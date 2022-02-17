@@ -1,0 +1,29 @@
+Introducción a R
+==========================================================
+
+En esta sesión se encuentran los conceptos iniciales para la programación en R.
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Introducción a la programación en R/Introducción a la programación en R.rst
+   Importar archivos en R/Importar archivos en R.rst
+   Gráficos en R/Gráficos en R.rst
+   Gráfico de dispersión/Gráfico de dispersión.rst
+   Análisis de datos/Análisis de datos.rst
+   Análisis ofertas laborales/Analisis de ofertas.rst
+
+
+.. important::
+    Archivos para trabajar esta sesión:
+
+    * **Descargue** :download:`Datos.csv <Datos.csv>`
+
+    * **Descargue** :download:`Datos.txt <Datos.txt>`
+
+    * **Descargue** :download:`Datos.xlsx <Datos.xlsx>`
+
+    * **Descargue** :download:`Ofertas laborales.csv <Ofertas laborales.csv>`
+    
+

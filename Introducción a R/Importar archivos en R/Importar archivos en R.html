@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Importar archivos en R &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gráficos en R" href="../Gráficos en R/Gráficos en R.html" />
+    <link rel="prev" title="Introducción a la programación en R" href="../Introducción a la programación en R/Introducción a la programación en R.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introducción a R</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Introducción a la programación en R/Introducción a la programación en R.html">Introducción a la programación en R</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Importar archivos en R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importar-archivos-csv">Importar archivos csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importar-archivos-txt">Importar archivos .txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importar-archivos-de-excel">Importar archivos de Excel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Gráficos en R/Gráficos en R.html">Gráficos en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gráfico de dispersión/Gráfico de dispersión.html">Gráfico de dispersión</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Análisis de datos/Análisis de datos.html">Análisis de datos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Introducción a R</a> &raquo;</li>
+        
+      <li>Importar archivos en R</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Introducción a R/Importar archivos en R/Importar archivos en R.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="importar-archivos-en-r">
+<h1>Importar archivos en R<a class="headerlink" href="#importar-archivos-en-r" title="Permalink to this headline">¶</a></h1>
+<p>En R se pueden importar archivos en varios formatos como csv, txt,
+Excel, entre otros.</p>
+<p>La importación de datos se usa cuando tenemos archivos con unos datos
+comúnmente en la estructura rectangular: filas y columnas.</p>
+<div class="section" id="importar-archivos-csv">
+<h2>Importar archivos csv<a class="headerlink" href="#importar-archivos-csv" title="Permalink to this headline">¶</a></h2>
+<p>R cuenta la función <code class="docutils literal notranslate"><span class="pre">read.csv()</span></code> para importar archivos con la
+extensión .csv ( <em>Comma Separated Values</em> ) y se usa de la siguiente
+manera:</p>
+<p><code class="docutils literal notranslate"><span class="pre">read.csv(&quot;nombre</span> <span class="pre">del</span> <span class="pre">archivo</span> <span class="pre">agregando</span> <span class="pre">.csv&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 8 × 1</caption>
+<thead>
+    <tr><th></th><th scope=col>Nombre.Edad.Género.Peso.Estrato</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>Ángela;22;F;62</th><td>5;3</td></tr>
+    <tr><th scope=row>José;10;M;75</th><td>8;4</td></tr>
+    <tr><th scope=row>Juan ;15;M;54</th><td>4;3</td></tr>
+    <tr><th scope=row>Manuela;35;F;73</th><td>6;3</td></tr>
+    <tr><th scope=row>Maribel;50;F;70;5</th><td>   </td></tr>
+    <tr><th scope=row>Antonio;45;M;120;2</th><td>   </td></tr>
+    <tr><th scope=row>Alicia;1;M;15</th><td>7;1</td></tr>
+    <tr><th scope=row>Luis;32;M;103</th><td>5;5</td></tr>
+</tbody>
+</table><p>Los datos están separados por <code class="docutils literal notranslate"><span class="pre">;</span></code>, se debe agregar <code class="docutils literal notranslate"><span class="pre">sep</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 8 × 5</caption>
+<thead>
+    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Ángela </td><td>22</td><td>F</td><td>62,5 </td><td>3</td></tr>
+    <tr><td>José   </td><td>10</td><td>M</td><td>75,8 </td><td>4</td></tr>
+    <tr><td>Juan   </td><td>15</td><td>M</td><td>54,4 </td><td>3</td></tr>
+    <tr><td>Manuela</td><td>35</td><td>F</td><td>73,6 </td><td>3</td></tr>
+    <tr><td>Maribel</td><td>50</td><td>F</td><td>70   </td><td>5</td></tr>
+    <tr><td>Antonio</td><td>45</td><td>M</td><td>120  </td><td>2</td></tr>
+    <tr><td>Alicia </td><td> 1</td><td>M</td><td>15,7 </td><td>1</td></tr>
+    <tr><td>Luis   </td><td>32</td><td>M</td><td>103,5</td><td>5</td></tr>
+</tbody>
+</table><p>La cuarta columna tiene valores numéricos con decimales separados por
+<code class="docutils literal notranslate"><span class="pre">,</span></code>, se debe especificar <code class="docutils literal notranslate"><span class="pre">dec</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;</span></code>. En algunos casos puede usarse
+<code class="docutils literal notranslate"><span class="pre">dec</span> <span class="pre">=</span> <span class="pre">&quot;.&quot;</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 8 × 5</caption>
+<thead>
+    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+    <tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
+    <tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+</tbody>
+</table><p>Se puede indicar que la primera fila del archivo es un encabezado de las
+columnas: <code class="docutils literal notranslate"><span class="pre">header</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>.</p>
+<p>En R <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> se puede abreviar con solo <code class="docutils literal notranslate"><span class="pre">T</span></code> y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> con solo
+<code class="docutils literal notranslate"><span class="pre">F</span></code>.</p>
+<p>Adicionalmente, podemos crear una variable para almacener los datos del
+archivo <code class="docutils literal notranslate"><span class="pre">Datos.csv</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">datos</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 8 × 5</caption>
+<thead>
+    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+    <tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
+    <tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+</tbody>
+</table><p>Cuando se importan gran cantidad de datos se aconseja usar la función
+<code class="docutils literal notranslate"><span class="pre">head()</span></code> para mostrar sola las primeras seis filas y la función
+<code class="docutils literal notranslate"><span class="pre">tail()</span></code> para ver las últimas seis filas.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>1</th><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><th scope=row>2</th><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+</tbody>
+</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tail</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+    <tr><th scope=row>7</th><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
+    <tr><th scope=row>8</th><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="importar-archivos-txt">
+<h2>Importar archivos .txt<a class="headerlink" href="#importar-archivos-txt" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;Datos.txt&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span> <span class="c1"># no se incluyó sep = &quot;;&quot;</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>G.nero</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>1</th><td>µngela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><th scope=row>2</th><td>Jos‚   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+</tbody>
+</table></div>
+<div class="section" id="importar-archivos-de-excel">
+<h2>Importar archivos de Excel<a class="headerlink" href="#importar-archivos-de-excel" title="Permalink to this headline">¶</a></h2>
+<p>Para importar archivos con extensiones .xls o .xlsx se de instalar la
+siguiente librería:</p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;readxl&quot;)</span></code> esta línea de código se corre una sola
+vez, pero cada vez que queramos usarla se debe utilizar el siguiente
+código:</p>
+<p><code class="docutils literal notranslate"><span class="pre">library(&quot;readxl&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;readxl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read_excel</span><span class="p">(</span><span class="s">&quot;Datos.xlsx&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A tibble: 6 × 5</caption>
+<thead>
+    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gráficos en R/Gráficos en R.html" class="btn btn-neutral float-right" title="Gráficos en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Introducción a la programación en R/Introducción a la programación en R.html" class="btn btn-neutral float-left" title="Introducción a la programación en R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

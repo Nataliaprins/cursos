@@ -1,0 +1,102 @@
+.. code:: r
+
+    datos = read.csv("Ofertas laborales.csv", sep = ";", dec = ",", header = T)
+    head(datos)
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 6 × 7</caption>
+    <thead>
+    	<tr><th></th><th scope=col>cargo</th><th scope=col>vacantes</th><th scope=col>salario_honorarios</th><th scope=col>sexo</th><th scope=col>nivel_educativo</th><th scope=col>años_experiencia</th><th scope=col>idiomas</th></tr>
+    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>contador                </td><td>3</td><td>2200000</td><td>indiferente</td><td>profesional</td><td>5.00</td><td>no dato</td></tr>
+    	<tr><th scope=row>2</th><td>contador                </td><td>1</td><td>2500000</td><td>indiferente</td><td>profesional</td><td>2.00</td><td>no dato</td></tr>
+    	<tr><th scope=row>3</th><td>contador                </td><td>1</td><td>2000000</td><td>indiferente</td><td>profesional</td><td>2.00</td><td>no dato</td></tr>
+    	<tr><th scope=row>4</th><td>analista de mercados    </td><td>3</td><td>1500000</td><td>indiferente</td><td>profesional</td><td>1.00</td><td>no dato</td></tr>
+    	<tr><th scope=row>5</th><td>coodinador de planeacion</td><td>1</td><td>2200000</td><td>indiferente</td><td>profesional</td><td>0.25</td><td>no dato</td></tr>
+    	<tr><th scope=row>6</th><td>administradora          </td><td>1</td><td>1500000</td><td>femenino   </td><td>profesional</td><td>1.00</td><td>no dato</td></tr>
+    </tbody>
+    </table>
+    
+
+
+**Cantidad de ofertas laborales:**
+
+.. code:: r
+
+    nrow(datos)
+
+
+
+.. raw:: html
+
+    86
+
+
+.. code:: r
+
+    datos$sexo == "femenino"
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li></ol>
+    
+
+
+.. code:: r
+
+    datos$sexo[datos$sexo == "femenino"]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li><li>femenino</li></ol>
+    
+    <details>
+    	<summary style=display:list-item;cursor:pointer>
+    		<strong>Levels</strong>:
+    	</summary>
+    	<style>
+    	.list-inline {list-style: none; margin:0; padding: 0}
+    	.list-inline>li {display: inline-block}
+    	.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    	</style>
+    	<ol class=list-inline><li>'femenino'</li><li>'indiferente'</li><li>'masculino'</li></ol>
+    </details>
+
+
+.. code:: r
+
+    datos[["sexo"]] == "femenino"
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li></ol>
+    
+
+

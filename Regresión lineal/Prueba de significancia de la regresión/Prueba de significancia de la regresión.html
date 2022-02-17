@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Prueba de significancia de la regresión &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intervalos de confianza - CI" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html" />
+    <link rel="prev" title="Análisis de Normalidad en RLS" href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Regresión Lineal Simple (RLS)/Regresión Lineal Simple (RLS).html">Regresión Lineal Simple (RLS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html">Análisis de Normalidad en RLS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Prueba de significancia de la regresión</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pruebas-de-hipotesis">Pruebas de hipótesis:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prueba-de-significancia-de-la-regresion-con-el-estadistico-t">Prueba de significancia de la regresión con el estadístico <span class="math notranslate nohighlight">\(t\)</span>:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p">Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor p\)</span>:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html">Intervalos de confianza - CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Medidas de desempeño RLS/Medidas de desempeño RLS.html">Medidas de desempeño RLS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+        
+      <li>Prueba de significancia de la regresión</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Regresión lineal/Prueba de significancia de la regresión/Prueba de significancia de la regresión.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prueba-de-significancia-de-la-regresion">
+<h1>Prueba de significancia de la regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pruebas-de-hipotesis">
+<h2>Pruebas de hipótesis:<a class="headerlink" href="#pruebas-de-hipotesis" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="prueba-de-significancia-de-la-regresion-con-el-estadistico-t">
+<h2>Prueba de significancia de la regresión con el estadístico <span class="math notranslate nohighlight">\(t\)</span>:<a class="headerlink" href="#prueba-de-significancia-de-la-regresion-con-el-estadistico-t" title="Permalink to this headline">¶</a></h2>
+<p>La significancia de la regresión se relaciona en determinar si la
+pendiente de la línea de regresión es significativa o no. La hipótesis
+nula <span class="math notranslate nohighlight">\((H_0)\)</span> es que la pendiente es igual a cero, es decir, que la
+pendiente no es significativa y no hay relación lineal entre <span class="math notranslate nohighlight">\(X\)</span> y
+<span class="math notranslate nohighlight">\(y\)</span> y que <span class="math notranslate nohighlight">\(X\)</span> tiene muy poco valor para explicar la
+variación de <span class="math notranslate nohighlight">\(y\)</span>, en cambio, con la hipótesis alternativa
+<span class="math notranslate nohighlight">\((H_1)\)</span>, se evalúa si la pendiente es diferente de cero, entonces,
+si existe una relación lineal entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[H_0: \beta_1 = 0\]</div>
+<div class="math notranslate nohighlight">
+\[H_1: \beta_1 \neq 0\]</div>
+<p>No rechazar <span class="math notranslate nohighlight">\(H_0\)</span> implica que la mejor estimación es
+<span class="math notranslate nohighlight">\(\hat{y} = \overline{y}\)</span> <strong>(Figura a)</strong> o que la relación no es
+lineal <strong>(Figura b).</strong></p>
+<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<p>Fuente: Montgomery, Peck y Vining, 2001.</p>
+<p>Al rechazar <span class="math notranslate nohighlight">\(H_0\)</span> implica que <span class="math notranslate nohighlight">\(X\)</span> sí pude explicar la
+variabilidad de <span class="math notranslate nohighlight">\(y\)</span>. Si el modelo adecuado es como la <strong>Figura
+a</strong>; sin embargo, es posible que, aunque el modelo es significativo se
+podría tener mejores resultados con términos polinomiales en <span class="math notranslate nohighlight">\(X\)</span>
+como se muestra en la <strong>Figura b.</strong></p>
+<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<p>Fuente: Montgomery, Peck y Vining, 2001.</p>
+<p>Se usa el <strong>estadístico :math:`t`</strong> para determinar la significancia de
+la regresión así:</p>
+<div class="math notranslate nohighlight">
+\[t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}\]</div>
+<p>Donde,</p>
+<p><strong>:math:`SE(hat{beta_1})`:</strong> Es el error estándar de
+<span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[SE(\hat{\beta_1}) = \sqrt{\frac{\sigma^2}{\sum_{}(X_i-\overline{X_i})^2}}\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(\sigma^2\)</span> es el <strong>cuadrado medio residual</strong>, es un
+estimador insesgado para la varianza de la regresión. <span class="math notranslate nohighlight">\(\sigma\)</span> es
+el <strong>error estándar de la regresión.</strong></p>
+<div class="math notranslate nohighlight">
+\[\sigma^2 = \frac{\sum_{}(y_i-\hat{y_i})^2}{n-2} = \frac{\sum_{} \hat{\varepsilon_i}^2}{n-2}\]</div>
+<p><strong>:math:`n-2`:</strong> son los grados de libertad del modelo <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2</span></code>.
+El 2 es porque se estiman dos parámetros.</p>
+<p>Recuerde que:
+<span class="math notranslate nohighlight">\(SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2\)</span>,
+entonces:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2 = \frac{SSE}{n-2}\]</div>
+<p>Así que:</p>
+<div class="math notranslate nohighlight">
+\[SE(\hat{\beta_1}) = \sqrt{\frac{\frac{SSE}{n-2}}{\sum_{}(X_i-\overline{X_i})^2}}\]</div>
+<p>Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> cuando:</p>
+<div class="math notranslate nohighlight">
+\[|t_0| &gt; t_{\alpha/2, n – 2}\]</div>
+<p>Donde,</p>
+<p><strong>:math:`t_{alpha/2, n – 2}`:</strong> es el valor crítico de <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>El <strong>:math:`t` crítico</strong> se calcula en R así:
+<code class="docutils literal notranslate"><span class="pre">qt(p</span> <span class="pre">=</span> <span class="pre">(1</span> <span class="pre">-</span> <span class="pre">alfa)</span> <span class="pre">+</span> <span class="pre">alfa/2,</span> <span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2)</span></code></p>
+<p><strong>Ejemplo:</strong> para un <span class="math notranslate nohighlight">\(\alpha = 0,05\)</span> y 264 datos <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">264</span></code>, el
+<strong>:math:`t` crítico</strong> es: <code class="docutils literal notranslate"><span class="pre">1.96905971525654</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">t_critico</span> <span class="pre">=</span> <span class="pre">qt(p</span> <span class="pre">=</span> <span class="pre">0.95</span> <span class="pre">+</span> <span class="pre">0.05/2,</span> <span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2)</span></code></p>
+</div>
+<div class="section" id="codigo-en-r">
+<h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 6 × 7</caption>
+<thead>
+    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
+    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
+    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
+    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
+    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
+    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
+</tbody>
+</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
+</pre></div>
+</div>
+<p><strong>Ajuste del modelo:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="n">regression</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+<span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>   <span class="n">Producción</span>
+   <span class="mf">235.3538</span>       <span class="mf">0.6769</span>
+</pre></div>
+</div>
+<p><strong>:math:`hat{beta_0}`:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="n">beta_0</span>
+</pre></div>
+</div>
+235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+<span class="n">beta_1</span>
+</pre></div>
+</div>
+0.676867843609397<p><strong>Cantidad de datos :math:`n`:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">n</span>
+</pre></div>
+</div>
+264<p><strong>Residuales:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">residuales</span> <span class="o">=</span> <span class="n">regression</span><span class="o">$</span><span class="n">residuals</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">residuales</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.236041445392</dd><dt>3</dt><dd>-232.059600591201</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p><strong>:math:`SE(hat{beta_1})`:</strong></p>
+<div class="math notranslate nohighlight">
+\[SE(\hat{\beta_1}) = \sqrt{\frac{\frac{SEE}{n-2}}{\sum_{}(X_i-\overline{X_i})^2}}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">residuales</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+0.0296183889365504<p><strong>Estadístico :math:`t_0` para :math:`hat{beta_1}`:</strong></p>
+<div class="math notranslate nohighlight">
+\[t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t_0</span> <span class="o">=</span> <span class="n">beta_1</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">residuales</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
+<span class="n">t_0</span>
+</pre></div>
+</div>
+22.8529595265769<p><strong>:math:`t` crítico:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t_critico</span> <span class="o">=</span> <span class="nf">qt</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="m">0.95</span> <span class="o">+</span> <span class="m">0.05</span><span class="o">/</span><span class="m">2</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">t_critico</span>
+</pre></div>
+</div>
+1.96905971525654<p><strong>Prueba de hipótesis:</strong></p>
+<div class="math notranslate nohighlight">
+\[|t_0| &gt; t_{\alpha/2, n – 2}\]</div>
+<div class="math notranslate nohighlight">
+\[|22,85| &gt; 1,97\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">t_0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">t_critico</span><span class="p">)</span> <span class="p">{</span><span class="s">&quot;Se acepta&quot;</span><span class="p">}</span> <span class="n">else</span> <span class="p">{</span><span class="s">&quot;Se rechaza&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+'Se acepta'<p>En el <code class="docutils literal notranslate"><span class="pre">summary()</span></code> aparecen los errores estándar <strong>SE</strong> de valor del
+<span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y los <strong>estadísticos :math:`t`</strong> de
+cada uno.</p>
+<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-492.02  -85.38   -9.89   82.85  407.53
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 235.35384   29.77755   7.904 7.54e-14 <strong>*
+Producción    0.67687    0.02962  22.853  &lt; 2e-16 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 128 on 262 degrees of freedom
+Multiple R-squared:  0.6659,        Adjusted R-squared:  0.6647
+F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
+</div>
+<div class="section" id="prueba-de-significancia-de-la-regresion-con-el-valor-p">
+<h2>Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor p\)</span>:<a class="headerlink" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p" title="Permalink to this headline">¶</a></h2>
+<p>Otra forma para determinar la significancia del modelo es usando el
+<span class="math notranslate nohighlight">\(valor p\)</span>. El <code class="docutils literal notranslate"><span class="pre">summary()</span></code> ya lo tiene calculado y por medio de
+asteriscos indica si los parámetros son significativos o no, entre más
+asteriscos es más significativo</p>
+<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html" class="btn btn-neutral float-right" title="Intervalos de confianza - CI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html" class="btn btn-neutral float-left" title="Análisis de Normalidad en RLS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

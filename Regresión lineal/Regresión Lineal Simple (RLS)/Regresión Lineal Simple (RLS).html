@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Regresión Lineal Simple (RLS) &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis de Normalidad en RLS" href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html" />
+    <link rel="prev" title="Regresión lineal" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Regresión Lineal Simple (RLS)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#minimos-cuadrados-ordinarios">Mínimos Cuadrados Ordinarios:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelacion">1. Modelación:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#estimacion">2. Estimación:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacion">3. Interpretación:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prediccion">4. Predicción:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html">Análisis de Normalidad en RLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Prueba de significancia de la regresión/Prueba de significancia de la regresión.html">Prueba de significancia de la regresión</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html">Intervalos de confianza - CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Medidas de desempeño RLS/Medidas de desempeño RLS.html">Medidas de desempeño RLS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+        
+      <li>Regresión Lineal Simple (RLS)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Regresión lineal/Regresión Lineal Simple (RLS)/Regresión Lineal Simple (RLS).rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="regresion-lineal-simple-rls">
+<h1>Regresión Lineal Simple (RLS)<a class="headerlink" href="#regresion-lineal-simple-rls" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Modelación:</strong> Desarrollar un modelo de regresión.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Estimación:</strong> Usar R para estimar el modelo.</p></li>
+<li><p><strong>Inferencia:</strong> Interpretar el modelo de regresión estimado.</p></li>
+<li><p><strong>Predicción:</strong> Realizar predicciones sobre la variable de interés.</p></li>
+</ul>
+<p>Con la regresión lineal se busca modelar la relación entre una o
+múltiples variables independientes (<span class="math notranslate nohighlight">\(X_i\)</span>) y una variable
+dependiente (<span class="math notranslate nohighlight">\(y\)</span>). También se puede predecir resultados en una
+escala continua.</p>
+<p>De forma <strong>univariada</strong> se modela la relación entre una característica
+simple (una sola variable explicativa <span class="math notranslate nohighlight">\(X\)</span>) y una respuesta de
+valor continua (variable dependiente <span class="math notranslate nohighlight">\(y\)</span>). La relación lineal se
+define con la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[y = \beta_0+\beta_1X\]</div>
+<p><span class="math notranslate nohighlight">\(y\)</span>: variable dependiente o de respuesta.También llamada variable
+regresora.</p>
+<p><span class="math notranslate nohighlight">\(X\)</span>: variable independiente.</p>
+<p>Esta es la ecuación de una línea recta de la forma pendiente-intercepto.
+La variable aleatoria <span class="math notranslate nohighlight">\(y\)</span> es una función lineal de <span class="math notranslate nohighlight">\(X\)</span> con
+términos independientes <span class="math notranslate nohighlight">\(\beta_0\)</span> y pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span>.
+Estos dos parámetros son los que se deben estimar en la regresión lineal
+para describir la relación entre las variables <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.
+Dicho de otra forma, con la regresión lineal se busca la recta de mejor
+ajuste por medio de la búsqueda de los pesos óptimos (<span class="math notranslate nohighlight">\(\beta_0\)</span> y
+<span class="math notranslate nohighlight">\(\beta_1\)</span>).</p>
+<p>Las regresiones lineales hacen parte del aprendizaje automático
+supervisado.</p>
+<p>Las estimaciones de los pesos óptimos de <span class="math notranslate nohighlight">\(\beta_0\)</span> y
+<span class="math notranslate nohighlight">\(\beta_1\)</span> se realizan a partir de la muestra
+<span class="math notranslate nohighlight">\((X_i, y_i)_{i=1,2,...n}\)</span>.</p>
+<p>Los pesos estimados son <span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> y
+la ecuación de la recta estimada es:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i\]</div>
+<p>Con esta ecuación, con un valor dado de <span class="math notranslate nohighlight">\(X_i\)</span> se estima el valor
+de <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> de la variable <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><img alt="image1" src="../../_images/estimada.png" /></p>
+<div class="section" id="minimos-cuadrados-ordinarios">
+<h2>Mínimos Cuadrados Ordinarios:<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Permalink to this headline">¶</a></h2>
+<p>Para ajustar el método de Regresión Lineal se usa el método de Mínimos
+Cuadrados Ordinarios (MCO) o en inglés <strong>Ordinary Least Squares (OLS).</strong>
+Con esta técnica se busca encontrar la línea recta que minimiza la suma
+de las distancias verticales cuadradas (residuos o errores) en los
+puntos de la muestra. De esta forma se hallan los parámetros
+<span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
+<p><strong>:math:`SSE`:</strong> es la suma de los errores al cuadrado (mínimas
+distancias verticales al cuadrado). En inglés <em>Sum of Squared Errors</em>.
+Estas distancias que son los errores se muestran en la siguiente
+<strong>Figura.</strong></p>
+<p>Como el error es: <span class="math notranslate nohighlight">\(\hat{\varepsilon_i} = y_i-\hat{y_i}\)</span>, entonces:</p>
+<div class="math notranslate nohighlight">
+\[SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2\]</div>
+<p>Si <span class="math notranslate nohighlight">\(SSE = 0\)</span>, entonces todos los puntos de la muestra están sobre
+la línea de ajuste.</p>
+<p><img alt="image1" src="../../_images/estimada.png" /></p>
+<p>Lo que se busca es hallar los <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> que
+minimicen el <span class="math notranslate nohighlight">\(SSE\)</span>, esto se hace derivando <span class="math notranslate nohighlight">\(SSE\)</span> con
+respecto a <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y luego igualando a cero.
+El resultado es el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[chat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)}\]</div>
+<p>También se puede expresar como:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta_1} = \frac{\sum_{}y_i(X_i-\overline{X})}{\sum_{}(X_i-\overline{X})^2}\]</div>
+<p>Donde,</p>
+<p><strong>:math:`overline{X}`:</strong> media de la <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p><strong>:math:`overline{y}`:</strong> media de la <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> es la pendiente de la línea recta. Luego, se halla
+el intercepto <span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{X}\]</div>
+<p><strong>Nota:</strong> no necesitamos usar estas fórmulas para estimar los parámetros
+de la Regresión Lineal Simple porque tenemos códigos que lo hacen</p>
+</div>
+<div class="section" id="codigo-en-r">
+<h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 6 × 7</caption>
+<thead>
+    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
+    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
+    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
+    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
+    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
+    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
+</tbody>
+</table><p><strong>Unidades de las variables:</strong></p>
+<ul class="simple">
+<li><p><strong>Precio Interno:</strong> COP/125Kg.</p></li>
+<li><p><strong>PrecioInternacional:</strong> ¢USD/lb.</p></li>
+<li><p><strong>Producción:</strong> Miles de sacos de 60 Kg de café verde.</p></li>
+<li><p><strong>Exportaciones:</strong> Miles de sacos de 60 Kg de café verde.</p></li>
+<li><p><strong>TRM:</strong> USDCOP.</p></li>
+<li><p><strong>EUR:</strong> EURCOP.</p></li>
+</ul>
+<div class="section" id="analisis-exploratorio">
+<h3>Análisis exploratorio:<a class="headerlink" href="#analisis-exploratorio" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">fBasics</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeDate</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeSeries</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">basicStats</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 16 × 4</caption>
+<thead>
+    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+    <tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>nobs</th><td>2.640000e+02</td><td>  264.000000</td><td>   264.000000</td><td>   264.000000</td></tr>
+    <tr><th scope=row>NAs</th><td>0.000000e+00</td><td>    0.000000</td><td>     0.000000</td><td>     0.000000</td></tr>
+    <tr><th scope=row>Minimum</th><td>2.601850e+05</td><td>   58.920000</td><td>   345.000000</td><td>   345.000000</td></tr>
+    <tr><th scope=row>Maximum</th><td>2.116484e+06</td><td>  314.260000</td><td>  1743.000000</td><td>  1449.960000</td></tr>
+    <tr><th scope=row>1. Quartile</th><td>4.169284e+05</td><td>  112.405000</td><td>   775.500000</td><td>   735.630000</td></tr>
+    <tr><th scope=row>3. Quartile</th><td>7.965564e+05</td><td>  176.352500</td><td>  1136.250000</td><td>  1059.245000</td></tr>
+    <tr><th scope=row>Mean</th><td>6.426094e+05</td><td>  148.611250</td><td>   969.553030</td><td>   891.613106</td></tr>
+    <tr><th scope=row>Median</th><td>6.273718e+05</td><td>  143.415000</td><td>   992.000000</td><td>   893.290000</td></tr>
+    <tr><th scope=row>Sum</th><td>1.696489e+08</td><td>39233.370000</td><td>255962.000000</td><td>235385.860000</td></tr>
+    <tr><th scope=row>SE Mean</th><td>1.875037e+04</td><td>    3.511034</td><td>    16.400809</td><td>    13.603671</td></tr>
+    <tr><th scope=row>LCL Mean</th><td>6.056894e+05</td><td>  141.697937</td><td>   937.259428</td><td>   864.827138</td></tr>
+    <tr><th scope=row>UCL Mean</th><td>6.795293e+05</td><td>  155.524563</td><td>  1001.846633</td><td>   918.399074</td></tr>
+    <tr><th scope=row>Variance</th><td>9.281617e+10</td><td> 3254.422053</td><td> 71012.445846</td><td> 48855.803340</td></tr>
+    <tr><th scope=row>Stdev</th><td>3.046575e+05</td><td>   57.047542</td><td>   266.481605</td><td>   221.033489</td></tr>
+    <tr><th scope=row>Skewness</th><td>1.478976e+00</td><td>    0.622361</td><td>     0.083746</td><td>    -0.069626</td></tr>
+    <tr><th scope=row>Kurtosis</th><td>3.823024e+00</td><td>    0.159010</td><td>    -0.381387</td><td>    -0.656356</td></tr>
+</tbody>
+</table><p><strong>Correlación entre variables:</strong></p>
+<p>La función más básica es <code class="docutils literal notranslate"><span class="pre">cor(datos)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<table>
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>PrecioInterno</th><td>1.0000000</td><td> 0.7702993</td><td> 0.1474286</td><td> 0.2105824</td></tr>
+    <tr><th scope=row>PrecioInternacional</th><td>0.7702993</td><td> 1.0000000</td><td>-0.2000946</td><td>-0.1789351</td></tr>
+    <tr><th scope=row>Producción</th><td>0.1474286</td><td>-0.2000946</td><td> 1.0000000</td><td> 0.8160430</td></tr>
+    <tr><th scope=row>Exportaciones</th><td>0.2105824</td><td>-0.1789351</td><td> 0.8160430</td><td> 1.0000000</td></tr>
+</tbody>
+</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span> <span class="m">2</span><span class="p">)</span> <span class="c1"># Aproximar a dos dígitos</span>
+</pre></div>
+</div>
+<table>
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>PrecioInterno</th><td>1.00</td><td> 0.77</td><td> 0.15</td><td> 0.21</td></tr>
+    <tr><th scope=row>PrecioInternacional</th><td>0.77</td><td> 1.00</td><td>-0.20</td><td>-0.18</td></tr>
+    <tr><th scope=row>Producción</th><td>0.15</td><td>-0.20</td><td> 1.00</td><td> 0.82</td></tr>
+    <tr><th scope=row>Exportaciones</th><td>0.21</td><td>-0.18</td><td> 0.82</td><td> 1.00</td></tr>
+</tbody>
+</table><p>Instalar la siguiente librería para graficar una matríz de correlación:
+<code class="docutils literal notranslate"><span class="pre">install.packages(&quot;PerformanceAnalytics&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">PerformanceAnalytics</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">xts</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">zoo</span>
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;zoo&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:timeSeries&#39;</span><span class="p">:</span>
+
+    <span class="n">time</span><span class="o">&lt;-</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:base&#39;</span><span class="p">:</span>
+
+    <span class="k">as</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="k">as</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">numeric</span>
+
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;PerformanceAnalytics&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:timeDate&#39;</span><span class="p">:</span>
+
+    <span class="n">kurtosis</span><span class="p">,</span> <span class="n">skewness</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:graphics&#39;</span><span class="p">:</span>
+
+    <span class="n">legend</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chart.Correlation</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">7</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_20_01.png"><img alt="../../_images/output_20_01.png" src="../../_images/output_20_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="section" id="modelacion">
+<h2>1. Modelación:<a class="headerlink" href="#modelacion" title="Permalink to this headline">¶</a></h2>
+<p>Se buscará la relación entre las Exportaciones y la Producción de la
+forma que las Exportaciones, <span class="math notranslate nohighlight">\(y\)</span>, dependen de la Producción,
+<span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[Exportaciones = \hat{\beta_0}+\hat{\beta_1}Producción\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>   <span class="c1"># Fondo gris para el gráfico</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_24_01.png"><img alt="../../_images/output_24_01.png" src="../../_images/output_24_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="estimacion">
+<h2>2. Estimación:<a class="headerlink" href="#estimacion" title="Permalink to this headline">¶</a></h2>
+<p><strong>Ajuste modelo de Regresión Lineal Simple:</strong></p>
+<p>En R se utiliza la función <code class="docutils literal notranslate"><span class="pre">lm(y</span> <span class="pre">~</span> <span class="pre">X)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">regression</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">y</span> <span class="o">~</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+<span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>            <span class="n">X</span>
+   <span class="mf">235.3538</span>       <span class="mf">0.6769</span>
+</pre></div>
+</div>
+<p>Otra forma para usar <code class="docutils literal notranslate"><span class="pre">lm()</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">lm(formula</span> <span class="pre">=</span> <span class="pre">nombre_columna_y</span> <span class="pre">~</span> <span class="pre">nombre_columna_X,</span> <span class="pre">data</span> <span class="pre">=</span> <span class="pre">datos)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">regression</span> <span class="pre">&lt;-</span> <span class="pre">lm(formula</span> <span class="pre">=</span> <span class="pre">Exportaciones</span> <span class="pre">~</span> <span class="pre">Producción,</span> <span class="pre">data</span> <span class="pre">=</span> <span class="pre">datos)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = y ~ X)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-492.02  -85.38   -9.89   82.85  407.53
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 235.35384   29.77755   7.904 7.54e-14 <strong>*
+X             0.67687    0.02962  22.853  &lt; 2e-16 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 128 on 262 degrees of freedom
+Multiple R-squared:  0.6659,        Adjusted R-squared:  0.6647
+F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
+<div class="math notranslate nohighlight">
+\[\hat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{X}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cov</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nf">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+0.676867843609397<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="nf">cov</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nf">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+235.353837174438</div>
+<div class="section" id="interpretacion">
+<h2>3. Interpretación:<a class="headerlink" href="#interpretacion" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_0} = 235,3538\)</span></p>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_1} = 0.6769\)</span></p>
+<div class="math notranslate nohighlight">
+\[Exportaciones = 235.3538+0.6769\times Producción\]</div>
+<p><strong>Interpretación:</strong> Cuando la variable <span class="math notranslate nohighlight">\(X\)</span> incrementa en una
+unidad, la variable <span class="math notranslate nohighlight">\(y\)</span> incrementa (disminuye)
+<span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> unidades.</p>
+<p>Cuando la producción aumenta en 100 unidades, las exportaciones
+incrementan 67,69.</p>
+<p>Los parámetros se extraen con <code class="docutils literal notranslate"><span class="pre">$coefficients</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span>  <span class="c1"># Los dos Betas</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>(Intercept)</dt><dd>235.353837174437</dd><dt>X</dt><dd>0.676867843609397</dd></dl><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="c1"># Beta cero (intercepto)</span>
+</pre></div>
+</div>
+<strong>(Intercept):</strong> 235.353837174437<p><strong>:math:`hat{beta_0}`:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>  <span class="c1"># Beta cero (intercepto)</span>
+<span class="n">beta_0</span>
+</pre></div>
+</div>
+235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span> <span class="c1"># Beta 1 (pendiente)</span>
+<span class="n">beta_1</span>
+</pre></div>
+</div>
+0.676867843609397<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># abline - permite agregar una línea recta con solo tener intercepto - pendiente</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_44_0.png"><img alt="../../_images/output_44_0.png" src="../../_images/output_44_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Dentro de la muestra, para una Producción de 1500, ¿cuál es la
+Exportación?</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="m">1500</span>
+<span class="n">y_hat</span>
+</pre></div>
+</div>
+1250.65560258853<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">,</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Predicción por dentro de la muestra&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="m">1500</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_47_0.png"><img alt="../../_images/output_47_0.png" src="../../_images/output_47_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="prediccion">
+<h2>4. Predicción:<a class="headerlink" href="#prediccion" title="Permalink to this headline">¶</a></h2>
+<p><strong>Predicción dentro de la muestra:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">X</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>680.73287826942</li><li>736.236041445391</li><li>636.0596005912</li><li>949.449412182351</li><li>989.384614955306</li><li>974.493522395899</li></ol><p>Una forma de extraer los valores predichos o ajustados es con
+<code class="docutils literal notranslate"><span class="pre">$fitted.values</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>1</dt><dd>680.732878269429</dd><dt>2</dt><dd>736.236041445392</dd><dt>3</dt><dd>636.0596005912</dd><dt>4</dt><dd>949.449412182351</dd><dt>5</dt><dd>989.384614955306</dd><dt>6</dt><dd>974.493522395899</dd></dl><p><strong>Predicción por fuera de la muestra:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nuevos_datos</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1800.25</span><span class="p">,</span> <span class="m">1900</span><span class="p">,</span> <span class="m">2005.58</span><span class="p">,</span> <span class="m">2200.258</span><span class="p">,</span> <span class="m">2300</span><span class="p">,</span> <span class="m">2500</span><span class="p">,</span> <span class="m">2501.87</span><span class="p">,</span> <span class="m">2587</span><span class="p">,</span> <span class="m">2600</span><span class="p">,</span> <span class="m">2800</span><span class="p">)</span>  <span class="c1"># Datos nuevo para la X (Producción)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">nuevos_datos</span>
+<span class="n">y_pred</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1453.88517263225</li><li>1521.40274003229</li><li>1592.86644696057</li><li>1724.63772501876</li><li>1792.14987747605</li><li>1927.52344619793</li><li>1928.78918906548</li><li>1986.41094859195</li><li>1995.21023055887</li><li>2130.58379928075</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">,</span>
+    <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span> <span class="m">3000</span><span class="p">),</span>        <span class="c1"># Cambio de los límites para observar las predicciones por fuera de la muestra</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span> <span class="m">2200</span><span class="p">),</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Predicción por fuera de la muestra&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">nuevos_datos</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_56_0.png"><img alt="../../_images/output_56_0.png" src="../../_images/output_56_0.png" style="width: 420px; height: 420px;" /></a>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[Producción = 430,25248+0,21526\times TRM\]</div>
+<div class="math notranslate nohighlight">
+\[Producción = 462,74538+0,16929\times EUR\]</div>
+<div class="math notranslate nohighlight">
+\[Producción = 1108,4579-0,9347\times PrecioInternacional\]</div>
+<div class="math notranslate nohighlight">
+\[Exportaciones = 994,6442-0,6933\times PrecioInternacional\]</div>
+<div class="math notranslate nohighlight">
+\[PrecioInterno = -21999,93+265,28\times TRM\]</div>
+<div class="math notranslate nohighlight">
+\[PrecioInterno = -262947,44+302,49\times EUR\]</div>
+<div class="math notranslate nohighlight">
+\[PrecioInterno = 31264,8+4113,7\times PrecioInternacional\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html" class="btn btn-neutral float-right" title="Análisis de Normalidad en RLS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Regresión lineal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
