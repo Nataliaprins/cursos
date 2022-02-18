@@ -91,10 +91,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../Regresión Lineal Simple (RLS)/Regresión Lineal Simple (RLS).html">Regresión Lineal Simple (RLS)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.html">Análisis de Normalidad en RLS</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Prueba de significancia de la regresión</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pruebas-de-hipotesis">Pruebas de hipótesis:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#prueba-de-significancia-de-la-regresion-con-el-estadistico-t">Prueba de significancia de la regresión con el estadístico <span class="math notranslate nohighlight">\(t\)</span>:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p">Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor p\)</span>:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p">Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor-p\)</span>:</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html">Intervalos de confianza - CI</a></li>
@@ -187,9 +186,6 @@
             
   <div class="section" id="prueba-de-significancia-de-la-regresion">
 <h1>Prueba de significancia de la regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pruebas-de-hipotesis">
-<h2>Pruebas de hipótesis:<a class="headerlink" href="#pruebas-de-hipotesis" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="prueba-de-significancia-de-la-regresion-con-el-estadistico-t">
 <h2>Prueba de significancia de la regresión con el estadístico <span class="math notranslate nohighlight">\(t\)</span>:<a class="headerlink" href="#prueba-de-significancia-de-la-regresion-con-el-estadistico-t" title="Permalink to this headline">¶</a></h2>
 <p>La significancia de la regresión se relaciona en determinar si la
@@ -200,6 +196,7 @@ pendiente no es significativa y no hay relación lineal entre <span class="math 
 variación de <span class="math notranslate nohighlight">\(y\)</span>, en cambio, con la hipótesis alternativa
 <span class="math notranslate nohighlight">\((H_1)\)</span>, se evalúa si la pendiente es diferente de cero, entonces,
 si existe una relación lineal entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><strong>Pruebas de hipótesis:</strong></p>
 <div class="math notranslate nohighlight">
 \[H_0: \beta_1 = 0\]</div>
 <div class="math notranslate nohighlight">
@@ -207,21 +204,27 @@ si existe una relación lineal entre <span class="math notranslate nohighlight">
 <p>No rechazar <span class="math notranslate nohighlight">\(H_0\)</span> implica que la mejor estimación es
 <span class="math notranslate nohighlight">\(\hat{y} = \overline{y}\)</span> <strong>(Figura a)</strong> o que la relación no es
 lineal <strong>(Figura b).</strong></p>
-<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<div class="figure align-default" id="id1">
+<img alt="Significancia" src="../../_images/significancia1.png" />
+<p class="caption"><span class="caption-text">Significancia</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <p>Fuente: Montgomery, Peck y Vining, 2001.</p>
 <p>Al rechazar <span class="math notranslate nohighlight">\(H_0\)</span> implica que <span class="math notranslate nohighlight">\(X\)</span> sí pude explicar la
 variabilidad de <span class="math notranslate nohighlight">\(y\)</span>. Si el modelo adecuado es como la <strong>Figura
 a</strong>; sin embargo, es posible que, aunque el modelo es significativo se
 podría tener mejores resultados con términos polinomiales en <span class="math notranslate nohighlight">\(X\)</span>
 como se muestra en la <strong>Figura b.</strong></p>
-<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<div class="figure align-default" id="id2">
+<img alt="Linealidad" src="../../_images/significancia2.png" />
+<p class="caption"><span class="caption-text">Linealidad</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>Fuente: Montgomery, Peck y Vining, 2001.</p>
-<p>Se usa el <strong>estadístico :math:`t`</strong> para determinar la significancia de
-la regresión así:</p>
+<p>Se usa el estadístico <span class="math notranslate nohighlight">\(t\)</span> para determinar la significancia de la
+regresión así:</p>
 <div class="math notranslate nohighlight">
 \[t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}\]</div>
 <p>Donde,</p>
-<p><strong>:math:`SE(hat{beta_1})`:</strong> Es el error estándar de
+<p><span class="math notranslate nohighlight">\(SE(\hat{\beta_1})\)</span>: Es el error estándar de
 <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[SE(\hat{\beta_1}) = \sqrt{\frac{\sigma^2}{\sum_{}(X_i-\overline{X_i})^2}}\]</div>
@@ -230,8 +233,8 @@ estimador insesgado para la varianza de la regresión. <span class="math notrans
 el <strong>error estándar de la regresión.</strong></p>
 <div class="math notranslate nohighlight">
 \[\sigma^2 = \frac{\sum_{}(y_i-\hat{y_i})^2}{n-2} = \frac{\sum_{} \hat{\varepsilon_i}^2}{n-2}\]</div>
-<p><strong>:math:`n-2`:</strong> son los grados de libertad del modelo <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2</span></code>.
-El 2 es porque se estiman dos parámetros.</p>
+<p><span class="math notranslate nohighlight">\(n-2\)</span>: son los grados de libertad del modelo <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2</span></code>. El 2
+es porque se estiman dos parámetros.</p>
 <p>Recuerde que:
 <span class="math notranslate nohighlight">\(SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2\)</span>,
 entonces:</p>
@@ -244,34 +247,36 @@ entonces:</p>
 <div class="math notranslate nohighlight">
 \[|t_0| &gt; t_{\alpha/2, n – 2}\]</div>
 <p>Donde,</p>
-<p><strong>:math:`t_{alpha/2, n – 2}`:</strong> es el valor crítico de <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>El <strong>:math:`t` crítico</strong> se calcula en R así:
+<p><span class="math notranslate nohighlight">\(t_{\alpha/2, n – 2}\)</span>: es el valor crítico de <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>El <span class="math notranslate nohighlight">\(t\)</span> crítico se calcula en R así:
 <code class="docutils literal notranslate"><span class="pre">qt(p</span> <span class="pre">=</span> <span class="pre">(1</span> <span class="pre">-</span> <span class="pre">alfa)</span> <span class="pre">+</span> <span class="pre">alfa/2,</span> <span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2)</span></code></p>
 <p><strong>Ejemplo:</strong> para un <span class="math notranslate nohighlight">\(\alpha = 0,05\)</span> y 264 datos <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">264</span></code>, el
-<strong>:math:`t` crítico</strong> es: <code class="docutils literal notranslate"><span class="pre">1.96905971525654</span></code></p>
+<span class="math notranslate nohighlight">\(t\)</span> crítico es: <code class="docutils literal notranslate"><span class="pre">1.96905971525654</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">t_critico</span> <span class="pre">=</span> <span class="pre">qt(p</span> <span class="pre">=</span> <span class="pre">0.95</span> <span class="pre">+</span> <span class="pre">0.05/2,</span> <span class="pre">df</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">2)</span></code></p>
 </div>
 <div class="section" id="codigo-en-r">
 <h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 7</caption>
-<thead>
-    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
 </pre></div>
 </div>
@@ -288,17 +293,17 @@ entonces:</p>
    <span class="mf">235.3538</span>       <span class="mf">0.6769</span>
 </pre></div>
 </div>
-<p><strong>:math:`hat{beta_0}`:</strong></p>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
 <span class="n">beta_0</span>
 </pre></div>
 </div>
-235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
 <span class="n">beta_1</span>
 </pre></div>
 </div>
-0.676867843609397<p><strong>Cantidad de datos :math:`n`:</strong></p>
+0.676867843609397<p><strong>Cantidad de datos</strong> <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">n</span>
 </pre></div>
@@ -313,20 +318,20 @@ entonces:</p>
 .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
 .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
 .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.236041445392</dd><dt>3</dt><dd>-232.059600591201</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p><strong>:math:`SE(hat{beta_1})`:</strong></p>
+</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.236041445392</dd><dt>3</dt><dd>-232.059600591201</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p><span class="math notranslate nohighlight">\(SE(\hat{\beta_1})\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[SE(\hat{\beta_1}) = \sqrt{\frac{\frac{SEE}{n-2}}{\sum_{}(X_i-\overline{X_i})^2}}\]</div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">residuales</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
 </pre></div>
 </div>
-0.0296183889365504<p><strong>Estadístico :math:`t_0` para :math:`hat{beta_1}`:</strong></p>
+0.0296183889365504<p>Estadístico <span class="math notranslate nohighlight">\(t_0\)</span> para <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}\]</div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t_0</span> <span class="o">=</span> <span class="n">beta_1</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">residuales</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
 <span class="n">t_0</span>
 </pre></div>
 </div>
-22.8529595265769<p><strong>:math:`t` crítico:</strong></p>
+22.8529595265769<p><span class="math notranslate nohighlight">\(t\)</span> crítico:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t_critico</span> <span class="o">=</span> <span class="nf">qt</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="m">0.95</span> <span class="o">+</span> <span class="m">0.05</span><span class="o">/</span><span class="m">2</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="m">2</span><span class="p">)</span>
 <span class="n">t_critico</span>
 </pre></div>
@@ -340,9 +345,12 @@ entonces:</p>
 </pre></div>
 </div>
 'Se acepta'<p>En el <code class="docutils literal notranslate"><span class="pre">summary()</span></code> aparecen los errores estándar <strong>SE</strong> de valor del
-<span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y los <strong>estadísticos :math:`t`</strong> de
-cada uno.</p>
-<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y los estadísticos <span class="math notranslate nohighlight">\(t\)</span> de cada
+uno.</p>
+<div class="figure align-default" id="id3">
+<img alt="Estadístico" src="../../_images/tstatistics.png" />
+<p class="caption"><span class="caption-text">Estadístico</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -365,12 +373,15 @@ Multiple R-squared:  0.6659,        Adjusted R-squared:  0.6647
 F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
 </div>
 <div class="section" id="prueba-de-significancia-de-la-regresion-con-el-valor-p">
-<h2>Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor p\)</span>:<a class="headerlink" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p" title="Permalink to this headline">¶</a></h2>
+<h2>Prueba de significancia de la regresión con el <span class="math notranslate nohighlight">\(valor-p\)</span>:<a class="headerlink" href="#prueba-de-significancia-de-la-regresion-con-el-valor-p" title="Permalink to this headline">¶</a></h2>
 <p>Otra forma para determinar la significancia del modelo es usando el
-<span class="math notranslate nohighlight">\(valor p\)</span>. El <code class="docutils literal notranslate"><span class="pre">summary()</span></code> ya lo tiene calculado y por medio de
+<span class="math notranslate nohighlight">\(valor- p\)</span>. El <code class="docutils literal notranslate"><span class="pre">summary()</span></code> ya lo tiene calculado y por medio de
 asteriscos indica si los parámetros son significativos o no, entre más
 asteriscos es más significativo</p>
-<p><img alt="image1" src="../../_images/pvalue.png" /></p>
+<div class="figure align-default" id="id4">
+<img alt="p-value" src="../../_images/pvalue.png" />
+<p class="caption"><span class="caption-text">p-value</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 

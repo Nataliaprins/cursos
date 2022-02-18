@@ -192,7 +192,7 @@
 <p>La línea de regresión estimada es la mejor aproximación de la relación
 entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>, pero podemos agregar un término
 probabilístico que representará la incertidumbre de la línea recta y se
-llamará el <strong>error :math:`(varepsilon)`</strong>.</p>
+llamará el error <span class="math notranslate nohighlight">\((\varepsilon)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i+\hat{\varepsilon_i}\]</div>
 <div class="math notranslate nohighlight">
@@ -205,7 +205,10 @@ siguiente <strong>Figura.</strong></p>
 <strong>error de predicción</strong> y se representa con la ecuación:
 <span class="math notranslate nohighlight">\(\varepsilon_i=y_i-\overline{y_i}\)</span>. Note que en esta ecuación se
 usa <span class="math notranslate nohighlight">\(\overline{y_i}\)</span> en lugar de <span class="math notranslate nohighlight">\(\hat{y_i}\)</span>.</p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
+<div class="figure align-default" id="id1">
+<img alt="Residuales" src="../../_images/estimada2.png" />
+<p class="caption"><span class="caption-text">Residuales</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="supuestos-de-la-regresion-lineal-simple">
 <h2>Supuestos de la Regresión Lineal Simple:<a class="headerlink" href="#supuestos-de-la-regresion-lineal-simple" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -225,11 +228,10 @@ lineal.</p></li>
 manera:</p>
 <div class="math notranslate nohighlight">
 \[\varepsilon_i \sim^{iid}N(0,\sigma^2)\]</div>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
-<p><strong>:math:`iid`:</strong> los errores son independientes e idénticamente
+<p><span class="math notranslate nohighlight">\(iid\)</span>: los errores son independientes e idénticamente
 distribuidos. Con esta expresión se mencionan los tres supuestos:
 independencia, homocedasticidad y distribución de los errores.</p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /> Fuente: Roback y Legler, 2021.</p>
+<p><img alt="Supuestos" src="../../_images/supuestosRLS.png" /> Fuente: Roback y Legler, 2021.</p>
 </div>
 <div class="section" id="qq-plot">
 <h2>QQ-Plot:<a class="headerlink" href="#qq-plot" title="Permalink to this headline">¶</a></h2>
@@ -262,8 +264,10 @@ demás figuras presentan problemas particulares como los siguientes:</p>
 <li><p><strong>Figura 5:</strong> Asimetría negativa.</p></li>
 </ul>
 <p>En este gráfico se puede identificar puntos atípicos en los datos.</p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
+<div class="figure align-default" id="id2">
+<img alt="Normalidad" src="../../_images/normalidad.jpg" />
+<p class="caption"><span class="caption-text">Normalidad</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>Fuente: Montgomery, Peck y Vining, 2001.</p>
 </div>
 <div class="section" id="grafico-de-residuales-con-respecto-a-las-predicciones">
@@ -280,31 +284,35 @@ demás figuras son síntomas de deficiencias del modelo.</p>
 <li><p><strong>Figura 4:</strong> No linealidad.</p></li>
 </ul>
 <p>En este gráfico también se puede identificar puntos atípicos.</p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
-<p><img alt="image1" src="../../_images/residuales.jpg" /></p>
+<div class="figure align-default" id="id3">
+<img alt="Homocedasticidad" src="../../_images/residuales.jpg" />
+<p class="caption"><span class="caption-text">Homocedasticidad</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>Fuente: Montgomery, Peck y Vining, 2001.</p>
 </div>
 <div class="section" id="codigo-en-r">
 <h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 7</caption>
-<thead>
-    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
 </pre></div>
 </div>
@@ -341,12 +349,12 @@ Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 128 on 262 degrees of freedom
 Multiple R-squared:  0.6659,        Adjusted R-squared:  0.6647
 F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
-<p><strong>:math:`hat{beta_0}`:</strong></p>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
 <span class="n">beta_0</span>
 </pre></div>
 </div>
-235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
 <span class="n">beta_1</span>
 </pre></div>

@@ -12,7 +12,6 @@ En esta sesión se encuentran los conceptos iniciales para la programación en R
    Gráficos en R/Gráficos en R.rst
    Gráfico de dispersión/Gráfico de dispersión.rst
    Análisis de datos/Análisis de datos.rst
-   Análisis ofertas laborales/Analisis de ofertas.rst
 
 
 .. important::

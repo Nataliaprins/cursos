@@ -1,9 +1,6 @@
 Prueba de significancia de la regresión
 ---------------------------------------
 
-Pruebas de hipótesis:
-~~~~~~~~~~~~~~~~~~~~~
-
 Prueba de significancia de la regresión con el estadístico :math:`t`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -16,6 +13,8 @@ variación de :math:`y`, en cambio, con la hipótesis alternativa
 :math:`(H_1)`, se evalúa si la pendiente es diferente de cero, entonces,
 si existe una relación lineal entre :math:`X` y :math:`y`.
 
+**Pruebas de hipótesis:**
+
 .. math::  H_0: \beta_1 = 0 
 
 .. math::  H_1: \beta_1 \neq 0 
@@ -24,11 +23,12 @@ No rechazar :math:`H_0` implica que la mejor estimación es
 :math:`\hat{y} = \overline{y}` **(Figura a)** o que la relación no es
 lineal **(Figura b).**
 
-|image1|
+.. figure:: significancia1.png
+   :alt: Significancia
+
+   Significancia
 
 Fuente: Montgomery, Peck y Vining, 2001.
-
-.. |image1| image:: significancia1.png
 
 Al rechazar :math:`H_0` implica que :math:`X` sí pude explicar la
 variabilidad de :math:`y`. Si el modelo adecuado es como la **Figura
@@ -36,20 +36,21 @@ a**; sin embargo, es posible que, aunque el modelo es significativo se
 podría tener mejores resultados con términos polinomiales en :math:`X`
 como se muestra en la **Figura b.**
 
-|image1|
+.. figure:: significancia2.png
+   :alt: Linealidad
+
+   Linealidad
 
 Fuente: Montgomery, Peck y Vining, 2001.
 
-.. |image1| image:: significancia2.png
-
-Se usa el **estadístico :math:`t`** para determinar la significancia de
-la regresión así:
+Se usa el estadístico :math:`t` para determinar la significancia de la
+regresión así:
 
 .. math::  t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})} 
 
 Donde,
 
-**:math:`SE(\hat{\beta_1})`:** Es el error estándar de
+:math:`SE(\hat{\beta_1})`: Es el error estándar de
 :math:`\hat{\beta_1}`.
 
 .. math::  SE(\hat{\beta_1}) = \sqrt{\frac{\sigma^2}{\sum_{}(X_i-\overline{X_i})^2}} 
@@ -60,8 +61,8 @@ el **error estándar de la regresión.**
 
 .. math::  \sigma^2 = \frac{\sum_{}(y_i-\hat{y_i})^2}{n-2} = \frac{\sum_{} \hat{\varepsilon_i}^2}{n-2} 
 
-**:math:`n-2`:** son los grados de libertad del modelo ``df = n - 2``.
-El 2 es porque se estiman dos parámetros.
+:math:`n-2`: son los grados de libertad del modelo ``df = n - 2``. El 2
+es porque se estiman dos parámetros.
 
 Recuerde que:
 :math:`SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2`,
@@ -79,13 +80,13 @@ Se rechaza :math:`H_0` cuando:
 
 Donde,
 
-**:math:`t_{\alpha/2, n – 2}`:** es el valor crítico de :math:`t`.
+:math:`t_{\alpha/2, n – 2}`: es el valor crítico de :math:`t`.
 
-El **:math:`t` crítico** se calcula en R así:
+El :math:`t` crítico se calcula en R así:
 ``qt(p = (1 - alfa) + alfa/2, df = n - 2)``
 
 **Ejemplo:** para un :math:`\alpha = 0,05` y 264 datos ``n = 264``, el
-**:math:`t` crítico** es: ``1.96905971525654``
+:math:`t` crítico es: ``1.96905971525654``
 
 ``t_critico = qt(p = 0.95 + 0.05/2, df = n - 2)``
 
@@ -95,29 +96,26 @@ Código en R:
 .. code:: r
 
     datos = read.csv("DatosCafe.csv", sep = ";", dec = ",", header = T)
-    head(datos)
+    print(head(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 6 × 7</caption>
-    <thead>
-    	<tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    	<tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    	<tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    	<tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    	<tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    	<tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-    </tbody>
-    </table>
+           X PrecioInterno PrecioInternacional Producción Exportaciones     TRM
+    1 ene-00        371375              130.12        658           517 1923.57
+    2 feb-00        354297              124.72        740           642 1950.64
+    3 mar-00        360016              119.51        592           404 1956.25
+    4 abr-00        347538              112.67       1055           731 1986.77
+    5 may-00        353750              110.31       1114           615 2055.69
+    6 jun-00        341688              100.30       1092           869 2120.17
+         EUR
+    1 1916.0
+    2 1878.5
+    3 1875.0
+    4 1832.0
+    5 1971.5
+    6 2053.5
     
-
 
 .. code:: r
 
@@ -145,7 +143,7 @@ Código en R:
     
 
 
-**:math:`\hat{\beta_0}`:**
+:math:`\hat{\beta_0}`:
 
 .. code:: r
 
@@ -159,7 +157,7 @@ Código en R:
     235.353837174437
 
 
-**:math:`\hat{\beta_1}`:**
+:math:`\hat{\beta_1}`:
 
 .. code:: r
 
@@ -173,7 +171,7 @@ Código en R:
     0.676867843609397
 
 
-**Cantidad de datos :math:`n`:**
+**Cantidad de datos** :math:`n`:
 
 .. code:: r
 
@@ -207,7 +205,7 @@ Código en R:
     
 
 
-**:math:`SE(\hat{\beta_1})`:**
+:math:`SE(\hat{\beta_1})`:
 
 .. math::  SE(\hat{\beta_1}) = \sqrt{\frac{\frac{SEE}{n-2}}{\sum_{}(X_i-\overline{X_i})^2}} 
 
@@ -222,7 +220,7 @@ Código en R:
     0.0296183889365504
 
 
-**Estadístico :math:`t_0` para :math:`\hat{\beta_1}`:**
+Estadístico :math:`t_0` para :math:`\hat{\beta_1}`:
 
 .. math::  t_0 =  \frac{\hat{\beta_1}}{SE(\hat{\beta_1})} 
 
@@ -238,7 +236,7 @@ Código en R:
     22.8529595265769
 
 
-**:math:`t` crítico:**
+:math:`t` crítico:
 
 .. code:: r
 
@@ -270,12 +268,13 @@ Código en R:
 
 
 En el ``summary()`` aparecen los errores estándar **SE** de valor del
-:math:`\beta_0` y :math:`\beta_1` y los **estadísticos :math:`t`** de
-cada uno.
+:math:`\beta_0` y :math:`\beta_1` y los estadísticos :math:`t` de cada
+uno.
 
-|image1|
+.. figure:: tstatistics.png
+   :alt: Estadístico
 
-.. |image1| image:: tstatistics.png
+   Estadístico
 
 .. code:: r
 
@@ -306,14 +305,15 @@ cada uno.
     
 
 
-Prueba de significancia de la regresión con el :math:`valor p`:
+Prueba de significancia de la regresión con el :math:`valor-p`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Otra forma para determinar la significancia del modelo es usando el
-:math:`valor p`. El ``summary()`` ya lo tiene calculado y por medio de
+:math:`valor- p`. El ``summary()`` ya lo tiene calculado y por medio de
 asteriscos indica si los parámetros son significativos o no, entre más
 asteriscos es más significativo
 
-|image1|
+.. figure:: pvalue.png
+   :alt: p-value
 
-.. |image1| image:: pvalue.png
+   p-value

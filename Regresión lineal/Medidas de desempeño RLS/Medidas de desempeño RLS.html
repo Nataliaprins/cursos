@@ -200,24 +200,26 @@ ajustado. Entre más cercano a uno es mejor.</p>
 <div class="section" id="codigo-en-r">
 <h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 7</caption>
-<thead>
-    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
 </pre></div>
 </div>
@@ -234,12 +236,12 @@ ajustado. Entre más cercano a uno es mejor.</p>
    <span class="mf">235.3538</span>       <span class="mf">0.6769</span>
 </pre></div>
 </div>
-<p><strong>:math:`hat{beta_0}`:</strong></p>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
 <span class="n">beta_0</span>
 </pre></div>
 </div>
-235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
 <span class="n">beta_1</span>
 </pre></div>
@@ -287,7 +289,7 @@ los cuales se aplicó OLS.</p>
 <span class="n">MAPE</span>
 </pre></div>
 </div>
-0.123516747782105<p><strong>Coeficiente de Determinación :math:`R^2`:</strong></p>
+0.123516747782105<p><strong>Coeficiente de Determinación</strong> <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
 <p>Es una versión estandarizada del MSE. El <span class="math notranslate nohighlight">\(R^2\)</span> es la fracción de
 la varianza de <span class="math notranslate nohighlight">\(y\)</span> que es capturada por el modelo, es decir,
 cuánto de la varianza de <span class="math notranslate nohighlight">\(y\)</span> es explicada por la variable
@@ -315,15 +317,17 @@ explicando con el modelo de regresión. Como <span class="math notranslate nohig
 entonces <span class="math notranslate nohighlight">\(0&lt;=R^2&lt;=1\)</span>.</p>
 <p>En otras la palabras, el <span class="math notranslate nohighlight">\(R^2\)</span> hace una comparación entre modelar
 <span class="math notranslate nohighlight">\(y\)</span> con una línea recta igual a <span class="math notranslate nohighlight">\(\overline{y}\)</span> que su
-pendiente es cero o con una línea recta de la forma $
-<a href="#id1"><span class="problematic" id="id2">:raw-latex:`\hat{y_i}`</span></a> =
-<a href="#id3"><span class="problematic" id="id4">:raw-latex:`\hat{\beta_0}`+:raw-latex:`</span></a>hat{beta_1}`X_i$</p>
+pendiente es cero o con una línea recta de la forma
+<span class="math notranslate nohighlight">\(\hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i\)</span></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R_2</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">residuales</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="nf">var</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">R_2</span>
 </pre></div>
 </div>
 0.667191592660391<p>En el <code class="docutils literal notranslate"><span class="pre">summary()</span></code> aparece calculado el <span class="math notranslate nohighlight">\(R^2\)</span>.</p>
-<p><img alt="image1" src="../../_images/r2.png" /></p>
+<div class="figure align-default" id="id1">
+<img alt="R2" src="../../_images/r2.png" />
+<p class="caption"><span class="caption-text">R2</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
 </pre></div>
 </div>

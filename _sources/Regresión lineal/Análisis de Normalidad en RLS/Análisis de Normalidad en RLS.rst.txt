@@ -4,7 +4,7 @@ Análisis de Normalidad en RLS
 La línea de regresión estimada es la mejor aproximación de la relación
 entre :math:`X` y :math:`y`, pero podemos agregar un término
 probabilístico que representará la incertidumbre de la línea recta y se
-llamará el **error :math:`(\varepsilon)`**.
+llamará el error :math:`(\varepsilon)`.
 
 .. math::  \hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i+\hat{\varepsilon_i} 
 
@@ -21,9 +21,10 @@ La letra Griega :math:`{\varepsilon_i}` (sin el :math:`\hat{}`) se llama
 :math:`\varepsilon_i=y_i-\overline{y_i}`. Note que en esta ecuación se
 usa :math:`\overline{y_i}` en lugar de :math:`\hat{y_i}`.
 
-|image1|
+.. figure:: estimada2.png
+   :alt: Residuales
 
-.. |image1| image:: estimada.png
+   Residuales
 
 Supuestos de la Regresión Lineal Simple:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48,17 +49,13 @@ manera:
 
 .. math::  \varepsilon_i \sim^{iid}N(0,\sigma^2) 
 
-|image1|
-
-**:math:`iid`:** los errores son independientes e idénticamente
+:math:`iid`: los errores son independientes e idénticamente
 distribuidos. Con esta expresión se mencionan los tres supuestos:
 independencia, homocedasticidad y distribución de los errores.
 
-.. |image1| image:: supuestosRLS.png
+|Supuestos| Fuente: Roback y Legler, 2021.
 
-|image1| Fuente: Roback y Legler, 2021.
-
-.. |image1| image:: supuestosRLS.png
+.. |Supuestos| image:: supuestosRLS.png
 
 QQ-Plot:
 ~~~~~~~~
@@ -98,15 +95,12 @@ demás figuras presentan problemas particulares como los siguientes:
 
 En este gráfico se puede identificar puntos atípicos en los datos.
 
-|image1|
+.. figure:: normalidad.jpg
+   :alt: Normalidad
 
-.. |image1| image:: normalidad.jpg
-
-|image1|
+   Normalidad
 
 Fuente: Montgomery, Peck y Vining, 2001.
-
-.. |image1| image:: normalidad.jpg
 
 Gráfico de Residuales con respecto a las predicciones:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,15 +120,12 @@ demás figuras son síntomas de deficiencias del modelo.
 
 En este gráfico también se puede identificar puntos atípicos.
 
-|image1|
+.. figure:: residuales.jpg
+   :alt: Homocedasticidad
 
-.. |image1| image:: residuales.jpg
-
-|image1|
+   Homocedasticidad
 
 Fuente: Montgomery, Peck y Vining, 2001.
-
-.. |image1| image:: residuales.jpg
 
 Código en R:
 ~~~~~~~~~~~~
@@ -142,29 +133,26 @@ Código en R:
 .. code:: r
 
     datos = read.csv("DatosCafe.csv", sep = ";", dec = ",", header = T)
-    head(datos)
+    print(head(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 6 × 7</caption>
-    <thead>
-    	<tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    	<tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    	<tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    	<tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    	<tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    	<tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-    </tbody>
-    </table>
+           X PrecioInterno PrecioInternacional Producción Exportaciones     TRM
+    1 ene-00        371375              130.12        658           517 1923.57
+    2 feb-00        354297              124.72        740           642 1950.64
+    3 mar-00        360016              119.51        592           404 1956.25
+    4 abr-00        347538              112.67       1055           731 1986.77
+    5 may-00        353750              110.31       1114           615 2055.69
+    6 jun-00        341688              100.30       1092           869 2120.17
+         EUR
+    1 1916.0
+    2 1878.5
+    3 1875.0
+    4 1832.0
+    5 1971.5
+    6 2053.5
     
-
 
 .. code:: r
 
@@ -221,7 +209,7 @@ Código en R:
     
 
 
-**:math:`\hat{\beta_0}`:**
+:math:`\hat{\beta_0}`:
 
 .. code:: r
 
@@ -235,7 +223,7 @@ Código en R:
     235.353837174437
 
 
-**:math:`\hat{\beta_1}`:**
+:math:`\hat{\beta_1}`:
 
 .. code:: r
 

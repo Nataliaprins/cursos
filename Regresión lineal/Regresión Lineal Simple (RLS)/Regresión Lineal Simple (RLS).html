@@ -191,12 +191,10 @@
 <h1>Regresión Lineal Simple (RLS)<a class="headerlink" href="#regresion-lineal-simple-rls" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
 <li><p><strong>Modelación:</strong> Desarrollar un modelo de regresión.</p></li>
-</ol>
-<ul class="simple">
 <li><p><strong>Estimación:</strong> Usar R para estimar el modelo.</p></li>
 <li><p><strong>Inferencia:</strong> Interpretar el modelo de regresión estimado.</p></li>
 <li><p><strong>Predicción:</strong> Realizar predicciones sobre la variable de interés.</p></li>
-</ul>
+</ol>
 <p>Con la regresión lineal se busca modelar la relación entre una o
 múltiples variables independientes (<span class="math notranslate nohighlight">\(X_i\)</span>) y una variable
 dependiente (<span class="math notranslate nohighlight">\(y\)</span>). También se puede predecir resultados en una
@@ -207,7 +205,7 @@ valor continua (variable dependiente <span class="math notranslate nohighlight">
 define con la siguiente ecuación:</p>
 <div class="math notranslate nohighlight">
 \[y = \beta_0+\beta_1X\]</div>
-<p><span class="math notranslate nohighlight">\(y\)</span>: variable dependiente o de respuesta.También llamada variable
+<p><span class="math notranslate nohighlight">\(y\)</span>: variable dependiente o de respuesta. También llamada variable
 regresora.</p>
 <p><span class="math notranslate nohighlight">\(X\)</span>: variable independiente.</p>
 <p>Esta es la ecuación de una línea recta de la forma pendiente-intercepto.
@@ -229,7 +227,10 @@ la ecuación de la recta estimada es:</p>
 \[\hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i\]</div>
 <p>Con esta ecuación, con un valor dado de <span class="math notranslate nohighlight">\(X_i\)</span> se estima el valor
 de <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> de la variable <span class="math notranslate nohighlight">\(y\)</span>.</p>
-<p><img alt="image1" src="../../_images/estimada.png" /></p>
+<div class="figure align-default" id="id1">
+<img alt="Regresión" src="../../_images/recta.png" />
+<p class="caption"><span class="caption-text">Regresión</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="minimos-cuadrados-ordinarios">
 <h2>Mínimos Cuadrados Ordinarios:<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Permalink to this headline">¶</a></h2>
 <p>Para ajustar el método de Regresión Lineal se usa el método de Mínimos
@@ -238,28 +239,30 @@ Con esta técnica se busca encontrar la línea recta que minimiza la suma
 de las distancias verticales cuadradas (residuos o errores) en los
 puntos de la muestra. De esta forma se hallan los parámetros
 <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
-<p><strong>:math:`SSE`:</strong> es la suma de los errores al cuadrado (mínimas
-distancias verticales al cuadrado). En inglés <em>Sum of Squared Errors</em>.
-Estas distancias que son los errores se muestran en la siguiente
-<strong>Figura.</strong></p>
+<p><span class="math notranslate nohighlight">\(SSE\)</span>: es la suma de los errores al cuadrado (mínimas distancias
+verticales al cuadrado). En inglés <em>Sum of Squared Errors</em>. Estas
+distancias que son los errores se muestran en la siguiente <strong>Figura.</strong></p>
 <p>Como el error es: <span class="math notranslate nohighlight">\(\hat{\varepsilon_i} = y_i-\hat{y_i}\)</span>, entonces:</p>
 <div class="math notranslate nohighlight">
 \[SSE = \sum_{} \hat{\varepsilon_i}^2 = \sum_{}(y_i-\hat{y_i})^2\]</div>
 <p>Si <span class="math notranslate nohighlight">\(SSE = 0\)</span>, entonces todos los puntos de la muestra están sobre
 la línea de ajuste.</p>
-<p><img alt="image1" src="../../_images/estimada.png" /></p>
+<div class="figure align-default" id="id2">
+<img alt="Errores" src="../../_images/estimada.png" />
+<p class="caption"><span class="caption-text">Errores</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>Lo que se busca es hallar los <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> que
 minimicen el <span class="math notranslate nohighlight">\(SSE\)</span>, esto se hace derivando <span class="math notranslate nohighlight">\(SSE\)</span> con
 respecto a <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y luego igualando a cero.
 El resultado es el siguiente:</p>
 <div class="math notranslate nohighlight">
-\[chat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)}\]</div>
+\[\hat{\beta_1} = \frac{covarianza(X,y)}{varianza(X)}\]</div>
 <p>También se puede expresar como:</p>
 <div class="math notranslate nohighlight">
 \[\hat{\beta_1} = \frac{\sum_{}y_i(X_i-\overline{X})}{\sum_{}(X_i-\overline{X})^2}\]</div>
 <p>Donde,</p>
-<p><strong>:math:`overline{X}`:</strong> media de la <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p><strong>:math:`overline{y}`:</strong> media de la <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\overline{X}\)</span>: media de la <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\overline{y}\)</span>: media de la <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> es la pendiente de la línea recta. Luego, se halla
 el intercepto <span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -270,24 +273,26 @@ de la Regresión Lineal Simple porque tenemos códigos que lo hacen</p>
 <div class="section" id="codigo-en-r">
 <h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 7</caption>
-<thead>
-    <tr><th></th><th scope=col>X</th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th><th scope=col>TRM</th><th scope=col>EUR</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>ene-00</td><td>371375</td><td>130.12</td><td> 658</td><td>517</td><td>1923.57</td><td>1916.0</td></tr>
-    <tr><th scope=row>2</th><td>feb-00</td><td>354297</td><td>124.72</td><td> 740</td><td>642</td><td>1950.64</td><td>1878.5</td></tr>
-    <tr><th scope=row>3</th><td>mar-00</td><td>360016</td><td>119.51</td><td> 592</td><td>404</td><td>1956.25</td><td>1875.0</td></tr>
-    <tr><th scope=row>4</th><td>abr-00</td><td>347538</td><td>112.67</td><td>1055</td><td>731</td><td>1986.77</td><td>1832.0</td></tr>
-    <tr><th scope=row>5</th><td>may-00</td><td>353750</td><td>110.31</td><td>1114</td><td>615</td><td>2055.69</td><td>1971.5</td></tr>
-    <tr><th scope=row>6</th><td>jun-00</td><td>341688</td><td>100.30</td><td>1092</td><td>869</td><td>2120.17</td><td>2053.5</td></tr>
-</tbody>
-</table><p><strong>Unidades de las variables:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<p><strong>Unidades de las variables:</strong></p>
 <ul class="simple">
 <li><p><strong>Precio Interno:</strong> COP/125Kg.</p></li>
 <li><p><strong>PrecioInternacional:</strong> ¢USD/lb.</p></li>
@@ -306,64 +311,52 @@ de la Regresión Lineal Simple porque tenemos códigos que lo hacen</p>
 <span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeSeries</span>
 </pre></div>
 </div>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">basicStats</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">basicStats</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 16 × 4</caption>
-<thead>
-    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
-    <tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>nobs</th><td>2.640000e+02</td><td>  264.000000</td><td>   264.000000</td><td>   264.000000</td></tr>
-    <tr><th scope=row>NAs</th><td>0.000000e+00</td><td>    0.000000</td><td>     0.000000</td><td>     0.000000</td></tr>
-    <tr><th scope=row>Minimum</th><td>2.601850e+05</td><td>   58.920000</td><td>   345.000000</td><td>   345.000000</td></tr>
-    <tr><th scope=row>Maximum</th><td>2.116484e+06</td><td>  314.260000</td><td>  1743.000000</td><td>  1449.960000</td></tr>
-    <tr><th scope=row>1. Quartile</th><td>4.169284e+05</td><td>  112.405000</td><td>   775.500000</td><td>   735.630000</td></tr>
-    <tr><th scope=row>3. Quartile</th><td>7.965564e+05</td><td>  176.352500</td><td>  1136.250000</td><td>  1059.245000</td></tr>
-    <tr><th scope=row>Mean</th><td>6.426094e+05</td><td>  148.611250</td><td>   969.553030</td><td>   891.613106</td></tr>
-    <tr><th scope=row>Median</th><td>6.273718e+05</td><td>  143.415000</td><td>   992.000000</td><td>   893.290000</td></tr>
-    <tr><th scope=row>Sum</th><td>1.696489e+08</td><td>39233.370000</td><td>255962.000000</td><td>235385.860000</td></tr>
-    <tr><th scope=row>SE Mean</th><td>1.875037e+04</td><td>    3.511034</td><td>    16.400809</td><td>    13.603671</td></tr>
-    <tr><th scope=row>LCL Mean</th><td>6.056894e+05</td><td>  141.697937</td><td>   937.259428</td><td>   864.827138</td></tr>
-    <tr><th scope=row>UCL Mean</th><td>6.795293e+05</td><td>  155.524563</td><td>  1001.846633</td><td>   918.399074</td></tr>
-    <tr><th scope=row>Variance</th><td>9.281617e+10</td><td> 3254.422053</td><td> 71012.445846</td><td> 48855.803340</td></tr>
-    <tr><th scope=row>Stdev</th><td>3.046575e+05</td><td>   57.047542</td><td>   266.481605</td><td>   221.033489</td></tr>
-    <tr><th scope=row>Skewness</th><td>1.478976e+00</td><td>    0.622361</td><td>     0.083746</td><td>    -0.069626</td></tr>
-    <tr><th scope=row>Kurtosis</th><td>3.823024e+00</td><td>    0.159010</td><td>    -0.381387</td><td>    -0.656356</td></tr>
-</tbody>
-</table><p><strong>Correlación entre variables:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span>    <span class="n">Producción</span> <span class="n">Exportaciones</span>
+<span class="n">nobs</span>         <span class="mf">2.640000e+02</span>          <span class="mf">264.000000</span>    <span class="mf">264.000000</span>    <span class="mf">264.000000</span>
+<span class="n">NAs</span>          <span class="mf">0.000000e+00</span>            <span class="mf">0.000000</span>      <span class="mf">0.000000</span>      <span class="mf">0.000000</span>
+<span class="n">Minimum</span>      <span class="mf">2.601850e+05</span>           <span class="mf">58.920000</span>    <span class="mf">345.000000</span>    <span class="mf">345.000000</span>
+<span class="n">Maximum</span>      <span class="mf">2.116484e+06</span>          <span class="mf">314.260000</span>   <span class="mf">1743.000000</span>   <span class="mf">1449.960000</span>
+<span class="mf">1.</span> <span class="n">Quartile</span>  <span class="mf">4.169284e+05</span>          <span class="mf">112.405000</span>    <span class="mf">775.500000</span>    <span class="mf">735.630000</span>
+<span class="mf">3.</span> <span class="n">Quartile</span>  <span class="mf">7.965564e+05</span>          <span class="mf">176.352500</span>   <span class="mf">1136.250000</span>   <span class="mf">1059.245000</span>
+<span class="n">Mean</span>         <span class="mf">6.426094e+05</span>          <span class="mf">148.611250</span>    <span class="mf">969.553030</span>    <span class="mf">891.613106</span>
+<span class="n">Median</span>       <span class="mf">6.273718e+05</span>          <span class="mf">143.415000</span>    <span class="mf">992.000000</span>    <span class="mf">893.290000</span>
+<span class="n">Sum</span>          <span class="mf">1.696489e+08</span>        <span class="mf">39233.370000</span> <span class="mf">255962.000000</span> <span class="mf">235385.860000</span>
+<span class="n">SE</span> <span class="n">Mean</span>      <span class="mf">1.875037e+04</span>            <span class="mf">3.511034</span>     <span class="mf">16.400809</span>     <span class="mf">13.603671</span>
+<span class="n">LCL</span> <span class="n">Mean</span>     <span class="mf">6.056894e+05</span>          <span class="mf">141.697937</span>    <span class="mf">937.259428</span>    <span class="mf">864.827138</span>
+<span class="n">UCL</span> <span class="n">Mean</span>     <span class="mf">6.795293e+05</span>          <span class="mf">155.524563</span>   <span class="mf">1001.846633</span>    <span class="mf">918.399074</span>
+<span class="n">Variance</span>     <span class="mf">9.281617e+10</span>         <span class="mf">3254.422053</span>  <span class="mf">71012.445846</span>  <span class="mf">48855.803340</span>
+<span class="n">Stdev</span>        <span class="mf">3.046575e+05</span>           <span class="mf">57.047542</span>    <span class="mf">266.481605</span>    <span class="mf">221.033489</span>
+<span class="n">Skewness</span>     <span class="mf">1.478976e+00</span>            <span class="mf">0.622361</span>      <span class="mf">0.083746</span>     <span class="o">-</span><span class="mf">0.069626</span>
+<span class="n">Kurtosis</span>     <span class="mf">3.823024e+00</span>            <span class="mf">0.159010</span>     <span class="o">-</span><span class="mf">0.381387</span>     <span class="o">-</span><span class="mf">0.656356</span>
+</pre></div>
+</div>
+<p><strong>Correlación entre variables:</strong></p>
 <p>La función más básica es <code class="docutils literal notranslate"><span class="pre">cor(datos)</span></code></p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">correlacion</span> <span class="o">&lt;-</span> <span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">correlacion</span><span class="p">)</span>
 </pre></div>
 </div>
-<table>
-<caption>A matrix: 4 × 4 of type dbl</caption>
-<thead>
-    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>PrecioInterno</th><td>1.0000000</td><td> 0.7702993</td><td> 0.1474286</td><td> 0.2105824</td></tr>
-    <tr><th scope=row>PrecioInternacional</th><td>0.7702993</td><td> 1.0000000</td><td>-0.2000946</td><td>-0.1789351</td></tr>
-    <tr><th scope=row>Producción</th><td>0.1474286</td><td>-0.2000946</td><td> 1.0000000</td><td> 0.8160430</td></tr>
-    <tr><th scope=row>Exportaciones</th><td>0.2105824</td><td>-0.1789351</td><td> 0.8160430</td><td> 1.0000000</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]),</span> <span class="m">2</span><span class="p">)</span> <span class="c1"># Aproximar a dos dígitos</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>
+<span class="n">PrecioInterno</span>           <span class="mf">1.0000000</span>           <span class="mf">0.7702993</span>  <span class="mf">0.1474286</span>     <span class="mf">0.2105824</span>
+<span class="n">PrecioInternacional</span>     <span class="mf">0.7702993</span>           <span class="mf">1.0000000</span> <span class="o">-</span><span class="mf">0.2000946</span>    <span class="o">-</span><span class="mf">0.1789351</span>
+<span class="n">Producción</span>              <span class="mf">0.1474286</span>          <span class="o">-</span><span class="mf">0.2000946</span>  <span class="mf">1.0000000</span>     <span class="mf">0.8160430</span>
+<span class="n">Exportaciones</span>           <span class="mf">0.2105824</span>          <span class="o">-</span><span class="mf">0.1789351</span>  <span class="mf">0.8160430</span>     <span class="mf">1.0000000</span>
 </pre></div>
 </div>
-<table>
-<caption>A matrix: 4 × 4 of type dbl</caption>
-<thead>
-    <tr><th></th><th scope=col>PrecioInterno</th><th scope=col>PrecioInternacional</th><th scope=col>Producción</th><th scope=col>Exportaciones</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>PrecioInterno</th><td>1.00</td><td> 0.77</td><td> 0.15</td><td> 0.21</td></tr>
-    <tr><th scope=row>PrecioInternacional</th><td>0.77</td><td> 1.00</td><td>-0.20</td><td>-0.18</td></tr>
-    <tr><th scope=row>Producción</th><td>0.15</td><td>-0.20</td><td> 1.00</td><td> 0.82</td></tr>
-    <tr><th scope=row>Exportaciones</th><td>0.21</td><td>-0.18</td><td> 0.82</td><td> 1.00</td></tr>
-</tbody>
-</table><p>Instalar la siguiente librería para graficar una matríz de correlación:
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">correlacion</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span> <span class="c1"># Aproximar a dos dígitos</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>
+<span class="n">PrecioInterno</span>                <span class="mf">1.00</span>                <span class="mf">0.77</span>       <span class="mf">0.15</span>          <span class="mf">0.21</span>
+<span class="n">PrecioInternacional</span>          <span class="mf">0.77</span>                <span class="mf">1.00</span>      <span class="o">-</span><span class="mf">0.20</span>         <span class="o">-</span><span class="mf">0.18</span>
+<span class="n">Producción</span>                   <span class="mf">0.15</span>               <span class="o">-</span><span class="mf">0.20</span>       <span class="mf">1.00</span>          <span class="mf">0.82</span>
+<span class="n">Exportaciones</span>                <span class="mf">0.21</span>               <span class="o">-</span><span class="mf">0.18</span>       <span class="mf">0.82</span>          <span class="mf">1.00</span>
+</pre></div>
+</div>
+<p>Instalar la siguiente librería para graficar una matríz de correlación:
 <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;PerformanceAnalytics&quot;)</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">PerformanceAnalytics</span><span class="p">)</span>
 </pre></div>
@@ -487,6 +480,9 @@ unidad, la variable <span class="math notranslate nohighlight">\(y\)</span> incr
 <p>Cuando la producción aumenta en 100 unidades, las exportaciones
 incrementan 67,69.</p>
 <p>Los parámetros se extraen con <code class="docutils literal notranslate"><span class="pre">$coefficients</span></code></p>
+<p>Para extraer los valores de cualquier objeto puede ver en la ayuda de
+las librería de la siguiente manera <code class="docutils literal notranslate"><span class="pre">?nombre</span> <span class="pre">librería</span></code> ver los
+<em>Values</em></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span>  <span class="c1"># Los dos Betas</span>
 </pre></div>
 </div>
@@ -498,12 +494,12 @@ incrementan 67,69.</p>
 </style><dl class=dl-inline><dt>(Intercept)</dt><dd>235.353837174437</dd><dt>X</dt><dd>0.676867843609397</dd></dl><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="c1"># Beta cero (intercepto)</span>
 </pre></div>
 </div>
-<strong>(Intercept):</strong> 235.353837174437<p><strong>:math:`hat{beta_0}`:</strong></p>
+<strong>(Intercept):</strong> 235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>  <span class="c1"># Beta cero (intercepto)</span>
 <span class="n">beta_0</span>
 </pre></div>
 </div>
-235.353837174437<p><strong>:math:`hat{beta_1}`:</strong></p>
+235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span> <span class="c1"># Beta 1 (pendiente)</span>
 <span class="n">beta_1</span>
 </pre></div>
