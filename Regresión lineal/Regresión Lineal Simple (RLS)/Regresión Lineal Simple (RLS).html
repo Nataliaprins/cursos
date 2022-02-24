@@ -86,6 +86,7 @@
               <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Regresión Lineal Simple (RLS)</a><ul>
@@ -101,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Prueba de significancia de la regresión/Prueba de significancia de la regresión.html">Prueba de significancia de la regresión</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html">Intervalos de confianza - CI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Medidas de desempeño RLS/Medidas de desempeño RLS.html">Medidas de desempeño RLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RLS con ggplot2/RLS con ggplot2.html">RLS con ggplot2</a></li>
 </ul>
 </li>
 </ul>
@@ -189,12 +191,10 @@
             
   <div class="section" id="regresion-lineal-simple-rls">
 <h1>Regresión Lineal Simple (RLS)<a class="headerlink" href="#regresion-lineal-simple-rls" title="Permalink to this headline">¶</a></h1>
-<ol class="arabic simple">
-<li><p><strong>Modelación:</strong> Desarrollar un modelo de regresión.</p></li>
-<li><p><strong>Estimación:</strong> Usar R para estimar el modelo.</p></li>
-<li><p><strong>Inferencia:</strong> Interpretar el modelo de regresión estimado.</p></li>
-<li><p><strong>Predicción:</strong> Realizar predicciones sobre la variable de interés.</p></li>
-</ol>
+<p><strong>1. Modelación:</strong> Desarrollar un modelo de regresión.</p>
+<p><strong>2. Estimación:</strong> Usar R para estimar el modelo.</p>
+<p><strong>3. Inferencia:</strong> Interpretar el modelo de regresión estimado.</p>
+<p><strong>4. Predicción:</strong> Realizar predicciones sobre la variable de interés.</p>
 <p>Con la regresión lineal se busca modelar la relación entre una o
 múltiples variables independientes (<span class="math notranslate nohighlight">\(X_i\)</span>) y una variable
 dependiente (<span class="math notranslate nohighlight">\(y\)</span>). También se puede predecir resultados en una
@@ -276,7 +276,7 @@ de la Regresión Lineal Simple porque tenemos códigos que lo hacen</p>
 <span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Fecha</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
 <span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
 <span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
 <span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
@@ -479,7 +479,38 @@ unidad, la variable <span class="math notranslate nohighlight">\(y\)</span> incr
 <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> unidades.</p>
 <p>Cuando la producción aumenta en 100 unidades, las exportaciones
 incrementan 67,69.</p>
-<p>Los parámetros se extraen con <code class="docutils literal notranslate"><span class="pre">$coefficients</span></code></p>
+<p>Los valores que se pueden extraer del modelo de regresión son los
+siguientes:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">regression</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;coefficients&quot;</span>  <span class="s2">&quot;residuals&quot;</span>     <span class="s2">&quot;effects&quot;</span>       <span class="s2">&quot;rank&quot;</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="s2">&quot;fitted.values&quot;</span> <span class="s2">&quot;assign&quot;</span>        <span class="s2">&quot;qr&quot;</span>            <span class="s2">&quot;df.residual&quot;</span>
+<span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="s2">&quot;xlevels&quot;</span>       <span class="s2">&quot;call&quot;</span>          <span class="s2">&quot;terms&quot;</span>         <span class="s2">&quot;model&quot;</span>
+</pre></div>
+</div>
+<p>Los valores que se pueden extraer del <code class="docutils literal notranslate"><span class="pre">summary</span></code> del modelo de
+regresión son los siguientes:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;call&quot;</span>          <span class="s2">&quot;terms&quot;</span>         <span class="s2">&quot;residuals&quot;</span>     <span class="s2">&quot;coefficients&quot;</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="s2">&quot;aliased&quot;</span>       <span class="s2">&quot;sigma&quot;</span>         <span class="s2">&quot;df&quot;</span>            <span class="s2">&quot;r.squared&quot;</span>
+<span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="s2">&quot;adj.r.squared&quot;</span> <span class="s2">&quot;fstatistic&quot;</span>    <span class="s2">&quot;cov.unscaled&quot;</span>
+</pre></div>
+</div>
+<p>También se puede extraer un Data Frame con los resultados del
+<code class="docutils literal notranslate"><span class="pre">summary</span></code> con <code class="docutils literal notranslate"><span class="pre">$coef</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               <span class="n">Estimate</span>  <span class="n">Std</span><span class="o">.</span> <span class="n">Error</span>   <span class="n">t</span> <span class="n">value</span>     <span class="n">Pr</span><span class="p">(</span><span class="o">&gt;|</span><span class="n">t</span><span class="o">|</span><span class="p">)</span>
+<span class="p">(</span><span class="n">Intercept</span><span class="p">)</span> <span class="mf">235.3538372</span> <span class="mf">29.77755312</span>  <span class="mf">7.903733</span> <span class="mf">7.538088e-14</span>
+<span class="n">X</span>             <span class="mf">0.6768678</span>  <span class="mf">0.02961839</span> <span class="mf">22.852960</span> <span class="mf">2.530485e-64</span>
+</pre></div>
+</div>
+<p>Los parámetros del objeto <code class="docutils literal notranslate"><span class="pre">regression</span></code> se extraen con
+<code class="docutils literal notranslate"><span class="pre">$coefficients</span></code></p>
 <p>Para extraer los valores de cualquier objeto puede ver en la ayuda de
 las librería de la siguiente manera <code class="docutils literal notranslate"><span class="pre">?nombre</span> <span class="pre">librería</span></code> ver los
 <em>Values</em></p>
@@ -513,7 +544,7 @@ las librería de la siguiente manera <code class="docutils literal notranslate">
 <span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_44_0.png"><img alt="../../_images/output_44_0.png" src="../../_images/output_44_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_50_0.png"><img alt="../../_images/output_50_0.png" src="../../_images/output_50_0.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Dentro de la muestra, para una Producción de 1500, ¿cuál es la
 Exportación?</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="m">1500</span>
@@ -529,44 +560,41 @@ Exportación?</strong></p>
 <span class="nf">points</span><span class="p">(</span><span class="m">1500</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_47_0.png"><img alt="../../_images/output_47_0.png" src="../../_images/output_47_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_53_0.png"><img alt="../../_images/output_53_0.png" src="../../_images/output_53_0.png" style="width: 420px; height: 420px;" /></a>
 </div>
 <div class="section" id="prediccion">
 <h2>4. Predicción:<a class="headerlink" href="#prediccion" title="Permalink to this headline">¶</a></h2>
 <p><strong>Predicción dentro de la muestra:</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">X</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>680.73287826942</li><li>736.236041445391</li><li>636.0596005912</li><li>949.449412182351</li><li>989.384614955306</li><li>974.493522395899</li></ol><p>Una forma de extraer los valores predichos o ajustados es con
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">680.7329</span> <span class="mf">736.2360</span> <span class="mf">636.0596</span> <span class="mf">949.4494</span> <span class="mf">989.3846</span> <span class="mf">974.4935</span>
+</pre></div>
+</div>
+<p>Una forma de extraer los valores predichos o ajustados es con
 <code class="docutils literal notranslate"><span class="pre">$fitted.values</span></code></p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">regression</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
-<style>
-.dl-inline {width: auto; margin:0; padding: 0}
-.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>1</dt><dd>680.732878269429</dd><dt>2</dt><dd>736.236041445392</dd><dt>3</dt><dd>636.0596005912</dd><dt>4</dt><dd>949.449412182351</dd><dt>5</dt><dd>989.384614955306</dd><dt>6</dt><dd>974.493522395899</dd></dl><p><strong>Predicción por fuera de la muestra:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="mi">1</span>        <span class="mi">2</span>        <span class="mi">3</span>        <span class="mi">4</span>        <span class="mi">5</span>        <span class="mi">6</span>
+<span class="mf">680.7329</span> <span class="mf">736.2360</span> <span class="mf">636.0596</span> <span class="mf">949.4494</span> <span class="mf">989.3846</span> <span class="mf">974.4935</span>
+</pre></div>
+</div>
+<p><strong>Predicción por fuera de la muestra:</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nuevos_datos</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1800.25</span><span class="p">,</span> <span class="m">1900</span><span class="p">,</span> <span class="m">2005.58</span><span class="p">,</span> <span class="m">2200.258</span><span class="p">,</span> <span class="m">2300</span><span class="p">,</span> <span class="m">2500</span><span class="p">,</span> <span class="m">2501.87</span><span class="p">,</span> <span class="m">2587</span><span class="p">,</span> <span class="m">2600</span><span class="p">,</span> <span class="m">2800</span><span class="p">)</span>  <span class="c1"># Datos nuevo para la X (Producción)</span>
 </pre></div>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">nuevos_datos</span>
-<span class="n">y_pred</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 </pre></div>
 </div>
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>1453.88517263225</li><li>1521.40274003229</li><li>1592.86644696057</li><li>1724.63772501876</li><li>1792.14987747605</li><li>1927.52344619793</li><li>1928.78918906548</li><li>1986.41094859195</li><li>1995.21023055887</li><li>2130.58379928075</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1453.885</span> <span class="mf">1521.403</span> <span class="mf">1592.866</span> <span class="mf">1724.638</span> <span class="mf">1792.150</span> <span class="mf">1927.523</span> <span class="mf">1928.789</span> <span class="mf">1986.411</span>
+<span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="mf">1995.210</span> <span class="mf">2130.584</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
 <span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
     <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
     <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">,</span>
@@ -577,7 +605,7 @@ Exportación?</strong></p>
 <span class="nf">points</span><span class="p">(</span><span class="n">nuevos_datos</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_56_0.png"><img alt="../../_images/output_56_0.png" src="../../_images/output_56_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_62_0.png"><img alt="../../_images/output_62_0.png" src="../../_images/output_62_0.png" style="width: 420px; height: 420px;" /></a>
 <hr class="docutils" />
 <div class="math notranslate nohighlight">
 \[Producción = 430,25248+0,21526\times TRM\]</div>

@@ -171,13 +171,15 @@ Función ``boxplot()``
 Útiles para analizar los datos e identificar datos atípicos ( *outliers*
 ).
 
-|image1|
+.. figure:: Boxplot.png
+   :alt: Boxplot
 
-.. |image1| image:: Boxplot.png
+   Boxplot
 
-|image1|
+.. figure:: Diagrama_de_caja.jpg
+   :alt: Diagrama
 
-.. |image1| image:: Diagrama_de_caja.jpg
+   Diagrama
 
 .. code:: r
 

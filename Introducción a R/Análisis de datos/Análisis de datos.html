@@ -37,7 +37,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Regresión lineal" href="../../Regresión lineal/index.html" />
+    <link rel="next" title="ggplot2" href="../../ggplot2/index.html" />
     <link rel="prev" title="Gráfico de dispersión" href="../Gráfico de dispersión/Gráfico de dispersión.html" /> 
 </head>
 
@@ -100,6 +100,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
@@ -275,34 +276,34 @@
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">fBasics</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">basicStats</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeDate</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">timeSeries</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 16 × 1</caption>
-<thead>
-    <tr><th></th><th scope=col>X..datos.Peso</th></tr>
-    <tr><th></th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>nobs</th><td>   8.000000</td></tr>
-    <tr><th scope=row>NAs</th><td>   0.000000</td></tr>
-    <tr><th scope=row>Minimum</th><td>  15.700000</td></tr>
-    <tr><th scope=row>Maximum</th><td> 180.000000</td></tr>
-    <tr><th scope=row>1. Quartile</th><td>  60.475000</td></tr>
-    <tr><th scope=row>3. Quartile</th><td>  82.725000</td></tr>
-    <tr><th scope=row>Mean</th><td>  79.437500</td></tr>
-    <tr><th scope=row>Median</th><td>  71.800000</td></tr>
-    <tr><th scope=row>Sum</th><td> 635.500000</td></tr>
-    <tr><th scope=row>SE Mean</th><td>  16.799457</td></tr>
-    <tr><th scope=row>LCL Mean</th><td>  39.713096</td></tr>
-    <tr><th scope=row>UCL Mean</th><td> 119.161904</td></tr>
-    <tr><th scope=row>Variance</th><td>2257.774107</td></tr>
-    <tr><th scope=row>Stdev</th><td>  47.516041</td></tr>
-    <tr><th scope=row>Skewness</th><td>   0.874260</td></tr>
-    <tr><th scope=row>Kurtosis</th><td>  -0.067399</td></tr>
-</tbody>
-</table></div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">basicStats</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">X</span><span class="o">..</span><span class="n">datos</span><span class="o">.</span><span class="n">Peso</span>
+<span class="n">nobs</span>             <span class="mf">8.000000</span>
+<span class="n">NAs</span>              <span class="mf">0.000000</span>
+<span class="n">Minimum</span>         <span class="mf">15.700000</span>
+<span class="n">Maximum</span>        <span class="mf">180.000000</span>
+<span class="mf">1.</span> <span class="n">Quartile</span>     <span class="mf">60.475000</span>
+<span class="mf">3.</span> <span class="n">Quartile</span>     <span class="mf">82.725000</span>
+<span class="n">Mean</span>            <span class="mf">79.437500</span>
+<span class="n">Median</span>          <span class="mf">71.800000</span>
+<span class="n">Sum</span>            <span class="mf">635.500000</span>
+<span class="n">SE</span> <span class="n">Mean</span>         <span class="mf">16.799457</span>
+<span class="n">LCL</span> <span class="n">Mean</span>        <span class="mf">39.713096</span>
+<span class="n">UCL</span> <span class="n">Mean</span>       <span class="mf">119.161904</span>
+<span class="n">Variance</span>      <span class="mf">2257.774107</span>
+<span class="n">Stdev</span>           <span class="mf">47.516041</span>
+<span class="n">Skewness</span>         <span class="mf">0.874260</span>
+<span class="n">Kurtosis</span>        <span class="o">-</span><span class="mf">0.067399</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="medidas-de-tendencia-central">
 <h2>Medidas de tendencia central:<a class="headerlink" href="#medidas-de-tendencia-central" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -380,22 +381,19 @@ moda es el máximo de las frecuencias.</p>
 0.598156292993588</div>
 <div class="section" id="medidas-de-posicion">
 <h2>Medidas de posición:<a class="headerlink" href="#medidas-de-posicion" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Cuartiles.</p></li>
-</ul>
+<p><strong>Cuartiles:</strong></p>
 <p>Los diagramas de cajas y bigotes es una forma visual de analizar las
 medidas de posición.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cuartiles.</span>
 
-<span class="nf">quantile</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">quantile</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">))</span>
 </pre></div>
 </div>
-<style>
-.dl-inline {width: auto; margin:0; padding: 0}
-.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>0%</dt><dd>15.7</dd><dt>25%</dt><dd>60.475</dd><dt>50%</dt><dd>71.8</dd><dt>75%</dt><dd>82.725</dd><dt>100%</dt><dd>180</dd></dl><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Q1 - primer cuartil - percentil del 25%:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="mi">0</span><span class="o">%</span>     <span class="mi">25</span><span class="o">%</span>     <span class="mi">50</span><span class="o">%</span>     <span class="mi">75</span><span class="o">%</span>    <span class="mi">100</span><span class="o">%</span>
+<span class="mf">15.700</span>  <span class="mf">60.475</span>  <span class="mf">71.800</span>  <span class="mf">82.725</span> <span class="mf">180.000</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Q1 - primer cuartil - percentil del 25%:</span>
 
 <span class="nf">quantile</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span>
 </pre></div>
@@ -428,8 +426,14 @@ medidas de posición.</p>
 <li><p>Sesgo (asimetría): skewness.</p></li>
 <li><p>Curtosis: kurtosis.</p></li>
 </ul>
-<p><img alt="image1" src="../../_images/curtosis.jpg" /></p>
-<p><img alt="image1" src="../../_images/curtosis.jpg" /></p>
+<div class="figure align-default" id="id1">
+<img alt="Asimetría" src="../../_images/asimetria.png" />
+<p class="caption"><span class="caption-text">Asimetría</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id2">
+<img alt="Curtosis" src="../../_images/curtosis.jpg" />
+<p class="caption"><span class="caption-text">Curtosis</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asimetría:</span>
 
 <span class="nf">skewness</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">)</span> <span class="c1"># Resultados: sesgo positivo.</span>
@@ -451,7 +455,7 @@ medidas de posición.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../Regresión lineal/index.html" class="btn btn-neutral float-right" title="Regresión lineal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../ggplot2/index.html" class="btn btn-neutral float-right" title="ggplot2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Gráfico de dispersión/Gráfico de dispersión.html" class="btn btn-neutral float-left" title="Gráfico de dispersión" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

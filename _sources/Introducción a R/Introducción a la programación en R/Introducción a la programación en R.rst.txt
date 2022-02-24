@@ -40,14 +40,13 @@ Numeric:
 .. code:: r
 
     x <- 22.5
-    x
+    print(x)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    22.5
-
+    [1] 22.5
+    
 
 .. code:: r
 
@@ -63,8 +62,11 @@ Numeric:
 .. code:: r
 
     is.numeric(x)
+    
     is.integer(x)
+    
     is.character(x)
+    
     is.logical(x)
 
 
@@ -98,14 +100,13 @@ Character o String:
 .. code:: r
 
     x <- "Esta es una línea de código"
-    x
+    print(x)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    'Esta es una línea de código'
-
+    [1] "Esta es una línea de código"
+    
 
 .. code:: r
 
@@ -121,8 +122,11 @@ Character o String:
 .. code:: r
 
     is.numeric(x)
+    
     is.integer(x)
+    
     is.character(x)
+    
     is.logical(x)
 
 
@@ -156,14 +160,13 @@ Logical o Boolean:
 .. code:: r
 
     x <- TRUE
-    x
+    print(x)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    TRUE
-
+    [1] TRUE
+    
 
 .. code:: r
 
@@ -179,8 +182,11 @@ Logical o Boolean:
 .. code:: r
 
     is.numeric(x)
+    
     is.integer(x)
+    
     is.character(x)
+    
     is.logical(x)
 
 
@@ -218,40 +224,41 @@ Se puede convertir un tipo de dato a otro con las siguientes funciones:
 
     x <- 50.8
     a <- as.integer(x)
-    a
+    print(a)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    50
-
+    [1] 50
+    
 
 .. code:: r
 
     x <- FALSE
     a <- as.numeric(x)
-    a
+    print(a)
 
 
+.. parsed-literal::
 
-.. raw:: html
+    [1] 0
+    
 
-    0
+``0`` es Falso.
 
+``1`` es verdadero.
 
 .. code:: r
 
     x <- TRUE
     a <- as.numeric(x)
-    a
+    print(a)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    1
-
+    [1] 1
+    
 
 Operaciones matemáticas en R:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -312,9 +319,10 @@ Se usan para combinar dos declaraciones.
 Estructuras de datos
 ^^^^^^^^^^^^^^^^^^^^
 
-|image1|
+.. figure:: scal_vec.png
+   :alt: Vector
 
-.. |image1| image:: scal_vec.png
+   Vector
 
 Vectores
 ^^^^^^^^
@@ -398,9 +406,13 @@ Para saber la cantidad de elementos en un vector se usa la función
 .. code:: r
 
     length(numeros)
+    
     length(otros_numeros)
+    
     length(ciudades)
+    
     length(logico)
+    
     length(a)
 
 
@@ -609,9 +621,10 @@ entre ``[]``. En R el primer index es 1, en Python es 0.
     [1] "Rionegro"     "Cali"         "Barranquilla" "Santa Marta" 
     
 
-|image1|
+.. figure:: mat_array.png
+   :alt: Matríz-Array
 
-.. |image1| image:: mat_array.png
+   Matríz-Array
 
 Matrices
 ^^^^^^^^
@@ -917,7 +930,7 @@ Para conocer el número de filas y columnas se usa la función ``dim()``.
     .list-inline>li {display: inline-block}
     .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
     </style>
-    <ol class=list-inline><li>6</li><li>3</li></ol>
+    <ol class=list-inline><li>3</li><li>6</li></ol>
     
 
 
@@ -940,7 +953,7 @@ Para conocer el número de filas y columnas se usa la función ``dim()``.
 
 .. raw:: html
 
-    6
+    3
 
 
 .. code:: r
@@ -951,7 +964,7 @@ Para conocer el número de filas y columnas se usa la función ``dim()``.
 
 .. raw:: html
 
-    3
+    6
 
 
 Data Frame
@@ -1006,26 +1019,16 @@ o ``$`` para una sola columna.
 
 .. code:: r
 
-    df[1]
+    print(df[1])
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 3 × 1</caption>
-    <thead>
-    	<tr><th scope=col>acciones</th></tr>
-    	<tr><th scope=col>&lt;fct&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td>ECO</td></tr>
-    	<tr><td>PFB</td></tr>
-    	<tr><td>ISA</td></tr>
-    </tbody>
-    </table>
+      acciones
+    1      ECO
+    2      PFB
+    3      ISA
     
-
 
 .. code:: r
 
@@ -1096,26 +1099,16 @@ o ``$`` para una sola columna.
 
 .. code:: r
 
-    df[,2:3]
+    print(df[,2:3])
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 3 × 2</caption>
-    <thead>
-    	<tr><th scope=col>precio</th><th scope=col>cantidad</th></tr>
-    	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td> 3000</td><td>1000</td></tr>
-    	<tr><td>35000</td><td> 500</td></tr>
-    	<tr><td>22000</td><td> 800</td></tr>
-    </tbody>
-    </table>
+      precio cantidad
+    1   3000     1000
+    2  35000      500
+    3  22000      800
     
 
-
 Con los Data Frames también se pueden usar las funciones ``length()``,
-``dim()``, ``ncol()``, ``nrow``\ (), ``rbind()`` y ``cbind()``
+``dim()``, ``ncol()``, ``nrow()``, ``rbind()`` y ``cbind()``

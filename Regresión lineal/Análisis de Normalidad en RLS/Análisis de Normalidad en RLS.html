@@ -86,6 +86,7 @@
               <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Regresión Lineal Simple (RLS)/Regresión Lineal Simple (RLS).html">Regresión Lineal Simple (RLS)</a></li>
@@ -101,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Prueba de significancia de la regresión/Prueba de significancia de la regresión.html">Prueba de significancia de la regresión</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intervalos de confianza - CI/Intervalos de confianza - CI.html">Intervalos de confianza - CI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Medidas de desempeño RLS/Medidas de desempeño RLS.html">Medidas de desempeño RLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RLS con ggplot2/RLS con ggplot2.html">RLS con ggplot2</a></li>
 </ul>
 </li>
 </ul>
@@ -296,7 +298,7 @@ demás figuras son síntomas de deficiencias del modelo.</p>
 <span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">X</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Fecha</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
 <span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
 <span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
 <span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
@@ -364,7 +366,12 @@ F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
 <h2>Cálculo de los residuales:<a class="headerlink" href="#calculo-de-los-residuales" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\hat{\varepsilon_i} = y_i-\hat{y_i}\]</div>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">X</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">regression</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="mi">1</span>        <span class="mi">2</span>        <span class="mi">3</span>        <span class="mi">4</span>        <span class="mi">5</span>        <span class="mi">6</span>
+<span class="mf">680.7329</span> <span class="mf">736.2360</span> <span class="mf">636.0596</span> <span class="mf">949.4494</span> <span class="mf">989.3846</span> <span class="mf">974.4935</span>
 </pre></div>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">residuales</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span>
@@ -372,11 +379,11 @@ F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
 </pre></div>
 </div>
 <style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>-163.73287826942</li><li>-94.2360414453909</li><li>-232.0596005912</li><li>-218.449412182351</li><li>-374.384614955306</li><li>-105.493522395899</li></ol><p>Otra forma de extraer los residuales es: <code class="docutils literal notranslate"><span class="pre">$residuals</span></code></p>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.2360414453919</dd><dt>3</dt><dd>-232.0596005912</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p>Otra forma de extraer los residuales es: <code class="docutils literal notranslate"><span class="pre">$residuals</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">residuals</span><span class="p">)</span>
 </pre></div>
 </div>

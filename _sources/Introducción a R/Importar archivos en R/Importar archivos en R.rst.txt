@@ -14,65 +14,45 @@ R cuenta la función ``read.csv()`` para importar archivos con la
 extensión .csv ( *Comma Separated Values* ) y se usa de la siguiente
 manera:
 
-``read.csv("nombre del archivo agregando .csv")``
+``read.csv("nombre del archivo.csv")``
 
 .. code:: r
 
-    read.csv("Datos.csv")
+    print(read.csv("Datos.csv"))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 8 × 1</caption>
-    <thead>
-    	<tr><th></th><th scope=col>Nombre.Edad.Género.Peso.Estrato</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>Ángela;22;F;62</th><td>5;3</td></tr>
-    	<tr><th scope=row>José;10;M;75</th><td>8;4</td></tr>
-    	<tr><th scope=row>Juan ;15;M;54</th><td>4;3</td></tr>
-    	<tr><th scope=row>Manuela;35;F;73</th><td>6;3</td></tr>
-    	<tr><th scope=row>Maribel;50;F;70;5</th><td>   </td></tr>
-    	<tr><th scope=row>Antonio;45;M;120;2</th><td>   </td></tr>
-    	<tr><th scope=row>Alicia;1;M;15</th><td>7;1</td></tr>
-    	<tr><th scope=row>Luis;32;M;103</th><td>5;5</td></tr>
-    </tbody>
-    </table>
+                       Nombre.Edad.Género.Peso.Estrato
+    Ángela;22;F;62                                 5;3
+    José;10;M;75                                   8;4
+    Juan ;15;M;54                                  4;3
+    Manuela;35;F;73                                6;3
+    Maribel;50;F;70;5                                 
+    Antonio;45;M;180;4                                
+    Alicia;1;F;15                                  7;1
+    Luis;32;M;103                                  5;5
     
-
 
 Los datos están separados por ``;``, se debe agregar ``sep = ","``.
 
 .. code:: r
 
-    read.csv("Datos.csv", sep = ";")
+    print(read.csv("Datos.csv", sep = ";"))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 8 × 5</caption>
-    <thead>
-    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td>Ángela </td><td>22</td><td>F</td><td>62,5 </td><td>3</td></tr>
-    	<tr><td>José   </td><td>10</td><td>M</td><td>75,8 </td><td>4</td></tr>
-    	<tr><td>Juan   </td><td>15</td><td>M</td><td>54,4 </td><td>3</td></tr>
-    	<tr><td>Manuela</td><td>35</td><td>F</td><td>73,6 </td><td>3</td></tr>
-    	<tr><td>Maribel</td><td>50</td><td>F</td><td>70   </td><td>5</td></tr>
-    	<tr><td>Antonio</td><td>45</td><td>M</td><td>120  </td><td>2</td></tr>
-    	<tr><td>Alicia </td><td> 1</td><td>M</td><td>15,7 </td><td>1</td></tr>
-    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103,5</td><td>5</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    1  Ángela   22      F  62,5       3
+    2    José   10      M  75,8       4
+    3   Juan    15      M  54,4       3
+    4 Manuela   35      F  73,6       3
+    5 Maribel   50      F    70       5
+    6 Antonio   45      M   180       4
+    7  Alicia    1      F  15,7       1
+    8    Luis   32      M 103,5       5
     
-
 
 La cuarta columna tiene valores numéricos con decimales separados por
 ``,``, se debe especificar ``dec = ","``. En algunos casos puede usarse
@@ -80,31 +60,21 @@ La cuarta columna tiene valores numéricos con decimales separados por
 
 .. code:: r
 
-    read.csv("Datos.csv", sep = ";", dec = ",")
+    print(read.csv("Datos.csv", sep = ";", dec = ","))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 8 × 5</caption>
-    <thead>
-    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    	<tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    1  Ángela   22      F  62.5       3
+    2    José   10      M  75.8       4
+    3   Juan    15      M  54.4       3
+    4 Manuela   35      F  73.6       3
+    5 Maribel   50      F  70.0       5
+    6 Antonio   45      M 180.0       4
+    7  Alicia    1      F  15.7       1
+    8    Luis   32      M 103.5       5
     
-
 
 Se puede indicar que la primera fila del archivo es un encabezado de las
 columnas: ``header = TRUE``.
@@ -118,31 +88,21 @@ archivo ``Datos.csv``.
 .. code:: r
 
     datos = read.csv("Datos.csv", sep = ";", dec = ",", header = T)
-    datos
+    print(datos)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 8 × 5</caption>
-    <thead>
-    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    	<tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    1  Ángela   22      F  62.5       3
+    2    José   10      M  75.8       4
+    3   Juan    15      M  54.4       3
+    4 Manuela   35      F  73.6       3
+    5 Maribel   50      F  70.0       5
+    6 Antonio   45      M 180.0       4
+    7  Alicia    1      F  15.7       1
+    8    Luis   32      M 103.5       5
     
-
 
 Cuando se importan gran cantidad de datos se aconseja usar la función
 ``head()`` para mostrar sola las primeras seis filas y la función
@@ -150,55 +110,35 @@ Cuando se importan gran cantidad de datos se aconseja usar la función
 
 .. code:: r
 
-    head(datos)
+    print(head(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 6 × 5</caption>
-    <thead>
-    	<tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>1</th><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    	<tr><th scope=row>2</th><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    	<tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    1  Ángela   22      F  62.5       3
+    2    José   10      M  75.8       4
+    3   Juan    15      M  54.4       3
+    4 Manuela   35      F  73.6       3
+    5 Maribel   50      F  70.0       5
+    6 Antonio   45      M 180.0       4
     
-
 
 .. code:: r
 
-    tail(datos)
+    print(tail(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 6 × 5</caption>
-    <thead>
-    	<tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    	<tr><th scope=row>7</th><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    	<tr><th scope=row>8</th><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    3   Juan    15      M  54.4       3
+    4 Manuela   35      F  73.6       3
+    5 Maribel   50      F  70.0       5
+    6 Antonio   45      M 180.0       4
+    7  Alicia    1      F  15.7       1
+    8    Luis   32      M 103.5       5
     
-
 
 Importar archivos .txt
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -206,29 +146,19 @@ Importar archivos .txt
 .. code:: r
 
     datos = read.table("Datos.txt", dec = ",", header = T) # no se incluyó sep = ";"
-    head(datos)
+    print(head(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 6 × 5</caption>
-    <thead>
-    	<tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>G.nero</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>1</th><td>µngela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    	<tr><th scope=row>2</th><td>Jos‚   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    	<tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    </tbody>
-    </table>
+       Nombre Edad Género  Peso Estrato
+    1  Ángela   22      F  62.5       3
+    2    José   10      M  75.8       4
+    3    Juan   15      M  54.4       3
+    4 Manuela   35      F  73.6       3
+    5 Maribel   50      F  70.0       5
+    6 Antonio   45      M 180.0       4
     
-
 
 Importar archivos de Excel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -249,26 +179,18 @@ código:
 .. code:: r
 
     datos = read_excel("Datos.xlsx")
-    head(datos)
+    print(head(datos))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <table>
-    <caption>A tibble: 6 × 5</caption>
-    <thead>
-    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    	<tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    </tbody>
-    </table>
+    [90m# A tibble: 6 x 5[39m
+      Nombre   Edad Género  Peso Estrato
+      [3m[90m<chr>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m
+    [90m1[39m Ángela     22 F       62.5       3
+    [90m2[39m José       10 M       75.8       4
+    [90m3[39m Juan       15 M       54.4       3
+    [90m4[39m Manuela    35 F       73.6       3
+    [90m5[39m Maribel    50 F       70         5
+    [90m6[39m Antonio    45 M      180         4
     
-

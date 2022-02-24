@@ -88,7 +88,7 @@ Argumentos de la función plot()
    :height: 420px
 
 
-**``type`` o ``t``:**
+``type`` o ``t``:
 
 -  ``= "p"`` - Puntos (por defecto).
 
@@ -134,11 +134,12 @@ forma:
    :height: 420px
 
 
-**``pch``:** Modifica los puntos con los siguientes símbolos.
+``pch``: Modifica los puntos con los siguientes símbolos.
 
-|image1|
+.. figure:: plot-pch.png
+   :alt: pch
 
-.. |image1| image:: plot-pch.png
+   pch
 
 El tamaño de los símbolos se cambian con ``cex``. El tamaño de los
 símbolos del 15 al 18 se cambia con ``lwd``.

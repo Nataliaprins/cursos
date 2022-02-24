@@ -16,6 +16,7 @@ Regresión Lineal Simple - RLS
    Prueba de significancia de la regresión/Prueba de significancia de la regresión.rst
    Intervalos de confianza - CI/Intervalos de confianza - CI.rst
    Medidas de desempeño RLS/Medidas de desempeño RLS.rst
+   RLS con ggplot2/RLS con ggplot2.rst
 
 
 .. important::

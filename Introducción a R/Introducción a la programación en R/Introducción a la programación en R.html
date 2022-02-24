@@ -111,6 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Análisis de datos/Análisis de datos.html">Análisis de datos</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
@@ -221,15 +222,21 @@ preguntar el tipo dato de una variable:</p>
 <div class="section" id="numeric">
 <h2>Numeric:<a class="headerlink" href="#numeric" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">22.5</span>
-<span class="n">x</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-22.5<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">22.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 'numeric'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -237,15 +244,21 @@ TRUEFALSEFALSEFALSE</div>
 <div class="section" id="character-o-string">
 <h2>Character o String:<a class="headerlink" href="#character-o-string" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="s">&quot;Esta es una línea de código&quot;</span>
-<span class="n">x</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-'Esta es una línea de código'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Esta es una línea de código&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 'character'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -253,15 +266,21 @@ FALSEFALSETRUEFALSE</div>
 <div class="section" id="logical-o-boolean">
 <h2>Logical o Boolean:<a class="headerlink" href="#logical-o-boolean" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
-<span class="n">x</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-TRUE<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">TRUE</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 'logical'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -270,20 +289,31 @@ FALSEFALSEFALSETRUE<p>Se puede convertir un tipo de dato a otro con las siguient
 <p><code class="docutils literal notranslate"><span class="pre">as.integer()</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">50.8</span>
 <span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">a</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
-50<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">FALSE</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">FALSE</span>
 <span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">a</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
-0<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> es Falso.</p>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> es verdadero.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
 <span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">a</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
-1</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="operaciones-matematicas-en-r">
 <h2>Operaciones matemáticas en R:<a class="headerlink" href="#operaciones-matematicas-en-r" title="Permalink to this headline">¶</a></h2>
 <p>R puede ser usado como calculadora:</p>
@@ -352,7 +382,10 @@ FALSEFALSEFALSETRUE<p>Se puede convertir un tipo de dato a otro con las siguient
 </div>
 <div class="section" id="estructuras-de-datos">
 <h2>Estructuras de datos<a class="headerlink" href="#estructuras-de-datos" title="Permalink to this headline">¶</a></h2>
-<p><img alt="image1" src="../../_images/mat_array.png" /></p>
+<div class="figure align-default" id="id1">
+<img alt="Vector" src="../../_images/scal_vec.png" />
+<p class="caption"><span class="caption-text">Vector</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="vectores">
 <h2>Vectores<a class="headerlink" href="#vectores" title="Permalink to this headline">¶</a></h2>
@@ -401,9 +434,13 @@ función <code class="docutils literal notranslate"><span class="pre">c()</span>
 'character'<p>Para saber la cantidad de elementos en un vector se usa la función
 <code class="docutils literal notranslate"><span class="pre">length()</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+
 <span class="nf">length</span><span class="p">(</span><span class="n">otros_numeros</span><span class="p">)</span>
+
 <span class="nf">length</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+
 <span class="nf">length</span><span class="p">(</span><span class="n">logico</span><span class="p">)</span>
+
 <span class="nf">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -495,7 +532,10 @@ entre <code class="docutils literal notranslate"><span class="pre">[]</span></co
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Rionegro&quot;</span>     <span class="s2">&quot;Cali&quot;</span>         <span class="s2">&quot;Barranquilla&quot;</span> <span class="s2">&quot;Santa Marta&quot;</span>
 </pre></div>
 </div>
-<p><img alt="image1" src="../../_images/mat_array.png" /></p>
+<div class="figure align-default" id="id2">
+<img alt="Matríz-Array" src="../../_images/mat_array.png" />
+<p class="caption"><span class="caption-text">Matríz-Array</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="matrices">
 <h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline">¶</a></h2>
@@ -702,16 +742,16 @@ columna a eliminar</p>
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>6</li><li>3</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+<ol class=list-inline><li>3</li><li>6</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
 </pre></div>
 </div>
 18<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">nrow</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
 </pre></div>
 </div>
-6<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ncol</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+3<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ncol</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
 </pre></div>
 </div>
-3</div>
+6</div>
 <div class="section" id="data-frame">
 <h2>Data Frame<a class="headerlink" href="#data-frame" title="Permalink to this headline">¶</a></h2>
 <p>Un Data Frame son datos como en formato de tabla. Puede tener diferentes
@@ -744,21 +784,16 @@ columna debe tener el mismo tipo de datos.</p>
 (acciones, precio y cantidad).</p>
 <p>Para acceder a los elementos de Data Frame se <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">,</span> <span class="pre">]</span></code>, dobles <code class="docutils literal notranslate"><span class="pre">[[]]</span></code>
 o <code class="docutils literal notranslate"><span class="pre">$</span></code> para una sola columna.</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 3 × 1</caption>
-<thead>
-    <tr><th scope=col>acciones</th></tr>
-    <tr><th scope=col>&lt;fct&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td>ECO</td></tr>
-    <tr><td>PFB</td></tr>
-    <tr><td>ISA</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s">&quot;acciones&quot;</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">acciones</span>
+<span class="mi">1</span>      <span class="n">ECO</span>
+<span class="mi">2</span>      <span class="n">PFB</span>
+<span class="mi">3</span>      <span class="n">ISA</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s">&quot;acciones&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 <style>
@@ -801,22 +836,17 @@ o <code class="docutils literal notranslate"><span class="pre">$</span></code> p
 </details><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
 </pre></div>
 </div>
-500<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+500<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">])</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 3 × 2</caption>
-<thead>
-    <tr><th scope=col>precio</th><th scope=col>cantidad</th></tr>
-    <tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td> 3000</td><td>1000</td></tr>
-    <tr><td>35000</td><td> 500</td></tr>
-    <tr><td>22000</td><td> 800</td></tr>
-</tbody>
-</table><p>Con los Data Frames también se pueden usar las funciones <code class="docutils literal notranslate"><span class="pre">length()</span></code>,
-<code class="docutils literal notranslate"><span class="pre">dim()</span></code>, <code class="docutils literal notranslate"><span class="pre">ncol()</span></code>, <code class="docutils literal notranslate"><span class="pre">nrow</span></code>(), <code class="docutils literal notranslate"><span class="pre">rbind()</span></code> y <code class="docutils literal notranslate"><span class="pre">cbind()</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">precio</span> <span class="n">cantidad</span>
+<span class="mi">1</span>   <span class="mi">3000</span>     <span class="mi">1000</span>
+<span class="mi">2</span>  <span class="mi">35000</span>      <span class="mi">500</span>
+<span class="mi">3</span>  <span class="mi">22000</span>      <span class="mi">800</span>
+</pre></div>
+</div>
+<p>Con los Data Frames también se pueden usar las funciones <code class="docutils literal notranslate"><span class="pre">length()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dim()</span></code>, <code class="docutils literal notranslate"><span class="pre">ncol()</span></code>, <code class="docutils literal notranslate"><span class="pre">nrow()</span></code>, <code class="docutils literal notranslate"><span class="pre">rbind()</span></code> y <code class="docutils literal notranslate"><span class="pre">cbind()</span></code></p>
 </div>
 </div>
 

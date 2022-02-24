@@ -138,7 +138,7 @@ Código en R:
 
 .. parsed-literal::
 
-           X PrecioInterno PrecioInternacional Producción Exportaciones     TRM
+       Fecha PrecioInterno PrecioInternacional Producción Exportaciones     TRM
     1 ene-00        371375              130.12        658           517 1923.57
     2 feb-00        354297              124.72        740           642 1950.64
     3 mar-00        360016              119.51        592           404 1956.25
@@ -244,7 +244,15 @@ Cálculo de los residuales:
 
 .. code:: r
 
-    y_pred = beta_0 + beta_1 * X
+    y_pred = regression$fitted.values
+    print(head(y_pred))
+
+
+.. parsed-literal::
+
+           1        2        3        4        5        6 
+    680.7329 736.2360 636.0596 949.4494 989.3846 974.4935 
+    
 
 .. code:: r
 
@@ -256,11 +264,11 @@ Cálculo de los residuales:
 .. raw:: html
 
     <style>
-    .list-inline {list-style: none; margin:0; padding: 0}
-    .list-inline>li {display: inline-block}
-    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-    </style>
-    <ol class=list-inline><li>-163.73287826942</li><li>-94.2360414453909</li><li>-232.0596005912</li><li>-218.449412182351</li><li>-374.384614955306</li><li>-105.493522395899</li></ol>
+    .dl-inline {width: auto; margin:0; padding: 0}
+    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+    </style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.2360414453919</dd><dt>3</dt><dd>-232.0596005912</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl>
     
 
 

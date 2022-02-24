@@ -98,6 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Análisis de datos/Análisis de datos.html">Análisis de datos</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
@@ -192,153 +193,118 @@ comúnmente en la estructura rectangular: filas y columnas.</p>
 <p>R cuenta la función <code class="docutils literal notranslate"><span class="pre">read.csv()</span></code> para importar archivos con la
 extensión .csv ( <em>Comma Separated Values</em> ) y se usa de la siguiente
 manera:</p>
-<p><code class="docutils literal notranslate"><span class="pre">read.csv(&quot;nombre</span> <span class="pre">del</span> <span class="pre">archivo</span> <span class="pre">agregando</span> <span class="pre">.csv&quot;)</span></code></p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">)</span>
+<p><code class="docutils literal notranslate"><span class="pre">read.csv(&quot;nombre</span> <span class="pre">del</span> <span class="pre">archivo.csv&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 8 × 1</caption>
-<thead>
-    <tr><th></th><th scope=col>Nombre.Edad.Género.Peso.Estrato</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>Ángela;22;F;62</th><td>5;3</td></tr>
-    <tr><th scope=row>José;10;M;75</th><td>8;4</td></tr>
-    <tr><th scope=row>Juan ;15;M;54</th><td>4;3</td></tr>
-    <tr><th scope=row>Manuela;35;F;73</th><td>6;3</td></tr>
-    <tr><th scope=row>Maribel;50;F;70;5</th><td>   </td></tr>
-    <tr><th scope=row>Antonio;45;M;120;2</th><td>   </td></tr>
-    <tr><th scope=row>Alicia;1;M;15</th><td>7;1</td></tr>
-    <tr><th scope=row>Luis;32;M;103</th><td>5;5</td></tr>
-</tbody>
-</table><p>Los datos están separados por <code class="docutils literal notranslate"><span class="pre">;</span></code>, se debe agregar <code class="docutils literal notranslate"><span class="pre">sep</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;</span></code>.</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                   <span class="n">Nombre</span><span class="o">.</span><span class="n">Edad</span><span class="o">.</span><span class="n">Género</span><span class="o">.</span><span class="n">Peso</span><span class="o">.</span><span class="n">Estrato</span>
+<span class="n">Ángela</span><span class="p">;</span><span class="mi">22</span><span class="p">;</span><span class="n">F</span><span class="p">;</span><span class="mi">62</span>                                 <span class="mi">5</span><span class="p">;</span><span class="mi">3</span>
+<span class="n">José</span><span class="p">;</span><span class="mi">10</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">75</span>                                   <span class="mi">8</span><span class="p">;</span><span class="mi">4</span>
+<span class="n">Juan</span> <span class="p">;</span><span class="mi">15</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">54</span>                                  <span class="mi">4</span><span class="p">;</span><span class="mi">3</span>
+<span class="n">Manuela</span><span class="p">;</span><span class="mi">35</span><span class="p">;</span><span class="n">F</span><span class="p">;</span><span class="mi">73</span>                                <span class="mi">6</span><span class="p">;</span><span class="mi">3</span>
+<span class="n">Maribel</span><span class="p">;</span><span class="mi">50</span><span class="p">;</span><span class="n">F</span><span class="p">;</span><span class="mi">70</span><span class="p">;</span><span class="mi">5</span>
+<span class="n">Antonio</span><span class="p">;</span><span class="mi">45</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">180</span><span class="p">;</span><span class="mi">4</span>
+<span class="n">Alicia</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="n">F</span><span class="p">;</span><span class="mi">15</span>                                  <span class="mi">7</span><span class="p">;</span><span class="mi">1</span>
+<span class="n">Luis</span><span class="p">;</span><span class="mi">32</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">103</span>                                  <span class="mi">5</span><span class="p">;</span><span class="mi">5</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 8 × 5</caption>
-<thead>
-    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td>Ángela </td><td>22</td><td>F</td><td>62,5 </td><td>3</td></tr>
-    <tr><td>José   </td><td>10</td><td>M</td><td>75,8 </td><td>4</td></tr>
-    <tr><td>Juan   </td><td>15</td><td>M</td><td>54,4 </td><td>3</td></tr>
-    <tr><td>Manuela</td><td>35</td><td>F</td><td>73,6 </td><td>3</td></tr>
-    <tr><td>Maribel</td><td>50</td><td>F</td><td>70   </td><td>5</td></tr>
-    <tr><td>Antonio</td><td>45</td><td>M</td><td>120  </td><td>2</td></tr>
-    <tr><td>Alicia </td><td> 1</td><td>M</td><td>15,7 </td><td>1</td></tr>
-    <tr><td>Luis   </td><td>32</td><td>M</td><td>103,5</td><td>5</td></tr>
-</tbody>
-</table><p>La cuarta columna tiene valores numéricos con decimales separados por
+<p>Los datos están separados por <code class="docutils literal notranslate"><span class="pre">;</span></code>, se debe agregar <code class="docutils literal notranslate"><span class="pre">sep</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">1</span>  <span class="n">Ángela</span>   <span class="mi">22</span>      <span class="n">F</span>  <span class="mi">62</span><span class="p">,</span><span class="mi">5</span>       <span class="mi">3</span>
+<span class="mi">2</span>    <span class="n">José</span>   <span class="mi">10</span>      <span class="n">M</span>  <span class="mi">75</span><span class="p">,</span><span class="mi">8</span>       <span class="mi">4</span>
+<span class="mi">3</span>   <span class="n">Juan</span>    <span class="mi">15</span>      <span class="n">M</span>  <span class="mi">54</span><span class="p">,</span><span class="mi">4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mi">73</span><span class="p">,</span><span class="mi">6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>    <span class="mi">70</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span>   <span class="mi">180</span>       <span class="mi">4</span>
+<span class="mi">7</span>  <span class="n">Alicia</span>    <span class="mi">1</span>      <span class="n">F</span>  <span class="mi">15</span><span class="p">,</span><span class="mi">7</span>       <span class="mi">1</span>
+<span class="mi">8</span>    <span class="n">Luis</span>   <span class="mi">32</span>      <span class="n">M</span> <span class="mi">103</span><span class="p">,</span><span class="mi">5</span>       <span class="mi">5</span>
+</pre></div>
+</div>
+<p>La cuarta columna tiene valores numéricos con decimales separados por
 <code class="docutils literal notranslate"><span class="pre">,</span></code>, se debe especificar <code class="docutils literal notranslate"><span class="pre">dec</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;</span></code>. En algunos casos puede usarse
 <code class="docutils literal notranslate"><span class="pre">dec</span> <span class="pre">=</span> <span class="pre">&quot;.&quot;</span></code></p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 8 × 5</caption>
-<thead>
-    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    <tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    <tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-</tbody>
-</table><p>Se puede indicar que la primera fila del archivo es un encabezado de las
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">1</span>  <span class="n">Ángela</span>   <span class="mi">22</span>      <span class="n">F</span>  <span class="mf">62.5</span>       <span class="mi">3</span>
+<span class="mi">2</span>    <span class="n">José</span>   <span class="mi">10</span>      <span class="n">M</span>  <span class="mf">75.8</span>       <span class="mi">4</span>
+<span class="mi">3</span>   <span class="n">Juan</span>    <span class="mi">15</span>      <span class="n">M</span>  <span class="mf">54.4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mf">73.6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>  <span class="mf">70.0</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span> <span class="mf">180.0</span>       <span class="mi">4</span>
+<span class="mi">7</span>  <span class="n">Alicia</span>    <span class="mi">1</span>      <span class="n">F</span>  <span class="mf">15.7</span>       <span class="mi">1</span>
+<span class="mi">8</span>    <span class="n">Luis</span>   <span class="mi">32</span>      <span class="n">M</span> <span class="mf">103.5</span>       <span class="mi">5</span>
+</pre></div>
+</div>
+<p>Se puede indicar que la primera fila del archivo es un encabezado de las
 columnas: <code class="docutils literal notranslate"><span class="pre">header</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>.</p>
 <p>En R <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> se puede abreviar con solo <code class="docutils literal notranslate"><span class="pre">T</span></code> y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> con solo
 <code class="docutils literal notranslate"><span class="pre">F</span></code>.</p>
 <p>Adicionalmente, podemos crear una variable para almacener los datos del
 archivo <code class="docutils literal notranslate"><span class="pre">Datos.csv</span></code>.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-<span class="n">datos</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 8 × 5</caption>
-<thead>
-    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    <tr><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    <tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-</tbody>
-</table><p>Cuando se importan gran cantidad de datos se aconseja usar la función
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">1</span>  <span class="n">Ángela</span>   <span class="mi">22</span>      <span class="n">F</span>  <span class="mf">62.5</span>       <span class="mi">3</span>
+<span class="mi">2</span>    <span class="n">José</span>   <span class="mi">10</span>      <span class="n">M</span>  <span class="mf">75.8</span>       <span class="mi">4</span>
+<span class="mi">3</span>   <span class="n">Juan</span>    <span class="mi">15</span>      <span class="n">M</span>  <span class="mf">54.4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mf">73.6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>  <span class="mf">70.0</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span> <span class="mf">180.0</span>       <span class="mi">4</span>
+<span class="mi">7</span>  <span class="n">Alicia</span>    <span class="mi">1</span>      <span class="n">F</span>  <span class="mf">15.7</span>       <span class="mi">1</span>
+<span class="mi">8</span>    <span class="n">Luis</span>   <span class="mi">32</span>      <span class="n">M</span> <span class="mf">103.5</span>       <span class="mi">5</span>
+</pre></div>
+</div>
+<p>Cuando se importan gran cantidad de datos se aconseja usar la función
 <code class="docutils literal notranslate"><span class="pre">head()</span></code> para mostrar sola las primeras seis filas y la función
 <code class="docutils literal notranslate"><span class="pre">tail()</span></code> para ver las últimas seis filas.</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 5</caption>
-<thead>
-    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    <tr><th scope=row>2</th><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-</tbody>
-</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tail</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">1</span>  <span class="n">Ángela</span>   <span class="mi">22</span>      <span class="n">F</span>  <span class="mf">62.5</span>       <span class="mi">3</span>
+<span class="mi">2</span>    <span class="n">José</span>   <span class="mi">10</span>      <span class="n">M</span>  <span class="mf">75.8</span>       <span class="mi">4</span>
+<span class="mi">3</span>   <span class="n">Juan</span>    <span class="mi">15</span>      <span class="n">M</span>  <span class="mf">54.4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mf">73.6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>  <span class="mf">70.0</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span> <span class="mf">180.0</span>       <span class="mi">4</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 5</caption>
-<thead>
-    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-    <tr><th scope=row>7</th><td>Alicia </td><td> 1</td><td>M</td><td> 15.7</td><td>1</td></tr>
-    <tr><th scope=row>8</th><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
-</tbody>
-</table></div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">tail</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">3</span>   <span class="n">Juan</span>    <span class="mi">15</span>      <span class="n">M</span>  <span class="mf">54.4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mf">73.6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>  <span class="mf">70.0</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span> <span class="mf">180.0</span>       <span class="mi">4</span>
+<span class="mi">7</span>  <span class="n">Alicia</span>    <span class="mi">1</span>      <span class="n">F</span>  <span class="mf">15.7</span>       <span class="mi">1</span>
+<span class="mi">8</span>    <span class="n">Luis</span>   <span class="mi">32</span>      <span class="n">M</span> <span class="mf">103.5</span>       <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="importar-archivos-txt">
 <h2>Importar archivos .txt<a class="headerlink" href="#importar-archivos-txt" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;Datos.txt&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span> <span class="c1"># no se incluyó sep = &quot;;&quot;</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A data.frame: 6 × 5</caption>
-<thead>
-    <tr><th></th><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>G.nero</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><th scope=row>1</th><td>µngela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    <tr><th scope=row>2</th><td>Jos‚   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    <tr><th scope=row>3</th><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><th scope=row>4</th><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><th scope=row>5</th><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><th scope=row>6</th><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-</tbody>
-</table></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Nombre</span> <span class="n">Edad</span> <span class="n">Género</span>  <span class="n">Peso</span> <span class="n">Estrato</span>
+<span class="mi">1</span>  <span class="n">Ángela</span>   <span class="mi">22</span>      <span class="n">F</span>  <span class="mf">62.5</span>       <span class="mi">3</span>
+<span class="mi">2</span>    <span class="n">José</span>   <span class="mi">10</span>      <span class="n">M</span>  <span class="mf">75.8</span>       <span class="mi">4</span>
+<span class="mi">3</span>    <span class="n">Juan</span>   <span class="mi">15</span>      <span class="n">M</span>  <span class="mf">54.4</span>       <span class="mi">3</span>
+<span class="mi">4</span> <span class="n">Manuela</span>   <span class="mi">35</span>      <span class="n">F</span>  <span class="mf">73.6</span>       <span class="mi">3</span>
+<span class="mi">5</span> <span class="n">Maribel</span>   <span class="mi">50</span>      <span class="n">F</span>  <span class="mf">70.0</span>       <span class="mi">5</span>
+<span class="mi">6</span> <span class="n">Antonio</span>   <span class="mi">45</span>      <span class="n">M</span> <span class="mf">180.0</span>       <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="importar-archivos-de-excel">
 <h2>Importar archivos de Excel<a class="headerlink" href="#importar-archivos-de-excel" title="Permalink to this headline">¶</a></h2>
 <p>Para importar archivos con extensiones .xls o .xlsx se de instalar la
@@ -351,24 +317,21 @@ código:</p>
 </pre></div>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read_excel</span><span class="p">(</span><span class="s">&quot;Datos.xlsx&quot;</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
 </pre></div>
 </div>
-<table>
-<caption>A tibble: 6 × 5</caption>
-<thead>
-    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
-    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
-    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
-    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
-    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
-    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
-    <tr><td>Antonio</td><td>45</td><td>M</td><td>120.0</td><td>2</td></tr>
-</tbody>
-</table></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[90m# A tibble: 6 x 5[39m
+  Nombre   Edad Género  Peso Estrato
+  [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
+[90m1[39m Ángela     22 F       62.5       3
+[90m2[39m José       10 M       75.8       4
+[90m3[39m Juan       15 M       54.4       3
+[90m4[39m Manuela    35 F       73.6       3
+[90m5[39m Maribel    50 F       70         5
+[90m6[39m Antonio    45 M      180         4
+</pre></div>
+</div>
+</div>
 </div>
 
 

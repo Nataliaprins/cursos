@@ -74,41 +74,40 @@ Primero se instala el siguiente paquete: ``install.packages("fBasics")``
 
     library(fBasics)
 
-.. code:: r
 
-    basicStats(datos$Peso)
+.. parsed-literal::
 
-
-
-.. raw:: html
-
-    <table>
-    <caption>A data.frame: 16 × 1</caption>
-    <thead>
-    	<tr><th></th><th scope=col>X..datos.Peso</th></tr>
-    	<tr><th></th><th scope=col>&lt;dbl&gt;</th></tr>
-    </thead>
-    <tbody>
-    	<tr><th scope=row>nobs</th><td>   8.000000</td></tr>
-    	<tr><th scope=row>NAs</th><td>   0.000000</td></tr>
-    	<tr><th scope=row>Minimum</th><td>  15.700000</td></tr>
-    	<tr><th scope=row>Maximum</th><td> 180.000000</td></tr>
-    	<tr><th scope=row>1. Quartile</th><td>  60.475000</td></tr>
-    	<tr><th scope=row>3. Quartile</th><td>  82.725000</td></tr>
-    	<tr><th scope=row>Mean</th><td>  79.437500</td></tr>
-    	<tr><th scope=row>Median</th><td>  71.800000</td></tr>
-    	<tr><th scope=row>Sum</th><td> 635.500000</td></tr>
-    	<tr><th scope=row>SE Mean</th><td>  16.799457</td></tr>
-    	<tr><th scope=row>LCL Mean</th><td>  39.713096</td></tr>
-    	<tr><th scope=row>UCL Mean</th><td> 119.161904</td></tr>
-    	<tr><th scope=row>Variance</th><td>2257.774107</td></tr>
-    	<tr><th scope=row>Stdev</th><td>  47.516041</td></tr>
-    	<tr><th scope=row>Skewness</th><td>   0.874260</td></tr>
-    	<tr><th scope=row>Kurtosis</th><td>  -0.067399</td></tr>
-    </tbody>
-    </table>
+    Loading required package: timeDate
+    
+    Loading required package: timeSeries
+    
     
 
+.. code:: r
+
+    print(basicStats(datos$Peso))
+
+
+.. parsed-literal::
+
+                X..datos.Peso
+    nobs             8.000000
+    NAs              0.000000
+    Minimum         15.700000
+    Maximum        180.000000
+    1. Quartile     60.475000
+    3. Quartile     82.725000
+    Mean            79.437500
+    Median          71.800000
+    Sum            635.500000
+    SE Mean         16.799457
+    LCL Mean        39.713096
+    UCL Mean       119.161904
+    Variance      2257.774107
+    Stdev           47.516041
+    Skewness         0.874260
+    Kurtosis        -0.067399
+    
 
 Medidas de tendencia central:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,7 +264,7 @@ Medidas de dispersión:
 Medidas de posición:
 ~~~~~~~~~~~~~~~~~~~~
 
--  Cuartiles.
+**Cuartiles:**
 
 Los diagramas de cajas y bigotes es una forma visual de analizar las
 medidas de posición.
@@ -274,20 +273,14 @@ medidas de posición.
 
     # Cuartiles.
     
-    quantile(datos$Peso)
+    print(quantile(datos$Peso))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <style>
-    .dl-inline {width: auto; margin:0; padding: 0}
-    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-    </style><dl class=dl-inline><dt>0%</dt><dd>15.7</dd><dt>25%</dt><dd>60.475</dd><dt>50%</dt><dd>71.8</dd><dt>75%</dt><dd>82.725</dd><dt>100%</dt><dd>180</dd></dl>
+         0%     25%     50%     75%    100% 
+     15.700  60.475  71.800  82.725 180.000 
     
-
 
 .. code:: r
 
@@ -363,13 +356,15 @@ Medidas de forma:
 
 -  Curtosis: kurtosis.
 
-|image1|
+.. figure:: asimetria.png
+   :alt: Asimetría
 
-.. |image1| image:: asimetria.png
+   Asimetría
 
-|image1|
+.. figure:: curtosis.jpg
+   :alt: Curtosis
 
-.. |image1| image:: curtosis.jpg
+   Curtosis
 
 .. code:: r
 
@@ -395,6 +390,4 @@ Medidas de forma:
 .. raw:: html
 
     -0.0673990420899138
-
-
 

@@ -1,13 +1,13 @@
 Regresión Lineal Simple (RLS)
 -----------------------------
 
-1. **Modelación:** Desarrollar un modelo de regresión.
+**1. Modelación:** Desarrollar un modelo de regresión.
 
-2. **Estimación:** Usar R para estimar el modelo.
+**2. Estimación:** Usar R para estimar el modelo.
 
-3. **Inferencia:** Interpretar el modelo de regresión estimado.
+**3. Inferencia:** Interpretar el modelo de regresión estimado.
 
-4. **Predicción:** Realizar predicciones sobre la variable de interés.
+**4. Predicción:** Realizar predicciones sobre la variable de interés.
 
 Con la regresión lineal se busca modelar la relación entre una o
 múltiples variables independientes (:math:`X_i`) y una variable
@@ -117,7 +117,7 @@ Código en R:
 
 .. parsed-literal::
 
-           X PrecioInterno PrecioInternacional Producción Exportaciones     TRM
+       Fecha PrecioInterno PrecioInternacional Producción Exportaciones     TRM
     1 ene-00        371375              130.12        658           517 1923.57
     2 feb-00        354297              124.72        740           642 1950.64
     3 mar-00        360016              119.51        592           404 1956.25
@@ -408,7 +408,53 @@ unidad, la variable :math:`y` incrementa (disminuye)
 Cuando la producción aumenta en 100 unidades, las exportaciones
 incrementan 67,69.
 
-Los parámetros se extraen con ``$coefficients``
+Los valores que se pueden extraer del modelo de regresión son los
+siguientes:
+
+.. code:: r
+
+    print(names(regression))
+
+
+.. parsed-literal::
+
+     [1] "coefficients"  "residuals"     "effects"       "rank"         
+     [5] "fitted.values" "assign"        "qr"            "df.residual"  
+     [9] "xlevels"       "call"          "terms"         "model"        
+    
+
+Los valores que se pueden extraer del ``summary`` del modelo de
+regresión son los siguientes:
+
+.. code:: r
+
+    print(names(summary(regression)))
+
+
+.. parsed-literal::
+
+     [1] "call"          "terms"         "residuals"     "coefficients" 
+     [5] "aliased"       "sigma"         "df"            "r.squared"    
+     [9] "adj.r.squared" "fstatistic"    "cov.unscaled" 
+    
+
+También se puede extraer un Data Frame con los resultados del
+``summary`` con ``$coef``:
+
+.. code:: r
+
+    print(summary(regression)$coef)
+
+
+.. parsed-literal::
+
+                   Estimate  Std. Error   t value     Pr(>|t|)
+    (Intercept) 235.3538372 29.77755312  7.903733 7.538088e-14
+    X             0.6768678  0.02961839 22.852960 2.530485e-64
+    
+
+Los parámetros del objeto ``regression`` se extraen con
+``$coefficients``
 
 Para extraer los valores de cualquier objeto puede ver en la ayuda de
 las librería de la siguiente manera ``?nombre librería`` ver los
@@ -482,7 +528,7 @@ las librería de la siguiente manera ``?nombre librería`` ver los
 
 
 
-.. image:: output_44_0.png
+.. image:: output_50_0.png
    :width: 420px
    :height: 420px
 
@@ -514,7 +560,7 @@ Exportación?**
 
 
 
-.. image:: output_47_0.png
+.. image:: output_53_0.png
    :width: 420px
    :height: 420px
 
@@ -527,40 +573,28 @@ Exportación?**
 .. code:: r
 
     y_pred = beta_0 + beta_1 * X
-    head(y_pred)
+    print(head(y_pred))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <style>
-    .list-inline {list-style: none; margin:0; padding: 0}
-    .list-inline>li {display: inline-block}
-    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-    </style>
-    <ol class=list-inline><li>680.73287826942</li><li>736.236041445391</li><li>636.0596005912</li><li>949.449412182351</li><li>989.384614955306</li><li>974.493522395899</li></ol>
+    [1] 680.7329 736.2360 636.0596 949.4494 989.3846 974.4935
     
-
 
 Una forma de extraer los valores predichos o ajustados es con
 ``$fitted.values``
 
 .. code:: r
 
-    head(regression$fitted.values)
+    y_pred = regression$fitted.values
+    print(head(y_pred))
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <style>
-    .dl-inline {width: auto; margin:0; padding: 0}
-    .dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-    .dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-    .dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-    </style><dl class=dl-inline><dt>1</dt><dd>680.732878269429</dd><dt>2</dt><dd>736.236041445392</dd><dt>3</dt><dd>636.0596005912</dd><dt>4</dt><dd>949.449412182351</dd><dt>5</dt><dd>989.384614955306</dd><dt>6</dt><dd>974.493522395899</dd></dl>
+           1        2        3        4        5        6 
+    680.7329 736.2360 636.0596 949.4494 989.3846 974.4935 
     
-
 
 **Predicción por fuera de la muestra:**
 
@@ -571,20 +605,14 @@ Una forma de extraer los valores predichos o ajustados es con
 .. code:: r
 
     y_pred = beta_0 + beta_1 * nuevos_datos 
-    y_pred
+    print(y_pred)
 
 
+.. parsed-literal::
 
-.. raw:: html
-
-    <style>
-    .list-inline {list-style: none; margin:0; padding: 0}
-    .list-inline>li {display: inline-block}
-    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-    </style>
-    <ol class=list-inline><li>1453.88517263225</li><li>1521.40274003229</li><li>1592.86644696057</li><li>1724.63772501876</li><li>1792.14987747605</li><li>1927.52344619793</li><li>1928.78918906548</li><li>1986.41094859195</li><li>1995.21023055887</li><li>2130.58379928075</li></ol>
+     [1] 1453.885 1521.403 1592.866 1724.638 1792.150 1927.523 1928.789 1986.411
+     [9] 1995.210 2130.584
     
-
 
 .. code:: r
 
@@ -600,7 +628,7 @@ Una forma de extraer los valores predichos o ajustados es con
 
 
 
-.. image:: output_56_0.png
+.. image:: output_62_0.png
    :width: 420px
    :height: 420px
 
