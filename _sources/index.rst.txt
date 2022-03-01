@@ -21,6 +21,14 @@ natalia.acevedop@udea.edu.co
    Regresión lineal/index
 
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Análisis exploratorio de datos:
+   
+   Análisis gráfico/index
+
+
+
 
 .. toctree::
    :maxdepth: 1

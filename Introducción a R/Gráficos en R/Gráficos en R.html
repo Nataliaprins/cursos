@@ -102,6 +102,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
@@ -263,7 +267,7 @@ variable:</p>
       <span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_10_01.png"><img alt="../../_images/output_10_01.png" src="../../_images/output_10_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_10_02.png"><img alt="../../_images/output_10_02.png" src="../../_images/output_10_02.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Agregar líneas:</strong></p>
 <p>Útiles para mostrar la media de los datos.</p>
 <p>Se agrega una línea de código con:</p>
@@ -282,7 +286,7 @@ horizontales.</p>
 <span class="nf">abline</span><span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;darkturquoise&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_12_01.png"><img alt="../../_images/output_12_01.png" src="../../_images/output_12_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_12_03.png"><img alt="../../_images/output_12_03.png" src="../../_images/output_12_03.png" style="width: 420px; height: 420px;" /></a>
 </div>
 <div class="section" id="boxplot-diagrama-de-caja-y-bigotes">
 <h2>Boxplot (diagrama de caja y bigotes):<a class="headerlink" href="#boxplot-diagrama-de-caja-y-bigotes" title="Permalink to this headline">¶</a></h2>
@@ -290,11 +294,11 @@ horizontales.</p>
 <p>Útiles para analizar los datos e identificar datos atípicos ( <em>outliers</em>
 ).</p>
 <div class="figure align-default" id="id1">
-<img alt="Boxplot" src="../../_images/Boxplot.png" />
+<img alt="Boxplot" src="../../_images/Boxplot1.png" />
 <p class="caption"><span class="caption-text">Boxplot</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="id2">
-<img alt="Diagrama" src="../../_images/Diagrama_de_caja.jpg" />
+<img alt="Diagrama" src="../../_images/Diagrama_de_caja1.jpg" />
 <p class="caption"><span class="caption-text">Diagrama</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">)</span>
@@ -308,7 +312,7 @@ horizontales.</p>
         <span class="n">border</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_17_01.png"><img alt="../../_images/output_17_01.png" src="../../_images/output_17_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_17_02.png"><img alt="../../_images/output_17_02.png" src="../../_images/output_17_02.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Agregar puntos:</strong></p>
 <p>Se agrega una línea de código con la función <code class="docutils literal notranslate"><span class="pre">points()</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span>
@@ -332,7 +336,7 @@ el símbolo <code class="docutils literal notranslate"><span class="pre">~</span
         <span class="n">border</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_21_01.png"><img alt="../../_images/output_21_01.png" src="../../_images/output_21_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_21_02.png"><img alt="../../_images/output_21_02.png" src="../../_images/output_21_02.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Cambiar la etiqueta de la variable X:</strong></p>
 <p>Se cambia con el argumento <code class="docutils literal notranslate"><span class="pre">names</span></code> y se ingresan los nombres en un
 vector.</p>
@@ -345,7 +349,7 @@ vector.</p>
         <span class="n">names</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Mujeres&quot;</span><span class="p">,</span> <span class="s">&quot;Hombres&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_23_02.png"><img alt="../../_images/output_23_02.png" src="../../_images/output_23_02.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_23_03.png"><img alt="../../_images/output_23_03.png" src="../../_images/output_23_03.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Gráfico horizontal:</strong></p>
 <p>Agregar en la función <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code> el argumento <code class="docutils literal notranslate"><span class="pre">horizontal</span> <span class="pre">=</span> <span class="pre">T</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Peso</span> <span class="o">~</span> <span class="n">datos</span><span class="o">$</span><span class="n">Género</span><span class="p">,</span>
@@ -358,7 +362,7 @@ vector.</p>
         <span class="n">horizontal</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_25_01.png"><img alt="../../_images/output_25_01.png" src="../../_images/output_25_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_25_02.png"><img alt="../../_images/output_25_02.png" src="../../_images/output_25_02.png" style="width: 420px; height: 420px;" /></a>
 </div>
 <div class="section" id="diagrama-de-barras">
 <h2>Diagrama de barras:<a class="headerlink" href="#diagrama-de-barras" title="Permalink to this headline">¶</a></h2>
@@ -375,7 +379,7 @@ vector.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Estrato</span><span class="p">))</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_29_01.png"><img alt="../../_images/output_29_01.png" src="../../_images/output_29_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_29_02.png"><img alt="../../_images/output_29_02.png" src="../../_images/output_29_02.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Barras horizontales:</strong></p>
 <p>Se agrega el argumento <code class="docutils literal notranslate"><span class="pre">horiz</span> <span class="pre">=</span> <span class="pre">T</span></code></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Estrato</span><span class="p">),</span> <span class="n">horiz</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
@@ -391,7 +395,7 @@ vector.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pie</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Estrato</span><span class="p">))</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_33_01.png"><img alt="../../_images/output_33_01.png" src="../../_images/output_33_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_33_02.png"><img alt="../../_images/output_33_02.png" src="../../_images/output_33_02.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 

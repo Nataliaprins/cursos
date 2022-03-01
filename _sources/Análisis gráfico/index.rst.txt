@@ -1,0 +1,33 @@
+Análisis gráfico
+==========================================================
+
+En esta sesión se explicará la librería ggplot2 y algunos gráficos para el análisis de datos.
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   ../ggplot2/Introducción a ggplot2/ggplot2.rst
+   Tipos de gráficos/Tipos de gráficos.rst
+   Gráficos para series de tiempo/Gráficos para series de tiempo.rst
+   
+    
+
+
+
+.. important::
+    Archivo para trabajar esta sesión:
+
+    * **Descargue** :download:`Datos.csv <Datos.csv>`
+
+
+    * **Descargue** :download:`Ofertas laborales.csv <Ofertas laborales.csv>`
+
+
+    * **Descargue** :download:`TRM-mensual.csv <TRM-mensual.csv>`
+
+
+    * **Descargue** :download:`Acciones2022.csv <Acciones2022.csv>`
+
+

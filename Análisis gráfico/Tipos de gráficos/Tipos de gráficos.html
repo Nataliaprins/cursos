@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tipos de gráficos &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gráficos para series de tiempo" href="../Gráficos para series de tiempo/Gráficos para series de tiempo.html" />
+    <link rel="prev" title="Análisis gráfico" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis gráfico</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../ggplot2/Introducción a ggplot2/ggplot2.html">ggplot2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tipos de gráficos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#barras">Barras:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#torta-pie">Torta (pie):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#histograma">Histograma:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dispersion">Dispersión:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boxplot-diagrama-de-caja-y-bigotes">Boxplot (diagrama de caja y bigotes):</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Gráficos para series de tiempo/Gráficos para series de tiempo.html">Gráficos para series de tiempo</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Análisis gráfico</a> &raquo;</li>
+        
+      <li>Tipos de gráficos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Análisis gráfico/Tipos de gráficos/Tipos de gráficos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tipos-de-graficos">
+<h1>Tipos de gráficos<a class="headerlink" href="#tipos-de-graficos" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Ofertas laborales.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                     <span class="n">cargo</span> <span class="n">vacantes</span> <span class="n">salario_honorarios</span>        <span class="n">sexo</span>
+<span class="mi">1</span>                 <span class="n">contador</span>        <span class="mi">3</span>            <span class="mi">2200000</span> <span class="n">indiferente</span>
+<span class="mi">2</span>                 <span class="n">contador</span>        <span class="mi">1</span>            <span class="mi">2500000</span> <span class="n">indiferente</span>
+<span class="mi">3</span>                 <span class="n">contador</span>        <span class="mi">1</span>            <span class="mi">2000000</span> <span class="n">indiferente</span>
+<span class="mi">4</span>    <span class="n">analista</span> <span class="n">de</span> <span class="n">mercados</span>         <span class="mi">3</span>            <span class="mi">1500000</span> <span class="n">indiferente</span>
+<span class="mi">5</span> <span class="n">coodinador</span> <span class="n">de</span> <span class="n">planeacion</span>        <span class="mi">1</span>            <span class="mi">2200000</span> <span class="n">indiferente</span>
+<span class="mi">6</span>           <span class="n">administradora</span>        <span class="mi">1</span>            <span class="mi">1500000</span>    <span class="n">femenino</span>
+  <span class="n">nivel_educativo</span> <span class="n">años_experiencia</span> <span class="n">idiomas</span>
+<span class="mi">1</span>     <span class="n">profesional</span>             <span class="mf">5.00</span> <span class="n">no</span> <span class="n">dato</span>
+<span class="mi">2</span>     <span class="n">profesional</span>             <span class="mf">2.00</span> <span class="n">no</span> <span class="n">dato</span>
+<span class="mi">3</span>     <span class="n">profesional</span>             <span class="mf">2.00</span> <span class="n">no</span> <span class="n">dato</span>
+<span class="mi">4</span>     <span class="n">profesional</span>             <span class="mf">1.00</span> <span class="n">no</span> <span class="n">dato</span>
+<span class="mi">5</span>     <span class="n">profesional</span>             <span class="mf">0.25</span> <span class="n">no</span> <span class="n">dato</span>
+<span class="mi">6</span>     <span class="n">profesional</span>             <span class="mf">1.00</span> <span class="n">no</span> <span class="n">dato</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:       86 obs. of  7 variables:
+ $ cargo             : Factor w/ 44 levels &quot;administración de compras &quot;,..: 21 21 21 9 23 5 17 6 7 38 ...
+ $ vacantes          : int  3 1 1 3 1 1 1 1 1 1 ...
+ $ salario_honorarios: int  2200000 2500000 2000000 1500000 2200000 1500000 1500000 2000000 2000000 1500000 ...
+ $ sexo              : Factor w/ 3 levels &quot;femenino&quot;,&quot;indiferente&quot;,..: 2 2 2 2 2 1 1 2 2 3 ...
+ $ nivel_educativo   : Factor w/ 2 levels &quot;especialización&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ años_experiencia  : num  5 2 2 1 0.25 1 0.5 2 2 3 ...
+ $ idiomas           : Factor w/ 2 levels &quot;inglés&quot;,&quot;no dato&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+</pre></div>
+</div>
+<div class="section" id="barras">
+<h2>Barras:<a class="headerlink" href="#barras" title="Permalink to this headline">¶</a></h2>
+<p>Las variables categóricas en <code class="docutils literal notranslate"><span class="pre">R</span></code> tienen el formato de <code class="docutils literal notranslate"><span class="pre">Factor</span></code>.
+Estas variables permiten clasificar los datos asociando una etiqueta a
+cada dato.</p>
+<p>El gráfico de barras calcula la frecuencia relativa de cada variable
+categórica. Podemos identificar los factores de mayor y menor
+frecuencia. Se analiza cómo están los datos clasificando en función de
+una variable, por ejemplo, ¿existen mayores ofertas laborales para los
+especialistas?</p>
+<p>En <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>se utiliza la capa <code class="docutils literal notranslate"><span class="pre">geom_bar()</span></code></p>
+<p><strong>Una variable categórica:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_9_01.png"><img alt="../../_images/output_9_01.png" src="../../_images/output_9_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">cargo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">coord_flip</span><span class="p">()</span>  <span class="c1"># Para girar el gráfico</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_10_0.png"><img alt="../../_images/output_10_0.png" src="../../_images/output_10_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Para cambiar el color de cada barra (cada factor), se agrega
+<code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span> <span class="pre">nivel_educativo</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">aes()</span></code>.</p>
+<p>Las etiquetas del eje <span class="math notranslate nohighlight">\(X\)</span> se cambian con
+<code class="docutils literal notranslate"><span class="pre">scale_x_discrete(labels</span> <span class="pre">=</span> <span class="pre">c(&quot;Especialización&quot;,</span> <span class="pre">&quot;Profesional&quot;))</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertar laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Clasificación por nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Especialización&quot;</span><span class="p">,</span> <span class="s">&quot;Profesional&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_12_01.png"><img alt="../../_images/output_12_01.png" src="../../_images/output_12_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Más de una variable categórica:</strong></p>
+<p>El anterior gráfico clasifica los datos en una sola variable categórica
+haciendo que la clasificación por <code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span></code> se hiciera con la misma
+variable <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span></code>, para clasificar dos variables categóricas, en estos
+dos argumentos se debe poner variables distintas, por ejemplo,
+<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">nivel_educativo</span></code> y en <code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span> <span class="pre">sexo</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertar laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Clasificación por nivel educativo y sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Especialización&quot;</span><span class="p">,</span> <span class="s">&quot;Profesional&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_15_0.png"><img alt="../../_images/output_15_0.png" src="../../_images/output_15_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Para clasificar con una tercera variable se puede agregar
+<code class="docutils literal notranslate"><span class="pre">facet_grid</span> <span class="pre">()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertar laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Clasificación por nivel educativo, sexo e idioma&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Especialización&quot;</span><span class="p">,</span> <span class="s">&quot;Profesional&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_17_0.png"><img alt="../../_images/output_17_0.png" src="../../_images/output_17_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Note que aparecen unos colores por defecto, pero podemos crear nuestra
+propia paleta de colores e ingresarlos manualmente.</p>
+<p>Cuando clasificamos los datos por colores podemos cambiar los colores
+que la librería muestra por defecto.</p>
+<p>Primero, se crea una variable con los colores:
+<code class="docutils literal notranslate"><span class="pre">colores</span> <span class="pre">&lt;-</span> <span class="pre">c(&quot;steelblue1&quot;,</span> <span class="pre">&quot;turquoise&quot;,</span> <span class="pre">&quot;wheat&quot;)</span></code>.</p>
+<p>Luego, se agregan en el gráfico como una capa adicional así:
+<code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">scale_color_manual(values</span> <span class="pre">=</span> <span class="pre">colores,</span> <span class="pre">aesthetics</span> <span class="pre">=</span> <span class="pre">&quot;fill&quot;)</span></code></p>
+<p>En este ejemplo la clasificación se está haciendo cambiando los colores
+en <code class="docutils literal notranslate"><span class="pre">fill</span></code>, por esto se pone <code class="docutils literal notranslate"><span class="pre">aesthetics</span> <span class="pre">=</span> <span class="pre">&quot;fill&quot;</span></code>, pero si la
+clasificación se hiciera por <code class="docutils literal notranslate"><span class="pre">color</span></code>, entonces se pone
+<code class="docutils literal notranslate"><span class="pre">aesthetics</span> <span class="pre">=</span> <span class="pre">&quot;colour&quot;</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">colores</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;steelblue1&quot;</span><span class="p">,</span> <span class="s">&quot;turquoise&quot;</span><span class="p">,</span> <span class="s">&quot;wheat&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertar laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Clasificación por nivel educativo, sexo e idioma&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Especialización&quot;</span><span class="p">,</span> <span class="s">&quot;Profesional&quot;</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">colores</span><span class="p">,</span> <span class="n">aesthetics</span> <span class="o">=</span> <span class="s">&quot;fill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_20_0.png"><img alt="../../_images/output_20_0.png" src="../../_images/output_20_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="torta-pie">
+<h2>Torta (pie):<a class="headerlink" href="#torta-pie" title="Permalink to this headline">¶</a></h2>
+<p>Primero se debe hacer un gráfico de barras, pero todas las barras
+apiladas en una sola, luego se transforma el gráfico con
+<code class="docutils literal notranslate"><span class="pre">coord_polar()</span></code> para cambiar las alturas de las barras por ángulos.</p>
+<p>El gráfico de barras apiladas se hace solo pasando una variable en
+<span class="math notranslate nohighlight">\(y\)</span> y se deja la <span class="math notranslate nohighlight">\(X\)</span> vacía así:
+<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">&quot;&quot;,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">nivel_educativo</span></code>.</p>
+<p>Se agrega <code class="docutils literal notranslate"><span class="pre">stat</span> <span class="pre">=</span> <span class="pre">&quot;identity&quot;</span></code> para que no se realice un conteo para la
+altura de las barras porque ya se especificó con <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">nivel_educativo</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_0.png"><img alt="../../_images/output_23_0.png" src="../../_images/output_23_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Después, el gráfico de torta o pie se hace transformando el gráfico
+anterior con <code class="docutils literal notranslate"><span class="pre">coord_polar(theta</span> <span class="pre">=</span> <span class="pre">&quot;y&quot;)</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">&quot;y&quot;</span></code> es para cambiar la geometría de la altura de las barras.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">coord_polar</span><span class="p">(</span><span class="n">theta</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_0.png"><img alt="../../_images/output_25_0.png" src="../../_images/output_25_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="histograma">
+<h2>Histograma:<a class="headerlink" href="#histograma" title="Permalink to this headline">¶</a></h2>
+<p>Se usa para variables numéricas.</p>
+<p><strong>Una variable:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;steelblue1&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencie&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_29_0.png"><img alt="../../_images/output_29_0.png" src="../../_images/output_29_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Clasificación con una variable:</strong></p>
+<p>Clasificación por años de experiencia y por sexo. Solo es agregar la
+clasificación dentro de <code class="docutils literal notranslate"><span class="pre">aes()</span></code> ya sea con <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code> o
+<code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">colores</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;steelblue1&quot;</span><span class="p">,</span> <span class="s">&quot;turquoise&quot;</span><span class="p">,</span> <span class="s">&quot;wheat&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia por sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencie&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">colores</span><span class="p">,</span> <span class="n">aesthetics</span> <span class="o">=</span> <span class="s">&quot;fill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_33_0.png"><img alt="../../_images/output_33_0.png" src="../../_images/output_33_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Clasificación con dos o más variables:</strong></p>
+<p>La segunda variable categórica que clasifica se agrega con
+<code class="docutils literal notranslate"><span class="pre">facet_grid()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia por sexo e idiomas&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencie&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">colores</span><span class="p">,</span> <span class="n">aesthetics</span> <span class="o">=</span> <span class="s">&quot;fill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_36_0.png"><img alt="../../_images/output_36_0.png" src="../../_images/output_36_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Para una tercera variable para clasificar se llena el otro campo de
+<code class="docutils literal notranslate"><span class="pre">facet_grid()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">fill</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">vacantes</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencie&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Cantidad&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">colores</span><span class="p">,</span> <span class="n">aesthetics</span> <span class="o">=</span> <span class="s">&quot;fill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_38_0.png"><img alt="../../_images/output_38_0.png" src="../../_images/output_38_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="dispersion">
+<h2>Dispersión:<a class="headerlink" href="#dispersion" title="Permalink to this headline">¶</a></h2>
+<p>Los gráficos de dispersión son bivariados, se necesita una <span class="math notranslate nohighlight">\(X\)</span> y
+una <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_41_0.png"><img alt="../../_images/output_41_0.png" src="../../_images/output_41_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_42_0.png"><img alt="../../_images/output_42_0.png" src="../../_images/output_42_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_43_0.png"><img alt="../../_images/output_43_0.png" src="../../_images/output_43_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Las observaciones se pueden clasificar en el gráfico indicando las
+variables en <code class="docutils literal notranslate"><span class="pre">aes()</span></code> en los argumentos <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code> o
+<code class="docutils literal notranslate"><span class="pre">shape</span></code>. Adiciomalmente, si se usa <code class="docutils literal notranslate"><span class="pre">facet_grid()</span></code> se puede hacer
+clasificaciones con una o dos variables adicionales.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo por sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_45_0.png"><img alt="../../_images/output_45_0.png" src="../../_images/output_45_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo por sexo e idiomas&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">,</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="s">&quot;Idiomas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_46_0.png"><img alt="../../_images/output_46_0.png" src="../../_images/output_46_0.png" style="width: 420px; height: 420px;" /></a>
+<p>La clasificación anterior por sexo e idiomas se puede hacer de la
+siguiente manera:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo por sexo e idiomas&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_48_0.png"><img alt="../../_images/output_48_0.png" src="../../_images/output_48_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Salario y años de experiencia por sexo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia por sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_50_0.png"><img alt="../../_images/output_50_0.png" src="../../_images/output_50_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia por sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_51_0.png"><img alt="../../_images/output_51_0.png" src="../../_images/output_51_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">facet_grid</span><span class="p">(</span><span class="n">sexo</span> <span class="o">~</span> <span class="n">.</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia por sexo e idiomas&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Idiomas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_52_0.png"><img alt="../../_images/output_52_0.png" src="../../_images/output_52_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">facet_grid</span><span class="p">(</span><span class="n">sexo</span> <span class="o">~</span> <span class="n">vacantes</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia por sexo, idiomas y vacantes&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;Idiomas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_53_0.png"><img alt="../../_images/output_53_0.png" src="../../_images/output_53_0.png" style="width: 420px; height: 420px;" /></a>
+<p>A veces a útil crear un gráfico de dispersión y al mismo tiempo mostrar
+la forma de los datos con histogramas, boxplots o densidades. Para hacer
+esto se usará el siguiente paquete:</p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;ggExtra&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggExtra</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Con la función <code class="docutils literal notranslate"><span class="pre">ggMarginal()</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">ggExtra</span></code> podemos
+agregar gráficos “marginales” como histogramas, boxplots, etc. sobre los
+gráficos de <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>.</p>
+<p>Primero se crea el gráfico con <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>, pero se almacena en una
+variable, por ejemplo, en <code class="docutils literal notranslate"><span class="pre">p</span></code>, luego se usa la función
+<code class="docutils literal notranslate"><span class="pre">ggMarginal()</span></code> indicando en el primer argumento el gráfico de
+<code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> que lo llamamos <code class="docutils literal notranslate"><span class="pre">p</span></code> y en el segundo argumento el tipo de
+gráfico entre comillas.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+        <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+            <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;histogram&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_58_0.png"><img alt="../../_images/output_58_0.png" src="../../_images/output_58_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+        <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+            <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;boxplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_59_0.png"><img alt="../../_images/output_59_0.png" src="../../_images/output_59_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+        <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+            <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;density&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_60_0.png"><img alt="../../_images/output_60_0.png" src="../../_images/output_60_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Gráfico marginal solo para la <span class="math notranslate nohighlight">\(X\)</span>: <code class="docutils literal notranslate"><span class="pre">margins</span> <span class="pre">=</span> <span class="pre">&quot;x&quot;</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+        <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+            <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">margins</span> <span class="o">=</span> <span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;histogram&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_62_0.png"><img alt="../../_images/output_62_0.png" src="../../_images/output_62_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Gráfico marginal solo para la <span class="math notranslate nohighlight">\(y\)</span>: <code class="docutils literal notranslate"><span class="pre">margins</span> <span class="pre">=</span> <span class="pre">&quot;y&quot;</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+        <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+            <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+
+<span class="nf">ggMarginal</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">margins</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;histogram&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_64_0.png"><img alt="../../_images/output_64_0.png" src="../../_images/output_64_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="boxplot-diagrama-de-caja-y-bigotes">
+<h2>Boxplot (diagrama de caja y bigotes):<a class="headerlink" href="#boxplot-diagrama-de-caja-y-bigotes" title="Permalink to this headline">¶</a></h2>
+<p>Útiles para analizar los datos e identificar datos atípicos ( <em>outliers</em>
+).</p>
+<div class="figure align-default" id="id1">
+<img alt="Boxplot" src="../../_images/Boxplot.png" />
+<p class="caption"><span class="caption-text">Boxplot</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id2">
+<img alt="Diagrama" src="../../_images/Diagrama_de_caja.jpg" />
+<p class="caption"><span class="caption-text">Diagrama</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id3">
+<img alt="Boxplot-Nomal" src="../../_images/Box-Plot-Normal.PNG" />
+<p class="caption"><span class="caption-text">Boxplot-Nomal</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Distribución de los años de experiencia por cada sexo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_71_0.png"><img alt="../../_images/output_71_0.png" src="../../_images/output_71_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">años_experiencia</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia y sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Años de experiencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_72_0.png"><img alt="../../_images/output_72_0.png" src="../../_images/output_72_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Distribución del salario por cada sexo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y sexo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Sexo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_74_0.png"><img alt="../../_images/output_74_0.png" src="../../_images/output_74_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Distribución del salario por cada nivel educativo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_76_0.png"><img alt="../../_images/output_76_0.png" src="../../_images/output_76_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Gráfico Boxplot con observaciones individuales como puntos. Se agrega la
+capa de <code class="docutils literal notranslate"><span class="pre">geom_point()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_78_0.png"><img alt="../../_images/output_78_0.png" src="../../_images/output_78_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Gráfico Boxplot con observaciones individuales como puntos y
+clasificación de los puntos por una variable. En la capa de
+<code class="docutils literal notranslate"><span class="pre">geom_point</span></code> se agrega <code class="docutils literal notranslate"><span class="pre">aes(color</span> <span class="pre">=</span> <span class="pre">sexo)</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">sexo</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_80_0.png"><img alt="../../_images/output_80_0.png" src="../../_images/output_80_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Distribución del salario por cada cargo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">cargo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y cargo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Cargo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">coord_flip</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_82_0.png"><img alt="../../_images/output_82_0.png" src="../../_images/output_82_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Distribución del salario por nivel de educación e idioma adicional
+requerido.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">nivel_educativo</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">idiomas</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario y nivel educativo por idioma&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_84_0.png"><img alt="../../_images/output_84_0.png" src="../../_images/output_84_0.png" style="width: 420px; height: 420px;" /></a>
+<p>El siguiente gráfico tiene las variables anteriores, pero con diferente
+orden en la clasificación.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">.</span> <span class="o">~</span> <span class="n">nivel_educativo</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario e idioma por nivel educativo&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Idiomas&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_86_0.png"><img alt="../../_images/output_86_0.png" src="../../_images/output_86_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Distribución del salario por idioma adicional requerido y
+adicionalmente, por nivel educativo y años de experiencia.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">idiomas</span><span class="p">,</span>  <span class="n">y</span> <span class="o">=</span> <span class="n">salario_honorarios</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">facet_grid</span><span class="p">(</span><span class="n">vacantes</span> <span class="o">~</span> <span class="n">nivel_educativo</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Ofertas laborales&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Salario e idioma por nivel educativo y años de experiencia&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Idiomas&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Salario&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_88_0.png"><img alt="../../_images/output_88_0.png" src="../../_images/output_88_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gráficos para series de tiempo/Gráficos para series de tiempo.html" class="btn btn-neutral float-right" title="Gráficos para series de tiempo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Análisis gráfico" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

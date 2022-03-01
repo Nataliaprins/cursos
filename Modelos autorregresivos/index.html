@@ -89,6 +89,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Análisis gráfico/index.html">Análisis gráfico</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
@@ -290,7 +294,7 @@ si no son Ruido Blanco, se evalúan modelos más complejos.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/output_20_0.png" src="../_images/output_20_0.png" />
+<img alt="../_images/output_20_01.png" src="../_images/output_20_01.png" />
 </div>
 <div class="section" id="evaluacion-de-varios-modelos-de-arima">
 <h2>Evaluación de varios modelos de ARIMA<a class="headerlink" href="#evaluacion-de-varios-modelos-de-arima" title="Permalink to this headline">¶</a></h2>
@@ -579,7 +583,7 @@ para determinar si la nueva serie de tiempo es estacionaria o no.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/output_48_01.png" src="../_images/output_48_01.png" />
+<img alt="../_images/output_48_02.png" src="../_images/output_48_02.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgt</span><span class="o">.</span><span class="n">plot_pacf</span><span class="p">(</span><span class="n">datos</span><span class="o">.</span><span class="n">delta_prices</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">lags</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ols&#39;</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Partial Autocorrelation Function for Delta Prices&quot;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>

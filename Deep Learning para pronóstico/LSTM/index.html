@@ -88,6 +88,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
@@ -289,7 +293,7 @@ históricos para predecir 1 precio.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../../_images/output_23_0.png" src="../../_images/output_23_0.png" />
+<img alt="../../_images/output_23_01.png" src="../../_images/output_23_01.png" />
 </div>
 <div class="section" id="ajuste-de-regresion">
 <h2>Ajuste de regresión<a class="headerlink" href="#ajuste-de-regresion" title="Permalink to this headline">¶</a></h2>
@@ -342,7 +346,7 @@ históricos para predecir 1 precio.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../../_images/output_33_0.png" src="../../_images/output_33_0.png" />
+<img alt="../../_images/output_33_01.png" src="../../_images/output_33_01.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test_pred_LSTM</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">y_test_pred_LSTM</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_test_pred_LSTM</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>

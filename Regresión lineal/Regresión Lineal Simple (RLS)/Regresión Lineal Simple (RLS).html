@@ -108,6 +108,10 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
@@ -396,7 +400,7 @@ de la Regresión Lineal Simple porque tenemos códigos que lo hacen</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chart.Correlation</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">7</span><span class="p">])</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_20_01.png"><img alt="../../_images/output_20_01.png" src="../../_images/output_20_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_20_02.png"><img alt="../../_images/output_20_02.png" src="../../_images/output_20_02.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <div class="section" id="modelacion">
@@ -416,7 +420,7 @@ forma que las Exportaciones, <span class="math notranslate nohighlight">\(y\)</s
     <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_24_01.png"><img alt="../../_images/output_24_01.png" src="../../_images/output_24_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_24_02.png"><img alt="../../_images/output_24_02.png" src="../../_images/output_24_02.png" style="width: 420px; height: 420px;" /></a>
 </div>
 <div class="section" id="estimacion">
 <h2>2. Estimación:<a class="headerlink" href="#estimacion" title="Permalink to this headline">¶</a></h2>
@@ -544,7 +548,7 @@ las librería de la siguiente manera <code class="docutils literal notranslate">
 <span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_50_0.png"><img alt="../../_images/output_50_0.png" src="../../_images/output_50_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_50_01.png"><img alt="../../_images/output_50_01.png" src="../../_images/output_50_01.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Dentro de la muestra, para una Producción de 1500, ¿cuál es la
 Exportación?</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="m">1500</span>
@@ -560,7 +564,7 @@ Exportación?</strong></p>
 <span class="nf">points</span><span class="p">(</span><span class="m">1500</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_53_0.png"><img alt="../../_images/output_53_0.png" src="../../_images/output_53_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_53_01.png"><img alt="../../_images/output_53_01.png" src="../../_images/output_53_01.png" style="width: 420px; height: 420px;" /></a>
 </div>
 <div class="section" id="prediccion">
 <h2>4. Predicción:<a class="headerlink" href="#prediccion" title="Permalink to this headline">¶</a></h2>
@@ -605,7 +609,7 @@ Exportación?</strong></p>
 <span class="nf">points</span><span class="p">(</span><span class="n">nuevos_datos</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_62_0.png"><img alt="../../_images/output_62_0.png" src="../../_images/output_62_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_62_01.png"><img alt="../../_images/output_62_01.png" src="../../_images/output_62_01.png" style="width: 420px; height: 420px;" /></a>
 <hr class="docutils" />
 <div class="math notranslate nohighlight">
 \[Producción = 430,25248+0,21526\times TRM\]</div>
