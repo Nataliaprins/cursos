@@ -26,6 +26,7 @@ natalia.acevedop@udea.edu.co
    :caption: Análisis exploratorio de datos:
    
    Análisis gráfico/index
+   Análisis multivariado de datos/index
 
 
 

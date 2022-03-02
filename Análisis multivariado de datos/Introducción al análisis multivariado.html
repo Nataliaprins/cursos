@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introducción al análisis multivariado &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generalidades del Mercado Colombiano" href="../Generalidades del Mercado Colombiano/index.html" />
+    <link rel="prev" title="Análisis multivariado de datos" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Análisis gráfico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análisis multivariado de datos</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introducción al análisis multivariado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#boxplot">Boxplot:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#histograma-con-kernel">Histograma con kernel:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matriz-de-dispersion">Matríz de dispersión:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matriz-de-correlaciones">Matríz de correlaciones:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Análisis multivariado de datos</a> &raquo;</li>
+        
+      <li>Introducción al análisis multivariado</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Análisis multivariado de datos/Introducción al análisis multivariado.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduccion-al-analisis-multivariado">
+<h1>Introducción al análisis multivariado<a class="headerlink" href="#introduccion-al-analisis-multivariado" title="Permalink to this headline">¶</a></h1>
+<p>Con el análisis multivariado o multivariante de datos se busca:</p>
+<p><strong>1. Describir</strong></p>
+<p><strong>2. Resumir</strong></p>
+<p><strong>3. Agrupar</strong></p>
+<p><strong>4. Clasificar</strong></p>
+<p><strong>5. Relacionar</strong></p>
+<p><strong>Datos univariantes:</strong></p>
+<p>Una sola variable aleatoria con <span class="math notranslate nohighlight">\(n\)</span> observaciones.</p>
+<p><strong>Datos multivariantes:</strong></p>
+<p><span class="math notranslate nohighlight">\(p &gt; 1\)</span> variables aleatorias con <span class="math notranslate nohighlight">\(n\)</span> observaciones.</p>
+<p><strong>Representación matricial de datos multivariantes:</strong></p>
+<p>Las variables se ubican en las columnas y las filas son las
+observaciones. El total de filas, <span class="math notranslate nohighlight">\(n\)</span>, es el tamaño de la muestra,
+<span class="math notranslate nohighlight">\(n\)</span> elementos muestrales.</p>
+<p>$ :raw-latex:<a href="#id1"><span class="problematic" id="id2">`</span></a>left`(</p>
+<p><a href="#id3"><span class="problematic" id="id4">:raw-latex:`\right`</span></a>) $</p>
+<p><strong>Representación vectorial de datos multivariantes:</strong></p>
+<p>La anterior matriz se puede representar de forma vectorial en función de
+las columnas así:</p>
+<div class="math notranslate nohighlight">
+\[X = [X_1, X_2, X_3, ..., X_p]\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(X_j \in \mathbb R^n, \forall j = 1,2,3,...,p\)</span></p>
+<p>Las <span class="math notranslate nohighlight">\(p\)</span> variables aleatorias forman una variable aleatoria
+multivariante <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p><strong>Tipos de variables:</strong></p>
+<p><strong>1. Cuantitativas:</strong> datos numéricos.</p>
+<ul class="simple">
+<li><p><strong>Continuas:</strong> valores reales dentro de un intervalo. Ejemplo, precio
+de las acciones.</p></li>
+<li><p><strong>Discretas:</strong> valores numerables o contables. Ejemplo, estrato.</p></li>
+</ul>
+<p><strong>2. Cualitativas:</strong> atributos o categorías.</p>
+<p>En el análisis exploratorio de datos multivariados se visualiza las
+variables cuantitativas y las variables cualitativas aportan información
+adicional como clasificar los datos por atributos o categorías.</p>
+<p><strong>Análisis exploratorio de datos multivariados:</strong></p>
+<ul class="simple">
+<li><p><strong>Boxplot:</strong> se realiza para una variable y tiene algunos
+estadísticos como mediana y cuartiles. Son útiles para analizar la
+localización de la variable, desviación, asimetría y datos atípicos.</p></li>
+<li><p><strong>Histograma:</strong> se realiza para una variable y es una representación
+gráfica de las frecuencias. Permiten identificar la distribución de
+la variable, asimetría, localización, dispersión y datos atípicos.</p></li>
+<li><p><strong>Densidad Kernel:</strong> es la función de densidad de la variable que se
+dibuja encima del histograma, la función se llama Kernel. Tiene el
+mismo análisis que los histogramas. Se puede hacer para una variable
+o dos variables separando los datos por grupos (variable categórica).
+La función más usada es la Gaussiana.</p></li>
+<li><p><strong>Dispersión (scatterplot):</strong> para análisis entre dos variables. Se
+usan visualizar la distribución bivariada, determinar la relación
+entre pares de variables. También se puede hacer en 3D con una
+tercera variable.</p></li>
+<li><p><strong>Matriz de correlaciones:</strong> es una tabla numérica donde muestra el
+coeficiente de correlación entre pares de variables. Se mide el grado
+de relación lineal entre un par de variables aleatorias.</p></li>
+<li><p><strong>Radar:</strong> para tres o más variables cuantitativas. Los ejes están
+ubicados radialmente. Tiene otros nombres como gráfico de araña
+(spider), de estrellas o polar. Permiten observar las diferencias
+entre las magnitudes de cada variable.</p></li>
+</ul>
+<p><strong>Medidas descriptivas:</strong></p>
+<p>Para analizar cada variable por separado se puede calcular las
+siguientes medidas estadísticas.</p>
+<ul class="simple">
+<li><p>Media.</p></li>
+<li><p>Varianza.</p></li>
+<li><p>Desviación estándar.</p></li>
+</ul>
+<p>Para el análisis de la relación entre variables calculamos:</p>
+<ul class="simple">
+<li><p>Covarianzas: matriz de varianzas-covarianzas.</p></li>
+<li><p>Coeficientes de correlación: matriz de correlaciones.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;EAM_2019.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">ï</span><span class="o">..</span><span class="n">ciiu</span> <span class="n">personal_mujer</span> <span class="n">personal_hombre</span> <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>    <span class="mi">1051</span>             <span class="mi">36</span>             <span class="mi">140</span>        <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>    <span class="mi">1030</span>             <span class="mi">40</span>             <span class="mi">176</span>        <span class="mi">7334998</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>    <span class="mi">3290</span>             <span class="mi">15</span>             <span class="mi">172</span>        <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>    <span class="mi">3091</span>             <span class="mi">88</span>             <span class="mi">373</span>       <span class="mi">22088759</span>         <span class="mi">35203208</span>
+<span class="mi">5</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+  <span class="n">costos_gastos_produccion</span> <span class="n">gastos_adm_ventas</span> <span class="n">inversion_AF</span>    <span class="n">ventas</span>
+<span class="mi">1</span>                  <span class="mi">6846304</span>          <span class="mi">22920307</span>      <span class="mi">4979745</span> <span class="mi">192609248</span>
+<span class="mi">2</span>                  <span class="mi">5941761</span>          <span class="mi">12310286</span>      <span class="mi">5615593</span> <span class="mi">115741258</span>
+<span class="mi">3</span>                  <span class="mi">6996020</span>           <span class="mi">2564695</span>       <span class="mi">773444</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>                  <span class="mi">4175751</span>         <span class="mi">171278876</span>     <span class="mi">10501572</span> <span class="mi">162509864</span>
+<span class="mi">5</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">colnames</span><span class="p">(</span><span class="n">datos</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;ciiu&quot;</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ciiu'</li><li>'personal_mujer'</li><li>'personal_hombre'</li><li>'gasto_personal'</li><li>'gasto_financiero'</li><li>'costos_gastos_produccion'</li><li>'gastos_adm_ventas'</li><li>'inversion_AF'</li><li>'ventas'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:       420 obs. of  9 variables:
+ $ ciiu                    : chr  &quot;1051&quot; &quot;1030&quot; &quot;3290&quot; &quot;3091&quot; ...
+ $ personal_mujer          : int  36 40 15 88 18 18 43 23 108 197 ...
+ $ personal_hombre         : int  140 176 172 373 53 53 215 97 149 70 ...
+ $ gasto_personal          : int  9352991 7334998 6668544 22088759 5219070 5219070 9386665 4756263 11081213 8575341 ...
+ $ gasto_financiero        : int  3240559 1468298 1547666 35203208 2861773 2861773 647945 630568 20390274 542136 ...
+ $ costos_gastos_produccion: int  6846304 5941761 6996020 4175751 11037978 11037978 5445839 1622747 1843527 4002790 ...
+ $ gastos_adm_ventas       : num  2.29e+07 1.23e+07 2.56e+06 1.71e+08 1.37e+07 ...
+ $ inversion_AF            : int  4979745 5615593 773444 10501572 6423171 6423171 364272 265025 50853587 312822 ...
+ $ ventas                  : num  1.93e+08 1.16e+08 4.46e+07 1.63e+08 8.73e+07 ...
+</pre></div>
+</div>
+<p><strong>Código en R:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="boxplot">
+<h2>Boxplot:<a class="headerlink" href="#boxplot" title="Permalink to this headline">¶</a></h2>
+<p>Se crea el Boxplot para cada variable cuantitativa.</p>
+<p>La primera columna de los datos no es cuantitativa, es una variable
+cualitativa con los códigos CIIU de la DIAN.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ciiu'</li><li>'personal_mujer'</li><li>'personal_hombre'</li><li>'gasto_personal'</li><li>'gasto_financiero'</li><li>'costos_gastos_produccion'</li><li>'gastos_adm_ventas'</li><li>'inversion_AF'</li><li>'ventas'</li></ol><p>Las nueve variables se graficarán dentro de un ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> empezando
+en <code class="docutils literal notranslate"><span class="pre">2</span></code> porque la primera columna tiene la variable categórica de la
+DIAN.</p>
+<p>Para ingresar los nombres de las variables de forma automática se usa la
+función <code class="docutils literal notranslate"><span class="pre">paste()</span></code>, con la cual podemos indicar una función y arrojará
+el resultado como una etiqueta.</p>
+<p>Con los Boxplot podemos identificar los datos atípicos por cada variable
+y asimetrías.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nf">geom_boxplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="n">i</span><span class="p">]))</span> <span class="o">+</span>
+                <span class="nf">coord_flip</span><span class="p">()</span> <span class="o">+</span>
+                <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Encuesta nacional manufacturera&quot;</span><span class="p">,</span>
+                    <span class="n">subtitle</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">)[</span><span class="n">i</span><span class="p">]),</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Frecuencia absoluta&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_20_01.png"><img alt="../_images/output_20_01.png" src="../_images/output_20_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_1.png"><img alt="../_images/output_20_1.png" src="../_images/output_20_1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_2.png"><img alt="../_images/output_20_2.png" src="../_images/output_20_2.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_3.png"><img alt="../_images/output_20_3.png" src="../_images/output_20_3.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_4.png"><img alt="../_images/output_20_4.png" src="../_images/output_20_4.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_5.png"><img alt="../_images/output_20_5.png" src="../_images/output_20_5.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_6.png"><img alt="../_images/output_20_6.png" src="../_images/output_20_6.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_20_7.png"><img alt="../_images/output_20_7.png" src="../_images/output_20_7.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="histograma-con-kernel">
+<h2>Histograma con kernel:<a class="headerlink" href="#histograma-con-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Función de densidad Kernel:</p>
+<div class="math notranslate nohighlight">
+\[\hat{f_h} (x) = \frac{1}{nh} \sum {K \frac{x-x_i}{h}}\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(K\)</span> es la función Kernel.</p>
+<p>Para el Kernel Gaussiano <span class="math notranslate nohighlight">\(K\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[K(u) = \frac{1}{2 \pi}exp^{-\frac{u^2}{2}}\]</div>
+<p><span class="math notranslate nohighlight">\(h\)</span> es el ancho de banda. Entre más pequeño es <span class="math notranslate nohighlight">\(h\)</span>, mayor es
+el sobre ajuste y la curve es menos suavizada. En <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> la
+densidad Kernel se hace con <code class="docutils literal notranslate"><span class="pre">stat_density(kernel</span> <span class="pre">=</span> <span class="pre">&quot;gaussian&quot;)</span></code>. Para
+cambiar <span class="math notranslate nohighlight">\(h\)</span> se agrega el argumento <code class="docutils literal notranslate"><span class="pre">adjust</span> <span class="pre">=</span></code>, por defecto es
+<code class="docutils literal notranslate"><span class="pre">adjust</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p>Las asimetrías se observan más fácilmente en los histogramas. También,
+podemos identificar si los datos atípicos tienen alta o baja frecuencia.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span> <span class="o">+</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="n">i</span><span class="p">])</span> <span class="o">+</span>
+                <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">..density..</span><span class="p">),</span>
+                               <span class="n">bins</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span>
+                               <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;#F0FFFF&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nf">stat_density</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;gaussian&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;#707070&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+                <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Encuesta nacional manufacturera&quot;</span><span class="p">,</span>
+                    <span class="n">subtitle</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">)[</span><span class="n">i</span><span class="p">]),</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia absoluta&quot;</span><span class="p">,</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">)[</span><span class="n">i</span><span class="p">])))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_24_01.png"><img alt="../_images/output_24_01.png" src="../_images/output_24_01.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_1.png"><img alt="../_images/output_24_1.png" src="../_images/output_24_1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_2.png"><img alt="../_images/output_24_2.png" src="../_images/output_24_2.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_3.png"><img alt="../_images/output_24_3.png" src="../_images/output_24_3.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_4.png"><img alt="../_images/output_24_4.png" src="../_images/output_24_4.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_5.png"><img alt="../_images/output_24_5.png" src="../_images/output_24_5.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_6.png"><img alt="../_images/output_24_6.png" src="../_images/output_24_6.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_24_7.png"><img alt="../_images/output_24_7.png" src="../_images/output_24_7.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="matriz-de-dispersion">
+<h2>Matríz de dispersión:<a class="headerlink" href="#matriz-de-dispersion" title="Permalink to this headline">¶</a></h2>
+<p>La base de <code class="docutils literal notranslate"><span class="pre">R</span></code> tiene la función <code class="docutils literal notranslate"><span class="pre">pairs()</span></code> para construir matrices de
+dispersión.</p>
+<p>Recuerde que las variables cuantitativas están desde la columna 2 hasta
+la 9.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pairs</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span> <span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_27_0.png"><img alt="../_images/output_27_0.png" src="../_images/output_27_0.png" style="width: 420px; height: 420px;" /></a>
+<p>El paquete <code class="docutils literal notranslate"><span class="pre">GGally</span></code> es una extensión de <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> y se usa para
+crear la matríz de dispersión con la función <code class="docutils literal notranslate"><span class="pre">ggpairs()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">GGally</span></code> funciona en versiones superiores de 3.1 en <code class="docutils literal notranslate"><span class="pre">R</span></code> y versiones
+superiores de 3.3.4 en <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">packageVersion(&quot;ggplot2&quot;)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">R.version</span></code></p>
+<p>Después, instalar el paquete así: <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;GGally&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">GGally</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Registered</span> <span class="n">S3</span> <span class="n">method</span> <span class="n">overwritten</span> <span class="n">by</span> <span class="s1">&#39;GGally&#39;</span><span class="p">:</span>
+  <span class="n">method</span> <span class="kn">from</span>
+  <span class="o">+.</span><span class="n">gg</span>   <span class="n">ggplot2</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggpairs</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_30_0.png"><img alt="../_images/output_30_0.png" src="../_images/output_30_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="matriz-de-correlaciones">
+<h2>Matríz de correlaciones:<a class="headerlink" href="#matriz-de-correlaciones" title="Permalink to this headline">¶</a></h2>
+<p>La base de <code class="docutils literal notranslate"><span class="pre">R</span></code> tiene la función <code class="docutils literal notranslate"><span class="pre">cor()</span></code> para construir la matríz de
+correlación</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<table class="dataframe">
+<caption>A matrix: 8 × 8 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope=col>personal_mujer</th><th scope=col>personal_hombre</th><th scope=col>gasto_personal</th><th scope=col>gasto_financiero</th><th scope=col>costos_gastos_produccion</th><th scope=col>gastos_adm_ventas</th><th scope=col>inversion_AF</th><th scope=col>ventas</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>personal_mujer</th><td>1.00000000</td><td>0.45918261</td><td>0.5114733</td><td>0.05951392</td><td>0.1815275</td><td>0.0625563</td><td>0.04607581</td><td>0.05007149</td></tr>
+    <tr><th scope=row>personal_hombre</th><td>0.45918261</td><td>1.00000000</td><td>0.8495829</td><td>0.07267965</td><td>0.3534615</td><td>0.2558384</td><td>0.09931522</td><td>0.32545296</td></tr>
+    <tr><th scope=row>gasto_personal</th><td>0.51147327</td><td>0.84958291</td><td>1.0000000</td><td>0.16354049</td><td>0.6056747</td><td>0.4755711</td><td>0.12504179</td><td>0.53904261</td></tr>
+    <tr><th scope=row>gasto_financiero</th><td>0.05951392</td><td>0.07267965</td><td>0.1635405</td><td>1.00000000</td><td>0.1753652</td><td>0.1062969</td><td>0.08373504</td><td>0.08489441</td></tr>
+    <tr><th scope=row>costos_gastos_produccion</th><td>0.18152747</td><td>0.35346147</td><td>0.6056747</td><td>0.17536517</td><td>1.0000000</td><td>0.7237423</td><td>0.18938634</td><td>0.76599555</td></tr>
+    <tr><th scope=row>gastos_adm_ventas</th><td>0.06255630</td><td>0.25583836</td><td>0.4755711</td><td>0.10629691</td><td>0.7237423</td><td>1.0000000</td><td>0.13218655</td><td>0.97091339</td></tr>
+    <tr><th scope=row>inversion_AF</th><td>0.04607581</td><td>0.09931522</td><td>0.1250418</td><td>0.08373504</td><td>0.1893863</td><td>0.1321865</td><td>1.00000000</td><td>0.14171846</td></tr>
+    <tr><th scope=row>ventas</th><td>0.05007149</td><td>0.32545296</td><td>0.5390426</td><td>0.08489441</td><td>0.7659955</td><td>0.9709134</td><td>0.14171846</td><td>1.00000000</td></tr>
+</tbody>
+</table><p>Con el paquete <code class="docutils literal notranslate"><span class="pre">GGally</span></code> se puede crear una matríz de correlaciones
+aplicando la función <code class="docutils literal notranslate"><span class="pre">ggcorr()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggcorr</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_35_0.png"><img alt="../_images/output_35_0.png" src="../_images/output_35_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Usted puede buscar muchas formas para representar la matríz de
+correlaciones. Veamos el siguiente ejemplo:</p>
+<p>Función <code class="docutils literal notranslate"><span class="pre">corrplot()</span></code> de la librería con el mismo nombre.</p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;corrplot&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;corrplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corrplot</span> <span class="mf">0.92</span> <span class="n">loaded</span>
+</pre></div>
+</div>
+<p>Primero se crea la matríz de correlaciones con la función de la base de
+R llamada <code class="docutils literal notranslate"><span class="pre">cor()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">correlaciones</span> <span class="o">&lt;-</span> <span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">correlaciones</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;circle&quot;</span><span class="p">)</span>
+
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">correlaciones</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;pie&quot;</span><span class="p">)</span>
+
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">correlaciones</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;color&quot;</span><span class="p">)</span>
+
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">correlaciones</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_39_0.png"><img alt="../_images/output_39_0.png" src="../_images/output_39_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_39_1.png"><img alt="../_images/output_39_1.png" src="../_images/output_39_1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_39_2.png"><img alt="../_images/output_39_2.png" src="../_images/output_39_2.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/output_39_3.png"><img alt="../_images/output_39_3.png" src="../_images/output_39_3.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Generalidades del Mercado Colombiano/index.html" class="btn btn-neutral float-right" title="Generalidades del Mercado Colombiano" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Análisis multivariado de datos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
