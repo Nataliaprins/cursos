@@ -12,6 +12,7 @@ En esta sesión se explicará la librería ggplot2 y algunos gráficos para el a
    Tipos de gráficos/Tipos de gráficos.rst
    Gráficos para series de tiempo/Gráficos para series de tiempo.rst
    Práctica ggplot2/Práctica ggplot2.rst
+   Taller análisis gráfico/Taller análisis gráfico.rst
    
     
 
@@ -33,4 +34,7 @@ En esta sesión se explicará la librería ggplot2 y algunos gráficos para el a
 
 
     * **Descargue** :download:`creditos_otorgados_a_microempresarios.csv <creditos_otorgados_a_microempresarios.csv>` para la práctica de ggplot2.
+
+
+    * **Descargue** :download:`Estados_financieros_Supersociedades2020.csv <Estados_financieros_Supersociedades2020.csv>` para el taller.
 

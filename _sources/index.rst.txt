@@ -20,7 +20,6 @@ natalia.acevedop@udea.edu.co
    ggplot2/index
    Regresión lineal/index
 
-
 .. toctree::
    :maxdepth: 1
    :caption: Análisis exploratorio de datos:
