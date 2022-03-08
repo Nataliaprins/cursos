@@ -1,0 +1,24 @@
+Análisis Factorial
+==========================================================
+
+En esta sesión se explicará el método de Análisis Factorial (AF).
+
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Análisis factorial/Teoría Análisis Factorial.rst
+   Pruebas para el Análisis Factorial/Pruebas para el Análisis Factorial.rst
+   
+
+
+
+.. important::
+    Archivos para trabajar esta sesión:
+
+    * **Descargue** :download:`EAM_2019.csv <EAM_2019.csv>`
+
+
+    * **Descargue** :download:`Estados_financieros_Supersociedades2020.csv <Estados_financieros_Supersociedades2020.csv>`

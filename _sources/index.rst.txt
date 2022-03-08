@@ -26,6 +26,8 @@ natalia.acevedop@udea.edu.co
    
    Análisis gráfico/index
    Análisis multivariado de datos/index
+   Análisis de componentes principales/index
+   Análisis factorial/index
 
 
 

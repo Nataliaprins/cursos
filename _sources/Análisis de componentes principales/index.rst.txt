@@ -1,0 +1,27 @@
+Análisis de componentes principales
+==========================================================
+
+En esta sesión se explicará el método de reducción de dimensionalidad llamado Análisis de Componentes Principales (ACP).
+
+Recomiendo primero repasar los siguiente conceptos del Álgebra Lineal: combinaciones lineales, Determinantes, valores y vectores propios. 
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Repaso álgebra lineal/Repaso Álgebra Lineal.rst
+   ACP/Análisis de Componentes Principales.rst
+   Ejemplo ACP en R/Ejemplo de ACP en R.rst
+   
+    
+
+
+
+.. important::
+    Archivos para trabajar esta sesión:
+
+    * **Descargue** :download:`EAM_2019.csv <EAM_2019.csv>`
+
+
+    * **Descargue** :download:`Estados_financieros_Supersociedades2020.csv <Estados_financieros_Supersociedades2020.csv>`
