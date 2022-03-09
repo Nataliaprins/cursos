@@ -17,8 +17,24 @@ variables observadas las que se hipotetizan como combinaciones lineales
 de factores subyacentes hipotéticos. Mientras que la prioridad del ACP
 era explicar la mayor cantidad posible de la varianza total de las
 variables, la prioridad del Análisis Factorial es explicar la covarianza
-o correlación, o más generalmente, la similitud entre las variables
-(comunalidades).
+o correlación, o más generalmente, la similitud entre las variables.
+
+Específicamente, en el Análisis Factorial podemos buscar variables que
+se encuentren correlacionadas entre sí, para determinar que pertenecen a
+algún grupo.
+
+La relación entre variables es expresada por el *:math:`r^2`*
+coeficiente de determinación que sería la correlación de Pearson al
+cuadrado, esto explica la varianza común o conjunta, es decir, si dos
+variables tienen un 0.9 de correlación su varianza conjunta será:
+
+.. math:: r^2=(0.9)^2= 0.81
+
+Para analizar solo las varianzas comunes de las variables, se debe
+sustituir de la matriz de correlaciones los :math:`1` que se muestran en
+la diagonal, por las varianzas en común que cada ítem con los demás. A
+este proceso se le conoce como estimación de las comunalidades, y no hay
+un cálculo único para hacerlo.
 
 Si le damos un vistazo a la siguiente salida de un Análisis Factorial de
 algunas variables, podremos observar lo expresado:
@@ -55,6 +71,13 @@ gráfico. Con respecto a las demás variables se puede decir que no
 explican la suficiente correlación o covarianza a ninguno de los
 factores (podrían ser descartables o a decisión del investigador
 ingresarlas al factor que mayor relación tenga).
+
+Para tener mas clara la interpretación dentro de los factores, podemos
+decir que **los pesos pueden ser grandes o pequeños, positivos o
+negativos y en cada factor serán los pesos grandes los que definen al
+factor, sin importar su relación**, es decir que en la matriz de carga
+de los factores aquellos con mayor valor absoluto serán los que definan
+el factor.
 
 El modelo tradicionalmente asumido en la mayoría de los trabajos
 analíticos factoriales exploratorios es el siguiente, generalmente
@@ -185,14 +208,17 @@ de la matriz de correlación, un estimador apropiado es
 Donde :math:`ss_{ii}` es ahora el i-ésimo elemento diagonal de
 :math:`S`.
 
+La principal desventaja de este modelo es que en ocasiones no
+proporciona convergencia ni una solución para los factores, sobre todo
+si se trata de muestras pequeñas.
+
 También están disponibles otras formas de estimar las comunalidades; sin
 embargo, el punto clave a retener es el concepto de que estos números se
 estiman como un “punto de partida” para realizar el análisis factorial.
 Las comunalidades estimadas, en cierto sentido, inician el procedimiento
 analítico factorial.
 
-Método de extracción: Maxima Verosimilitud
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Método de extracción: Máxima Verosimilitud:**
 
 Uno de los métodos más comunes para estimar parámetros en el contexto
 del Análisis Factorial es el de estimación por máxima verosimilitud.
@@ -206,6 +232,22 @@ verosimilitud, por tanto, el estimador correcto en este caso está dado
 por:
 
 .. math::  F_{ML}=ln|\Lambda \Lambda'+ \Psi|+tr(S|\Lambda \Lambda'+\Psi|^{−1}) −ln |S| −p 
+
+**Comparación de los métodos de extracción:**
+
+Algunos aspectos a tener en cuenta cuando se debe elegir el metodo de
+extracción son los siguientes:
+
+-  Cuando existen comunalidades altas :math:`(>0,6)` todas las técnicas
+   de extracción tienden a expresar la misma solución
+-  Cuando las comunalidades son bajas el ACP tiende a brindar solución
+   diferente al resto.
+-  Cuando existe un numero alto de variables :math:`(>30)` las
+   comunalidades influyen menos, así que todos los métodos tienen a dar
+   la misma solución
+-  Si el número de variables es bajo afectará la comunalidad por lo que
+   dependará del método de estimación. \*. Siempre será mas robusto
+   utilizar un modelo
 
 Metodos de rotación de factores:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -260,8 +302,7 @@ quisiera rotar en el sentido horario, se multiplicaría por
      senθ & cosθ
     \end{bmatrix} 
 
-Método de rotación VARIMAX y QUARTIMAX:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Método de rotación VARIMAX y QUARTIMAX:**
 
 Existen numerosos métodos para rotar los factores, sin embargo, los más
 utilizados son varimax y quartimax, ya que ambos son rotaciones
@@ -306,15 +347,22 @@ Ahora la suma es a través de los factores :math:`j = 1` a través de m.
 :math:`Q` en este caso impulsa cargas a través de factores hacia 0 o
 \|1\| en una matriz de correlación en lugar de dentro de los factores.
 
-Procedimiento para aplicar Análisis Facorial:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Procedimiento para aplicar Análisis Factorial:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La metodología a seguirse puede resumirse en la siguiente figura:
+
+.. figure:: Procedimiento.png
+   :alt: Procedimiento
+
+   Procedimiento
 
 Con la ayuda de cualquier paquete estadístico, es posible ajustar un
 modelo de Análisis Factorial exploratorio, para ello, se deben realizar
 algunas pruebas iniciales de correlación que permitirán asegurar que el
 modelo es aplicable a un conjunto de datos específico.
 
-**1. Matriz de correlación:**
+**1. Análisis de la Matriz de correlación:**
 
 Como ya lo analizamos anteriormente, de la matriz de correlaciones,
 podemos identificar rápidamente si existen relaciones relevantes o no,
@@ -326,7 +374,7 @@ variables, sino por factores.
 Si las correlaciones son bastante pequeñas por ejemplo inferiores a 0,10
 a 0,20, es posible que no valga la pena realizar el análisis.
 
-**2. Bartlett Test:**
+**1.1. Bartlett Test:**
 
 Con el fin de evaluar si las magnitudes de las correlaciones son
 suficiente para el Análisis Factorial, se recomienda hacer una prueba de
@@ -348,7 +396,7 @@ Hipótesis:
 
 .. math::  H_1: = Correlación \neq I 
 
-**3. Kaiser- Meyer- Olkin Test:**
+**1.2. Kaiser- Meyer- Olkin Test:**
 
 Este test es una relación entre la suma de las correlaciones al cuadrado
 y las correlaciones parciales al cuadrados Por lo general, se prefieren
@@ -362,7 +410,7 @@ de preocupación. Esto es:
 
 .. math::  KMO >= 0,7, Ideal 
 
-**4. Extracción de comunalidades:**
+**2. Extracción de comunalidades:**
 
 AL extraer las comunalidades tendremos una medida de cuánto tiene en
 común la variable observada dada, con los factores derivados, después de
@@ -376,9 +424,49 @@ naturaleza de un factor, generalmente buscamos variables observadas que
 tengan correlaciones de magnitud relativamente alta con el factor dado.
 Nos podemos ayudar del Scree plot.
 
+**3. Determinación del número de factores:**
+
+Determinar el numero de factores puede ser complejo ya que en primer
+lugar se trata de cumplir con el criterio de parsimonia, pero, asu vez
+se pretende captar la mayor información posible, por ello podemos elegir
+el criterio para determinar el número de factores, desde un punto de
+vista teórico o hacia criterios mas robustos.
+
+**Criterios:**
+
+-  A priori
+-  Regla Kaiser
+-  Porcentaje de Varianza
+-  Sedimentación (scree plot)
+
+**4.Interpretar los factores:**
+
+Para esto se identifican las variables cuyas correlaciones con el factor
+son mas elevada, en valor absoluto.
+
+Se debe intentar dar un nombre a los factores.
+
+Se puede hacer una representación gráfica de los factores con sus
+correlaciones.
+
+Y se pueden eliminar aquellas cargas factoriales bajas para evitar
+información redundante.
+
 **5. Rotar la matriz:**
 
 Como ya lo vimos anteriormente, luego de extraer los factores, para
 convertir en un modelo interpretable y brindarle el máximo de
 variabilidad los factores, debe rotarse la matriz con alguno de los
 criterios explicados Varimax y Quartimax.
+
+**6. Calcular las puntuaciones factoriales:**
+
+Una vez calculados los factores rotados , se procede a calcular las
+matices de puntuaciones factoriales.
+
+**7. Validar el modelo:**
+
+Realizar pruebas de bondad de ajuste donde la :math:`H_0` implica que la
+correlación observada entre las variables puede atribuirse a factores
+comunes es decir, que el número de factores son apropiados para explicar
+las varianzas originales.

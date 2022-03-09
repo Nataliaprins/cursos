@@ -9,8 +9,8 @@ En esta sesión se explicará el método de Análisis Factorial (AF).
    :maxdepth: 1
    :titlesonly:
 
-   Análisis factorial/Teoría Análisis Factorial.rst
-   Pruebas para el Análisis Factorial/Pruebas para el Análisis Factorial.rst
+   Teoría Análisis Factorial/Teoría Análisis Factorial.rst
+   Análisis Factorial/Análisis Factorial.rst
    
 
 
