@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Análisis multivariado de datos/index.html">Análisis multivariado de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Análisis de componentes principales/index.html">Análisis de componentes principales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Análisis factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clustering/index.html">Clustering</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
@@ -375,7 +376,7 @@ anidados con este.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/output_34_0.png" src="../_images/output_34_0.png" />
+<img alt="../_images/output_34_01.png" src="../_images/output_34_01.png" />
 <p>Se podría evaluar modelos más complejos hasta el ARIMA(7,1,7).</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_ar_5_i_1_ma_5</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">datos</span><span class="o">.</span><span class="n">Precio</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">results_ar_5_i_1_ma_5</span> <span class="o">=</span> <span class="n">model_ar_5_i_1_ma_5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">start_ar_lags</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
@@ -495,7 +496,7 @@ anidados con este.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/output_40_0.png" src="../_images/output_40_0.png" />
+<img alt="../_images/output_40_01.png" src="../_images/output_40_01.png" />
 </div>
 <div class="section" id="integracion-d">
 <h2>Integración <span class="math notranslate nohighlight">\(d\)</span><a class="headerlink" href="#integracion-d" title="Permalink to this headline">¶</a></h2>
