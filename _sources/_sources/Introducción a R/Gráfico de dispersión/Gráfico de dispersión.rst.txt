@@ -1,0 +1,344 @@
+Gráfico de dispersión
+---------------------
+
+.. code:: r
+
+    datos = read.csv("Datos.csv", sep = ";", dec = ",", header = T)
+    datos
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 8 × 5</caption>
+    <thead>
+    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    	<tr><td>Antonio</td><td>45</td><td>M</td><td>180.0</td><td>4</td></tr>
+    	<tr><td>Alicia </td><td> 1</td><td>F</td><td> 15.7</td><td>1</td></tr>
+    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+    </tbody>
+    </table>
+    
+
+
+Función Plot()
+~~~~~~~~~~~~~~
+
+La función más básica en R para graficar es ``plot()``.
+
+.. code:: r
+
+    # Con una variable
+    
+    plot(datos$Edad)
+
+
+
+.. image:: output_4_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    # Con dos variables: X = Edad, y = Peso
+    
+    plot(datos$Edad, datos$Peso)
+
+
+
+.. image:: output_5_0.png
+   :width: 420px
+   :height: 420px
+
+
+Argumentos de la función plot()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``plot(x, y, …)``
+
+-  ``main`` - Título.
+
+-  ``sub`` - Subítulo.
+
+-  ``xlab`` - nombre la X.
+
+-  ``ylab`` - nombre la y.
+
+.. code:: r
+
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        sub = "El subtítulo")
+
+
+
+.. image:: output_9_0.png
+   :width: 420px
+   :height: 420px
+
+
+``type`` o ``t``:
+
+-  ``= "p"`` - Puntos (por defecto).
+
+-  ``= "l"`` - Líneas (útil para series de tiempo).
+
+-  ``= "b"`` - Puntos y líneas separados.
+
+-  ``= "o"`` - Puntos y líneas no separados.
+
+-  ``= "s"`` - Escaleras.
+
+-  ``= "h"`` - estilo histograma.
+
+-  ``= "n"`` - Gráfico vacío.
+
+Colores:
+^^^^^^^^
+
+El argumento es ``col`` y color se puede especificar de la siguiente
+forma:
+
+-  Con números.
+
+-  Con el nombre en inglés del color y entre comillas.
+
+-  Con el valor HEX, por ejemplo, ``col = "#0000FF"``.
+
+-  Con el RGB, por ejemplo, ``col = rgb(0, 0, 1)``.
+
+.. code:: r
+
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        sub = "El subtítulo",
+        t = "h",     
+        col = 42)    
+
+
+
+.. image:: output_12_0.png
+   :width: 420px
+   :height: 420px
+
+
+``pch``: Modifica los puntos con los siguientes símbolos.
+
+.. figure:: plot-pch.png
+   :alt: pch
+
+   pch
+
+El tamaño de los símbolos se cambian con ``cex``. El tamaño de los
+símbolos del 15 al 18 se cambia con ``lwd``.
+
+``bg`` - Para cambiar el color del fondo de los símbolos.
+
+``lwd`` - También sirve para el ancho del borde de los símbolos.
+
+.. code:: r
+
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        pch = 24,         # Símbolo
+        cex = 3,          # Tamaño del símbolo
+        col = "darkred",  # Color del borde
+        bg = "darkgray",  # Color del fondo
+        lwd = 4)          # Ancho del borde
+
+
+
+.. image:: output_17_0.png
+   :width: 420px
+   :height: 420px
+
+
+Límites de los ejes:
+^^^^^^^^^^^^^^^^^^^^
+
+Sirven para acercar o alejar el gráfico.
+
+-  ``ylim = c(mínimo, máximo)`` - Para el rango del eje y.
+
+-  ``xlim = c(mínimo, máximo)`` - Para el rango del eje X.
+
+.. code:: r
+
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        pch = 24,         
+        cex = 3,          
+        col = "darkred",  
+        bg = "darkgray",  
+        lwd = 4,
+        ylim = c(-100, 150),
+        xlim = c(0, 100))          
+
+
+
+.. image:: output_19_0.png
+   :width: 420px
+   :height: 420px
+
+
+Color de fondo:
+^^^^^^^^^^^^^^^
+
+El color de fondo por defecto es ``"white"``, pero se puede modificar
+con ``par(bg = color)``.
+
+.. code:: r
+
+    par(bg = "#f7f7f7")    # Fondo gris
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        pch = 24,         
+        cex = 3,          
+        col = "darkred",  
+        bg = "darkgray",  
+        lwd = 4,
+        ylim = c(-100, 150),
+        xlim = c(0, 100))   
+
+
+
+.. image:: output_21_0.png
+   :width: 420px
+   :height: 420px
+
+
+Añadir líneas o curvas:
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Se agrega una línea de código de ``lines()``
+
+-  ``lwd`` - Grosor de la línea (del 1 al 6).
+
+-  ``lty`` - Tipo de línea (del 1 al 6).
+
+.. code:: r
+
+    par(bg = "#f7f7f7") 
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        pch = 24,         
+        cex = 3,          
+        col = "darkred",  
+        bg = "darkgray",  
+        lwd = 4,
+        ylim = c(-100, 150),
+        xlim = c(0, 100))   
+    lines(0:100, -100:0, lwd = 2, col = "green")
+    lines(0:100, 10:110, lwd = 2, col = "darkblue", lty = 3)
+
+
+
+.. image:: output_23_0.png
+   :width: 420px
+   :height: 420px
+
+
+Leyenda:
+^^^^^^^^
+
+Se agrega una línea de código de ``legend()``
+
+-  ``"top"`` - Ubicación de la leyenda arriba.
+
+-  ``"bottom"`` - Ubicación de la leyenda abajo.
+
+-  ``"topleft"`` - Ubicación de la leyenda arriba a la izquierda.
+
+-  ``"topright"`` - Ubicación de la leyenda arriba a la derecha.
+
+-  ``"bottomleft"`` - Ubicación de la leyenda abajo a la izquierda.
+
+-  ``"bottomright"`` - Ubicación de la leyenda abajo a la derecha.
+
+.. code:: r
+
+    par(bg = "#f7f7f7") 
+    plot(datos$Edad, datos$Peso, main = "El título",
+        xlab = "Edad",
+        ylab = "Peso",
+        pch = 24,         
+        cex = 3,          
+        col = "darkred",  
+        bg = "darkgray",  
+        lwd = 4,
+        ylim = c(-100, 150),
+        xlim = c(0, 100))   
+    lines(0:100, -100:0, lwd = 2, col = "green")
+    lines(0:100, 10:110, lwd = 2, col = "darkblue")
+    legend("bottomright", c("Línea verde", "Línea azul"), 
+           lty = c(1, 3), 
+           lwd = c(3, 3), 
+           col = c("green", "darkblue"))
+
+
+
+.. image:: output_25_0.png
+   :width: 420px
+   :height: 420px
+
+
+Dividir la ventana de gráficos:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se usa la función ``layout()`` especificando como matriz la cantidad de
+particiones. Se finaliza con ``layout.show()``.
+
+Para devolver la ventana de gráficos en una sola (por defecto) se usa
+``dev.off()``.
+
+.. code:: r
+
+    layout(matrix(c(1:4), 2,2))
+    layout.show(4) # Muestra las cuatro particiones
+
+
+
+.. image:: output_27_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    layout(matrix(c(1:2), 2,1))
+    layout.show(2) # Muestra las dos particiones
+
+
+
+.. image:: output_28_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    layout(matrix(c(1:2), 1,2))
+    layout.show(2) # Muestra las dos particiones
+
+
+
+.. image:: output_29_0.png
+   :width: 420px
+   :height: 420px
+

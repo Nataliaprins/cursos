@@ -1,0 +1,1114 @@
+Introducción a la programación en R
+-----------------------------------
+
+Tipos de datos:
+^^^^^^^^^^^^^^^
+
+Las variables pueden almacenar datos de diferentes tipos. En R las
+variables no necesitan ser declaradas con cualquier tipo, incluso las
+variables pueden cambiar de tipo.
+
+**Tipos de datos básicos:**
+
+``numeric`` - (27, 03, 1990, 31.88, 32.10) - números reales.
+
+``integer`` - (100, 1, 25800, 24, 33) - número enteros (subset de
+``numeric``)
+
+``character`` - (“Alicia”, “programación”, “h”) - cadenas de texto -
+``string``. Están entre ``" "``
+
+``logical`` - (``TRUE``, ``FALSE``, ``TRUE``, ``TRUE``, ``FALSE``) -
+solo tiene dos posibles elementos ``TRUE`` y ``FALSE``. Es un tipo de
+datos ``boolean``. Note que no están entre ``" "``
+
+Con la función ``class()`` determinamos el tipo de datos y las
+siguientes funciones arrojan como resultado ``TRUE`` o ``FALSE`` al
+preguntar el tipo dato de una variable:
+
+``is.numeric()``
+
+``is.integer()``
+
+``is.character()``
+
+``is.logical()``
+
+Numeric:
+^^^^^^^^
+
+.. code:: r
+
+    x <- 22.5
+    print(x)
+
+
+.. parsed-literal::
+
+    [1] 22.5
+    
+
+.. code:: r
+
+    class(x)
+
+
+
+.. raw:: html
+
+    'numeric'
+
+
+.. code:: r
+
+    is.numeric(x)
+    
+    is.integer(x)
+    
+    is.character(x)
+    
+    is.logical(x)
+
+
+
+.. raw:: html
+
+    TRUE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+Character o String:
+^^^^^^^^^^^^^^^^^^^
+
+.. code:: r
+
+    x <- "Esta es una línea de código"
+    print(x)
+
+
+.. parsed-literal::
+
+    [1] "Esta es una línea de código"
+    
+
+.. code:: r
+
+    class(x)
+
+
+
+.. raw:: html
+
+    'character'
+
+
+.. code:: r
+
+    is.numeric(x)
+    
+    is.integer(x)
+    
+    is.character(x)
+    
+    is.logical(x)
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    TRUE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+Logical o Boolean:
+^^^^^^^^^^^^^^^^^^
+
+.. code:: r
+
+    x <- TRUE
+    print(x)
+
+
+.. parsed-literal::
+
+    [1] TRUE
+    
+
+.. code:: r
+
+    class(x)
+
+
+
+.. raw:: html
+
+    'logical'
+
+
+.. code:: r
+
+    is.numeric(x)
+    
+    is.integer(x)
+    
+    is.character(x)
+    
+    is.logical(x)
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    FALSE
+
+
+
+.. raw:: html
+
+    TRUE
+
+
+Se puede convertir un tipo de dato a otro con las siguientes funciones:
+
+``as.numeric()``
+
+``as.integer()``
+
+.. code:: r
+
+    x <- 50.8
+    a <- as.integer(x)
+    print(a)
+
+
+.. parsed-literal::
+
+    [1] 50
+    
+
+.. code:: r
+
+    x <- FALSE
+    a <- as.numeric(x)
+    print(a)
+
+
+.. parsed-literal::
+
+    [1] 0
+    
+
+``0`` es Falso.
+
+``1`` es verdadero.
+
+.. code:: r
+
+    x <- TRUE
+    a <- as.numeric(x)
+    print(a)
+
+
+.. parsed-literal::
+
+    [1] 1
+    
+
+Operaciones matemáticas en R:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+R puede ser usado como calculadora:
+
+``+`` - suma
+
+``-`` - resta
+
+``*`` - multiplicación
+
+``/`` - división
+
+``^`` - potencia
+
+``**`` - potencia
+
+``sqrt`` - raíz cuadrada.
+
+``max`` - extraer el máximo de un conjunto de datos.
+
+``min`` - extraer el mínimo de un conjunto de datos.
+
+``abs`` - valor absoluto (positivo) de un número.
+
+``ceiling`` - redondea un número al entero de arriba.
+
+``floor`` - redondea un número al entero de abajo.
+
+Operadores de comparación:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Se usan para comparar dos valores.
+
+======== ================= ==========
+Operador Nombre            Ejemplo
+======== ================= ==========
+``==``   Igual             ``x == y``
+``!=``   No igual          ``x != y``
+``>``    Mayor que         ``x > y``
+``<``    Menor que         ``x < y``
+``>=``   Mayor o igual que ``x >= y``
+``<=``   Menor o igual que ``x <= y``
+======== ================= ==========
+
+Operadores lógicos:
+^^^^^^^^^^^^^^^^^^^
+
+Se usan para combinar dos declaraciones.
+
+``&`` - AND
+
+``|`` - OR
+
+``!`` - NOT
+
+Estructuras de datos
+^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: scal_vec.png
+   :alt: Vector
+
+   Vector
+
+Vectores
+^^^^^^^^
+
+Son una lista de elementos que son del mismo tipo.
+
+Para crear un vector a partir de una lista de elementos se usa la
+función ``c()`` y cada elemento se debe separar por ``,``
+
+.. code:: r
+
+    numeros <- c(80, 15, 50)
+    print(numeros) # con la función print() aparece el index
+
+
+.. parsed-literal::
+
+    [1] 80 15 50
+    
+
+.. code:: r
+
+    otros_numeros <- 1:5
+    print(otros_numeros)
+
+
+.. parsed-literal::
+
+    [1] 1 2 3 4 5
+    
+
+.. code:: r
+
+    ciudades <- c("Medellín", "Cali", "Barranquilla", "Santa Marta")
+    print(ciudades) 
+
+
+.. parsed-literal::
+
+    [1] "Medellín"     "Cali"         "Barranquilla" "Santa Marta" 
+    
+
+.. code:: r
+
+    logico <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+    print(logico)
+
+
+.. parsed-literal::
+
+    [1]  TRUE FALSE FALSE  TRUE  TRUE
+    
+
+.. code:: r
+
+    a <- c("Hola, mi número es:", 1254)
+    print(a)
+
+
+.. parsed-literal::
+
+    [1] "Hola, mi número es:" "1254"               
+    
+
+Convirtió el número en string.
+
+.. code:: r
+
+    class(a)
+
+
+
+.. raw:: html
+
+    'character'
+
+
+Para saber la cantidad de elementos en un vector se usa la función
+``length()``
+
+.. code:: r
+
+    length(numeros)
+    
+    length(otros_numeros)
+    
+    length(ciudades)
+    
+    length(logico)
+    
+    length(a)
+
+
+
+.. raw:: html
+
+    3
+
+
+
+.. raw:: html
+
+    5
+
+
+
+.. raw:: html
+
+    4
+
+
+
+.. raw:: html
+
+    5
+
+
+
+.. raw:: html
+
+    2
+
+
+Para ordenar numéricamente o alfabéticamente los elementos de un vector
+se usa la función ``sort()``
+
+.. code:: r
+
+    sort(numeros)
+    sort(otros_numeros)
+    sort(ciudades)
+    sort(logico)
+    sort(a)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>15</li><li>50</li><li>80</li></ol>
+    
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ol>
+    
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'Barranquilla'</li><li>'Cali'</li><li>'Medellín'</li><li>'Santa Marta'</li></ol>
+    
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>TRUE</li></ol>
+    
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'1254'</li><li>'Hola, mi número es:'</li></ol>
+    
+
+
+Para acceder a los elementos de un vector se usa el número de index
+entre ``[]``. En R el primer index es 1, en Python es 0.
+
+.. code:: r
+
+    ciudades[1]
+
+
+
+.. raw:: html
+
+    'Medellín'
+
+
+.. code:: r
+
+    # elementos entre el 1 y el 3
+    
+    ciudades[1:3]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'Medellín'</li><li>'Cali'</li><li>'Barranquilla'</li></ol>
+    
+
+
+.. code:: r
+
+    # solo los elementos 1 y 3
+    
+    ciudades[c(1,3)]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'Medellín'</li><li>'Barranquilla'</li></ol>
+    
+
+
+.. code:: r
+
+    # Todos los elementos exepto el primero
+    
+    ciudades[c(-1)]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'Cali'</li><li>'Barranquilla'</li><li>'Santa Marta'</li></ol>
+    
+
+
+.. code:: r
+
+    # Todos los elementos exepto el tercero
+    
+    ciudades[c(-3)]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'Medellín'</li><li>'Cali'</li><li>'Santa Marta'</li></ol>
+    
+
+
+.. code:: r
+
+    # Para cambiar el valor de un elemento
+    
+    ciudades[1] <- "Rionegro"
+    print(ciudades)
+
+
+.. parsed-literal::
+
+    [1] "Rionegro"     "Cali"         "Barranquilla" "Santa Marta" 
+    
+
+.. figure:: mat_array.png
+   :alt: Matríz-Array
+
+   Matríz-Array
+
+Matrices
+^^^^^^^^
+
+Un matriz es un conjunto de datos de dos dimensiones con filas y
+columnas.
+
+Para crear una matriz se usa la función ``matrix()`` y se especifica la
+cantidad de filas ``nrow``\ y de columnas ``ncol``.
+
+.. code:: r
+
+    matriz <- matrix(1:6, nrow = 3, ncol = 2)
+    print(matriz)
+
+
+.. parsed-literal::
+
+         [,1] [,2]
+    [1,]    1    4
+    [2,]    2    5
+    [3,]    3    6
+    
+
+.. code:: r
+
+    otra_matriz <- matrix(1:18, 6, 3) # no se usaron nrow y ncol
+    print(otra_matriz)
+
+
+.. parsed-literal::
+
+         [,1] [,2] [,3]
+    [1,]    1    7   13
+    [2,]    2    8   14
+    [3,]    3    9   15
+    [4,]    4   10   16
+    [5,]    5   11   17
+    [6,]    6   12   18
+    
+
+.. code:: r
+
+    otra_matriz <- matrix(1:18, nrow=2) # los 18 valores los organiza en dos filas
+    print(otra_matriz)
+
+
+.. parsed-literal::
+
+         [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+    [1,]    1    3    5    7    9   11   13   15   17
+    [2,]    2    4    6    8   10   12   14   16   18
+    
+
+.. code:: r
+
+    otra_matriz <- matrix(1:18, ncol=6) # los 18 valores los organiza en seis columnas
+    print(otra_matriz)
+
+
+.. parsed-literal::
+
+         [,1] [,2] [,3] [,4] [,5] [,6]
+    [1,]    1    4    7   10   13   16
+    [2,]    2    5    8   11   14   17
+    [3,]    3    6    9   12   15   18
+    
+
+.. code:: r
+
+    frutas <- matrix(c("manzana", "pera", "banano", "fresa", "uva", "piña"), 3, 2)
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]      [,2]   
+    [1,] "manzana" "fresa"
+    [2,] "pera"    "uva"  
+    [3,] "banano"  "piña" 
+    
+
+Para acceder a los elementos de una matriz se ``[ , ]``. En el primer
+campo se especifica la posición de las filas y las columnas en el
+segundo.
+
+.. code:: r
+
+    frutas[2, 1]
+
+
+
+.. raw:: html
+
+    'pera'
+
+
+.. code:: r
+
+    # Todos los elementos de la fila 2
+    
+    frutas[2,] 
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'pera'</li><li>'uva'</li></ol>
+    
+
+
+.. code:: r
+
+    # Todos los elementos de la columna 1
+    
+    frutas[,1] 
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'manzana'</li><li>'pera'</li><li>'banano'</li></ol>
+    
+
+
+.. code:: r
+
+    # Filas entre la 2 y la 3 con todas las columnas
+    
+    print(frutas[2:3,])
+
+
+.. parsed-literal::
+
+         [,1]     [,2]  
+    [1,] "pera"   "uva" 
+    [2,] "banano" "piña"
+    
+
+.. code:: r
+
+    # Solo filas 1 y 3 con todas las columnas
+    
+    print(frutas[c(1,3),])
+
+
+.. parsed-literal::
+
+         [,1]      [,2]   
+    [1,] "manzana" "fresa"
+    [2,] "banano"  "piña" 
+    
+
+Note que el resultado es otra matriz de 2x2.
+
+Agregar filas y columnas
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se usa la función ``cbind()`` para adicionar columnas en una matriz.
+
+Se usa la función ``rbind()`` para adicionar filas en una matriz.
+
+.. code:: r
+
+    frutas <- cbind(frutas, c("cereza", "mango", "sandia"))
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]      [,2]    [,3]    
+    [1,] "manzana" "fresa" "cereza"
+    [2,] "pera"    "uva"   "mango" 
+    [3,] "banano"  "piña"  "sandia"
+    
+
+.. code:: r
+
+    frutas <- rbind(frutas, c("limon", "mora", "naranja"))
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]      [,2]    [,3]     
+    [1,] "manzana" "fresa" "cereza" 
+    [2,] "pera"    "uva"   "mango"  
+    [3,] "banano"  "piña"  "sandia" 
+    [4,] "limon"   "mora"  "naranja"
+    
+
+.. code:: r
+
+    frutas <- cbind(frutas, "frutas")
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]      [,2]    [,3]      [,4]    
+    [1,] "manzana" "fresa" "cereza"  "frutas"
+    [2,] "pera"    "uva"   "mango"   "frutas"
+    [3,] "banano"  "piña"  "sandia"  "frutas"
+    [4,] "limon"   "mora"  "naranja" "frutas"
+    
+
+.. code:: r
+
+    frutas <- rbind(frutas, "frutas")
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]      [,2]     [,3]      [,4]    
+    [1,] "manzana" "fresa"  "cereza"  "frutas"
+    [2,] "pera"    "uva"    "mango"   "frutas"
+    [3,] "banano"  "piña"   "sandia"  "frutas"
+    [4,] "limon"   "mora"   "naranja" "frutas"
+    [5,] "frutas"  "frutas" "frutas"  "frutas"
+    
+
+Remover filas y columnas
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Para eliminar filas y columnas se usa ``-`` y el número de la fila o
+columna a eliminar
+
+.. code:: r
+
+    frutas <- frutas[-1, -1]
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]     [,2]      [,3]    
+    [1,] "uva"    "mango"   "frutas"
+    [2,] "piña"   "sandia"  "frutas"
+    [3,] "mora"   "naranja" "frutas"
+    [4,] "frutas" "frutas"  "frutas"
+    
+
+.. code:: r
+
+    frutas <- frutas[-3,]
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]     [,2]     [,3]    
+    [1,] "uva"    "mango"  "frutas"
+    [2,] "piña"   "sandia" "frutas"
+    [3,] "frutas" "frutas" "frutas"
+    
+
+.. code:: r
+
+    frutas <- frutas[,-2]
+    print(frutas)
+
+
+.. parsed-literal::
+
+         [,1]     [,2]    
+    [1,] "uva"    "frutas"
+    [2,] "piña"   "frutas"
+    [3,] "frutas" "frutas"
+    
+
+Dimensión de una matriz
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Para conocer el número de filas y columnas se usa la función ``dim()``.
+
+``length()`` muestra la cantidad de elementos.
+
+``nrow()`` muestra la cantidad de filas.
+
+``ncol()`` muestra la cantidad de columnas.
+
+.. code:: r
+
+    dim(otra_matriz)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>3</li><li>6</li></ol>
+    
+
+
+.. code:: r
+
+    length(otra_matriz)
+
+
+
+.. raw:: html
+
+    18
+
+
+.. code:: r
+
+    nrow(otra_matriz)
+
+
+
+.. raw:: html
+
+    3
+
+
+.. code:: r
+
+    ncol(otra_matriz)
+
+
+
+.. raw:: html
+
+    6
+
+
+Data Frame
+^^^^^^^^^^
+
+Un Data Frame son datos como en formato de tabla. Puede tener diferentes
+tipos de datos con la primera columna siendo un ``character``, pero cada
+columna debe tener el mismo tipo de datos.
+
+Se crean con la función ``data.frame()``
+
+.. code:: r
+
+    df <- data.frame(
+        acciones = c("ECO", "PFB", "ISA"),
+        precio = c(3000, 35000, 22000),
+        cantidad = c(1000, 500, 800)
+    )
+    print(df)
+
+
+.. parsed-literal::
+
+      acciones precio cantidad
+    1      ECO   3000     1000
+    2      PFB  35000      500
+    3      ISA  22000      800
+    
+
+.. code:: r
+
+    dim(df)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>3</li><li>3</li></ol>
+    
+
+
+Note que las filas están enumeradas y las columnas tienen nombres
+(acciones, precio y cantidad).
+
+Para acceder a los elementos de Data Frame se ``[ , ]``, dobles ``[[]]``
+o ``$`` para una sola columna.
+
+.. code:: r
+
+    print(df[1])
+
+
+.. parsed-literal::
+
+      acciones
+    1      ECO
+    2      PFB
+    3      ISA
+    
+
+.. code:: r
+
+    df[["acciones"]]
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>ECO</li><li>PFB</li><li>ISA</li></ol>
+    
+    <details>
+    	<summary style=display:list-item;cursor:pointer>
+    		<strong>Levels</strong>:
+    	</summary>
+    	<style>
+    	.list-inline {list-style: none; margin:0; padding: 0}
+    	.list-inline>li {display: inline-block}
+    	.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    	</style>
+    	<ol class=list-inline><li>'ECO'</li><li>'ISA'</li><li>'PFB'</li></ol>
+    </details>
+
+
+.. code:: r
+
+    df$acciones
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>ECO</li><li>PFB</li><li>ISA</li></ol>
+    
+    <details>
+    	<summary style=display:list-item;cursor:pointer>
+    		<strong>Levels</strong>:
+    	</summary>
+    	<style>
+    	.list-inline {list-style: none; margin:0; padding: 0}
+    	.list-inline>li {display: inline-block}
+    	.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    	</style>
+    	<ol class=list-inline><li>'ECO'</li><li>'ISA'</li><li>'PFB'</li></ol>
+    </details>
+
+
+.. code:: r
+
+    df[2,3]
+
+
+
+.. raw:: html
+
+    500
+
+
+.. code:: r
+
+    print(df[,2:3])
+
+
+.. parsed-literal::
+
+      precio cantidad
+    1   3000     1000
+    2  35000      500
+    3  22000      800
+    
+
+Con los Data Frames también se pueden usar las funciones ``length()``,
+``dim()``, ``ncol()``, ``nrow()``, ``rbind()`` y ``cbind()``

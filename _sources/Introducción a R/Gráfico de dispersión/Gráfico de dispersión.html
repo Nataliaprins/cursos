@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gráfico de dispersión &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis de datos" href="../Análisis de datos/Análisis de datos.html" />
+    <link rel="prev" title="Gráficos en R" href="../Gráficos en R/Gráficos en R.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introducción a R</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Introducción a la programación en R/Introducción a la programación en R.html">Introducción a la programación en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Importar archivos en R/Importar archivos en R.html">Importar archivos en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gráficos en R/Gráficos en R.html">Gráficos en R</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gráfico de dispersión</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-plot">Función Plot()</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#argumentos-de-la-funcion-plot">Argumentos de la función plot()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#colores">Colores:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limites-de-los-ejes">Límites de los ejes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color-de-fondo">Color de fondo:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anadir-lineas-o-curvas">Añadir líneas o curvas:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#leyenda">Leyenda:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dividir-la-ventana-de-graficos">Dividir la ventana de gráficos:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Análisis de datos/Análisis de datos.html">Análisis de datos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis multivariado de datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis de componentes principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Introducción a R</a> &raquo;</li>
+        
+      <li>Gráfico de dispersión</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Introducción a R/Gráfico de dispersión/Gráfico de dispersión.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="grafico-de-dispersion">
+<h1>Gráfico de dispersión<a class="headerlink" href="#grafico-de-dispersion" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Datos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">datos</span>
+</pre></div>
+</div>
+<table>
+<caption>A data.frame: 8 × 5</caption>
+<thead>
+    <tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    <tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    <tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    <tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    <tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    <tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    <tr><td>Antonio</td><td>45</td><td>M</td><td>180.0</td><td>4</td></tr>
+    <tr><td>Alicia </td><td> 1</td><td>F</td><td> 15.7</td><td>1</td></tr>
+    <tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+</tbody>
+</table><div class="section" id="funcion-plot">
+<h2>Función Plot()<a class="headerlink" href="#funcion-plot" title="Permalink to this headline">¶</a></h2>
+<p>La función más básica en R para graficar es <code class="docutils literal notranslate"><span class="pre">plot()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con una variable</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_4_0.png"><img alt="../../_images/output_4_0.png" src="../../_images/output_4_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con dos variables: X = Edad, y = Peso</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_5_0.png"><img alt="../../_images/output_5_0.png" src="../../_images/output_5_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="section" id="argumentos-de-la-funcion-plot">
+<h3>Argumentos de la función plot()<a class="headerlink" href="#argumentos-de-la-funcion-plot" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">…)</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> - Título.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sub</span></code> - Subítulo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xlab</span></code> - nombre la X.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ylab</span></code> - nombre la y.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="s">&quot;El subtítulo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_9_02.png"><img alt="../../_images/output_9_02.png" src="../../_images/output_9_02.png" style="width: 420px; height: 420px;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">type</span></code> o <code class="docutils literal notranslate"><span class="pre">t</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;p&quot;</span></code> - Puntos (por defecto).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;l&quot;</span></code> - Líneas (útil para series de tiempo).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;b&quot;</span></code> - Puntos y líneas separados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;o&quot;</span></code> - Puntos y líneas no separados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;s&quot;</span></code> - Escaleras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;h&quot;</span></code> - estilo histograma.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&quot;n&quot;</span></code> - Gráfico vacío.</p></li>
+</ul>
+</div>
+<div class="section" id="colores">
+<h3>Colores:<a class="headerlink" href="#colores" title="Permalink to this headline">¶</a></h3>
+<p>El argumento es <code class="docutils literal notranslate"><span class="pre">col</span></code> y color se puede especificar de la siguiente
+forma:</p>
+<ul class="simple">
+<li><p>Con números.</p></li>
+<li><p>Con el nombre en inglés del color y entre comillas.</p></li>
+<li><p>Con el valor HEX, por ejemplo, <code class="docutils literal notranslate"><span class="pre">col</span> <span class="pre">=</span> <span class="pre">&quot;#0000FF&quot;</span></code>.</p></li>
+<li><p>Con el RGB, por ejemplo, <code class="docutils literal notranslate"><span class="pre">col</span> <span class="pre">=</span> <span class="pre">rgb(0,</span> <span class="pre">0,</span> <span class="pre">1)</span></code>.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="s">&quot;El subtítulo&quot;</span><span class="p">,</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="m">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_12_02.png"><img alt="../../_images/output_12_02.png" src="../../_images/output_12_02.png" style="width: 420px; height: 420px;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">pch</span></code>: Modifica los puntos con los siguientes símbolos.</p>
+<div class="figure align-default" id="id1">
+<img alt="pch" src="../../_images/plot-pch.png" />
+<p class="caption"><span class="caption-text">pch</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>El tamaño de los símbolos se cambian con <code class="docutils literal notranslate"><span class="pre">cex</span></code>. El tamaño de los
+símbolos del 15 al 18 se cambia con <code class="docutils literal notranslate"><span class="pre">lwd</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bg</span></code> - Para cambiar el color del fondo de los símbolos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lwd</span></code> - También sirve para el ancho del borde de los símbolos.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">24</span><span class="p">,</span>         <span class="c1"># Símbolo</span>
+    <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>          <span class="c1"># Tamaño del símbolo</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>  <span class="c1"># Color del borde</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">,</span>  <span class="c1"># Color del fondo</span>
+    <span class="n">lwd</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>          <span class="c1"># Ancho del borde</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_17_01.png"><img alt="../../_images/output_17_01.png" src="../../_images/output_17_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="limites-de-los-ejes">
+<h3>Límites de los ejes:<a class="headerlink" href="#limites-de-los-ejes" title="Permalink to this headline">¶</a></h3>
+<p>Sirven para acercar o alejar el gráfico.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ylim</span> <span class="pre">=</span> <span class="pre">c(mínimo,</span> <span class="pre">máximo)</span></code> - Para el rango del eje y.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xlim</span> <span class="pre">=</span> <span class="pre">c(mínimo,</span> <span class="pre">máximo)</span></code> - Para el rango del eje X.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">24</span><span class="p">,</span>
+    <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">,</span>
+    <span class="n">lwd</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span>
+    <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_19_01.png"><img alt="../../_images/output_19_01.png" src="../../_images/output_19_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="color-de-fondo">
+<h3>Color de fondo:<a class="headerlink" href="#color-de-fondo" title="Permalink to this headline">¶</a></h3>
+<p>El color de fondo por defecto es <code class="docutils literal notranslate"><span class="pre">&quot;white&quot;</span></code>, pero se puede modificar
+con <code class="docutils literal notranslate"><span class="pre">par(bg</span> <span class="pre">=</span> <span class="pre">color)</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>    <span class="c1"># Fondo gris</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">24</span><span class="p">,</span>
+    <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">,</span>
+    <span class="n">lwd</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span>
+    <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_21_01.png"><img alt="../../_images/output_21_01.png" src="../../_images/output_21_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="anadir-lineas-o-curvas">
+<h3>Añadir líneas o curvas:<a class="headerlink" href="#anadir-lineas-o-curvas" title="Permalink to this headline">¶</a></h3>
+<p>Se agrega una línea de código de <code class="docutils literal notranslate"><span class="pre">lines()</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lwd</span></code> - Grosor de la línea (del 1 al 6).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lty</span></code> - Tipo de línea (del 1 al 6).</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">24</span><span class="p">,</span>
+    <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">,</span>
+    <span class="n">lwd</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span>
+    <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">))</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="m">-100</span><span class="o">:</span><span class="m">0</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="o">:</span><span class="m">110</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_03.png"><img alt="../../_images/output_23_03.png" src="../../_images/output_23_03.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="leyenda">
+<h3>Leyenda:<a class="headerlink" href="#leyenda" title="Permalink to this headline">¶</a></h3>
+<p>Se agrega una línea de código de <code class="docutils literal notranslate"><span class="pre">legend()</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;top&quot;</span></code> - Ubicación de la leyenda arriba.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;bottom&quot;</span></code> - Ubicación de la leyenda abajo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;topleft&quot;</span></code> - Ubicación de la leyenda arriba a la izquierda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;topright&quot;</span></code> - Ubicación de la leyenda arriba a la derecha.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;bottomleft&quot;</span></code> - Ubicación de la leyenda abajo a la izquierda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;bottomright&quot;</span></code> - Ubicación de la leyenda abajo a la derecha.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">Edad</span><span class="p">,</span> <span class="n">datos</span><span class="o">$</span><span class="n">Peso</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;El título&quot;</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Edad&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Peso&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">24</span><span class="p">,</span>
+    <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">,</span>
+    <span class="n">lwd</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span>
+    <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">))</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="m">-100</span><span class="o">:</span><span class="m">0</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="o">:</span><span class="m">110</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;bottomright&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Línea verde&quot;</span><span class="p">,</span> <span class="s">&quot;Línea azul&quot;</span><span class="p">),</span>
+       <span class="n">lty</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span>
+       <span class="n">lwd</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span>
+       <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="s">&quot;darkblue&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_01.png"><img alt="../../_images/output_25_01.png" src="../../_images/output_25_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="dividir-la-ventana-de-graficos">
+<h3>Dividir la ventana de gráficos:<a class="headerlink" href="#dividir-la-ventana-de-graficos" title="Permalink to this headline">¶</a></h3>
+<p>Se usa la función <code class="docutils literal notranslate"><span class="pre">layout()</span></code> especificando como matriz la cantidad de
+particiones. Se finaliza con <code class="docutils literal notranslate"><span class="pre">layout.show()</span></code>.</p>
+<p>Para devolver la ventana de gráficos en una sola (por defecto) se usa
+<code class="docutils literal notranslate"><span class="pre">dev.off()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">layout.show</span><span class="p">(</span><span class="m">4</span><span class="p">)</span> <span class="c1"># Muestra las cuatro particiones</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_27_01.png"><img alt="../../_images/output_27_01.png" src="../../_images/output_27_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">layout.show</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="c1"># Muestra las dos particiones</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_28_01.png"><img alt="../../_images/output_28_01.png" src="../../_images/output_28_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">layout.show</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="c1"># Muestra las dos particiones</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_29_01.png"><img alt="../../_images/output_29_01.png" src="../../_images/output_29_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Análisis de datos/Análisis de datos.html" class="btn btn-neutral float-right" title="Análisis de datos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Gráficos en R/Gráficos en R.html" class="btn btn-neutral float-left" title="Gráficos en R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

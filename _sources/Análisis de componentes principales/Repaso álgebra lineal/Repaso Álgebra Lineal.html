@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Repaso Álgebra Lineal &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis de Componentes Principales" href="../ACP/Análisis de Componentes Principales.html" />
+    <link rel="prev" title="Análisis de componentes principales" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis multivariado de datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis de componentes principales</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Repaso Álgebra Lineal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#determinantes">Determinantes:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformaciones-lineales">Transformaciones lineales:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autovalores-y-autovectores">Autovalores y Autovectores:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ACP/Análisis de Componentes Principales.html">Análisis de Componentes Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ejemplo ACP en R/Ejemplo de ACP en R.html">Ejemplo de ACP en R</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Análisis de componentes principales</a> &raquo;</li>
+        
+      <li>Repaso Álgebra Lineal</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Análisis de componentes principales/Repaso álgebra lineal/Repaso Álgebra Lineal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="repaso-algebra-lineal">
+<h1>Repaso Álgebra Lineal<a class="headerlink" href="#repaso-algebra-lineal" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="determinantes">
+<h2>Determinantes:<a class="headerlink" href="#determinantes" title="Permalink to this headline">¶</a></h2>
+<p><strong>Matrices</strong> <span class="math notranslate nohighlight">\(2x2\)</span>:</p>
+<p>El área del plano se llama <strong>Determinante</strong>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Plano = \begin{bmatrix} 4 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}, Determinante = 16\end{split}\]</div>
+<p>El área es igual a <span class="math notranslate nohighlight">\(4\times4=16\)</span>. Para matrices de orden 2
+<span class="math notranslate nohighlight">\((2x2)\)</span> el Determinante se calcula multiplicando los valores de la
+diagonal principal y restando la multiplicación de la diagonal
+secundaria.</p>
+<div class="figure align-default" id="id1">
+<img alt="Plano" src="../../_images/Plano.png" />
+<p class="caption"><span class="caption-text">Plano</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id2">
+<img alt="PlanoA" src="../../_images/PlanoA.png" />
+<p class="caption"><span class="caption-text">PlanoA</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Siendo <span class="math notranslate nohighlight">\(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}det(A)  = det\begin{bmatrix} a &amp; b  \\ c &amp; d \end{bmatrix} = a\times d - b\times c\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}det(A)  = det\begin{bmatrix} 3 &amp; 2  \\ 1 &amp; 4 \end{bmatrix} = 3\times 4 - 2\times 1 = 10\end{split}\]</div>
+<p>En ocasiones vemos que el Determinante se expresa en valor absoluto así
+<span class="math notranslate nohighlight">\(det(A) = |A|\)</span>, pero también se puede expresar con el signo
+negativo. Esto ocurre si cambiamos el orden de los vectores.</p>
+<div class="figure align-default" id="id3">
+<img alt="Determinante2x2" src="../../_images/Determinante2x2.png" />
+<p class="caption"><span class="caption-text">Determinante2x2</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}B = \begin{bmatrix} 2 &amp; 2 \\ 1 &amp; 3 \end{bmatrix}, Determinante = 4\end{split}\]</div>
+<div class="figure align-default" id="id4">
+<img alt="PlanoB" src="../../_images/PlanoB.png" />
+<p class="caption"><span class="caption-text">PlanoB</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}C = \begin{bmatrix} 1,2 &amp; 2 \\ 1 &amp; 1,2 \end{bmatrix}, Determinante = 0,64\end{split}\]</div>
+<div class="figure align-default" id="id5">
+<img alt="PlanoC" src="../../_images/PlanoC.png" />
+<p class="caption"><span class="caption-text">PlanoC</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 3 &amp; 2 \\ 1 &amp; 4 \end{bmatrix}, Determinante = 10\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}B = \begin{bmatrix} 2 &amp; 2 \\ 1 &amp; 3 \end{bmatrix}, Determinante = 4\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}C = \begin{bmatrix} 1,2 &amp; 2 \\ 1 &amp; 1,2 \end{bmatrix}, Determinante = 0,64\end{split}\]</div>
+<p>Note que en los ejemplos de las matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> y
+<span class="math notranslate nohighlight">\(C\)</span> los valores de la diagonal principal disminuyen y se obtiene
+un Determinante menor. Es fácil intuir que un Determinante más pequeño,
+por ejemplo, igual a cero, el resultado es un solo vector. Este vector,
+más adelante se llamará <strong>Autovector.</strong></p>
+<p><strong>Matrices</strong> <span class="math notranslate nohighlight">\(3x3\)</span>:</p>
+<p>Para matrices <span class="math notranslate nohighlight">\(3\times3\)</span> el Determinante (volumen, no área) es:</p>
+<p>Siendo
+<span class="math notranslate nohighlight">\(A = \begin{bmatrix} a &amp; b &amp; c \\ d &amp; e &amp; f \\ g &amp; h &amp; i\end{bmatrix}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}det(A)  = det\begin{bmatrix} a &amp; b &amp; c \\ d &amp; e &amp; f \\ g &amp; h &amp; i\end{bmatrix}= a\begin{bmatrix} e &amp; f \\ h &amp; i\end{bmatrix}-b\begin{bmatrix} d &amp; f \\ g &amp; i\end{bmatrix}-c\begin{bmatrix}  d &amp; e  \\ g &amp; h \end{bmatrix}\end{split}\]</div>
+</div>
+<div class="section" id="transformaciones-lineales">
+<h2>Transformaciones lineales:<a class="headerlink" href="#transformaciones-lineales" title="Permalink to this headline">¶</a></h2>
+<p>Una matriz podría verse como una transformación lineal porque
+transforman linealmente los vectores unitarios (<span class="math notranslate nohighlight">\(\hat{i}\)</span>,
+<span class="math notranslate nohighlight">\(\hat{j}\)</span>).</p>
+<p>Los vectores unitarios conforman el siguiente plano:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+<div class="figure align-default" id="id6">
+<img alt="VectoresUnitarios" src="../../_images/VectoresUnitarios.png" />
+<p class="caption"><span class="caption-text">VectoresUnitarios</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>Siendo <span class="math notranslate nohighlight">\(A =\begin{bmatrix} 3 &amp; 2 \\ 1 &amp; 4 \end{bmatrix}\)</span>, la
+transformación lineal de los dos vectores unitarios es la siguiente:</p>
+<div class="figure align-default" id="id7">
+<img alt="TransformaciónLineal" src="../../_images/TransformaciónLineal.png" />
+<p class="caption"><span class="caption-text">TransformaciónLineal</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>Analicemos la transformación que realizó la matriz <span class="math notranslate nohighlight">\(A\)</span> a tres
+vectores del plano de vectores unitarios:</p>
+<ul class="simple">
+<li><p>El vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span> se transformó
+en el vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 3 \\ 1 \end{bmatrix}\)</span>. El vector
+nuevo tiene una dirección diferente que el inicial.</p></li>
+<li><p>El vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 0 \\ 1 \end{bmatrix}\)</span> se transformó
+en el vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 2 \\ 4 \end{bmatrix}\)</span>. El vector
+nuevo tiene una dirección diferente que el inicial.</p></li>
+<li><p>El vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> se transformó
+en el vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 5 \\ 5 \end{bmatrix}\)</span>. <strong>El
+vector nuevo sí conservó la dirección, pero tiene una magnitud
+diferente (es un vector escalado).</strong></p></li>
+</ul>
+<p>Al hacer la transformación lineal de <span class="math notranslate nohighlight">\(A\)</span>, el vector transformado
+<span class="math notranslate nohighlight">\(\begin{bmatrix} 5 \\ 5 \end{bmatrix}\)</span> es el mismo vector
+<span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>, pero con una magnitud de
+5, es decir:
+<span class="math notranslate nohighlight">\(\begin{bmatrix} 5 \\ 5 \end{bmatrix} = 5\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>.
+Así que el vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> se llama
+<strong>Autovector</strong> o <strong>Eigenvector</strong> de la matriz <span class="math notranslate nohighlight">\(A\)</span> y el escalar 5
+se llama <strong>Autovalor</strong> o <strong>Eigenvalor</strong> de la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="figure align-default" id="id8">
+<img alt="TransformaciónLineal." src="../../_images/TransformaciónLineal2.png" />
+<p class="caption"><span class="caption-text">TransformaciónLineal.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="autovalores-y-autovectores">
+<h2>Autovalores y Autovectores:<a class="headerlink" href="#autovalores-y-autovectores" title="Permalink to this headline">¶</a></h2>
+<p>Con lo anterior podemos concluir que un <strong>Autovector :math:`(x)`</strong> es
+aquel que es transformado por una matriz y conserva su dirección, pero
+puede aumentar o disminuir de magnitud en <span class="math notranslate nohighlight">\(\lambda\)</span> veces. Por
+tanto, el escalar <span class="math notranslate nohighlight">\(\lambda\)</span> es un <strong>Autovalor</strong>. Lo anterior
+cumple la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[Ax = \lambda x\]</div>
+<p>Donde,</p>
+<p><span class="math notranslate nohighlight">\(A\)</span>: es una matriz del orden <span class="math notranslate nohighlight">\(nxn\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(x\)</span>: es el Autovector o Eigenvector de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\lambda\)</span>: es el Autovalor o Eigenvalor de <span class="math notranslate nohighlight">\(A\)</span>. Es un
+escalar.</p>
+<p>Para el ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 3 &amp; 2 \\ 1 &amp; 4 \end{bmatrix} \begin{bmatrix} 1  \\ 1 \end{bmatrix} = 5 \begin{bmatrix} 1  \\ 1 \end{bmatrix}\end{split}\]</div>
+<p>Para hallar <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(\lambda\)</span> matemáticamente se hace lo
+siguiente:</p>
+<div class="math notranslate nohighlight">
+\[(A - \lambda I)x = 0\]</div>
+<p><span class="math notranslate nohighlight">\(I\)</span>: es la matriz identidad.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(A - \lambda I) = \begin{bmatrix} a -\lambda &amp; b \\ c &amp; d-\lambda \end{bmatrix}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(det(A - \lambda I)=0\)</span> es llamada ecuación característica.</p>
+<p>Anteriormente, gráficamente habíamos restado solo los valores de la
+diagonal principal de la matriz
+<span class="math notranslate nohighlight">\(A = \begin{bmatrix} 3 &amp; 2 \\ 1 &amp; 4 \end{bmatrix}\)</span>, se había
+concluido que el Determinante se volvía cero y el vector resultante era
+<span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>. Este vector es el
+Autovector de la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Entonces, <span class="math notranslate nohighlight">\(\lambda\)</span> es Autovalor de <span class="math notranslate nohighlight">\(A\)</span> si y solo si:
+<span class="math notranslate nohighlight">\(det(A - \lambda I)) = 0\)</span></p>
+<p>Para una matriz del orden <span class="math notranslate nohighlight">\(nxn\)</span> tendremos <span class="math notranslate nohighlight">\(n\)</span> Autovectores y
+<span class="math notranslate nohighlight">\(n\)</span> Autovalores. En el ejemplo anterior se mencionó un Autovector
+y un Autovalor, pero la solución completa es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(A - \lambda I) = \begin{bmatrix} 3 -\lambda &amp; 2 \\ 1 &amp; 4-\lambda \end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[det(A - \lambda I)) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[(3-\lambda)(4-\lambda)-2 = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda^2-7\lambda+10=0\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda_1 = 2, \lambda_2 = 5\]</div>
+<p>Para estos dos Autovalores, los dos Autovectores son:</p>
+<p>Para <span class="math notranslate nohighlight">\(\lambda_1 = 2\)</span>, $ x_1=</p>
+<p>$</p>
+<p>Para <span class="math notranslate nohighlight">\(\lambda_2 = 5\)</span>, $ x_2=</p>
+<p>$</p>
+<p>Los dos Autovectores son ortogonales, tienen un ángulo de 90°.</p>
+<div class="figure align-default" id="id9">
+<img alt="Autovectores" src="../../_images/Autovectores.png" />
+<p class="caption"><span class="caption-text">Autovectores</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ACP/Análisis de Componentes Principales.html" class="btn btn-neutral float-right" title="Análisis de Componentes Principales" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Análisis de componentes principales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
