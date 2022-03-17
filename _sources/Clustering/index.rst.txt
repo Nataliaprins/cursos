@@ -12,6 +12,7 @@ En esta sesión se explicarán los métodos para agrupamiento de datos. Estos m�
    K-Means en R/K-Means en R.rst
    Clustering jerarquico/Cluster_jerárquico.rst
    Cluster jerárquico en R/Cluster jerárquico en R.rst
+   Taller clustering/Taller Análisis Clustering.rst
    
 
 .. important::
@@ -22,4 +23,6 @@ En esta sesión se explicarán los métodos para agrupamiento de datos. Estos m�
     * **Descargue** :download:`Empresas-Medellín.csv <Empresas-Medellín.csv>`
 
     * **Descargue** :download:`Estado de resultados-2020.csv <Estado de resultados-2020.csv>`
+
+    * **Descargue** :download:`tarjetas_crédito.csv <tarjetas_crédito.csv>` para el taller.
 

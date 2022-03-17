@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Taller Análisis Clustering &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generalidades del Mercado Colombiano" href="../../Generalidades del Mercado Colombiano/index.html" />
+    <link rel="prev" title="Cluster jerárquico en R" href="../Cluster jerárquico en R/Cluster jerárquico en R.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis multivariado de datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis de componentes principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Clustering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Teoría K-Means/Teoría K-Means.html">Teoría K-Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../K-Means en R/K-Means en R.html">K-Means en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Clustering jerarquico/Cluster_jerárquico.html">Clusters Jerárquicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cluster jerárquico en R/Cluster jerárquico en R.html">Cluster jerárquico en R</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Taller Análisis Clustering</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Clustering</a> &raquo;</li>
+        
+      <li>Taller Análisis Clustering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Clustering/Taller clustering/Taller Análisis Clustering.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="taller-analisis-clustering">
+<h1>Taller Análisis Clustering<a class="headerlink" href="#taller-analisis-clustering" title="Permalink to this headline">¶</a></h1>
+<p>Descargue los datos de la BD <code class="docutils literal notranslate"><span class="pre">tarjetas_crédito.csv</span></code> que contiene la
+siguiente información:</p>
+<p><strong>X:</strong> el identificador del tarjetahabiente.</p>
+<p><strong>cupo:</strong> Es el valor de cupo otorgado.</p>
+<p><strong>edad:</strong> Edad del tarjetahabiente.</p>
+<p><strong>saldo:</strong> Saldo de deuda en la tarjeta al corte.</p>
+<p><strong>pago:</strong> monto de los pagos realizados en 6 meses.</p>
+<p><em>Con esta información resuelva lo siguiente:</em></p>
+<p><strong>Punto 1:</strong></p>
+<p>Cree un objeto que tome una muestra aleatoria de 100 individuos de la
+BD. Esto puede realizarlo con la función <code class="docutils literal notranslate"><span class="pre">sample()</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">sample_rows&lt;-</span> <span class="pre">sample(x,n)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span></code>: es un vector con la posición de las filas del conjunto de datos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">n</span></code>: es el número de elementos de la muestra.</p>
+<p>Esto arrojará un vector con la elección de filas aleatorias y luego
+proceda a crear el df que contenga los 100 datos para todas las
+variables, esto lo puede hacer así:</p>
+<p><code class="docutils literal notranslate"><span class="pre">datos_sample</span> <span class="pre">&lt;-</span> <span class="pre">datos[sample_rows,]</span></code></p>
+<ol class="arabic simple">
+<li><p>Realice un gráfico de dispersión entre las variables cupo y edad,
+indique si puede observar algún patrón o agrupamiento que explique la
+relación.</p></li>
+<li><p>Calcule las distancias Manhattan para las observaciones en la muestra
+de las variables cupo y edad.</p></li>
+<li><p>Evalúe por los métodos de sedimentación, silueta y gap, cual debería
+ser el numero optimo de grupos en este conjunto de datos.</p></li>
+<li><p>Realice el agrupamiento por medio de K-means con el numero óptimo de
+clusters identificados en el punto anterior. realice el graficos
+separando los grupos.</p></li>
+<li><p>Indique si con este método se comprueba o no los grupos identificados
+en el punto 1 que clasificación le daría a sus datos, es decir, que
+nombre se le daría a los grupos, explique segun el contesto del
+problema.</p></li>
+</ol>
+<p><strong>Punto 2:</strong></p>
+<ol class="arabic simple">
+<li><p>Tome la BD original y agrupe los datos por edad de los individuos
+haciendo un promedio de la otras columnas (cupo, pago ). Pruebe con
+la función group_by de la librería <code class="docutils literal notranslate"><span class="pre">(dbplyr)</span></code>.</p></li>
+<li><p>Construya un dendograma donde se contrasten las variables pago y cupo
+y se encuentren etiquetados por edad.</p></li>
+<li><p>Indique si el dendograma esta bien relacionado con los datos
+originales (use distancia cofenética)</p></li>
+<li><p>Corte el árbol e indique el numero de clusters es adecuado .</p></li>
+<li><p>Saque el vector de asignación de elementos al cluster.</p></li>
+<li><p>Haga el dendograma por colores y de forma circular.</p></li>
+<li><p>Con esta información ¿podría agrupar a los clientes de un banco
+basado en su comportamiento de pago? ¿cual sería esa agrupación?</p></li>
+</ol>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../Generalidades del Mercado Colombiano/index.html" class="btn btn-neutral float-right" title="Generalidades del Mercado Colombiano" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Cluster jerárquico en R/Cluster jerárquico en R.html" class="btn btn-neutral float-left" title="Cluster jerárquico en R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
