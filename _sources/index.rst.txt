@@ -29,6 +29,9 @@ natalia.acevedop@udea.edu.co
    Análisis de componentes principales/index
    Análisis factorial/index
    Clustering/index
+   Escalamiento Multidimensional/index
+   Datos faltantes/index
+
 
 
 
