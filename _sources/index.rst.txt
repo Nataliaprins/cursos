@@ -31,6 +31,7 @@ natalia.acevedop@udea.edu.co
    Clustering/index
    Escalamiento Multidimensional/index
    Datos faltantes/index
+   Análsis de correspondencia/index
 
 
 

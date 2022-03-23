@@ -1,0 +1,19 @@
+Análisis de correspondencia
+==========================================================
+
+En esta sesión se explicarán análisis de correspondencia sencillo y múltiple.
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Teoría Análisis de Correspondencia/Teoría Análisis de Correspondencia.rst
+   Análisis de correspondencias en R/Análisis de correspondencias en R.rst
+   
+
+.. important::
+    Archivo para trabajar esta sesión:
+
+    * **Descargue** :download:`creditos_otorgados_a_microempresarios-CORRESPONDENCIAS.csv <creditos_otorgados_a_microempresarios-CORRESPONDENCIAS.csv>`
+
