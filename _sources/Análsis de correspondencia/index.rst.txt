@@ -10,10 +10,19 @@ En esta sesión se explicarán análisis de correspondencia sencillo y múltiple
 
    Teoría Análisis de Correspondencia/Teoría Análisis de Correspondencia.rst
    Análisis de correspondencias en R/Análisis de correspondencias en R.rst
+   Taller Analisis de Correspondecia/Taller AC.rst
+   Taller Analisis de Correspondecia/Ejemplo análisis de correspondencia Artesanos Medellín.rst
+
    
 
 .. important::
     Archivo para trabajar esta sesión:
 
     * **Descargue** :download:`creditos_otorgados_a_microempresarios-CORRESPONDENCIAS.csv <creditos_otorgados_a_microempresarios-CORRESPONDENCIAS.csv>`
+
+    * **Descargue** :download:`participantes_en_mercados_campesinos.csv <participantes_en_mercados_campesinos.csv>` para el taller.
+
+    * **Descargue** :download:`registro_artesanos.csv <registro_artesanos.csv>`
+
+
 

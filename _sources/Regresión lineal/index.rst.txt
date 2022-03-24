@@ -19,6 +19,17 @@ Regresión Lineal Simple - RLS
    RLS con ggplot2/RLS con ggplot2.rst
 
 
+Regresión Lineal Múltiple - RLM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Regresión Lineal Múltiple (RLM)/Regresión Lineal Múltiple (RLM).rst
+   ANOVA/ANOVA.rst
+
+
 .. important::
     Archivo para trabajar esta sesión:
 

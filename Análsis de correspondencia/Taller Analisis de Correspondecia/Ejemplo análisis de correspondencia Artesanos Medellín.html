@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ejemplo de Análisis de correspondencia: Simple y Múltiple &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generalidades del Mercado Colombiano" href="../../Generalidades del Mercado Colombiano/index.html" />
+    <link rel="prev" title="Taller Análisis de Correspondencias" href="Taller AC.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducción a R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresión lineal/index.html">Regresión lineal</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis gráfico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis multivariado de datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis de componentes principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Análisis factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis de correspondencia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Teoría Análisis de Correspondencia/Teoría Análisis de Correspondencia.html">Análisis de correspondencias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Análisis de correspondencias en R/Análisis de correspondencias en R.html">Análisis de correspondencias en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Taller AC.html">Taller Análisis de Correspondencias</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ejemplo de Análisis de correspondencia: Simple y Múltiple</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades del Mercado Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo de R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos Básicos de Estadística/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teoría de Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selección de Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado de Renta Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterización de las series de tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep Learning para pronóstico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Análisis de correspondencia</a> &raquo;</li>
+        
+      <li>Ejemplo de Análisis de correspondencia: Simple y Múltiple</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Análsis de correspondencia/Taller Analisis de Correspondecia/Ejemplo análisis de correspondencia Artesanos Medellín.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ejemplo-de-analisis-de-correspondencia-simple-y-multiple">
+<h1>Ejemplo de Análisis de correspondencia: Simple y Múltiple<a class="headerlink" href="#ejemplo-de-analisis-de-correspondencia-simple-y-multiple" title="Permalink to this headline">¶</a></h1>
+<p><strong>Análisis simple</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span><span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;registro_artesanos.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;;&quot;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<table class="dataframe">
+<caption>A data.frame: 6 × 13</caption>
+<thead>
+    <tr><th></th><th scope=col>edad</th><th scope=col>sexo</th><th scope=col>cabeza_de_hogar</th><th scope=col>caracterizacion_ciudadano</th><th scope=col>tipo_de_emprendimiento</th><th scope=col>idea_de_negocio</th><th scope=col>estrato</th><th scope=col>barrio_vereda_ciudadano</th><th scope=col>comuna_ciudadano</th><th scope=col>zona_ciudadano</th><th scope=col>fecha_de_beneficio_dia</th><th scope=col>fecha_de_beneficio_mes</th><th scope=col>fecha_de_beneficio_aÃ.o</th></tr>
+    <tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>1</th><td>63</td><td>masculino</td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>2</td><td>robledo                  </td><td>7 </td><td>nor-occidental </td><td>15</td><td>9</td><td>2017</td></tr>
+    <tr><th scope=row>2</th><td>56</td><td>masculino</td><td>no</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>bombona                  </td><td>10</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    <tr><th scope=row>3</th><td>74</td><td>masculino</td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>guayabal                 </td><td>15</td><td>sur-oriental   </td><td>15</td><td>9</td><td>2017</td></tr>
+    <tr><th scope=row>4</th><td>54</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>4</td><td>america - santa monica #2</td><td>12</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    <tr><th scope=row>5</th><td>50</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>4</td><td>america - santa monica #2</td><td>12</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    <tr><th scope=row>6</th><td>52</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>san javier               </td><td>13</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+</tbody>
+</table><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#eliminando NAs</span>
+<span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">na.omit</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">'data.frame':       174 obs. of  13 variables:
+ $ edad                     : int  63 56 74 54 50 52 27 61 43 39 ...
+ $ sexo                     : chr  &quot;masculino&quot; &quot;masculino&quot; &quot;masculino&quot; &quot;femenino&quot; ...
+ $ cabeza_de_hogar          : chr  &quot;si&quot; &quot;no&quot; &quot;si&quot; &quot;si&quot; ...
+ $ caracterizacion_ciudadano: chr  &quot;emprendedor&quot; &quot;emprendedor&quot; &quot;emprendedor&quot; &quot;emprendedor&quot; ...
+ $ tipo_de_emprendimiento   : chr  &quot;artesanal&quot; &quot;artesanal&quot; &quot;artesanal&quot; &quot;artesanal&quot; ...
+ $ idea_de_negocio          : chr  &quot;emprendedor&quot; &quot;emprendedor&quot; &quot;emprendedor&quot; &quot;emprendedor&quot; ...
+ $ estrato                  : int  2 3 3 4 4 3 3 3 2 2 ...
+ $ barrio_vereda_ciudadano  : chr  &quot;robledo&quot; &quot;bombona&quot; &quot;guayabal&quot; &quot;america - santa monica #2&quot; ...
+ $ comuna_ciudadano         : chr  &quot;7&quot; &quot;10&quot; &quot;15&quot; &quot;12&quot; ...
+ $ zona_ciudadano           : chr  &quot;nor-occidental&quot; &quot;centro-oriental&quot; &quot;sur-oriental&quot; &quot;centro-oriental&quot; ...
+ $ fecha_de_beneficio_dia   : int  15 15 15 15 15 15 15 15 15 15 ...
+ $ fecha_de_beneficio_mes   : int  9 9 9 9 9 9 9 9 9 9 ...
+ $ fecha_de_beneficio_aÃ.o  : num  2017 2017 2017 2017 2017 ...
+ - attr(<em>, &quot;na.action&quot;)= 'omit' Named int [1:25] 112 122 125 127 131 136 137 138 139 140 ...
+  ..- attr(</em>, &quot;names&quot;)= chr [1:25] &quot;112&quot; &quot;122&quot; &quot;125&quot; &quot;127&quot; ...</pre>
+<p>Extraemos las variables de interés</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tipo_de_emprendimiento&quot;</span><span class="p">,</span><span class="s">&quot;zona_ciudadano&quot;</span><span class="p">)]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">tipo_de_emprendimiento</span>  <span class="n">zona_ciudadano</span>
+<span class="mi">1</span>              <span class="n">artesanal</span>  <span class="n">nor</span><span class="o">-</span><span class="n">occidental</span>
+<span class="mi">2</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>
+<span class="mi">3</span>              <span class="n">artesanal</span>    <span class="n">sur</span><span class="o">-</span><span class="n">oriental</span>
+<span class="mi">4</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>
+<span class="mi">5</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>
+<span class="mi">6</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>
+</pre></div>
+</div>
+<p>Creamos tabla de contingencia</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">contingencia</span><span class="o">&lt;-</span><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">contingencia</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                      <span class="n">zona_ciudadano</span>
+<span class="n">tipo_de_emprendimiento</span>    <span class="n">centro</span><span class="o">-</span><span class="n">occidental</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span> <span class="n">nor</span><span class="o">-</span><span class="n">occidental</span>
+                        <span class="mi">0</span>                 <span class="mi">4</span>               <span class="mi">0</span>              <span class="mi">0</span>
+            <span class="n">artesanal</span>   <span class="mi">0</span>                 <span class="mi">0</span>              <span class="mi">51</span>             <span class="mi">18</span>
+            <span class="n">artesanias</span>  <span class="mi">2</span>                <span class="mi">14</span>               <span class="mi">4</span>             <span class="mi">14</span>
+            <span class="n">basica</span>      <span class="mi">0</span>                 <span class="mi">1</span>               <span class="mi">0</span>              <span class="mi">1</span>
+            <span class="n">no</span> <span class="n">formal</span>   <span class="mi">0</span>                 <span class="mi">1</span>               <span class="mi">0</span>              <span class="mi">0</span>
+            <span class="n">no_formal</span>   <span class="mi">0</span>                 <span class="mi">0</span>               <span class="mi">0</span>              <span class="mi">0</span>
+                      <span class="n">zona_ciudadano</span>
+<span class="n">tipo_de_emprendimiento</span> <span class="n">nor</span><span class="o">-</span><span class="n">oriental</span> <span class="n">occidente</span> <span class="n">oriente</span> <span class="n">otro</span> <span class="n">sur</span><span class="o">-</span><span class="n">occidental</span>
+                                  <span class="mi">2</span>         <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">2</span>              <span class="mi">1</span>
+            <span class="n">artesanal</span>            <span class="mi">16</span>         <span class="mi">3</span>       <span class="mi">5</span>    <span class="mi">0</span>              <span class="mi">2</span>
+            <span class="n">artesanias</span>            <span class="mi">8</span>         <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">5</span>             <span class="mi">13</span>
+            <span class="n">basica</span>                <span class="mi">0</span>         <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">1</span>              <span class="mi">0</span>
+            <span class="n">no</span> <span class="n">formal</span>             <span class="mi">0</span>         <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">0</span>              <span class="mi">0</span>
+            <span class="n">no_formal</span>             <span class="mi">1</span>         <span class="mi">0</span>       <span class="mi">0</span>    <span class="mi">0</span>              <span class="mi">0</span>
+                      <span class="n">zona_ciudadano</span>
+<span class="n">tipo_de_emprendimiento</span> <span class="n">sur</span><span class="o">-</span><span class="n">oriental</span>
+                                  <span class="mi">0</span>
+            <span class="n">artesanal</span>             <span class="mi">5</span>
+            <span class="n">artesanias</span>            <span class="mi">0</span>
+            <span class="n">basica</span>                <span class="mi">0</span>
+            <span class="n">no</span> <span class="n">formal</span>             <span class="mi">0</span>
+            <span class="n">no_formal</span>             <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Se realiza gráfico de contingencias</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;gplots&#39; was built under R version 4.1.3&quot;</span>
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;gplots&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:stats&#39;</span><span class="p">:</span>
+
+    <span class="n">lowess</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">balloonplot</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">contingencia</span><span class="p">),</span> <span class="n">main</span> <span class="o">=</span><span class="s">&quot;Caracterización&quot;</span><span class="p">,</span>
+            <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+            <span class="n">show.margins</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_11_01.png"><img alt="../../_images/output_11_01.png" src="../../_images/output_11_01.png" style="width: 420px; height: 420px;" /></a>
+<p>Test de independencia</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">pander</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;pander&#39; was built under R version 4.1.3&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">pander</span><span class="p">(</span><span class="nf">chisq.test</span><span class="p">(</span><span class="n">contingencia</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">chisq</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">contingencia</span><span class="p">):</span>
+<span class="s2">&quot;Chi-squared approximation may be incorrect&quot;</span>
+</pre></div>
+</div>
+<pre class="literal-block">| Test statistic | df |     P value     |
+<a href="#id3"><span class="problematic" id="id4">|:--------------:|</span></a>:--:<a href="#id5"><span class="problematic" id="id6">|:---------------:|</span></a>
+|      120       | 45 | 9.49e-09  * * * |
+
+Table: Pearson's Chi-squared test: <cite>contingencia</cite>
+
+NULL</pre>
+<p>Extracción por AC</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">FactoMineR</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">factoextra</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;package &#39;FactoMineR&#39; was built under R version 4.1.3&quot;
+Warning message:
+&quot;package &#39;factoextra&#39; was built under R version 4.1.3&quot;
+Loading required package: ggplot2
+
+Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">CA_simple</span><span class="o">&lt;-</span> <span class="nf">CA</span><span class="p">(</span><span class="n">contingencia</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">CA_simple</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block"><strong>Results of the Correspondence Analysis (CA)</strong>
+The row variable has  6  categories; the column variable has 10 categories
+The chi square of independence between the two variables is equal to 120.0362 (p-value =  9.489902e-09 ).
+<a href="#id1"><span class="problematic" id="id2">*</span></a>The results are available in the following objects:
+
+   name              description
+1  &quot;$eig&quot;            &quot;eigenvalues&quot;
+2  &quot;$col&quot;            &quot;results for the columns&quot;
+3  &quot;$col$coord&quot;      &quot;coord. for the columns&quot;
+4  &quot;$col$cos2&quot;       &quot;cos2 for the columns&quot;
+5  &quot;$col$contrib&quot;    &quot;contributions of the columns&quot;
+6  &quot;$row&quot;            &quot;results for the rows&quot;
+7  &quot;$row$coord&quot;      &quot;coord. for the rows&quot;
+8  &quot;$row$cos2&quot;       &quot;cos2 for the rows&quot;
+9  &quot;$row$contrib&quot;    &quot;contributions of the rows&quot;
+10 &quot;$call&quot;           &quot;summary called parameters&quot;
+11 &quot;$call$marge.col&quot; &quot;weights of the columns&quot;
+12 &quot;$call$marge.row&quot; &quot;weights of the rows&quot;</pre>
+<a class="reference internal image-reference" href="../../_images/output_17_1.png"><img alt="../../_images/output_17_1.png" src="../../_images/output_17_1.png" style="width: 420px; height: 420px;" /></a>
+<p>Obtenemos y analizamos contribuciones columnas</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fviz_contrib</span><span class="p">(</span><span class="n">CA_simple</span><span class="p">,</span> <span class="n">choice</span> <span class="o">=</span> <span class="s">&quot;col&quot;</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_19_0.png"><img alt="../../_images/output_19_0.png" src="../../_images/output_19_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">CA_simple</span><span class="o">$</span><span class="n">col</span><span class="o">$</span><span class="n">contrib</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                        <span class="n">Dim</span> <span class="mi">1</span>      <span class="n">Dim</span> <span class="mi">2</span>        <span class="n">Dim</span> <span class="mi">3</span>       <span class="n">Dim</span> <span class="mi">4</span>      <span class="n">Dim</span> <span class="mi">5</span>
+<span class="n">V1</span>                 <span class="mf">2.27549859</span> <span class="mf">12.9234349</span>  <span class="mf">0.003035806</span>  <span class="mf">0.05651337</span>  <span class="mf">0.1500657</span>
+<span class="n">centro</span><span class="o">-</span><span class="n">occidental</span> <span class="mf">33.33699063</span> <span class="mf">15.9974851</span>  <span class="mf">0.880836721</span> <span class="mf">36.26967998</span>  <span class="mf">2.0207547</span>
+<span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>   <span class="mf">28.94593235</span>  <span class="mf">1.7096477</span>  <span class="mf">4.427712262</span>  <span class="mf">2.06995300</span>  <span class="mf">7.3975893</span>
+<span class="n">nor</span><span class="o">-</span><span class="n">occidental</span>     <span class="mf">0.02716778</span> <span class="mf">12.7449870</span> <span class="mf">10.812273634</span>  <span class="mf">5.60234253</span> <span class="mf">46.8617649</span>
+<span class="n">nor</span><span class="o">-</span><span class="n">oriental</span>       <span class="mf">0.14822371</span>  <span class="mf">0.9281056</span> <span class="mf">78.121151270</span>  <span class="mf">2.30533427</span>  <span class="mf">2.9799437</span>
+<span class="n">occidente</span>          <span class="mf">2.24995127</span>  <span class="mf">0.4551492</span>  <span class="mf">0.275299399</span>  <span class="mf">0.11528355</span>  <span class="mf">0.5216493</span>
+<span class="n">oriente</span>            <span class="mf">3.74991878</span>  <span class="mf">0.7585820</span>  <span class="mf">0.458832331</span>  <span class="mf">0.19213924</span>  <span class="mf">0.8694156</span>
+<span class="n">otro</span>              <span class="mf">13.50375554</span> <span class="mf">17.7702438</span>  <span class="mf">4.156448465</span> <span class="mf">53.03715929</span>  <span class="mf">5.7259774</span>
+<span class="n">sur</span><span class="o">-</span><span class="n">occidental</span>    <span class="mf">12.01264257</span> <span class="mf">35.9537829</span>  <span class="mf">0.405577782</span>  <span class="mf">0.15945552</span> <span class="mf">32.6034237</span>
+<span class="n">sur</span><span class="o">-</span><span class="n">oriental</span>       <span class="mf">3.74991878</span>  <span class="mf">0.7585820</span>  <span class="mf">0.458832331</span>  <span class="mf">0.19213924</span>  <span class="mf">0.8694156</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fviz_contrib</span><span class="p">(</span><span class="n">CA_simple</span><span class="p">,</span> <span class="n">choice</span> <span class="o">=</span> <span class="s">&quot;row&quot;</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_21_02.png"><img alt="../../_images/output_21_02.png" src="../../_images/output_21_02.png" style="width: 420px; height: 420px;" /></a>
+<p>Representación en el biplot</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fviz_ca_biplot</span><span class="p">(</span><span class="n">CA_simple</span><span class="p">,</span> <span class="n">repel</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_02.png"><img alt="../../_images/output_23_02.png" src="../../_images/output_23_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Múltiple</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_m</span><span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tipo_de_emprendimiento&quot;</span><span class="p">,</span><span class="s">&quot;zona_ciudadano&quot;</span><span class="p">,</span><span class="s">&quot;cabeza_de_hogar&quot;</span><span class="p">,</span><span class="s">&quot;sexo&quot;</span><span class="p">)]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">df_m</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">tipo_de_emprendimiento</span>  <span class="n">zona_ciudadano</span> <span class="n">cabeza_de_hogar</span>      <span class="n">sexo</span>
+<span class="mi">1</span>              <span class="n">artesanal</span>  <span class="n">nor</span><span class="o">-</span><span class="n">occidental</span>              <span class="n">si</span> <span class="n">masculino</span>
+<span class="mi">2</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>              <span class="n">no</span> <span class="n">masculino</span>
+<span class="mi">3</span>              <span class="n">artesanal</span>    <span class="n">sur</span><span class="o">-</span><span class="n">oriental</span>              <span class="n">si</span> <span class="n">masculino</span>
+<span class="mi">4</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>              <span class="n">si</span>  <span class="n">femenino</span>
+<span class="mi">5</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>              <span class="n">si</span>  <span class="n">femenino</span>
+<span class="mi">6</span>              <span class="n">artesanal</span> <span class="n">centro</span><span class="o">-</span><span class="n">oriental</span>              <span class="n">si</span>  <span class="n">femenino</span>
+</pre></div>
+</div>
+<p>Ajuste ACM</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">CA_multiple</span> <span class="o">&lt;-</span> <span class="nf">MCA</span><span class="p">(</span><span class="n">df_m</span><span class="p">,</span><span class="n">method</span> <span class="o">=</span> <span class="s">&#39;Burt&#39;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">CA_multiple</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 3 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">MCA</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">df_m</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;Burt&quot;</span><span class="p">)</span>
+
+
+<span class="n">Eigenvalues</span>
+                       <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">4</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">5</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">6</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">Variance</span>               <span class="mf">0.245</span>   <span class="mf">0.108</span>   <span class="mf">0.101</span>   <span class="mf">0.090</span>   <span class="mf">0.081</span>   <span class="mf">0.073</span>   <span class="mf">0.067</span>
+<span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>             <span class="mf">20.543</span>   <span class="mf">9.055</span>   <span class="mf">8.444</span>   <span class="mf">7.547</span>   <span class="mf">6.796</span>   <span class="mf">6.070</span>   <span class="mf">5.599</span>
+<span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">20.543</span>  <span class="mf">29.598</span>  <span class="mf">38.042</span>  <span class="mf">45.589</span>  <span class="mf">52.385</span>  <span class="mf">58.455</span>  <span class="mf">64.054</span>
+                       <span class="n">Dim</span><span class="o">.</span><span class="mi">8</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">9</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">10</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">11</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">12</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">13</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">14</span>
+<span class="n">Variance</span>               <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.062</span>   <span class="mf">0.054</span>   <span class="mf">0.047</span>   <span class="mf">0.044</span>   <span class="mf">0.042</span>
+<span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">5.280</span>   <span class="mf">5.231</span>   <span class="mf">5.231</span>   <span class="mf">4.545</span>   <span class="mf">3.917</span>   <span class="mf">3.689</span>   <span class="mf">3.490</span>
+<span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">69.334</span>  <span class="mf">74.566</span>  <span class="mf">79.797</span>  <span class="mf">84.341</span>  <span class="mf">88.259</span>  <span class="mf">91.948</span>  <span class="mf">95.437</span>
+                      <span class="n">Dim</span><span class="o">.</span><span class="mi">15</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">16</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">17</span>
+<span class="n">Variance</span>               <span class="mf">0.029</span>   <span class="mf">0.021</span>   <span class="mf">0.004</span>
+<span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">2.458</span>   <span class="mf">1.767</span>   <span class="mf">0.338</span>
+<span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">97.895</span>  <span class="mf">99.662</span> <span class="mf">100.000</span>
+
+<span class="n">Individuals</span> <span class="p">(</span><span class="n">the</span> <span class="mi">10</span> <span class="n">first</span><span class="p">)</span>
+                                     <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>    <span class="n">ctr</span>   <span class="n">cos2</span>    <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>    <span class="n">ctr</span>   <span class="n">cos2</span>
+<span class="mi">1</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.671</span>  <span class="mf">0.522</span>  <span class="mf">0.221</span> <span class="o">|</span>  <span class="mf">0.075</span>  <span class="mf">0.010</span>  <span class="mf">0.003</span>
+<span class="mi">2</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.700</span>  <span class="mf">0.568</span>  <span class="mf">0.300</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.428</span>  <span class="mf">0.320</span>  <span class="mf">0.112</span>
+<span class="mi">3</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.942</span>  <span class="mf">1.030</span>  <span class="mf">0.094</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.462</span>  <span class="mf">0.373</span>  <span class="mf">0.023</span>
+<span class="mi">4</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.584</span>  <span class="mf">0.396</span>  <span class="mf">0.331</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.091</span>  <span class="mf">0.015</span>  <span class="mf">0.008</span>
+<span class="mi">5</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.584</span>  <span class="mf">0.396</span>  <span class="mf">0.331</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.091</span>  <span class="mf">0.015</span>  <span class="mf">0.008</span>
+<span class="mi">6</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.584</span>  <span class="mf">0.396</span>  <span class="mf">0.331</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.091</span>  <span class="mf">0.015</span>  <span class="mf">0.008</span>
+<span class="mi">7</span>                                 <span class="o">|</span>  <span class="mf">0.030</span>  <span class="mf">0.001</span>  <span class="mf">0.001</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.287</span>  <span class="mf">0.144</span>  <span class="mf">0.049</span>
+<span class="mi">8</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.457</span>  <span class="mf">0.243</span>  <span class="mf">0.085</span> <span class="o">|</span>  <span class="mf">0.310</span>  <span class="mf">0.167</span>  <span class="mf">0.039</span>
+<span class="mi">9</span>                                 <span class="o">|</span>  <span class="mf">0.030</span>  <span class="mf">0.001</span>  <span class="mf">0.001</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.287</span>  <span class="mf">0.144</span>  <span class="mf">0.049</span>
+<span class="mi">10</span>                                <span class="o">|</span> <span class="o">-</span><span class="mf">0.099</span>  <span class="mf">0.011</span>  <span class="mf">0.001</span> <span class="o">|</span> <span class="o">-</span><span class="mf">1.054</span>  <span class="mf">1.940</span>  <span class="mf">0.123</span>
+                                     <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>    <span class="n">ctr</span>   <span class="n">cos2</span>
+<span class="mi">1</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.224</span>  <span class="mf">0.091</span>  <span class="mf">0.025</span> <span class="o">|</span>
+<span class="mi">2</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.107</span>  <span class="mf">0.021</span>  <span class="mf">0.007</span> <span class="o">|</span>
+<span class="mi">3</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.029</span>  <span class="mf">0.001</span>  <span class="mf">0.000</span> <span class="o">|</span>
+<span class="mi">4</span>                                 <span class="o">|</span>  <span class="mf">0.191</span>  <span class="mf">0.066</span>  <span class="mf">0.035</span> <span class="o">|</span>
+<span class="mi">5</span>                                 <span class="o">|</span>  <span class="mf">0.191</span>  <span class="mf">0.066</span>  <span class="mf">0.035</span> <span class="o">|</span>
+<span class="mi">6</span>                                 <span class="o">|</span>  <span class="mf">0.191</span>  <span class="mf">0.066</span>  <span class="mf">0.035</span> <span class="o">|</span>
+<span class="mi">7</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.322</span>  <span class="mf">0.188</span>  <span class="mf">0.062</span> <span class="o">|</span>
+<span class="mi">8</span>                                 <span class="o">|</span>  <span class="mf">0.166</span>  <span class="mf">0.050</span>  <span class="mf">0.011</span> <span class="o">|</span>
+<span class="mi">9</span>                                 <span class="o">|</span> <span class="o">-</span><span class="mf">0.322</span>  <span class="mf">0.188</span>  <span class="mf">0.062</span> <span class="o">|</span>
+<span class="mi">10</span>                                <span class="o">|</span> <span class="o">-</span><span class="mf">0.200</span>  <span class="mf">0.072</span>  <span class="mf">0.004</span> <span class="o">|</span>
+
+<span class="n">Categories</span> <span class="p">(</span><span class="n">the</span> <span class="mi">10</span> <span class="n">first</span><span class="p">)</span>
+                                     <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>    <span class="n">ctr</span>   <span class="n">cos2</span> <span class="n">v</span><span class="o">.</span><span class="n">test</span>    <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>    <span class="n">ctr</span>
+<span class="n">tipo_de_emprendimiento_</span>           <span class="o">|</span>  <span class="mf">0.894</span>  <span class="mf">4.211</span>  <span class="mf">0.154</span>  <span class="mf">2.746</span> <span class="o">|</span>  <span class="mf">0.009</span>  <span class="mf">0.001</span>
+<span class="n">tipo_de_emprendimiento_artesanal</span>  <span class="o">|</span> <span class="o">-</span><span class="mf">0.519</span> <span class="mf">15.776</span>  <span class="mf">0.888</span> <span class="o">-</span><span class="mf">7.937</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.124</span>  <span class="mf">2.033</span>
+<span class="n">tipo_de_emprendimiento_artesanias</span> <span class="o">|</span>  <span class="mf">0.657</span> <span class="mf">15.180</span>  <span class="mf">0.634</span>  <span class="mf">6.273</span> <span class="o">|</span>  <span class="mf">0.223</span>  <span class="mf">3.960</span>
+<span class="n">tipo_de_emprendimiento_basica</span>     <span class="o">|</span>  <span class="mf">0.963</span>  <span class="mf">1.629</span>  <span class="mf">0.061</span>  <span class="mf">1.678</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.675</span>  <span class="mf">1.813</span>
+<span class="n">tipo_de_emprendimiento_no</span> <span class="n">formal</span>  <span class="o">|</span>  <span class="mf">1.693</span>  <span class="mf">1.677</span>  <span class="mf">0.063</span>  <span class="mf">1.693</span> <span class="o">|</span> <span class="o">-</span><span class="mf">2.144</span>  <span class="mf">6.103</span>
+<span class="n">tipo_de_emprendimiento_no_formal</span>  <span class="o">|</span> <span class="o">-</span><span class="mf">0.161</span>  <span class="mf">0.015</span>  <span class="mf">0.001</span> <span class="o">-</span><span class="mf">0.161</span> <span class="o">|</span>  <span class="mf">3.085</span> <span class="mf">12.640</span>
+<span class="n">zona_ciudadano_</span>                   <span class="o">|</span>  <span class="mf">0.535</span>  <span class="mf">0.335</span>  <span class="mf">0.013</span>  <span class="mf">0.759</span> <span class="o">|</span>  <span class="mf">0.570</span>  <span class="mf">0.862</span>
+<span class="n">zona_ciudadano_centro</span><span class="o">-</span><span class="n">occidental</span>  <span class="o">|</span>  <span class="mf">1.099</span> <span class="mf">14.152</span>  <span class="mf">0.486</span>  <span class="mf">5.211</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.395</span>  <span class="mf">4.152</span>
+<span class="n">zona_ciudadano_centro</span><span class="o">-</span><span class="n">oriental</span>    <span class="o">|</span> <span class="o">-</span><span class="mf">0.621</span> <span class="mf">12.433</span>  <span class="mf">0.548</span> <span class="o">-</span><span class="mf">5.557</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.175</span>  <span class="mf">2.235</span>
+<span class="n">zona_ciudadano_nor</span><span class="o">-</span><span class="n">occidental</span>     <span class="o">|</span>  <span class="mf">0.016</span>  <span class="mf">0.005</span>  <span class="mf">0.000</span>  <span class="mf">0.099</span> <span class="o">|</span>  <span class="mf">0.027</span>  <span class="mf">0.032</span>
+                                    <span class="n">cos2</span> <span class="n">v</span><span class="o">.</span><span class="n">test</span>    <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>    <span class="n">ctr</span>   <span class="n">cos2</span> <span class="n">v</span><span class="o">.</span><span class="n">test</span>
+<span class="n">tipo_de_emprendimiento_</span>            <span class="mf">0.000</span>  <span class="mf">0.028</span> <span class="o">|</span>  <span class="mf">1.430</span> <span class="mf">26.209</span>  <span class="mf">0.393</span>  <span class="mf">4.393</span> <span class="o">|</span>
+<span class="n">tipo_de_emprendimiento_artesanal</span>   <span class="mf">0.050</span> <span class="o">-</span><span class="mf">1.892</span> <span class="o">|</span>  <span class="mf">0.031</span>  <span class="mf">0.136</span>  <span class="mf">0.003</span>  <span class="mf">0.473</span> <span class="o">|</span>
+<span class="n">tipo_de_emprendimiento_artesanias</span>  <span class="mf">0.073</span>  <span class="mf">2.127</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.376</span> <span class="mf">12.081</span>  <span class="mf">0.207</span> <span class="o">-</span><span class="mf">3.588</span> <span class="o">|</span>
+<span class="n">tipo_de_emprendimiento_basica</span>      <span class="mf">0.030</span> <span class="o">-</span><span class="mf">1.175</span> <span class="o">|</span>  <span class="mf">1.277</span>  <span class="mf">6.966</span>  <span class="mf">0.108</span>  <span class="mf">2.225</span> <span class="o">|</span>
+<span class="n">tipo_de_emprendimiento_no</span> <span class="n">formal</span>   <span class="mf">0.101</span> <span class="o">-</span><span class="mf">2.144</span> <span class="o">|</span>  <span class="mf">0.705</span>  <span class="mf">0.708</span>  <span class="mf">0.011</span>  <span class="mf">0.705</span> <span class="o">|</span>
+<span class="n">tipo_de_emprendimiento_no_formal</span>   <span class="mf">0.212</span>  <span class="mf">3.085</span> <span class="o">|</span>  <span class="mf">2.060</span>  <span class="mf">6.041</span>  <span class="mf">0.094</span>  <span class="mf">2.060</span> <span class="o">|</span>
+<span class="n">zona_ciudadano_</span>                    <span class="mf">0.015</span>  <span class="mf">0.808</span> <span class="o">|</span> <span class="o">-</span><span class="mf">1.546</span>  <span class="mf">6.807</span>  <span class="mf">0.108</span> <span class="o">-</span><span class="mf">2.193</span> <span class="o">|</span>
+<span class="n">zona_ciudadano_centro</span><span class="o">-</span><span class="n">occidental</span>   <span class="mf">0.063</span> <span class="o">-</span><span class="mf">1.874</span> <span class="o">|</span>  <span class="mf">0.296</span>  <span class="mf">2.488</span>  <span class="mf">0.035</span>  <span class="mf">1.401</span> <span class="o">|</span>
+<span class="n">zona_ciudadano_centro</span><span class="o">-</span><span class="n">oriental</span>     <span class="mf">0.043</span> <span class="o">-</span><span class="mf">1.564</span> <span class="o">|</span>  <span class="mf">0.065</span>  <span class="mf">0.327</span>  <span class="mf">0.006</span>  <span class="mf">0.578</span> <span class="o">|</span>
+<span class="n">zona_ciudadano_nor</span><span class="o">-</span><span class="n">occidental</span>      <span class="mf">0.001</span>  <span class="mf">0.171</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.336</span>  <span class="mf">5.294</span>  <span class="mf">0.103</span> <span class="o">-</span><span class="mf">2.136</span> <span class="o">|</span>
+
+<span class="n">Categorical</span> <span class="n">variables</span> <span class="p">(</span><span class="n">eta2</span><span class="p">)</span>
+                                    <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span> <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span> <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">tipo_de_emprendimiento</span>            <span class="o">|</span> <span class="mf">0.763</span> <span class="mf">0.349</span> <span class="mf">0.662</span> <span class="o">|</span>
+<span class="n">zona_ciudadano</span>                    <span class="o">|</span> <span class="mf">0.769</span> <span class="mf">0.628</span> <span class="mf">0.548</span> <span class="o">|</span>
+<span class="n">cabeza_de_hogar</span>                   <span class="o">|</span> <span class="mf">0.173</span> <span class="mf">0.338</span> <span class="mf">0.050</span> <span class="o">|</span>
+<span class="n">sexo</span>                              <span class="o">|</span> <span class="mf">0.277</span> <span class="mf">0.000</span> <span class="mf">0.011</span> <span class="o">|</span>
+</pre></div>
+</div>
+<p>Extrayendo los valores propios</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">eig.val</span> <span class="o">=</span> <span class="nf">get_eigenvalue</span><span class="p">(</span><span class="n">CA_multiple</span><span class="p">)</span>
+<span class="n">eig.val</span>
+</pre></div>
+</div>
+<table class="dataframe">
+<caption>A matrix: 17 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope=col>eigenvalue</th><th scope=col>variance.percent</th><th scope=col>cumulative.variance.percent</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>Dim.1</th><td>0.245442118</td><td>20.543086</td><td> 20.54309</td></tr>
+    <tr><th scope=row>Dim.2</th><td>0.108187325</td><td> 9.055094</td><td> 29.59818</td></tr>
+    <tr><th scope=row>Dim.3</th><td>0.100886345</td><td> 8.444015</td><td> 38.04219</td></tr>
+    <tr><th scope=row>Dim.4</th><td>0.090164207</td><td> 7.546590</td><td> 45.58878</td></tr>
+    <tr><th scope=row>Dim.5</th><td>0.081194727</td><td> 6.795860</td><td> 52.38464</td></tr>
+    <tr><th scope=row>Dim.6</th><td>0.072525536</td><td> 6.070263</td><td> 58.45491</td></tr>
+    <tr><th scope=row>Dim.7</th><td>0.066895904</td><td> 5.599073</td><td> 64.05398</td></tr>
+    <tr><th scope=row>Dim.8</th><td>0.063089070</td><td> 5.280447</td><td> 69.33443</td></tr>
+    <tr><th scope=row>Dim.9</th><td>0.062500000</td><td> 5.231143</td><td> 74.56557</td></tr>
+    <tr><th scope=row>Dim.10</th><td>0.062500000</td><td> 5.231143</td><td> 79.79671</td></tr>
+    <tr><th scope=row>Dim.11</th><td>0.054298259</td><td> 4.544672</td><td> 84.34139</td></tr>
+    <tr><th scope=row>Dim.12</th><td>0.046802939</td><td> 3.917326</td><td> 88.25871</td></tr>
+    <tr><th scope=row>Dim.13</th><td>0.044074548</td><td> 3.688964</td><td> 91.94768</td></tr>
+    <tr><th scope=row>Dim.14</th><td>0.041695178</td><td> 3.489815</td><td> 95.43749</td></tr>
+    <tr><th scope=row>Dim.15</th><td>0.029366877</td><td> 2.457957</td><td> 97.89545</td></tr>
+    <tr><th scope=row>Dim.16</th><td>0.021105663</td><td> 1.766508</td><td> 99.66196</td></tr>
+    <tr><th scope=row>Dim.17</th><td>0.004038829</td><td> 0.338043</td><td>100.00000</td></tr>
+</tbody>
+</table><p>Gráfico de sedimentación para identificar dimensiones óptimas</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fviz_screeplot</span><span class="p">(</span><span class="n">CA_multiple</span><span class="p">,</span> <span class="n">addlabels</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_31_0.png"><img alt="../../_images/output_31_0.png" src="../../_images/output_31_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Ubicación en el biplot como representación de las dimensiones</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fviz_mca_biplot</span><span class="p">(</span><span class="n">CA_multiple</span><span class="p">,</span> <span class="n">repel</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 121 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_33_1.png"><img alt="../../_images/output_33_1.png" src="../../_images/output_33_1.png" style="width: 420px; height: 420px;" /></a>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../Generalidades del Mercado Colombiano/index.html" class="btn btn-neutral float-right" title="Generalidades del Mercado Colombiano" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Taller AC.html" class="btn btn-neutral float-left" title="Taller Análisis de Correspondencias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Natalia Acevedo Prins
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
