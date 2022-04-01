@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="y" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="y" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Comparación de modelos &mdash; Material Curso 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Material Curso 1 documentation" href="../../index.html"/>
+        <link rel="up" title="Regresión lineal" href="../index.html"/>
+        <link rel="next" title="Análisis de Normalidad en RLM" href="../An%C3%A1lisis%20de%20Normalidad%20en%20RLM/An%C3%A1lisis%20de%20Normalidad%20en%20RLM.html"/>
+        <link rel="prev" title="Multicolinealidad" href="../Multicolinealidad/Multicolinealidad.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Regresi%C3%B3n%20Lineal%20M%C3%BAltiple%20%28RLM%29/Regresi%C3%B3n%20Lineal%20M%C3%BAltiple%20%28RLM%29.html">Regresión Lineal Múltiple (RLM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ANOVA/ANOVA.html">ANOVA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Multicolinealidad/Multicolinealidad.html">Multicolinealidad</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Comparación de modelos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#seleccion-de-variables">Selección de variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#criterios-de-informacion">Criterios de información:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../An%C3%A1lisis%20de%20Normalidad%20en%20RLM/An%C3%A1lisis%20de%20Normalidad%20en%20RLM.html">Análisis de Normalidad en RLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Variables%20indicadoras/Variables%20indicadoras.html">Variables indicadoras</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+        
+      <li>Comparación de modelos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Regresión lineal/Comparación de modelos/Comparación de modelos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="comparacion-de-modelos">
+<h1>Comparación de modelos<a class="headerlink" href="#comparacion-de-modelos" title="Permalink to this headline">¶</a></h1>
+<p>Se busca determinar la menor cantidad de variables regresoras porque la
+varianza de la predicción <span class="math notranslate nohighlight">\(\hat{y}\)</span> aumenta a medida que aumenta
+la cantidad de regresoras. No hay un único método óptimo para
+seleccionar las variables y es posible que cada uno indique variables
+distintas para la regresión. Así que no se obtendrá una ecuación de
+regresión óptima, sino que se tendrán varias igualmente buenas.</p>
+<div class="section" id="seleccion-de-variables">
+<h2>Selección de variables:<a class="headerlink" href="#seleccion-de-variables" title="Permalink to this headline">¶</a></h2>
+<p>En la Regresión Lineal Múltiple tenemos <span class="math notranslate nohighlight">\(k\)</span> cantidad de variables
+regresoras o explicativas y se busca encontrar la ecuación óptima o
+mejor a partir de subconjuntos de estas variables. Con la ordenada al
+origen, <span class="math notranslate nohighlight">\(\beta_0\)</span>, tenemos <span class="math notranslate nohighlight">\(2^k\)</span> ecuaciones de todas las
+combinaciones posibles y que se deben estimar y examinar. Si tenemos 3
+variables explicativas, entonces tenemos 8 ecuaciones posibles de
+regresión, con 5, serían 32 ecuaciones. Esto conlleva un alto costo
+computacional; sin embargo, tenemos varios métodos para evaluar solo una
+pequeña cantidad de modelos de regresión del subconjunto, donde se
+agregan o eliminan regresoras una por una. Tenemos tres métodos:</p>
+<ol class="arabic simple">
+<li><p>Selección hacia adelante.</p></li>
+<li><p>Selección hacia atrás.</p></li>
+<li><p>Regresión por segmentos.</p></li>
+</ol>
+<p>Estos métodos son iterativos porque en cada paso agregan o eliminan una
+variable explicativa y evalúa el nuevo modelo de regresión.</p>
+<p><strong>Selección hacia adelante (Forward):</strong></p>
+<p>Se parte de una ecuación con solo la ordenada al origen,
+<span class="math notranslate nohighlight">\(\beta_0\)</span>, y se determina el subconjunto óptimo insertando
+variables regresoras una por una. Es un proceso iterativo.</p>
+<p>El primer modelo no tiene ninguna variable regresora y es el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \beta_0\]</div>
+<p>En cada paso se agrega una variable explicativa al modelo si con el
+nuevo modelo disminuye el AIC.</p>
+<p><strong>Eliminación hace atrás (Backward):</strong></p>
+<p>Comienza con un modelo que incluya todas las <span class="math notranslate nohighlight">\(k\)</span> variables
+regresoras y evalúa la significancia de todas las variables. Elimina las
+variables no significativas. Después de eliminar variables, vuelve a
+ajustar el modelo con las variables restantes y evalúa de nuevo la
+significancia de las variables para volver a eliminar más variables no
+significativas. Este proceso se detiene cuando todas las variables
+explicativas son significativas.</p>
+<p>La significancia de las variables se evalúa con el valor p.</p>
+<p>También se puede usar el criterio de eliminar variables si con la
+ausencia de la variable eliminada el AIC es menor.</p>
+<p><strong>Regresión por segmentos (Stepwise):</strong></p>
+<p>Este proceso es una combinación de los dos anteriores. Empieza como el
+Forward, sin variables explicativas, en cada paso agrega una variable
+con el criterio del AIC, pero evalúa la significancia de la nueva
+variable, como en el método Backward.</p>
+</div>
+<div class="section" id="criterios-de-informacion">
+<h2>Criterios de información:<a class="headerlink" href="#criterios-de-informacion" title="Permalink to this headline">¶</a></h2>
+<p>Los criterios de información dan un equilibrio entre los modelos que
+mejor se ajustan y la parsimonia del modelo. Las dos métricas más
+comunes son el Criterio de Información de Akaike (AIC - Akaike’s
+Information Criterion) y el Criterio de Información Bayesiano (BIC -
+Bayesian Information Criterion)</p>
+<div class="math notranslate nohighlight">
+\[AIC = n \times ln \left( \frac{SSE}{n} \right) + 2(k+2)\]</div>
+<div class="math notranslate nohighlight">
+\[BIC = n \times ln \left( \frac{SSE}{n} \right) + (k+2)(ln(n))\]</div>
+<p>Los modelos con AIC o BIC más pequeños indican un mejor ajuste.</p>
+</div>
+<div class="section" id="codigo-en-r">
+<h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Fecha</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + PrecioInternacional +
+    PrecioInterno + TRM + EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-507.57  -73.29   -2.66   74.68  400.44
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)          2.800e+02  1.172e+02   2.390   0.0176 *
+Producción           5.806e-01  3.284e-02  17.681   &lt;2e-16 <strong>*
+PrecioInternacional -1.045e+00  6.248e-01  -1.673   0.0956 .
+PrecioInterno        1.878e-04  1.311e-04   1.432   0.1533
+TRM                 -3.049e-02  5.367e-02  -0.568   0.5704
+EUR                  5.335e-02  2.725e-02   1.958   0.0513 .
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.1 on 258 degrees of freedom
+Multiple R-squared:  0.7055,        Adjusted R-squared:  0.6998
+F-statistic: 123.6 on 5 and 258 DF,  p-value: &lt; 2.2e-16</pre>
+<p><strong>Selección de variables:</strong></p>
+<p>Estos métodos de selección de variables pueden indicar ecuaciones de
+regresión diferentes:</p>
+<p>Se deben crear dos modelos:</p>
+<ol class="arabic simple">
+<li><p>Modelo vacío con solo el intercepto <code class="docutils literal notranslate"><span class="pre">regression_full</span></code>:
+<span class="math notranslate nohighlight">\(\hat{y}=\beta_0\)</span>.</p></li>
+<li><p>Modelo completo con todas las variables explicativas
+<code class="docutils literal notranslate"><span class="pre">regression_empt</span></code>:
+<span class="math notranslate nohighlight">\(\hat{y}=\beta_0+\beta_1 x_1 +\beta_2 x_2 + ... + \beta_k x_k\)</span></p></li>
+</ol>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression_full</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="n">regression_empty</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="m">1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Selección hacia adelante (Forward):</strong></p>
+<p>Criterio de inclusión: variable con la que se disminuye el AIC.</p>
+<p>Inicia con el modelo sin variables <code class="docutils literal notranslate"><span class="pre">regression_empty</span></code> y termina con el
+modelo con todas las variables <code class="docutils literal notranslate"><span class="pre">regression_full</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression_forward</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">regression_empty</span><span class="p">,</span>
+                           <span class="n">scope</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span> <span class="n">regression_empty</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">regression_full</span><span class="p">),</span>
+                           <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;forward&quot;</span><span class="p">,</span> <span class="n">trace</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2851.31</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="mi">1</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>      <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">+</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">8556536</span>  <span class="mi">4292540</span> <span class="mf">2563.9</span>
+<span class="o">+</span> <span class="n">TRM</span>                  <span class="mi">1</span>   <span class="mi">3909237</span>  <span class="mi">8939840</span> <span class="mf">2757.5</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>   <span class="mi">3150223</span>  <span class="mi">9698854</span> <span class="mf">2779.1</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>    <span class="mi">569792</span> <span class="mi">12279285</span> <span class="mf">2841.3</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>    <span class="mi">411399</span> <span class="mi">12437678</span> <span class="mf">2844.7</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">12849076</span> <span class="mf">2851.3</span>
+
+<span class="n">Step</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2563.86</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>     <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">+</span> <span class="n">TRM</span>                  <span class="mi">1</span>    <span class="mi">433271</span> <span class="mi">3859269</span> <span class="mf">2537.8</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>    <span class="mi">408532</span> <span class="mi">3884008</span> <span class="mf">2539.5</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>    <span class="mi">107039</span> <span class="mi">4185501</span> <span class="mf">2559.2</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">4292540</span> <span class="mf">2563.9</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>      <span class="mi">3278</span> <span class="mi">4289262</span> <span class="mf">2565.7</span>
+
+<span class="n">Step</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2537.77</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">TRM</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>     <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">3859269</span> <span class="mf">2537.8</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>   <span class="mf">25953.5</span> <span class="mi">3833316</span> <span class="mf">2538.0</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>    <span class="mf">1812.7</span> <span class="mi">3857456</span> <span class="mf">2539.7</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>     <span class="mf">138.5</span> <span class="mi">3859131</span> <span class="mf">2539.8</span>
+</pre></div>
+</div>
+<p>Se detiene cuando ya no agrega variables. Después de incluir la TRM, el
+AIC es de 2537,8 y al analizar si se incluye EUR, el AIC tiene el mismo
+valor, por tanto, la variable EUR no se incluye y este proceso se
+detiene.</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \beta_0 + \beta_1 \times Producción + \beta_2 \times TRM\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression_forward</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + TRM, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-516.84  -73.36  -10.09   76.14  388.09
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 120.22988   35.39162   3.397 0.000787 <strong>*
+Producción    0.59391    0.03204  18.536  &lt; 2e-16 *</strong>
+TRM           0.07806    0.01442   5.413  1.4e-07 <strong>*
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.6 on 261 degrees of freedom
+Multiple R-squared:  0.6996,        Adjusted R-squared:  0.6973
+F-statistic:   304 on 2 and 261 DF,  p-value: &lt; 2.2e-16</pre>
+<p><strong>Eliminación hace atrás (Backward):</strong></p>
+<p>Criterio de exclusión: disminución del AIC al eliminar la variable.</p>
+<p>Inicial con el modelo completo <code class="docutils literal notranslate"><span class="pre">regression_full</span></code> y termina en el
+modelo vacío <code class="docutils literal notranslate"><span class="pre">regression_empty</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression_backward</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">regression_full</span><span class="p">,</span>
+                            <span class="n">scope</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span> <span class="n">regression_empty</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">regression_full</span><span class="p">),</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;backward&quot;</span><span class="p">,</span> <span class="n">trace</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2538.54</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span>
+    <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>     <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">-</span> <span class="n">TRM</span>                  <span class="mi">1</span>      <span class="mi">4735</span> <span class="mi">3788321</span> <span class="mf">2536.9</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">3783586</span> <span class="mf">2538.5</span>
+<span class="o">-</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>     <span class="mi">30085</span> <span class="mi">3813671</span> <span class="mf">2538.6</span>
+<span class="o">-</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>     <span class="mi">41039</span> <span class="mi">3824625</span> <span class="mf">2539.4</span>
+<span class="o">-</span> <span class="n">EUR</span>                  <span class="mi">1</span>     <span class="mi">56227</span> <span class="mi">3839813</span> <span class="mf">2540.4</span>
+<span class="o">-</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">4584682</span> <span class="mi">8368268</span> <span class="mf">2746.1</span>
+
+<span class="n">Step</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2536.87</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span>
+    <span class="n">EUR</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>     <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">3788321</span> <span class="mf">2536.9</span>
+<span class="o">-</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>     <span class="mi">45190</span> <span class="mi">3833511</span> <span class="mf">2538.0</span>
+<span class="o">-</span> <span class="n">EUR</span>                  <span class="mi">1</span>     <span class="mi">61244</span> <span class="mi">3849565</span> <span class="mf">2539.1</span>
+<span class="o">-</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>     <span class="mi">84721</span> <span class="mi">3873042</span> <span class="mf">2540.7</span>
+<span class="o">-</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">4603882</span> <span class="mi">8392203</span> <span class="mf">2744.8</span>
+</pre></div>
+</div>
+<p>No elimina la variable EUR porque el AIC sigue siendo el mismo.</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \beta_0 + \beta_1 \times Producción + \beta_2 \times PrecioInternacional + \beta_3 \times PrecioInterno + \beta_4 \times EUR\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression_backward</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + PrecioInternacional +
+    PrecioInterno + EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-510.51  -72.10   -4.75   77.68  398.79
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)          2.257e+02  6.764e+01   3.337 0.000973 <strong>*
+Producción           5.813e-01  3.277e-02  17.741  &lt; 2e-16 *</strong>
+PrecioInternacional -7.356e-01  3.057e-01  -2.407 0.016798 *
+PrecioInterno        1.253e-04  7.128e-05   1.758 0.079979 .
+EUR                  4.379e-02  2.140e-02   2.046 0.041742 *
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 120.9 on 259 degrees of freedom
+Multiple R-squared:  0.7052,        Adjusted R-squared:  0.7006
+F-statistic: 154.9 on 4 and 259 DF,  p-value: &lt; 2.2e-16</pre>
+<p><strong>Regresión por segmentos (Stepwise):</strong></p>
+<p>Agrega variables como el método Forward aplicando el criterio del menor
+AIC, pero si la variable agregada no es significativa, la elimina y
+repite el paso (como en el método Backward).</p>
+<p>Inicia con el modelo sin variables <code class="docutils literal notranslate"><span class="pre">regression_empty</span></code> porque empieza
+como el Forward.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression_stepwise</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">regression_empty</span><span class="p">,</span>
+                            <span class="n">scope</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span> <span class="n">regression_empty</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">regression_full</span><span class="p">),</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;both&quot;</span><span class="p">,</span> <span class="n">trace</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2851.31</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="mi">1</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>      <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">+</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">8556536</span>  <span class="mi">4292540</span> <span class="mf">2563.9</span>
+<span class="o">+</span> <span class="n">TRM</span>                  <span class="mi">1</span>   <span class="mi">3909237</span>  <span class="mi">8939840</span> <span class="mf">2757.5</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>   <span class="mi">3150223</span>  <span class="mi">9698854</span> <span class="mf">2779.1</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>    <span class="mi">569792</span> <span class="mi">12279285</span> <span class="mf">2841.3</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>    <span class="mi">411399</span> <span class="mi">12437678</span> <span class="mf">2844.7</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">12849076</span> <span class="mf">2851.3</span>
+
+<span class="n">Step</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2563.86</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>      <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">+</span> <span class="n">TRM</span>                  <span class="mi">1</span>    <span class="mi">433271</span>  <span class="mi">3859269</span> <span class="mf">2537.8</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>    <span class="mi">408532</span>  <span class="mi">3884008</span> <span class="mf">2539.5</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>    <span class="mi">107039</span>  <span class="mi">4185501</span> <span class="mf">2559.2</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                              <span class="mi">4292540</span> <span class="mf">2563.9</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>      <span class="mi">3278</span>  <span class="mi">4289262</span> <span class="mf">2565.7</span>
+<span class="o">-</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">8556536</span> <span class="mi">12849076</span> <span class="mf">2851.3</span>
+
+<span class="n">Step</span><span class="p">:</span>  <span class="n">AIC</span><span class="o">=</span><span class="mf">2537.77</span>
+<span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">TRM</span>
+
+                      <span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span>     <span class="n">RSS</span>    <span class="n">AIC</span>
+<span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                             <span class="mi">3859269</span> <span class="mf">2537.8</span>
+<span class="o">+</span> <span class="n">EUR</span>                  <span class="mi">1</span>     <span class="mi">25954</span> <span class="mi">3833316</span> <span class="mf">2538.0</span>
+<span class="o">+</span> <span class="n">PrecioInternacional</span>  <span class="mi">1</span>      <span class="mi">1813</span> <span class="mi">3857456</span> <span class="mf">2539.7</span>
+<span class="o">+</span> <span class="n">PrecioInterno</span>        <span class="mi">1</span>       <span class="mi">139</span> <span class="mi">3859131</span> <span class="mf">2539.8</span>
+<span class="o">-</span> <span class="n">TRM</span>                  <span class="mi">1</span>    <span class="mi">433271</span> <span class="mi">4292540</span> <span class="mf">2563.9</span>
+<span class="o">-</span> <span class="n">Producción</span>           <span class="mi">1</span>   <span class="mi">5080571</span> <span class="mi">8939840</span> <span class="mf">2757.5</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \beta_0 + \beta_1 \times Producción + \beta_2 \times TRM + \beta_3 \times EUR\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression_stepwise</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + TRM, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-516.84  -73.36  -10.09   76.14  388.09
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 120.22988   35.39162   3.397 0.000787 <strong>*
+Producción    0.59391    0.03204  18.536  &lt; 2e-16 *</strong>
+TRM           0.07806    0.01442   5.413  1.4e-07 <strong>*
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.6 on 261 degrees of freedom
+Multiple R-squared:  0.6996,        Adjusted R-squared:  0.6973
+F-statistic:   304 on 2 and 261 DF,  p-value: &lt; 2.2e-16</pre>
+<p>Se puede hacer la prueba que con el modelo de regresión con las
+variables Producción, TRM y EUR, la variable EUR no es significativa.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + TRM + EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-516.96  -75.78   -2.17   76.98  410.90
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 99.93981   38.50711   2.595  0.00999 **
+Producción   0.59460    0.03200  18.582  &lt; 2e-16 <strong>*
+TRM          0.04881    0.02633   1.854  0.06483 .
+EUR          0.03102    0.02338   1.327  0.18575
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.4 on 260 degrees of freedom
+Multiple R-squared:  0.7017,        Adjusted R-squared:  0.6982
+F-statistic: 203.8 on 3 and 260 DF,  p-value: &lt; 2.2e-16</pre>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../An%C3%A1lisis%20de%20Normalidad%20en%20RLM/An%C3%A1lisis%20de%20Normalidad%20en%20RLM.html" class="btn btn-neutral float-right" title="Análisis de Normalidad en RLM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Multicolinealidad/Multicolinealidad.html" class="btn btn-neutral" title="Multicolinealidad" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Natalia Acevedo Prins.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1',
+            LANGUAGE:'y',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
