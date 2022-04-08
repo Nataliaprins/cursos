@@ -1,78 +1,33 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="y" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="y" > <!--<![endif]-->
+<html class="writer-html5" lang="y" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Análisis de correspondencias en R &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Material Curso 1 documentation" href="../../index.html"/>
-        <link rel="up" title="Análisis de correspondencia" href="../index.html"/>
-        <link rel="next" title="Taller Análisis de Correspondencias" href="../Taller%20Analisis%20de%20Correspondecia/Taller%20AC.html"/>
-        <link rel="prev" title="Análisis de correspondencias" href="../Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia/Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Taller Análisis de Correspondencias" href="../Taller%20Analisis%20de%20Correspondecia/Taller%20AC.html" />
+    <link rel="prev" title="Análisis de correspondencias" href="../Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia/Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+        <div class="wy-side-nav-search" >
             <a href="../../index.html" class="icon icon-home"> Material Curso
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,24 +35,14 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption" role="heading"><span class="caption-text">Análisis de datos:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
@@ -117,7 +62,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Teoría de portafolios:</span></p>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
@@ -126,78 +71,40 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modelación:</span></p>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Material Curso</a>
-        
       </nav>
 
-
-      
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Análisis de correspondencia</a> &raquo;</li>
-        
       <li>Análisis de correspondencias en R</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/Análsis de correspondencia/Análisis de correspondencias en R/Análisis de correspondencias en R.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="analisis-de-correspondencias-en-r">
-<h1>Análisis de correspondencias en R<a class="headerlink" href="#analisis-de-correspondencias-en-r" title="Permalink to this headline">¶</a></h1>
+<h1>Análisis de correspondencias en R<a class="headerlink" href="#analisis-de-correspondencias-en-r" title="Permalink to this headline"></a></h1>
 <p>Lectura de datos, el tipo de BD debe corresponder en su mayoría a
 variables categóricas; si se cuentan con variables continuas, estas
 deben reescalar a categóricas por rangos.</p>
@@ -554,7 +461,7 @@ relación sea positiva y el tamaño sea el mayor.</p>
 </pre></div>
 </div>
 <div class="section" id="multiple-mca">
-<h2>Múltiple - MCA:<a class="headerlink" href="#multiple-mca" title="Permalink to this headline">¶</a></h2>
+<h2>Múltiple - MCA:<a class="headerlink" href="#multiple-mca" title="Permalink to this headline"></a></h2>
 <p>Siguiendo el mismo proceso, pero ya con múltiples variables y
 modalidades, se procede con el análisis múltiple, en este caso, su
 cálculo manual es más complejo por lo que se utiliza la librería
@@ -593,57 +500,57 @@ indicadoras.</p>
 
 
 <span class="n">Eigenvalues</span>
-                       <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">4</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">5</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">6</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">7</span>
+                       <span class="n">Dim</span><span class="mf">.1</span>   <span class="n">Dim</span><span class="mf">.2</span>   <span class="n">Dim</span><span class="mf">.3</span>   <span class="n">Dim</span><span class="mf">.4</span>   <span class="n">Dim</span><span class="mf">.5</span>   <span class="n">Dim</span><span class="mf">.6</span>   <span class="n">Dim</span><span class="mf">.7</span>
 <span class="n">Variance</span>               <span class="mf">0.098</span>   <span class="mf">0.085</span>   <span class="mf">0.080</span>   <span class="mf">0.077</span>   <span class="mf">0.076</span>   <span class="mf">0.076</span>   <span class="mf">0.075</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.952</span>   <span class="mf">1.698</span>   <span class="mf">1.598</span>   <span class="mf">1.533</span>   <span class="mf">1.514</span>   <span class="mf">1.504</span>   <span class="mf">1.488</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>   <span class="mf">1.952</span>   <span class="mf">3.649</span>   <span class="mf">5.248</span>   <span class="mf">6.781</span>   <span class="mf">8.295</span>   <span class="mf">9.799</span>  <span class="mf">11.287</span>
-                       <span class="n">Dim</span><span class="o">.</span><span class="mi">8</span>   <span class="n">Dim</span><span class="o">.</span><span class="mi">9</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">10</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">11</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">12</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">13</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">14</span>
+                       <span class="n">Dim</span><span class="mf">.8</span>   <span class="n">Dim</span><span class="mf">.9</span>  <span class="n">Dim</span><span class="mf">.10</span>  <span class="n">Dim</span><span class="mf">.11</span>  <span class="n">Dim</span><span class="mf">.12</span>  <span class="n">Dim</span><span class="mf">.13</span>  <span class="n">Dim</span><span class="mf">.14</span>
 <span class="n">Variance</span>               <span class="mf">0.074</span>   <span class="mf">0.074</span>   <span class="mf">0.073</span>   <span class="mf">0.072</span>   <span class="mf">0.072</span>   <span class="mf">0.071</span>   <span class="mf">0.071</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.471</span>   <span class="mf">1.463</span>   <span class="mf">1.444</span>   <span class="mf">1.435</span>   <span class="mf">1.431</span>   <span class="mf">1.421</span>   <span class="mf">1.417</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">12.758</span>  <span class="mf">14.221</span>  <span class="mf">15.665</span>  <span class="mf">17.100</span>  <span class="mf">18.531</span>  <span class="mf">19.951</span>  <span class="mf">21.368</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">15</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">16</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">17</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">18</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">19</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">20</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">21</span>
+                      <span class="n">Dim</span><span class="mf">.15</span>  <span class="n">Dim</span><span class="mf">.16</span>  <span class="n">Dim</span><span class="mf">.17</span>  <span class="n">Dim</span><span class="mf">.18</span>  <span class="n">Dim</span><span class="mf">.19</span>  <span class="n">Dim</span><span class="mf">.20</span>  <span class="n">Dim</span><span class="mf">.21</span>
 <span class="n">Variance</span>               <span class="mf">0.070</span>   <span class="mf">0.070</span>   <span class="mf">0.070</span>   <span class="mf">0.069</span>   <span class="mf">0.068</span>   <span class="mf">0.068</span>   <span class="mf">0.067</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.403</span>   <span class="mf">1.397</span>   <span class="mf">1.386</span>   <span class="mf">1.379</span>   <span class="mf">1.359</span>   <span class="mf">1.346</span>   <span class="mf">1.330</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">22.771</span>  <span class="mf">24.168</span>  <span class="mf">25.554</span>  <span class="mf">26.933</span>  <span class="mf">28.293</span>  <span class="mf">29.638</span>  <span class="mf">30.968</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">22</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">23</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">24</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">25</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">26</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">27</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">28</span>
+                      <span class="n">Dim</span><span class="mf">.22</span>  <span class="n">Dim</span><span class="mf">.23</span>  <span class="n">Dim</span><span class="mf">.24</span>  <span class="n">Dim</span><span class="mf">.25</span>  <span class="n">Dim</span><span class="mf">.26</span>  <span class="n">Dim</span><span class="mf">.27</span>  <span class="n">Dim</span><span class="mf">.28</span>
 <span class="n">Variance</span>               <span class="mf">0.066</span>   <span class="mf">0.065</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.312</span>   <span class="mf">1.299</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">32.280</span>  <span class="mf">33.579</span>  <span class="mf">34.823</span>  <span class="mf">36.066</span>  <span class="mf">37.310</span>  <span class="mf">38.554</span>  <span class="mf">39.797</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">29</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">30</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">31</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">32</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">33</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">34</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">35</span>
+                      <span class="n">Dim</span><span class="mf">.29</span>  <span class="n">Dim</span><span class="mf">.30</span>  <span class="n">Dim</span><span class="mf">.31</span>  <span class="n">Dim</span><span class="mf">.32</span>  <span class="n">Dim</span><span class="mf">.33</span>  <span class="n">Dim</span><span class="mf">.34</span>  <span class="n">Dim</span><span class="mf">.35</span>
 <span class="n">Variance</span>               <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">41.041</span>  <span class="mf">42.285</span>  <span class="mf">43.528</span>  <span class="mf">44.772</span>  <span class="mf">46.016</span>  <span class="mf">47.259</span>  <span class="mf">48.503</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">36</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">37</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">38</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">39</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">40</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">41</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">42</span>
+                      <span class="n">Dim</span><span class="mf">.36</span>  <span class="n">Dim</span><span class="mf">.37</span>  <span class="n">Dim</span><span class="mf">.38</span>  <span class="n">Dim</span><span class="mf">.39</span>  <span class="n">Dim</span><span class="mf">.40</span>  <span class="n">Dim</span><span class="mf">.41</span>  <span class="n">Dim</span><span class="mf">.42</span>
 <span class="n">Variance</span>               <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.063</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">49.747</span>  <span class="mf">50.990</span>  <span class="mf">52.234</span>  <span class="mf">53.478</span>  <span class="mf">54.721</span>  <span class="mf">55.965</span>  <span class="mf">57.208</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">43</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">44</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">45</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">46</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">47</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">48</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">49</span>
+                      <span class="n">Dim</span><span class="mf">.43</span>  <span class="n">Dim</span><span class="mf">.44</span>  <span class="n">Dim</span><span class="mf">.45</span>  <span class="n">Dim</span><span class="mf">.46</span>  <span class="n">Dim</span><span class="mf">.47</span>  <span class="n">Dim</span><span class="mf">.48</span>  <span class="n">Dim</span><span class="mf">.49</span>
 <span class="n">Variance</span>               <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">58.452</span>  <span class="mf">59.696</span>  <span class="mf">60.939</span>  <span class="mf">62.183</span>  <span class="mf">63.427</span>  <span class="mf">64.670</span>  <span class="mf">65.914</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">50</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">51</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">52</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">53</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">54</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">55</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">56</span>
+                      <span class="n">Dim</span><span class="mf">.50</span>  <span class="n">Dim</span><span class="mf">.51</span>  <span class="n">Dim</span><span class="mf">.52</span>  <span class="n">Dim</span><span class="mf">.53</span>  <span class="n">Dim</span><span class="mf">.54</span>  <span class="n">Dim</span><span class="mf">.55</span>  <span class="n">Dim</span><span class="mf">.56</span>
 <span class="n">Variance</span>               <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>   <span class="mf">0.062</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>   <span class="mf">1.244</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">67.158</span>  <span class="mf">68.401</span>  <span class="mf">69.645</span>  <span class="mf">70.889</span>  <span class="mf">72.132</span>  <span class="mf">73.376</span>  <span class="mf">74.620</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">57</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">58</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">59</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">60</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">61</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">62</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">63</span>
+                      <span class="n">Dim</span><span class="mf">.57</span>  <span class="n">Dim</span><span class="mf">.58</span>  <span class="n">Dim</span><span class="mf">.59</span>  <span class="n">Dim</span><span class="mf">.60</span>  <span class="n">Dim</span><span class="mf">.61</span>  <span class="n">Dim</span><span class="mf">.62</span>  <span class="n">Dim</span><span class="mf">.63</span>
 <span class="n">Variance</span>               <span class="mf">0.062</span>   <span class="mf">0.059</span>   <span class="mf">0.059</span>   <span class="mf">0.058</span>   <span class="mf">0.057</span>   <span class="mf">0.056</span>   <span class="mf">0.056</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.244</span>   <span class="mf">1.173</span>   <span class="mf">1.166</span>   <span class="mf">1.148</span>   <span class="mf">1.144</span>   <span class="mf">1.120</span>   <span class="mf">1.117</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">75.863</span>  <span class="mf">77.036</span>  <span class="mf">78.202</span>  <span class="mf">79.350</span>  <span class="mf">80.493</span>  <span class="mf">81.614</span>  <span class="mf">82.730</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">64</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">65</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">66</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">67</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">68</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">69</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">70</span>
+                      <span class="n">Dim</span><span class="mf">.64</span>  <span class="n">Dim</span><span class="mf">.65</span>  <span class="n">Dim</span><span class="mf">.66</span>  <span class="n">Dim</span><span class="mf">.67</span>  <span class="n">Dim</span><span class="mf">.68</span>  <span class="n">Dim</span><span class="mf">.69</span>  <span class="n">Dim</span><span class="mf">.70</span>
 <span class="n">Variance</span>               <span class="mf">0.056</span>   <span class="mf">0.055</span>   <span class="mf">0.055</span>   <span class="mf">0.054</span>   <span class="mf">0.054</span>   <span class="mf">0.053</span>   <span class="mf">0.053</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.109</span>   <span class="mf">1.099</span>   <span class="mf">1.088</span>   <span class="mf">1.083</span>   <span class="mf">1.072</span>   <span class="mf">1.064</span>   <span class="mf">1.057</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">83.839</span>  <span class="mf">84.938</span>  <span class="mf">86.027</span>  <span class="mf">87.109</span>  <span class="mf">88.181</span>  <span class="mf">89.245</span>  <span class="mf">90.303</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">71</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">72</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">73</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">74</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">75</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">76</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">77</span>
+                      <span class="n">Dim</span><span class="mf">.71</span>  <span class="n">Dim</span><span class="mf">.72</span>  <span class="n">Dim</span><span class="mf">.73</span>  <span class="n">Dim</span><span class="mf">.74</span>  <span class="n">Dim</span><span class="mf">.75</span>  <span class="n">Dim</span><span class="mf">.76</span>  <span class="n">Dim</span><span class="mf">.77</span>
 <span class="n">Variance</span>               <span class="mf">0.053</span>   <span class="mf">0.052</span>   <span class="mf">0.052</span>   <span class="mf">0.051</span>   <span class="mf">0.051</span>   <span class="mf">0.049</span>   <span class="mf">0.049</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">1.052</span>   <span class="mf">1.042</span>   <span class="mf">1.026</span>   <span class="mf">1.018</span>   <span class="mf">1.011</span>   <span class="mf">0.980</span>   <span class="mf">0.976</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">91.355</span>  <span class="mf">92.397</span>  <span class="mf">93.424</span>  <span class="mf">94.441</span>  <span class="mf">95.453</span>  <span class="mf">96.433</span>  <span class="mf">97.409</span>
-                      <span class="n">Dim</span><span class="o">.</span><span class="mi">78</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">79</span>  <span class="n">Dim</span><span class="o">.</span><span class="mi">80</span>
+                      <span class="n">Dim</span><span class="mf">.78</span>  <span class="n">Dim</span><span class="mf">.79</span>  <span class="n">Dim</span><span class="mf">.80</span>
 <span class="n">Variance</span>               <span class="mf">0.048</span>   <span class="mf">0.042</span>   <span class="mf">0.040</span>
 <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>              <span class="mf">0.957</span>   <span class="mf">0.845</span>   <span class="mf">0.789</span>
 <span class="n">Cumulative</span> <span class="o">%</span> <span class="n">of</span> <span class="n">var</span><span class="o">.</span>  <span class="mf">98.366</span>  <span class="mf">99.211</span> <span class="mf">100.000</span>
 
 <span class="n">Individuals</span> <span class="p">(</span><span class="n">the</span> <span class="mi">10</span> <span class="n">first</span><span class="p">)</span>
-           <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>    <span class="n">ctr</span>   <span class="n">cos2</span>    <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>    <span class="n">ctr</span>   <span class="n">cos2</span>    <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>    <span class="n">ctr</span>   <span class="n">cos2</span>
+           <span class="n">Dim</span><span class="mf">.1</span>    <span class="n">ctr</span>   <span class="n">cos2</span>    <span class="n">Dim</span><span class="mf">.2</span>    <span class="n">ctr</span>   <span class="n">cos2</span>    <span class="n">Dim</span><span class="mf">.3</span>    <span class="n">ctr</span>   <span class="n">cos2</span>
 <span class="mi">1</span>       <span class="o">|</span> <span class="o">-</span><span class="mf">0.084</span>  <span class="mf">0.000</span>  <span class="mf">0.000</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.323</span>  <span class="mf">0.004</span>  <span class="mf">0.003</span> <span class="o">|</span>  <span class="mf">0.852</span>  <span class="mf">0.027</span>  <span class="mf">0.019</span> <span class="o">|</span>
 <span class="mi">2</span>       <span class="o">|</span>  <span class="mf">0.191</span>  <span class="mf">0.001</span>  <span class="mf">0.003</span> <span class="o">|</span>  <span class="mf">0.534</span>  <span class="mf">0.010</span>  <span class="mf">0.022</span> <span class="o">|</span>  <span class="mf">0.334</span>  <span class="mf">0.004</span>  <span class="mf">0.009</span> <span class="o">|</span>
 <span class="mi">3</span>       <span class="o">|</span>  <span class="mf">0.228</span>  <span class="mf">0.002</span>  <span class="mf">0.003</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.868</span>  <span class="mf">0.027</span>  <span class="mf">0.038</span> <span class="o">|</span>  <span class="mf">0.303</span>  <span class="mf">0.003</span>  <span class="mf">0.005</span> <span class="o">|</span>
@@ -656,7 +563,7 @@ indicadoras.</p>
 <span class="mi">10</span>      <span class="o">|</span> <span class="o">-</span><span class="mf">0.231</span>  <span class="mf">0.002</span>  <span class="mf">0.003</span> <span class="o">|</span>  <span class="mf">0.048</span>  <span class="mf">0.000</span>  <span class="mf">0.000</span> <span class="o">|</span>  <span class="mf">0.421</span>  <span class="mf">0.007</span>  <span class="mf">0.009</span> <span class="o">|</span>
 
 <span class="n">Categories</span> <span class="p">(</span><span class="n">the</span> <span class="mi">10</span> <span class="n">first</span><span class="p">)</span>
-            <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>     <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>
+            <span class="n">Dim</span><span class="mf">.1</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>     <span class="n">Dim</span><span class="mf">.2</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>
 <span class="n">edad_18</span> <span class="o">|</span>   <span class="mf">0.538</span>   <span class="mf">0.180</span>   <span class="mf">0.003</span>   <span class="mf">2.584</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.737</span>   <span class="mf">0.389</span>   <span class="mf">0.005</span>  <span class="o">-</span><span class="mf">3.540</span> <span class="o">|</span>
 <span class="n">edad_19</span> <span class="o">|</span>   <span class="mf">0.348</span>   <span class="mf">0.502</span>   <span class="mf">0.008</span>   <span class="mf">4.345</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.107</span>   <span class="mf">0.054</span>   <span class="mf">0.001</span>  <span class="o">-</span><span class="mf">1.329</span> <span class="o">|</span>
 <span class="n">edad_20</span> <span class="o">|</span>   <span class="mf">0.384</span>   <span class="mf">0.610</span>   <span class="mf">0.010</span>   <span class="mf">4.790</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.242</span>   <span class="mf">0.279</span>   <span class="mf">0.004</span>  <span class="o">-</span><span class="mf">3.020</span> <span class="o">|</span>
@@ -667,7 +574,7 @@ indicadoras.</p>
 <span class="n">edad_25</span> <span class="o">|</span>   <span class="mf">0.311</span>   <span class="mf">0.649</span>   <span class="mf">0.010</span>   <span class="mf">4.966</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.356</span>   <span class="mf">0.979</span>   <span class="mf">0.014</span>  <span class="o">-</span><span class="mf">5.685</span> <span class="o">|</span>
 <span class="n">edad_26</span> <span class="o">|</span>   <span class="mf">0.168</span>   <span class="mf">0.196</span>   <span class="mf">0.003</span>   <span class="mf">2.726</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.144</span>   <span class="mf">0.164</span>   <span class="mf">0.002</span>  <span class="o">-</span><span class="mf">2.328</span> <span class="o">|</span>
 <span class="n">edad_27</span> <span class="o">|</span>   <span class="mf">0.391</span>   <span class="mf">1.018</span>   <span class="mf">0.016</span>   <span class="mf">6.218</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.291</span>   <span class="mf">0.649</span>   <span class="mf">0.009</span>  <span class="o">-</span><span class="mf">4.630</span> <span class="o">|</span>
-          <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>
+          <span class="n">Dim</span><span class="mf">.3</span>     <span class="n">ctr</span>    <span class="n">cos2</span>  <span class="n">v</span><span class="o">.</span><span class="n">test</span>
 <span class="n">edad_18</span>  <span class="o">-</span><span class="mf">0.390</span>   <span class="mf">0.116</span>   <span class="mf">0.001</span>  <span class="o">-</span><span class="mf">1.874</span> <span class="o">|</span>
 <span class="n">edad_19</span>   <span class="mf">0.126</span>   <span class="mf">0.080</span>   <span class="mf">0.001</span>   <span class="mf">1.570</span> <span class="o">|</span>
 <span class="n">edad_20</span>  <span class="o">-</span><span class="mf">0.500</span>   <span class="mf">1.265</span>   <span class="mf">0.016</span>  <span class="o">-</span><span class="mf">6.240</span> <span class="o">|</span>
@@ -680,7 +587,7 @@ indicadoras.</p>
 <span class="n">edad_27</span>   <span class="mf">0.193</span>   <span class="mf">0.302</span>   <span class="mf">0.004</span>   <span class="mf">3.065</span> <span class="o">|</span>
 
 <span class="n">Categorical</span> <span class="n">variables</span> <span class="p">(</span><span class="n">eta2</span><span class="p">)</span>
-            <span class="n">Dim</span><span class="o">.</span><span class="mi">1</span> <span class="n">Dim</span><span class="o">.</span><span class="mi">2</span> <span class="n">Dim</span><span class="o">.</span><span class="mi">3</span>
+            <span class="n">Dim</span><span class="mf">.1</span> <span class="n">Dim</span><span class="mf">.2</span> <span class="n">Dim</span><span class="mf">.3</span>
 <span class="n">edad</span>      <span class="o">|</span> <span class="mf">0.305</span> <span class="mf">0.462</span> <span class="mf">0.457</span> <span class="o">|</span>
 <span class="n">sexo</span>      <span class="o">|</span> <span class="mf">0.386</span> <span class="mf">0.014</span> <span class="mf">0.051</span> <span class="o">|</span>
 <span class="n">actividad</span> <span class="o">|</span> <span class="mf">0.326</span> <span class="mf">0.329</span> <span class="mf">0.146</span> <span class="o">|</span>
@@ -945,76 +852,33 @@ X-squared = 154.47, df = 40, p-value = 2.298e-15
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Taller%20Analisis%20de%20Correspondecia/Taller%20AC.html" class="btn btn-neutral float-right" title="Taller Análisis de Correspondencias" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia/Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia.html" class="btn btn-neutral" title="Análisis de correspondencias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia/Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia.html" class="btn btn-neutral float-left" title="Análisis de correspondencias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Taller%20Analisis%20de%20Correspondecia/Taller%20AC.html" class="btn btn-neutral float-right" title="Taller Análisis de Correspondencias" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Natalia Acevedo Prins.
-
-    </p>
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1',
-            LANGUAGE:'y',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/documentation_options.js"></script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

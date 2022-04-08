@@ -34,6 +34,18 @@ Regresión Lineal Múltiple - RLM
    Variables indicadoras/Variables indicadoras.rst
 
 
+
+
+Regresión Logística
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Teoría Regresión Logística/Teoría Regresión Logística
+   Regresión Logística en R/Regresión Logística en R
+
 .. important::
     Archivo para trabajar esta sesión:
 
@@ -42,4 +54,10 @@ Regresión Lineal Múltiple - RLM
     * **Descargue** :download:`Ofertas laborales.csv <Ofertas laborales.csv>`
 
     * **Descargue** :download:`country_profile_variables.csv <country_profile_variables.csv>` para el taller.
+
+    * **Descargue** :download:`Social_Network_Ads.csv <Social_Network_Ads.csv>` para **Regresión Logística.**
+
+    * **Descargue** :download:`credit_risk_dataset.csv <credit_risk_dataset.csv>` para **Regresión Logística.**
+
+
 

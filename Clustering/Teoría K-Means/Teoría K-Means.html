@@ -1,78 +1,34 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="y" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="y" > <!--<![endif]-->
+<html class="writer-html5" lang="y" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teoría K-Means &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Material Curso 1 documentation" href="../../index.html"/>
-        <link rel="up" title="Clustering" href="../index.html"/>
-        <link rel="next" title="K-Means en R" href="../K-Means%20en%20R/K-Means%20en%20R.html"/>
-        <link rel="prev" title="Clustering" href="../index.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="K-Means en R" href="../K-Means%20en%20R/K-Means%20en%20R.html" />
+    <link rel="prev" title="Clustering" href="../index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+        <div class="wy-side-nav-search" >
             <a href="../../index.html" class="icon icon-home"> Material Curso
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,24 +36,14 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption" role="heading"><span class="caption-text">Análisis de datos:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
@@ -129,7 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Teoría de portafolios:</span></p>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
@@ -138,78 +84,40 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modelación:</span></p>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Material Curso</a>
-        
       </nav>
 
-
-      
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Clustering</a> &raquo;</li>
-        
       <li>Teoría K-Means</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/Clustering/Teoría K-Means/Teoría K-Means.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="teoria-k-means">
-<h1>Teoría K-Means<a class="headerlink" href="#teoria-k-means" title="Permalink to this headline">¶</a></h1>
+<h1>Teoría K-Means<a class="headerlink" href="#teoria-k-means" title="Permalink to this headline"></a></h1>
 <p>Se busca agrupar las observaciones semejantes y dividir en grupos que
 tengan características diferentes. Con la agrupación o clustering los
 puntos de datos de una muestra grande se agrupan según sus similitudes.
@@ -217,7 +125,7 @@ Así que la agrupación comprende e identifica patrones ocultos de los
 datos. Los métodos para agrupar los datos hacen parte de los métodos de
 aprendizaje no supervisado del Machine Learning.</p>
 <div class="section" id="aprendizaje-no-supervisado">
-<h2>Aprendizaje no supervisado:<a class="headerlink" href="#aprendizaje-no-supervisado" title="Permalink to this headline">¶</a></h2>
+<h2>Aprendizaje no supervisado:<a class="headerlink" href="#aprendizaje-no-supervisado" title="Permalink to this headline"></a></h2>
 <p>Los modelos que realizan tareas de agrupamiento o Clustering hacen parte
 de los modelos de aprendizaje automático no supervisado. Estos modelos
 se aplican a los conjuntos de datos que tienen una etiqueta o clase, es
@@ -228,7 +136,7 @@ más grupos. Con este agrupamiento no se está definiendo ninguna etiqueta
 de clases, solo se están separando las muestras diferentes entre sí.</p>
 </div>
 <div class="section" id="k-means">
-<h2>K-Means:<a class="headerlink" href="#k-means" title="Permalink to this headline">¶</a></h2>
+<h2>K-Means:<a class="headerlink" href="#k-means" title="Permalink to this headline"></a></h2>
 <p>Este método agrupa los datos en <span class="math notranslate nohighlight">\(k\)</span> número de grupos o clusters en
 un espacio de muestra dado. Las similitudes de los datos en un cluster
 se miden en términos de <strong>distancia</strong> de los puntos desde el centro de
@@ -270,7 +178,7 @@ define el analista.</p></li>
 <p><strong>Ejemplo:</strong></p>
 <div class="figure align-default" id="id1">
 <img alt="Puntos" src="../../_images/Puntos.PNG" />
-<p class="caption"><span class="caption-text">Puntos</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Puntos</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </div>
 <p>La anterior figura se representa por la siguiente matriz:</p>
 <div class="math notranslate nohighlight">
@@ -289,7 +197,7 @@ que el centroide 1 se ubica en <span class="math notranslate nohighlight">\(C1 =
 centroides.</p>
 <div class="figure align-default" id="id2">
 <img alt="Centroides" src="../../_images/Centroides.PNG" />
-<p class="caption"><span class="caption-text">Centroides</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Centroides</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </div>
 <p><strong>Distancias de todos los puntos al centroide 1 -</strong> <span class="math notranslate nohighlight">\(C1 = (1,1)\)</span></p>
 <p><span class="math notranslate nohighlight">\(D1:\sqrt{(1-1)^2+(1-1)^2}=0\)</span></p>
@@ -312,7 +220,7 @@ C2(grupo2)  \end{bmatrix}\end{split}\]</div>
 el punto (1,1) pertenece a C1, los demás puntos pertenecen a C2.</p>
 <div class="figure align-default" id="id3">
 <img alt="Iteracion1" src="../../_images/Iteracion1.PNG" />
-<p class="caption"><span class="caption-text">Iteracion1</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Iteracion1</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </div>
 <p>Luego, se determinan los nuevos centroides. Como el cluster 1 solo tiene
 un solo individuo, el centroide 1 sigue siendo el mismo. Para el cluster
@@ -334,7 +242,7 @@ C2(grupo2)  \end{pmatrix}\end{split}\]</div>
 pertenecen al cluster 2.</p>
 <div class="figure align-default" id="id4">
 <img alt="Iteracion2" src="../../_images/Iteracion2.PNG" />
-<p class="caption"><span class="caption-text">Iteracion2</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Iteracion2</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </div>
 <p>Los dos nuevos centroides serán:</p>
 <div class="math notranslate nohighlight">
@@ -358,7 +266,7 @@ puntos (1,1) y (2,1) siguen perteneciendo al cluster 1 y los puntos
 clusters, por tanto, el algoritmo K-Means converge en este punto.</p>
 <div class="figure align-default" id="id5">
 <img alt="Iteracion3" src="../../_images/Iteracion3.PNG" />
-<p class="caption"><span class="caption-text">Iteracion3</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Iteracion3</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </div>
 <p>La clasificación queda de la siguiente manera:</p>
 <table class="docutils align-default">
@@ -400,7 +308,7 @@ clusters, por tanto, el algoritmo K-Means converge en este punto.</p>
 </table>
 </div>
 <div class="section" id="distancias">
-<h2>Distancias:<a class="headerlink" href="#distancias" title="Permalink to this headline">¶</a></h2>
+<h2>Distancias:<a class="headerlink" href="#distancias" title="Permalink to this headline"></a></h2>
 <p>Veremos las distancias Manhattan, Euclídea y Minkowsky.</p>
 <p>Tenemos <span class="math notranslate nohighlight">\(n\)</span> individuos u observaciones y cada uno con <span class="math notranslate nohighlight">\(p\)</span>
 variables.</p>
@@ -415,7 +323,7 @@ x_{n1} &amp; x_{n2} &amp; x_{n3} &amp; ... &amp; x_{np} \end{bmatrix}\end{split}
 <span class="math notranslate nohighlight">\(x_i = \begin{bmatrix} x_{i1}, &amp; x_{i2}, &amp; x_{i3} &amp; ..., &amp; x_{ip} \end{bmatrix}\)</span></p>
 </div>
 <div class="section" id="distancias-manhattan">
-<h2>Distancias Manhattan:<a class="headerlink" href="#distancias-manhattan" title="Permalink to this headline">¶</a></h2>
+<h2>Distancias Manhattan:<a class="headerlink" href="#distancias-manhattan" title="Permalink to this headline"></a></h2>
 <p>La distancia Manhattan entre el individuo <span class="math notranslate nohighlight">\(x_i\)</span> y el individuo
 <span class="math notranslate nohighlight">\(x_j\)</span> se calcula con el valor absoluto de la resta entre las filas
 <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>. Cada variable del individual <span class="math notranslate nohighlight">\(i\)</span> se resta
@@ -425,7 +333,7 @@ absoluto es el cálculo de la distancia Manhattan.</p>
 \[D_1(x_i, x_j) = |x_{i1}-x_{j1}|+|x_{i2}-x_{j2}|+...+|x_{ip}-x_{jp}|=\sum_{k=1}^p{|x_{ix}-x_{jx}|}\]</div>
 </div>
 <div class="section" id="distancia-euclidea">
-<h2>Distancia Euclídea:<a class="headerlink" href="#distancia-euclidea" title="Permalink to this headline">¶</a></h2>
+<h2>Distancia Euclídea:<a class="headerlink" href="#distancia-euclidea" title="Permalink to this headline"></a></h2>
 <p>Se restan las variables entre los dos individuos y se eleva al cuadrado.
 La raíz cuadrada de todas estas distancias por variable es la distancia
 Euclidiana.</p>
@@ -433,22 +341,22 @@ Euclidiana.</p>
 \[D_1(x_i, x_j) = \sqrt{(x_{i1}-x_{j1})^2+(x_{i2}-x_{j2})^2+...+(x_{ip}-x_{jp})^2}=\sqrt{\sum_{k=1}^p{(x_{ix}-x_{jx})^2}}\]</div>
 <div class="figure align-default" id="id6">
 <img alt="Distancias" src="../../_images/Distancias.PNG" />
-<p class="caption"><span class="caption-text">Distancias</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Distancias</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </div>
 </div>
 <div class="section" id="distancia-minkowski">
-<h2>Distancia Minkowski:<a class="headerlink" href="#distancia-minkowski" title="Permalink to this headline">¶</a></h2>
+<h2>Distancia Minkowski:<a class="headerlink" href="#distancia-minkowski" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[D_1(x_i, x_j) = [(x_{i1}-x_{j1})^p+(x_{i2}-x_{j2})^p+...+(x_{ip}-x_{jp})^p]^{\frac{1}{p}}=(\sum_{k=1}^p{(x_{ix}-x_{jx})^p})^{\frac{1}{p}}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(p = 1\)</span>: Distancia Manhattan.</p>
 <p>Si <span class="math notranslate nohighlight">\(p = 2\)</span>: Distancia Euclídea.</p>
 <div class="figure align-default" id="id7">
 <img alt="Minkowski" src="../../_images/Minkowski.PNG" />
-<p class="caption"><span class="caption-text">Minkowski</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Minkowski</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </div>
 </div>
 <div class="section" id="escalamiento-de-variables">
-<h2>Escalamiento de variables:<a class="headerlink" href="#escalamiento-de-variables" title="Permalink to this headline">¶</a></h2>
+<h2>Escalamiento de variables:<a class="headerlink" href="#escalamiento-de-variables" title="Permalink to this headline"></a></h2>
 <p>Se recomienda estandarizar o normalizar las variables antes de calcular
 las distancias, especialmente cuando tenemos grandes diferencias en las
 unidades de las variables.</p>
@@ -458,11 +366,11 @@ unidades de las variables.</p>
 \[Normalización = X_{norm} = \frac{x_i-\overline{x}}{\sigma_x}\]</div>
 </div>
 <div class="section" id="numero-optimo-de-clusters">
-<h2>Número óptimo de clusters:<a class="headerlink" href="#numero-optimo-de-clusters" title="Permalink to this headline">¶</a></h2>
+<h2>Número óptimo de clusters:<a class="headerlink" href="#numero-optimo-de-clusters" title="Permalink to this headline"></a></h2>
 <p>Se emplean técnicas subjetivas.</p>
 </div>
 <div class="section" id="metodo-del-codo-elbow-method">
-<h2>Método del codo (Elbow method):<a class="headerlink" href="#metodo-del-codo-elbow-method" title="Permalink to this headline">¶</a></h2>
+<h2>Método del codo (Elbow method):<a class="headerlink" href="#metodo-del-codo-elbow-method" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Se corre el algoritmo para diferentes <span class="math notranslate nohighlight">\(k\)</span> clusters, por
 ejemplo, variando entre 1 y 10.</p></li>
@@ -486,7 +394,7 @@ resultado se llama WCSS (Within-Cluster Sum of Square).</p>
 <p><span class="math notranslate nohighlight">\(n\)</span>: cantidad de observaciones.</p>
 </div>
 <div class="section" id="metodo-de-la-silueta-average-silhouette-method">
-<h2>Método de la silueta (Average silhouette method):<a class="headerlink" href="#metodo-de-la-silueta-average-silhouette-method" title="Permalink to this headline">¶</a></h2>
+<h2>Método de la silueta (Average silhouette method):<a class="headerlink" href="#metodo-de-la-silueta-average-silhouette-method" title="Permalink to this headline"></a></h2>
 <p>La silueta es una medida de qué tan cerca se compara el elemento con
 otros elementos dentro del mismo grupo y qué tan suelto es con los
 elementos de los grupos vecinos. Un valor de silueta cercano a 1 implica
@@ -515,7 +423,7 @@ apropiado para el agrupamiento.</p></li>
 </ul>
 </div>
 <div class="section" id="metodo-del-gap-estadistico-gap-statistic-method">
-<h2>Método del gap estadístico (Gap statistic method):<a class="headerlink" href="#metodo-del-gap-estadistico-gap-statistic-method" title="Permalink to this headline">¶</a></h2>
+<h2>Método del gap estadístico (Gap statistic method):<a class="headerlink" href="#metodo-del-gap-estadistico-gap-statistic-method" title="Permalink to this headline"></a></h2>
 <p>Compara la diferencia entre los grupos creados a partir de los datos
 observados y los grupos creados a partir de un conjunto de datos
 generado aleatoriamente, conocido como conjunto de datos de referencia.
@@ -525,7 +433,7 @@ referencia. El número óptimo de clusters se denota por el valor
 <span class="math notranslate nohighlight">\(k\)</span> que produce el gap estadístico más grande.</p>
 </div>
 <div class="section" id="desventajas-del-k-means">
-<h2>Desventajas del K-Means:<a class="headerlink" href="#desventajas-del-k-means" title="Permalink to this headline">¶</a></h2>
+<h2>Desventajas del K-Means:<a class="headerlink" href="#desventajas-del-k-means" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Supone conocimiento previo del conjunto de datos para elegir el
 número apropiado de clusters <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
@@ -541,77 +449,33 @@ cada vez que cambia el orden de los datos.</p></li>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../K-Means%20en%20R/K-Means%20en%20R.html" class="btn btn-neutral float-right" title="K-Means en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../index.html" class="btn btn-neutral" title="Clustering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Clustering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../K-Means%20en%20R/K-Means%20en%20R.html" class="btn btn-neutral float-right" title="K-Means en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Natalia Acevedo Prins.
-
-    </p>
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1',
-            LANGUAGE:'y',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/documentation_options.js"></script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

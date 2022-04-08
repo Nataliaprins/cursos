@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regresión Logística en R &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis gráfico" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html" />
+    <link rel="prev" title="Teoría Regresión Logística" href="../Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica/Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-logistica">Regresión Logística</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica/Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica.html">Teoría Regresión Logística</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Regresión Logística en R</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ajuste-modelo-simple">Ajuste modelo simple:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ajuste-modelo-multiple">Ajuste modelo múltiple:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+      <li>Regresión Logística en R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Regresión lineal/Regresión Logística en R/Regresión Logística en R.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="regresion-logistica-en-r">
+<h1>Regresión Logística en R<a class="headerlink" href="#regresion-logistica-en-r" title="Permalink to this headline"></a></h1>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Social_Network_Ads.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">User</span><span class="o">.</span><span class="n">ID</span> <span class="n">Gender</span> <span class="n">Age</span> <span class="n">EstimatedSalary</span> <span class="n">Purchased</span>
+<span class="mi">1</span> <span class="mi">15624510</span>   <span class="n">Male</span>  <span class="mi">19</span>           <span class="mi">19000</span>         <span class="mi">0</span>
+<span class="mi">2</span> <span class="mi">15810944</span>   <span class="n">Male</span>  <span class="mi">35</span>           <span class="mi">20000</span>         <span class="mi">0</span>
+<span class="mi">3</span> <span class="mi">15668575</span> <span class="n">Female</span>  <span class="mi">26</span>           <span class="mi">43000</span>         <span class="mi">0</span>
+<span class="mi">4</span> <span class="mi">15603246</span> <span class="n">Female</span>  <span class="mi">27</span>           <span class="mi">57000</span>         <span class="mi">0</span>
+<span class="mi">5</span> <span class="mi">15804002</span>   <span class="n">Male</span>  <span class="mi">19</span>           <span class="mi">76000</span>         <span class="mi">0</span>
+<span class="mi">6</span> <span class="mi">15728773</span>   <span class="n">Male</span>  <span class="mi">27</span>           <span class="mi">58000</span>         <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:       400 obs. of  5 variables:
+ $ User.ID        : int  15624510 15810944 15668575 15603246 15804002 15728773 15598044 15694829 15600575 15727311 ...
+ $ Gender         : chr  &quot;Male&quot; &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; ...
+ $ Age            : int  19 35 26 27 19 27 27 32 25 35 ...
+ $ EstimatedSalary: int  19000 20000 43000 57000 76000 58000 84000 150000 33000 65000 ...
+ $ Purchased      : int  0 0 0 0 0 0 0 1 0 0 ...
+</pre></div>
+</div>
+<p><strong>Variables:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Gender&quot;</span><span class="p">,</span> <span class="s">&quot;Age&quot;</span><span class="p">,</span> <span class="s">&quot;EstimatedSalary&quot;</span><span class="p">,</span> <span class="s">&quot;Purchased&quot;</span><span class="p">)]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Gender</span> <span class="n">Age</span> <span class="n">EstimatedSalary</span> <span class="n">Purchased</span>
+<span class="mi">1</span>   <span class="n">Male</span>  <span class="mi">19</span>           <span class="mi">19000</span>         <span class="mi">0</span>
+<span class="mi">2</span>   <span class="n">Male</span>  <span class="mi">35</span>           <span class="mi">20000</span>         <span class="mi">0</span>
+<span class="mi">3</span> <span class="n">Female</span>  <span class="mi">26</span>           <span class="mi">43000</span>         <span class="mi">0</span>
+<span class="mi">4</span> <span class="n">Female</span>  <span class="mi">27</span>           <span class="mi">57000</span>         <span class="mi">0</span>
+<span class="mi">5</span>   <span class="n">Male</span>  <span class="mi">19</span>           <span class="mi">76000</span>         <span class="mi">0</span>
+<span class="mi">6</span>   <span class="n">Male</span>  <span class="mi">27</span>           <span class="mi">58000</span>         <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>400</li><li>4</li></ol><p><strong>Variable y:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Purchased&quot;</span><span class="p">)]))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="mi">0</span>   <span class="mi">1</span>
+<span class="mi">257</span> <span class="mi">143</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Purchased&quot;</span><span class="p">)])</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="mi">0</span>      <span class="mi">1</span>
+<span class="mf">0.6425</span> <span class="mf">0.3575</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_bar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">Purchased</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_10_07.png"><img alt="../../_images/output_10_07.png" src="../../_images/output_10_07.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Variable categórica:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">unique</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">Gender</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Male'</li><li>'Female'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">$</span><span class="n">Gender</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">Gender</span><span class="p">,</span>
+                    <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">Gender</span><span class="p">)),</span>
+                    <span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Gender</span> <span class="n">Age</span> <span class="n">EstimatedSalary</span> <span class="n">Purchased</span>
+<span class="mi">1</span>      <span class="mi">1</span>  <span class="mi">19</span>           <span class="mi">19000</span>         <span class="mi">0</span>
+<span class="mi">2</span>      <span class="mi">1</span>  <span class="mi">35</span>           <span class="mi">20000</span>         <span class="mi">0</span>
+<span class="mi">3</span>      <span class="mi">0</span>  <span class="mi">26</span>           <span class="mi">43000</span>         <span class="mi">0</span>
+<span class="mi">4</span>      <span class="mi">0</span>  <span class="mi">27</span>           <span class="mi">57000</span>         <span class="mi">0</span>
+<span class="mi">5</span>      <span class="mi">1</span>  <span class="mi">19</span>           <span class="mi">76000</span>         <span class="mi">0</span>
+<span class="mi">6</span>      <span class="mi">1</span>  <span class="mi">27</span>           <span class="mi">58000</span>         <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="section" id="ajuste-modelo-simple">
+<h2>Ajuste modelo simple:<a class="headerlink" href="#ajuste-modelo-simple" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[p  = \frac{1}{1+exp \left[- \left(\beta_0+\beta_1 \times Edad \right)\right]}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logistic_simple</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Purchased</span> <span class="o">~</span> <span class="n">Age</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="p">)</span>
+<span class="n">logistic_simple</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>  <span class="n">glm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Purchased</span> <span class="o">~</span> <span class="n">Age</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+<span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>          <span class="n">Age</span>
+    <span class="o">-</span><span class="mf">8.0441</span>       <span class="mf">0.1889</span>
+
+<span class="n">Degrees</span> <span class="n">of</span> <span class="n">Freedom</span><span class="p">:</span> <span class="mi">399</span> <span class="n">Total</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">Null</span><span class="p">);</span>  <span class="mi">398</span> <span class="n">Residual</span>
+<span class="n">Null</span> <span class="n">Deviance</span><span class="p">:</span>          <span class="mf">521.6</span>
+<span class="n">Residual</span> <span class="n">Deviance</span><span class="p">:</span> <span class="mf">336.3</span>    <span class="n">AIC</span><span class="p">:</span> <span class="mf">340.3</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">logistic_simple</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="mi">1</span>          <span class="mi">2</span>          <span class="mi">3</span>          <span class="mi">4</span>          <span class="mi">5</span>          <span class="mi">6</span>
+<span class="mf">0.01149707</span> <span class="mf">0.19295760</span> <span class="mf">0.04182836</span> <span class="mf">0.05009205</span> <span class="mf">0.01149707</span> <span class="mf">0.05009205</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">logistic_simple</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">logistic_simple</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.009536473</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.9641822</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">),</span> <span class="n">binwidth</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">scales</span><span class="o">::</span><span class="n">percent</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Número de observaciones&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_19_05.png"><img alt="../../_images/output_19_05.png" src="../../_images/output_19_05.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+glm(formula = Purchased ~ Age, family = binomial, data = df)
+
+Deviance Residuals:
+    Min       1Q   Median       3Q      Max
+-2.5091  -0.6548  -0.2923   0.5706   2.4470
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept) -8.04414    0.78417 -10.258   &lt;2e-16 <strong>*
+Age          0.18895    0.01915   9.866   &lt;2e-16 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 521.57  on 399  degrees of freedom
+Residual deviance: 336.26  on 398  degrees of freedom
+AIC: 340.26
+
+Number of Fisher Scoring iterations: 5</pre>
+<p><strong>Coeficientes:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coef</span> <span class="o">&lt;-</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">coefficients</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>         <span class="n">Age</span>
+ <span class="o">-</span><span class="mf">8.0441425</span>   <span class="mf">0.1889496</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[exp \left( coeficientes \right) = \frac{p }{1-p } = oddsRatio\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">OR</span> <span class="o">&lt;-</span> <span class="nf">exp</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>  <span class="c1"># Odds Ratio</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">OR</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>          <span class="n">Age</span>
+<span class="mf">0.0003209765</span> <span class="mf">1.2079800978</span>
+</pre></div>
+</div>
+<p>Por cada año de más, la probabilidad de comprar aumenta un 21%
+aproximadamente.</p>
+<p><strong>Grados de libertad:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gl</span> <span class="o">&lt;-</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">df.null</span> <span class="o">-</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">df.residual</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">gl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Diferencia de las desviaciones:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dif_residuos</span> <span class="o">&lt;-</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">null.deviance</span> <span class="o">-</span> <span class="n">logistic_simple</span><span class="o">$</span><span class="n">deviance</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dif_residuos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">185.3117</span>
+</pre></div>
+</div>
+<p><strong>Valor p para bondad de ajuste:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_value</span> <span class="o">&lt;-</span> <span class="nf">pchisq</span><span class="p">(</span><span class="n">q</span> <span class="o">=</span> <span class="n">dif_residuos</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">gl</span><span class="p">,</span> <span class="n">lower.tail</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">3.3555e-42</span>
+</pre></div>
+</div>
+<p>Se rechaza la hipótesis nula, entonces el modelo es significativo a un
+<span class="math notranslate nohighlight">\(\alpha = 0,05\)</span>.</p>
+<p><strong>Error estándar:</strong></p>
+<div class="math notranslate nohighlight">
+\[SE(\hat{\beta_j})\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">SE</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="nf">vcov</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">)))[</span><span class="m">2</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">SE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">Age</span>
+<span class="mf">0.01915181</span>
+</pre></div>
+</div>
+<p><strong>Estadístico z:</strong></p>
+<div class="math notranslate nohighlight">
+\[zScore = \frac{\hat{\beta_j}}{SE(\hat{\beta_j})}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">zscore</span> <span class="o">&lt;-</span> <span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="n">SE</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">Age</span>
+<span class="mf">9.865891</span>
+</pre></div>
+</div>
+<p><strong>Valor p para el coeficiente:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_value</span> <span class="o">&lt;-</span> <span class="m">2</span><span class="o">*</span><span class="nf">pnorm</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">zscore</span><span class="p">),</span> <span class="n">lower.tail</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">Age</span>
+<span class="mf">5.85129e-23</span>
+</pre></div>
+</div>
+<p>El coeficiente Edad es significativo.</p>
+<p><strong>Predicción:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">))</span>
+</pre></div>
+</div>
+<strong>1:</strong> -1.80880495351216<div class="math notranslate nohighlight">
+\[p  = \frac{exp \left(\beta_0+\beta_1 \right)}{1 + exp \left(\beta_0+\beta_1 \times X_1 \right)}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">exp</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">,</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="nf">exp</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">,</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">))))</span>
+</pre></div>
+</div>
+<strong>1:</strong> 0.140782619945824<div class="math notranslate nohighlight">
+\[p  = \frac{1}{1+exp \left[- \left(\beta_0+\beta_1 \times X_1  \right) \right]}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic_simple</span><span class="p">,</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">))))</span>
+</pre></div>
+</div>
+<strong>1:</strong> 0.140782619945824</div>
+<div class="section" id="ajuste-modelo-multiple">
+<h2>Ajuste modelo múltiple:<a class="headerlink" href="#ajuste-modelo-multiple" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[p  = \frac{1}{1+exp \left[- \left(\beta_0+\beta_1 \times Género +\beta_2 \times Edad + \beta_3 \times Salario  \right)\right]}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logistic</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Purchased</span> <span class="o">~</span> <span class="n">Gender</span> <span class="o">+</span> <span class="n">Age</span> <span class="o">+</span> <span class="n">EstimatedSalary</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="p">)</span>
+<span class="n">logistic</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>  <span class="n">glm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Purchased</span> <span class="o">~</span> <span class="n">Gender</span> <span class="o">+</span> <span class="n">Age</span> <span class="o">+</span> <span class="n">EstimatedSalary</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>          <span class="n">Gender0</span>              <span class="n">Age</span>  <span class="n">EstimatedSalary</span>
+     <span class="o">-</span><span class="mf">1.245e+01</span>       <span class="o">-</span><span class="mf">3.338e-01</span>        <span class="mf">2.370e-01</span>        <span class="mf">3.644e-05</span>
+
+<span class="n">Degrees</span> <span class="n">of</span> <span class="n">Freedom</span><span class="p">:</span> <span class="mi">399</span> <span class="n">Total</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">Null</span><span class="p">);</span>  <span class="mi">396</span> <span class="n">Residual</span>
+<span class="n">Null</span> <span class="n">Deviance</span><span class="p">:</span>          <span class="mf">521.6</span>
+<span class="n">Residual</span> <span class="n">Deviance</span><span class="p">:</span> <span class="mf">275.8</span>    <span class="n">AIC</span><span class="p">:</span> <span class="mf">283.8</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">logistic</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="mi">1</span>            <span class="mi">2</span>            <span class="mi">3</span>            <span class="mi">4</span>            <span class="mi">5</span>            <span class="mi">6</span>
+<span class="mf">0.0007061408</span> <span class="mf">0.0314610656</span> <span class="mf">0.0063340671</span> <span class="mf">0.0132775722</span> <span class="mf">0.0056085336</span> <span class="mf">0.0191141370</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">logistic</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">logistic</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.0005440362</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.9988217</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">logistic</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">),</span> <span class="n">binwidth</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">scales</span><span class="o">::</span><span class="n">percent</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Número de observaciones&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_53_03.png"><img alt="../../_images/output_53_03.png" src="../../_images/output_53_03.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">logistic</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+glm(formula = Purchased ~ Gender + Age + EstimatedSalary, family = binomial,
+    data = df)
+
+Deviance Residuals:
+    Min       1Q   Median       3Q      Max
+-2.9109  -0.5218  -0.1406   0.3662   2.4254
+
+Coefficients:
+                  Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)     -1.245e+01  1.309e+00  -9.510  &lt; 2e-16 <strong>*
+Gender0         -3.338e-01  3.052e-01  -1.094    0.274
+Age              2.370e-01  2.638e-02   8.984  &lt; 2e-16 *</strong>
+EstimatedSalary  3.644e-05  5.473e-06   6.659 2.77e-11 <strong>*
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 521.57  on 399  degrees of freedom
+Residual deviance: 275.84  on 396  degrees of freedom
+AIC: 283.84
+
+Number of Fisher Scoring iterations: 6</pre>
+<p><strong>Coeficientes:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coef</span> <span class="o">&lt;-</span> <span class="n">logistic</span><span class="o">$</span><span class="n">coefficients</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>         <span class="n">Gender0</span>             <span class="n">Age</span> <span class="n">EstimatedSalary</span>
+<span class="o">-</span><span class="mf">1.244979e+01</span>   <span class="o">-</span><span class="mf">3.338434e-01</span>    <span class="mf">2.369694e-01</span>    <span class="mf">3.644119e-05</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[exp \left( coeficientes \right) = \frac{p }{1-p } = oddsRatio\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">OR</span> <span class="o">&lt;-</span> <span class="nf">exp</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>  <span class="c1"># Odds Ratio</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">OR</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>         <span class="n">Gender0</span>             <span class="n">Age</span> <span class="n">EstimatedSalary</span>
+<span class="mf">3.918543e-06</span>    <span class="mf">7.161659e-01</span>    <span class="mf">1.267402e+00</span>    <span class="mf">1.000036e+00</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Por cada año de más, la probabilidad de comprar aumenta un 27%
+aproximadamente, si las demás variables permanecen constantes.</p></li>
+</ul>
+<p>Male = 1</p>
+<p>Female = 0</p>
+<ul class="simple">
+<li><p>Comparando entre hombres y mujeres, los hombres aumentan la
+probabilidad de compra aproximadamente 7 veces, si las demás
+variables permanecen constantes.</p></li>
+<li><p>Un aumento en el salario no aumenta ni disminuye la probabilidad de
+compra.</p></li>
+</ul>
+<p><strong>Grados de libertad:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gl</span> <span class="o">&lt;-</span> <span class="n">logistic</span><span class="o">$</span><span class="n">df.null</span> <span class="o">-</span> <span class="n">logistic</span><span class="o">$</span><span class="n">df.residual</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">gl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p><strong>Diferencia de las desviaciones:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dif_residuos</span> <span class="o">&lt;-</span> <span class="n">logistic</span><span class="o">$</span><span class="n">null.deviance</span> <span class="o">-</span> <span class="n">logistic</span><span class="o">$</span><span class="n">deviance</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dif_residuos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">245.7297</span>
+</pre></div>
+</div>
+<p><strong>Valor p para bondad de ajuste:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_value</span> <span class="o">&lt;-</span> <span class="nf">pchisq</span><span class="p">(</span><span class="n">q</span> <span class="o">=</span> <span class="n">dif_residuos</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">gl</span><span class="p">,</span> <span class="n">lower.tail</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">5.487701e-53</span>
+</pre></div>
+</div>
+<p>Se rechaza la hipótesis nula, entonces el modelo es significativo a un
+<span class="math notranslate nohighlight">\(\alpha = 0,05\)</span>, pero existen unos coeficientes no significativos.</p>
+<p><strong>Error estándar:</strong></p>
+<div class="math notranslate nohighlight">
+\[SE(\hat{\beta_j})\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">SE</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="nf">vcov</span><span class="p">(</span><span class="n">logistic</span><span class="p">)))[</span><span class="m">2</span><span class="o">:</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">SE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">Gender0</span>             <span class="n">Age</span> <span class="n">EstimatedSalary</span>
+<span class="mf">3.052264e-01</span>    <span class="mf">2.637705e-02</span>    <span class="mf">5.472858e-06</span>
+</pre></div>
+</div>
+<p><strong>Estadístico z:</strong></p>
+<div class="math notranslate nohighlight">
+\[zScore = \frac{\hat{\beta_j}}{SE(\hat{\beta_j})}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">zscore</span> <span class="o">&lt;-</span> <span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">4</span><span class="p">]</span><span class="o">/</span><span class="n">SE</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Gender0</span>             <span class="n">Age</span> <span class="n">EstimatedSalary</span>
+<span class="o">-</span><span class="mf">1.093757</span>        <span class="mf">8.983922</span>        <span class="mf">6.658530</span>
+</pre></div>
+</div>
+<p><strong>Valor p para el coeficiente:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_value</span> <span class="o">&lt;-</span> <span class="m">2</span><span class="o">*</span><span class="nf">pnorm</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">zscore</span><span class="p">),</span> <span class="n">lower.tail</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">Gender0</span>             <span class="n">Age</span> <span class="n">EstimatedSalary</span>
+<span class="mf">2.740618e-01</span>    <span class="mf">2.612829e-19</span>    <span class="mf">2.765798e-11</span>
+</pre></div>
+</div>
+<p>Género no es significativo. Edad y salario si son significativos.</p>
+<p><strong>Predicción:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Gender</span> <span class="o">=</span> <span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">,</span> <span class="n">EstimatedSalary</span> <span class="o">=</span> <span class="m">42000</span><span class="p">))</span>
+</pre></div>
+</div>
+<strong>1:</strong> -3.43311391519167<div class="math notranslate nohighlight">
+\[p  = \frac{1}{1+exp \left[- \left(\beta_0+\beta_1 \times X_1 + ... + \beta_k \times X_k \right) \right]}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="nf">predict</span><span class="p">(</span><span class="n">logistic</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Gender</span> <span class="o">=</span> <span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="n">Age</span> <span class="o">=</span> <span class="m">33</span><span class="p">,</span> <span class="n">EstimatedSalary</span> <span class="o">=</span> <span class="m">42000</span><span class="p">))))</span>
+</pre></div>
+</div>
+<strong>1:</strong> 0.031276448293889</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica/Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica.html" class="btn btn-neutral float-left" title="Teoría Regresión Logística" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html" class="btn btn-neutral float-right" title="Análisis gráfico" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
