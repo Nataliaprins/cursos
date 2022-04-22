@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Práctica 6: Análisis y selección de portafolios &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mercado de Renta fija" href="../../Mercado%20de%20Renta%20Fija/index.html" />
+    <link rel="prev" title="Selección de Cartera" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Selección de Cartera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ratios-de-desempeno-de-portafolios">Ratios de desempeño de portafolios.</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#practica">Práctica:</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Práctica 6: Análisis y selección de portafolios</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#beta-del-portafolio">Beta del portafolio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#obtencion-de-los-rendimientos-del-portafolio-elegido">Obtención de los rendimientos del portafolio elegido</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Selección de Cartera</a> &raquo;</li>
+      <li>Práctica 6: Análisis y selección de portafolios</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Selección de Carteras/Seleccion de portafolios/Análisis y Selección de Portafolios.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="practica-6-analisis-y-seleccion-de-portafolios">
+<h1>Práctica 6: Análisis y selección de portafolios<a class="headerlink" href="#practica-6-analisis-y-seleccion-de-portafolios" title="Permalink to this headline"></a></h1>
+<p>Obtención del portafolio eficiente o de mínima varianza</p>
+<p>Una vez obtenida la frontera eficiente, tal como se realizó en
+<a class="reference external" href="file:///C:/Users/Natalia/Documents/PAGINA%20CURSO/build/html/Teor%C3%ADa%20de%20Portafolios/Optimizaci%C3%B3n/Optimizaci%C3%B3n%20de%20portafolios.html">Optimización de
+portafolios</a>,
+es posible determinar cuales son los pesos óptimos, a partir del
+portafolio de mínima varianza (punto más a la izquierda de la frontera
+eficiente). Para ello, se cra un objeto de clase <code class="docutils literal notranslate"><span class="pre">fPortfolio</span></code> llamado
+<code class="docutils literal notranslate"><span class="pre">Portafolio_Efi</span></code>, que contendrá la salida de la función
+<code class="docutils literal notranslate"><span class="pre">efficientPortfolio()</span></code>, a la cual se le ingresa los siguientes
+argumentos: * El objeto al que se le aplicará el modelo para determinar
+el portafolio eficiente, que en este caso serían los rendimientos como
+una serie de tiempo. por ello, se hace uso de la función
+<code class="docutils literal notranslate"><span class="pre">as.timeSeries()</span></code> sobre <code class="docutils literal notranslate"><span class="pre">Rdtos[-1,]</span></code>. * El argumento con el que se
+configura la optimización <code class="docutils literal notranslate"><span class="pre">spec</span> <span class="pre">=</span></code> que va a ser igual a las
+escificaciones que se ajustaron antes de crear la frontera eficiente y
+que se llamó <code class="docutils literal notranslate"><span class="pre">espcartera</span></code>. * la restricción de no negatividad que
+también se determinó antes de configurar la frontera como la variable
+<code class="docutils literal notranslate"><span class="pre">constraints</span></code>, donde se indicaba se permiten posciones en largo,pero
+no ventas en corto <code class="docutils literal notranslate"><span class="pre">&quot;LongOnly&quot;</span></code>.</p>
+<p>Estqa función permite visualizar los argumentos del modelo <code class="docutils literal notranslate"><span class="pre">Title:</span></code>
+los pesos <code class="docutils literal notranslate"><span class="pre">Portfolio</span> <span class="pre">Weights:</span></code>, el riesgo estimado
+<code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Risk</span> <span class="pre">Budgets:</span></code> y los retornos esperados
+<code class="docutils literal notranslate"><span class="pre">Target</span> <span class="pre">Returns</span> <span class="pre">and</span> <span class="pre">Risks:</span></code>.</p>
+<p>Para obtener únicamente los pesos del portafolio eficiente,se utiliza la
+función <code class="docutils literal notranslate"><span class="pre">getWeights()</span></code> sobre el objeto <code class="docutils literal notranslate"><span class="pre">Portafolio_Efi</span></code>, y así se
+obterndrá el vector de los pesos para el portafolio de mínima varianza.
+En este caso se debe invertir un 31.43% en BABA, un 0% en APPL un 66.69%
+en WMT un 0% en WBA, un 1.88% en TSLA y 0% en PEP.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Portafolio_Efi</span><span class="o">=</span> <span class="nf">efficientPortfolio</span><span class="p">(</span><span class="nf">as.timeSeries</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[</span><span class="m">-1</span><span class="p">,]),</span><span class="n">spec</span> <span class="o">=</span> <span class="n">espcartera</span><span class="p">,</span><span class="n">constraints</span><span class="p">)</span>
+<span class="n">Portafolio_Efi</span>
+<span class="n">W_efi</span><span class="o">=</span><span class="nf">getWeights</span><span class="p">(</span><span class="n">Portafolio_Efi</span><span class="p">)</span>
+<span class="n">W_efi</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span>
+ <span class="n">MV</span> <span class="n">Efficient</span> <span class="n">Portfolio</span>
+ <span class="n">Estimator</span><span class="p">:</span>         <span class="n">covEstimator</span>
+ <span class="n">Solver</span><span class="p">:</span>            <span class="n">solveRquadprog</span>
+ <span class="n">Optimize</span><span class="p">:</span>          <span class="n">minRisk</span>
+ <span class="n">Constraints</span><span class="p">:</span>
+
+<span class="n">Portfolio</span> <span class="n">Weights</span><span class="p">:</span>
+  <span class="n">BABA</span>   <span class="n">AAPL</span>    <span class="n">WMT</span>    <span class="n">WBA</span>   <span class="n">TSLA</span>    <span class="n">PEP</span>
+<span class="mf">0.3143</span> <span class="mf">0.0000</span> <span class="mf">0.6669</span> <span class="mf">0.0000</span> <span class="mf">0.0188</span> <span class="mf">0.0000</span>
+
+<span class="n">Covariance</span> <span class="n">Risk</span> <span class="n">Budgets</span><span class="p">:</span>
+  <span class="n">BABA</span>   <span class="n">AAPL</span>    <span class="n">WMT</span>    <span class="n">WBA</span>   <span class="n">TSLA</span>    <span class="n">PEP</span>
+<span class="mf">0.3143</span> <span class="mf">0.0000</span> <span class="mf">0.6669</span> <span class="mf">0.0000</span> <span class="mf">0.0188</span> <span class="mf">0.0000</span>
+
+<span class="n">Target</span> <span class="n">Returns</span> <span class="ow">and</span> <span class="n">Risks</span><span class="p">:</span>
+  <span class="n">mean</span>    <span class="n">Cov</span>   <span class="n">CVaR</span>    <span class="n">VaR</span>
+<span class="mf">0.0006</span> <span class="mf">0.0148</span> <span class="mf">0.0343</span> <span class="mf">0.0174</span>
+
+<span class="n">Description</span><span class="p">:</span>
+ <span class="n">Wed</span> <span class="n">Apr</span> <span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">37</span> <span class="mi">2020</span> <span class="n">by</span> <span class="n">user</span><span class="p">:</span> <span class="n">Natalia</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>BABA</dt><dd>0.314314558226735</dd><dt>AAPL</dt><dd>0</dd><dt>WMT</dt><dd>0.666878313798239</dd><dt>WBA</dt><dd>0</dd><dt>TSLA</dt><dd>0.0188071279750264</dd><dt>PEP</dt><dd>0</dd></dl><p>Portafolio tangente a la Línea del Mercado de Capitales</p>
+<p>Este portafolio tangente (punto rojo en la forntera eficiente) se
+determina de forma similar al anterior, por medio de la función
+<code class="docutils literal notranslate"><span class="pre">tangencyPortfolio()</span></code> y los mismos argumentos mencionados.</p>
+<p>Para conocer los pesos del portafolio tangente, se aplica la misma
+función <code class="docutils literal notranslate"><span class="pre">getWeights()</span></code>, pero esta vez, sobre el objeto
+<code class="docutils literal notranslate"><span class="pre">Portafolio_tang</span></code>, y se obtendrá el vector de pesos.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Portafolio_tang</span> <span class="o">=</span> <span class="nf">tangencyPortfolio</span><span class="p">(</span><span class="nf">as.timeSeries</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[</span><span class="m">-1</span><span class="p">,]),</span><span class="n">spec</span> <span class="o">=</span> <span class="n">espcartera</span><span class="p">,</span><span class="n">constraints</span><span class="p">)</span>
+<span class="n">Portafolio_tang</span>
+<span class="n">W_tang</span><span class="o">=</span><span class="nf">getWeights</span><span class="p">(</span><span class="n">Portafolio_tang</span><span class="p">)</span>
+<span class="n">W_tang</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span>
+ <span class="n">MV</span> <span class="n">Tangency</span> <span class="n">Portfolio</span>
+ <span class="n">Estimator</span><span class="p">:</span>         <span class="n">covEstimator</span>
+ <span class="n">Solver</span><span class="p">:</span>            <span class="n">solveRquadprog</span>
+ <span class="n">Optimize</span><span class="p">:</span>          <span class="n">minRisk</span>
+ <span class="n">Constraints</span><span class="p">:</span>
+
+<span class="n">Portfolio</span> <span class="n">Weights</span><span class="p">:</span>
+  <span class="n">BABA</span>   <span class="n">AAPL</span>    <span class="n">WMT</span>    <span class="n">WBA</span>   <span class="n">TSLA</span>    <span class="n">PEP</span>
+<span class="mf">0.0000</span> <span class="mf">0.7407</span> <span class="mf">0.1135</span> <span class="mf">0.0000</span> <span class="mf">0.1458</span> <span class="mf">0.0000</span>
+
+<span class="n">Covariance</span> <span class="n">Risk</span> <span class="n">Budgets</span><span class="p">:</span>
+  <span class="n">BABA</span>   <span class="n">AAPL</span>    <span class="n">WMT</span>    <span class="n">WBA</span>   <span class="n">TSLA</span>    <span class="n">PEP</span>
+<span class="mf">0.0000</span> <span class="mf">0.7599</span> <span class="mf">0.0486</span> <span class="mf">0.0000</span> <span class="mf">0.1915</span> <span class="mf">0.0000</span>
+
+<span class="n">Target</span> <span class="n">Returns</span> <span class="ow">and</span> <span class="n">Risks</span><span class="p">:</span>
+  <span class="n">mean</span>    <span class="n">Cov</span>   <span class="n">CVaR</span>    <span class="n">VaR</span>
+<span class="mf">0.0014</span> <span class="mf">0.0221</span> <span class="mf">0.0587</span> <span class="mf">0.0334</span>
+
+<span class="n">Description</span><span class="p">:</span>
+ <span class="n">Wed</span> <span class="n">Apr</span> <span class="mi">01</span> <span class="mi">19</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">37</span> <span class="mi">2020</span> <span class="n">by</span> <span class="n">user</span><span class="p">:</span> <span class="n">Natalia</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>BABA</dt><dd>0</dd><dt>AAPL</dt><dd>0.740694129080433</dd><dt>WMT</dt><dd>0.113543867783967</dd><dt>WBA</dt><dd>0</dd><dt>TSLA</dt><dd>0.145762003135599</dd><dt>PEP</dt><dd>0</dd></dl><p>Ratio de Sharpe para portafolios</p>
+<p>El Ratio de Sharpe que permite medir el premio por el riego asumido al
+invertir en un instrumento no seguro. Por tanto el portafolio con mayor
+ratio será preferido por el inversionista.</p>
+<p>El ratio de Sharpe se determina por medio de la fórmula:</p>
+<div class="math notranslate nohighlight">
+\[Sharpe= \frac{(R_p-R_f)}{\sigma}\]</div>
+<p>Para ello se requiere extraer el rendimiento de cada uno de los
+portafolios (eficiente y tangente), por merdio de la función
+<code class="docutils literal notranslate"><span class="pre">getTargetReturn()</span></code> y los riesgos (<span class="math notranslate nohighlight">\(\sigma\)</span>), con la función
+<code class="docutils literal notranslate"><span class="pre">getTargetRisk()</span></code>, de esta forma, se obtiene vectores que contienen la
+media de los rendimientos <strong>mu</strong> y el vector de riesgos de donde se
+extrae <strong>sigma</strong> que se encuentra en la posición 2 del vector
+<code class="docutils literal notranslate"><span class="pre">Riskport_efi[2]</span></code>. Ya con estos datos, se procede a calcular la
+fórmula anterior.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ratio Sharpe portafolio eficiente:</span>
+<span class="n">Rport_efi</span><span class="o">=</span><span class="nf">getTargetReturn</span><span class="p">(</span><span class="n">Portafolio_Efi</span><span class="p">)</span>
+<span class="n">Rport_efi</span>
+<span class="n">Riskport_efi</span><span class="o">=</span> <span class="nf">getTargetRisk</span><span class="p">(</span><span class="n">Portafolio_Efi</span><span class="p">)</span>
+<span class="n">Riskport_efi</span>
+<span class="n">sigma_efi</span><span class="o">=</span><span class="n">Riskport_efi</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="n">sigma_efi</span>
+<span class="n">Sharpe_efi</span><span class="o">=</span><span class="p">(</span><span class="n">Rport_efi</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">-</span><span class="n">rf</span><span class="p">)</span><span class="o">/</span><span class="n">sigma_efi</span>
+<span class="n">Sharpe_efi</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>mean</dt><dd>0.00059411834022739</dd><dt>mu</dt><dd>0.00059411834022739</dd></dl><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>Cov</dt><dd>0.014768226056284</dd><dt>Sigma</dt><dd>0.014768226056284</dd><dt>CVaR</dt><dd>0.0342943590049817</dd><dt>VaR</dt><dd>0.0174098349373304</dd></dl><strong>Sigma:</strong> 0.014768226056284<strong>mu:</strong> 0.0382658240789136<p>De forma similar se realiza el realiza el Ratio de Sharpe para el
+portafolio tangente:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Rport_tang</span><span class="o">=</span><span class="nf">getTargetReturn</span><span class="p">(</span><span class="n">Portafolio_tang</span><span class="p">)</span>
+<span class="n">Rport_tang</span>
+<span class="n">Riskport_tang</span><span class="o">=</span> <span class="nf">getTargetRisk</span><span class="p">(</span><span class="n">Portafolio_tang</span><span class="p">)</span>
+<span class="n">Riskport_tang</span>
+<span class="n">sigma_tang</span><span class="o">=</span><span class="n">Riskport_tang</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="n">sigma_tang</span>
+<span class="n">Sharpe_tang</span><span class="o">=</span><span class="p">(</span><span class="n">Rport_tang</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">-</span><span class="n">rf</span><span class="p">)</span><span class="o">/</span><span class="n">sigma_tang</span>
+<span class="n">Sharpe_tang</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>mean</dt><dd>0.00142297402065197</dd><dt>mu</dt><dd>0.00142297402065197</dd></dl><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>Cov</dt><dd>0.0220625645106896</dd><dt>Sigma</dt><dd>0.0220625645106896</dd><dt>CVaR</dt><dd>0.0587050975805006</dd><dt>VaR</dt><dd>0.0334424983815035</dd></dl><strong>Sigma:</strong> 0.0220625645106896<strong>mu:</strong> 0.0631827736968916<p>Gráficos de Torta para visualizar los pesos de los portafolios</p>
+<p>Una forma sencilla de visulaizar los pesos en los que se va a repartir
+el recurso, es realizando un gráfico cilcular o comunmente llamado
+gráfico de torta. la función que se utiliza es <code class="docutils literal notranslate"><span class="pre">weightsPie()</span></code>, sobre
+el objeto <code class="docutils literal notranslate"><span class="pre">Portafolio_Efi</span></code> y con argumentos de configuración del
+gráfico como color <code class="docutils literal notranslate"><span class="pre">col=</span></code> y tamaño de la torta <code class="docutils literal notranslate"><span class="pre">radius=</span></code>. con la
+función <code class="docutils literal notranslate"><span class="pre">mtext()</span></code>, se configura el título del gráfico, que se encentra
+arriba a la izquierda.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#torta portafolio eficiente</span>
+<span class="nf">win.graph</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="m">13</span><span class="p">)</span>
+<span class="nf">weightsPie</span><span class="p">(</span><span class="n">Portafolio_Efi</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span> <span class="n">col</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="nf">mtext</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;portafolio eficiente&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">font</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span> <span class="n">adj</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_9_03.png"><img alt="../../_images/output_9_03.png" src="../../_images/output_9_03.png" style="width: 420px; height: 420px;" /></a>
+<p>De forma similar se contruye el gráfico circular para el portafolio
+tangente.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#torta portafolio tangente</span>
+<span class="nf">win.graph</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="m">13</span><span class="p">)</span>
+<span class="nf">weightsPie</span><span class="p">(</span><span class="n">Portafolio_tang</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span> <span class="n">col</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="nf">mtext</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;portafolio tangente&quot;</span><span class="p">,</span> <span class="n">side</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">font</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span> <span class="n">adj</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_11_03.png"><img alt="../../_images/output_11_03.png" src="../../_images/output_11_03.png" style="width: 420px; height: 420px;" /></a>
+<div class="section" id="beta-del-portafolio">
+<h2>Beta del portafolio<a class="headerlink" href="#beta-del-portafolio" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="obtencion-de-los-rendimientos-del-portafolio-elegido">
+<h2>Obtención de los rendimientos del portafolio elegido<a class="headerlink" href="#obtencion-de-los-rendimientos-del-portafolio-elegido" title="Permalink to this headline"></a></h2>
+<p>Por lo genral, el portafolio tangente es el portafolio que se elige como
+mejor premio para el inversionista. A este, se le debe realizar un
+análisis de sensibilidad para determinar, cuál es la cantidad de riesgo
+sistemático, este riesgo se determina por medio del cálculo del
+<strong>Beta</strong>, que se consigue contrastando mediante una regresión lineal
+simple, todos los rendiemientos diarios del portafolio tangente contra
+los rendimientos diarios del mercado. Esta regresión tiene el
+comportamiento de una línea recta por lo que la ecuación que la
+determinaes es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[y= a+bx\]</div>
+<p><span class="math notranslate nohighlight">\(b\)</span> que acompaña la <span class="math notranslate nohighlight">\(x\)</span> es la pendiente, a su vez, puede ser
+tratada como el riesgo sistemático del portafolio contra el mercado. De
+esta forma, si <span class="math notranslate nohighlight">\(\beta &lt; 1\)</span> se considera que el portafolio es menos
+sensible a los cambios en el mercado, por el contrario, si
+<span class="math notranslate nohighlight">\(\beta &gt; 1\)</span>, el portafolio tendrá mayor sensibilidad al mercado.
+el signo del coeficiente determinará la relación que existe entre el
+mercado y el portafolio, para <span class="math notranslate nohighlight">\(\beta_1\)</span> positivo se espera una
+relación directamente proporcional, y para <span class="math notranslate nohighlight">\(\beta_1\)</span> negativo, una
+relación inversamente proporcional.</p>
+<p>Lo primero que se realiza es obetener los rendimientos diarios del
+portafolio tangente, para ello, se utiliza un ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> que recorra
+todas las filas <code class="docutils literal notranslate"><span class="pre">[i]</span></code> de la matríz de rendimientos <code class="docutils literal notranslate"><span class="pre">nrow(Rdtos)</span></code> y
+realice la suma producto con el vector de los pesos del portafolio
+tangente <code class="docutils literal notranslate"><span class="pre">W_tang</span></code> (objeto creado anteriormente)</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#rendimientos del portafolio</span>
+<span class="n">rdto_port_tang</span><span class="o">=</span> <span class="nf">vector</span><span class="p">()</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">)){</span>
+  <span class="n">rdto_port_tang</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Rdtos</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="o">%*%</span><span class="n">W_tang</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">rdto_port_tang</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>-0.00366527191926463</li><li>0.00126793777500628</li><li>0.00199084987075304</li><li>0.00363105533713878</li><li>0.000667874740728296</li><li>-0.0103097984945859</li><li>0.0101384580243651</li><li>0.00687891201111615</li><li>-0.000513275999864655</li><li>0.00965641448330918</li><li>-0.00394629951575977</li><li>-0.00538383463217754</li><li>-0.0011157625438134</li><li>-0.00535828297468948</li><li>-0.00452481419886013</li><li>-0.00937858103130249</li><li>0.00584692105102535</li><li>0.029692852222876</li><li>0.00431077449850838</li><li>0.0068800137317509</li></ol><p>Para conocer el comportamiento del mercado, se deben obtener los datos
+de cotización del índice S&amp;P 500. es importante aclarar que la elección
+del índice dependerá de las acciones con las que se encuentre
+trabajando, si se tienen acciones de USA, pueden utilizar SP500,
+DOW-JONES, NYSE o NASDAQ (si pertenecen a estas bolsas). Si son acciones
+colombianas, se deberá realizar con el COLCAP, o por ejemplo Alemania,
+con el índice DAX.</p>
+<p>En este caso se obtienen los datos del SP500 y se crea el DF con los
+redimientos <code class="docutils literal notranslate"><span class="pre">Rdto_mdo</span></code>, tal como se explica en <a class="reference external" href="../Conceptos%20Básicos%20de%20Estadística/Practica%20Rstudio/Obtención%20y%20Análisis%20de%20Rendimientos%20R.rst">Obtención y Análisis
+de Rendimientos
+R</a></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Rdtos del mercado</span>
+<span class="nf">getSymbols.yahoo</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;^GSPC&#39;</span><span class="p">),</span><span class="n">env</span><span class="o">=</span><span class="nf">globalenv</span><span class="p">(),</span> <span class="n">from</span> <span class="o">=</span> <span class="s">&quot;2019-02-12&quot;</span><span class="p">,</span><span class="n">to</span> <span class="o">=</span> <span class="nf">Sys.Date</span><span class="p">())</span>
+
+<span class="n">SP500</span><span class="o">=</span> <span class="n">GSPC</span><span class="o">$</span><span class="n">GSPC.Adjusted</span>
+<span class="n">Rdto_mdo</span><span class="o">=</span><span class="nf">diff</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">SP500</span><span class="p">))</span>
+<span class="n">Rdto_mdo</span><span class="o">=</span> <span class="n">Rdto_mdo</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span>
+</pre></div>
+</div>
+'^GSPC'<p>Una vez obtenidos los rendimientos del mercado y del portafolio, se
+porcede al ajuste de un modelo de regresión lineal, con la función
+<code class="docutils literal notranslate"><span class="pre">lm(x~y)</span></code>, donde <span class="math notranslate nohighlight">\(x\)</span> representa la variable independiente,
+siendo los movimientos del mercado y <span class="math notranslate nohighlight">\(y\)</span> la dependiente que
+corresponde a los rendimientos del portafolio.</p>
+<p>Con la función <code class="docutils literal notranslate"><span class="pre">summary()</span></code> se obitienen los coeficientes de la
+regresión <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>, que corresponde al
+intercepto y la pendiente respectivamente. Para este caso se observan en
+la columna <code class="docutils literal notranslate"><span class="pre">Estimate</span></code>. Dado que el coficiente que interesa es el que
+acompaña a <code class="docutils literal notranslate"><span class="pre">rdto_port_tang</span></code> 0.7330308, se extrae el coeficiente con
+<code class="docutils literal notranslate"><span class="pre">Beta=regresion$coefficients[2]</span></code>. En este caso particular el
+portafolio es menos sesible a los cambios de mercado, es decir, por un
+cambio de un 1% en el rendimiento del mercado, el rendimiento del
+portafolio subirá un 0.73%.</p>
+<p>Para visualizar el gráfico de dispersión, se hace uso de la función
+<code class="docutils literal notranslate"><span class="pre">plot()</span></code>, contrastando el rendimiento del mercado <code class="docutils literal notranslate"><span class="pre">Rdto_mdo</span></code> contra
+el rendimiento del portafolio <code class="docutils literal notranslate"><span class="pre">rdto_port_tang</span></code>, ambos ingresados como
+vestores numéricos <code class="docutils literal notranslate"><span class="pre">as.numeric()</span></code>. Para la línea de la regresión se
+utiliza la función <code class="docutils literal notranslate"><span class="pre">abline()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Regresión para obtener el Beta del portafolio</span>
+<span class="n">regresion</span><span class="o">=</span><span class="nf">lm</span><span class="p">(</span><span class="n">Rdto_mdo</span><span class="o">~</span><span class="n">rdto_port_tang</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">regresion</span><span class="p">)</span>
+<span class="n">Beta</span><span class="o">=</span><span class="n">regresion</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+
+<span class="c1">#Gráfica Dispersión</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">Rdto_mdo</span><span class="p">),</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">rdto_port_tang</span><span class="p">),</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&#39;Rendimiento Mercado&#39;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&#39;Rendimiento Cartera&#39;</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Rdto Mercado vs Rdto Cartera&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">regresion</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Rdto_mdo ~ rdto_port_tang)
+
+Residuals:
+      Min        1Q    Median        3Q       Max
+-0.028985 -0.004045 -0.000233  0.004186  0.035841
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)    -0.0012409  0.0004893  -2.536   0.0118 *
+rdto_port_tang  0.7330308  0.0222104  33.004   &lt;2e-16 <strong>*
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.008244 on 283 degrees of freedom
+Multiple R-squared:  0.7938,        Adjusted R-squared:  0.793
+F-statistic:  1089 on 1 and 283 DF,  p-value: &lt; 2.2e-16</pre>
+<a class="reference internal image-reference" href="../../_images/output_17_12.png"><img alt="../../_images/output_17_12.png" src="../../_images/output_17_12.png" style="width: 420px; height: 420px;" /></a>
+<p>Ratio de Treynor</p>
+<p>Similar al ratio Sharpe, el ratio de Treynor, permite evaluar el premio
+que se le otorga al inversionista por asumir una porción del riesgo
+sistemático. De nuevo, entre mayor sea el Ratio de Treynor, mejor será
+el premio. El ratio de Treynor está determinado por la fórmula:</p>
+<div class="math notranslate nohighlight">
+\[Treynor= \frac{(R_p)- R_f}{\beta}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ratio de Treynor</span>
+<span class="n">Treynor_tang</span><span class="o">=</span><span class="p">(</span><span class="n">Rport_tang</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">-</span><span class="n">rf</span><span class="p">)</span><span class="o">/</span><span class="n">Beta</span>
+</pre></div>
+</div>
+<p><strong>Práctica 6:</strong></p>
+<p>Con las acciones tomadas para la práctica # 5, identifique cuáles son los ratios de desempeño y selección para el portafolio tangente y
+eficiente, es decir, calcule para ambos portafolios:</p>
+<p><strong>a.</strong> Los pesos exactos de los portafolios</p>
+<p><strong>b</strong> El ratio de Sharpe</p>
+<p><strong>c.</strong> El Betha del portafolio</p>
+<p><strong>d</strong> El ratio de Treynor.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Selección de Cartera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Mercado%20de%20Renta%20Fija/index.html" class="btn btn-neutral float-right" title="Mercado de Renta fija" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

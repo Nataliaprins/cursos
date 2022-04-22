@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escalamiento Multidimensional el R &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Datos faltantes" href="../../Datos%20faltantes/index.html" />
+    <link rel="prev" title="Escalamiento Multidimensional" href="../Teor%C3%ADa%20Escalamiento%20Multidimensional/Teor%C3%ADa%20Escalamiento%20multidimensional.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Escalamiento Multidimensional</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Teor%C3%ADa%20Escalamiento%20Multidimensional/Teor%C3%ADa%20Escalamiento%20multidimensional.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Escalamiento Multidimensional el R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metrico-clasico">Métrico clásico:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#escalamiento-no-metrico">Escalamiento no métrico:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#determinar-el-k-optimo">Determinar el K óptimo:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Escalamiento Multidimensional</a> &raquo;</li>
+      <li>Escalamiento Multidimensional el R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Escalamiento Multidimensional/Escalmiento Multidimensional en R/Escalmiento Multidimensional en R.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="escalamiento-multidimensional-el-r">
+<h1>Escalamiento Multidimensional el R<a class="headerlink" href="#escalamiento-multidimensional-el-r" title="Permalink to this headline"></a></h1>
+<p>Si se cuenta con multiples variables que describen las caracteristicas
+del problema pero se desea reducir la dimensionalidad, tal como pasaba
+con componentes principales o análisis factorial, pero esta vez tomando
+en cuenta la similitudes de los datos (como en clustering), puede hacer
+uso del escalamiento multidimensional. Se puede implementar tanto
+métrico como no métrico.</p>
+<div class="section" id="metrico-clasico">
+<h2>Métrico clásico:<a class="headerlink" href="#metrico-clasico" title="Permalink to this headline"></a></h2>
+<p>Se busca conservar las distancias métricas originales, es el método
+recomendado para usarse con variables cuantitativas. También se conoce
+como el método de coordenadas principales.</p>
+<p>En R, podemos utilizar las funciones <code class="docutils literal notranslate"><span class="pre">cmdscale()</span></code> de la librería
+<code class="docutils literal notranslate"><span class="pre">{stats}</span></code> o también se puede hacer desde <code class="docutils literal notranslate"><span class="pre">isoMDS()</span></code> y
+<code class="docutils literal notranslate"><span class="pre">sammon()</span></code>del paquete <code class="docutils literal notranslate"><span class="pre">{MASS}</span></code></p>
+<p>Leemos los datos, la BD utilizada es “EAM_2019_group.csv”</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;EAM_2019_group.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">X</span> <span class="n">datos</span><span class="o">.</span><span class="n">gasto_personal</span> <span class="n">datos</span><span class="o">.</span><span class="n">costos_gastos_produccion</span> <span class="n">datos</span><span class="o">.</span><span class="n">ventas</span>
+<span class="mi">1</span> <span class="mi">1011</span>              <span class="mi">1459203</span>                         <span class="mi">177274</span>     <span class="mi">18565287</span>
+<span class="mi">2</span> <span class="mi">1020</span>               <span class="mi">814349</span>                        <span class="mi">3566733</span>     <span class="mi">20658258</span>
+<span class="mi">3</span> <span class="mi">1030</span>              <span class="mi">7334998</span>                        <span class="mi">5941761</span>    <span class="mi">115741258</span>
+<span class="mi">4</span> <span class="mi">1040</span>              <span class="mi">4959474</span>                        <span class="mi">4536304</span>     <span class="mi">90612765</span>
+<span class="mi">5</span> <span class="mi">1051</span>              <span class="mi">9352991</span>                        <span class="mi">6846304</span>    <span class="mi">192609248</span>
+<span class="mi">6</span> <span class="mi">1061</span>              <span class="mi">3720876</span>                        <span class="mi">3799372</span>    <span class="mi">306175590</span>
+  <span class="n">datos</span><span class="o">.</span><span class="n">inversion_AF</span>
+<span class="mi">1</span>             <span class="mi">649040</span>
+<span class="mi">2</span>            <span class="mi">1389081</span>
+<span class="mi">3</span>            <span class="mi">5615593</span>
+<span class="mi">4</span>            <span class="mi">1325824</span>
+<span class="mi">5</span>            <span class="mi">4979745</span>
+<span class="mi">6</span>            <span class="mi">9086434</span>
+</pre></div>
+</div>
+<p>Los datos deben contener etiquetas por lo que se le asigna a las filas
+los nombres de la primera columna</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">row.names</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">datos</span><span class="o">$</span><span class="n">X</span>
+<span class="n">datos</span><span class="o">$</span><span class="n">X</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:       60 obs. of  4 variables:
+ $ datos.gasto_personal          : int  1459203 814349 7334998 4959474 9352991 3720876 47892609 11081213 21648490 10934460 ...
+ $ datos.costos_gastos_produccion: int  177274 3566733 5941761 4536304 6846304 3799372 44427434 1843527 12959271 16959038 ...
+ $ datos.ventas                  : int  18565287 20658258 115741258 90612765 192609248 306175590 388005721 26727389 260836023 136493373 ...
+ $ datos.inversion_AF            : int  649040 1389081 5615593 1325824 4979745 9086434 42426113 50853587 5970883 11555678 ...
+NULL
+</pre></div>
+</div>
+<p>Calculamos las distancias Euclideas:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span> <span class="o">&lt;-</span> <span class="nf">dist</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;euclidean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Se ajusta el modelo de escalamiento métric, partiendo de las
+disimilitudes hasta llegar a un conjunto de coordenadas principales:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">escalado</span> <span class="o">&lt;-</span> <span class="nf">cmdscale</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Por defecto la función genera 2 grupos, existen autores que no
+recomiendan usar mas de 2, sin embargo, hay opiniones como Kruskal en
+1964, que indica que máximo 9 dimensiones pueden ser usadas. la
+principal ventaja de este modelo su adpatabilidad a las necesidades del
+problema.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">escalado</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">1011</span> <span class="o">-</span><span class="mi">78710541</span>  <span class="o">-</span><span class="mi">2693081</span>
+<span class="mi">1020</span> <span class="o">-</span><span class="mi">76399117</span>  <span class="o">-</span><span class="mi">1226945</span>
+<span class="mi">1030</span>  <span class="mi">18905169</span>  <span class="o">-</span><span class="mi">5253596</span>
+<span class="mi">1040</span>  <span class="o">-</span><span class="mi">6616521</span>  <span class="o">-</span><span class="mi">7426404</span>
+<span class="mi">1051</span>  <span class="mi">95360889</span> <span class="o">-</span><span class="mi">13430884</span>
+<span class="mi">1061</span> <span class="mi">207837628</span> <span class="o">-</span><span class="mi">25576966</span>
+</pre></div>
+</div>
+<p>Visualización de las nuevas coordenadas</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;ggrepel&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">ggplot2</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cmd_eam</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">escalado</span><span class="p">)</span> <span class="c1">#crea el dataframe, a partir de datos escalados</span>
+
+<span class="n">g1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">cmd_eam</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span> <span class="n">x</span> <span class="o">=</span> <span class="n">V1</span><span class="p">,</span>
+                     <span class="n">y</span> <span class="o">=</span> <span class="n">V2</span><span class="p">,</span>
+                     <span class="n">label</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">datos</span><span class="p">)))</span><span class="o">+</span>
+          <span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+          <span class="nf">geom_text_repel</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span> <span class="c1">#grafica sin solapar los textos (omite los datos solapados)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 32 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_17_11.png"><img alt="../../_images/output_17_11.png" src="../../_images/output_17_11.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="escalamiento-no-metrico">
+<h2>Escalamiento no métrico:<a class="headerlink" href="#escalamiento-no-metrico" title="Permalink to this headline"></a></h2>
+<p>La función <code class="docutils literal notranslate"><span class="pre">isoMDS()</span></code> porporciona el algoritmo para realizar
+escalamiento no métrico, sin embargo, si no le se proporciona la función
+de rangos de los datos, realizará su solución por medio del método
+clásico <code class="docutils literal notranslate"><span class="pre">cmdscale()</span></code>. Por tanto, el resultado será el mismo, ya que
+k=2 por defecto.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mds_nm</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="c1">#ajusta el modelo clásico a la matriz de distancias.</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">mds_nm</span><span class="o">$</span><span class="n">points</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">mds_nm</span><span class="o">$</span><span class="n">points</span><span class="p">,</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">mds_nm</span><span class="o">$</span><span class="n">points</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span>  <span class="n">value</span> <span class="mf">1.881156</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">1.881156</span>
+<span class="n">converged</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_21_11.png"><img alt="../../_images/output_21_11.png" src="../../_images/output_21_11.png" style="width: 420px; height: 420px;" /></a>
+<p>Para cambiar esta solución, debe realizarse el ranking u ordenamiento de
+las variables. la función <code class="docutils literal notranslate"><span class="pre">rank()</span></code>de la base, proporciona esta
+salida.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">rank</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">dist</span><span class="p">)),</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">dist</span><span class="p">))</span> <span class="c1">#la función Rank ordena las distancias como una sequiencia</span>
+
+<span class="n">empresa_rank</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">((</span><span class="nf">rank</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">dist</span><span class="p">))),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span><span class="c1"># convierte en matriz</span>
+<span class="n">mds_nmrk2</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">)</span>  <span class="c1">#aplica EMD a los datos ordenados</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span>  <span class="n">value</span> <span class="mf">12.063241</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">12.063215</span>
+<span class="n">converged</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_1.png"><img alt="../../_images/output_23_1.png" src="../../_images/output_23_1.png" style="width: 420px; height: 420px;" /></a>
+<p>Visualizando el nuevo agrupamiento:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">modelk2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">mds_nmrk2</span><span class="o">$</span><span class="n">points</span><span class="p">)</span><span class="c1">#convierte la salida en DF para ser usada en ggplot2</span>
+
+<span class="n">g2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">modelk2</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">V1</span><span class="p">,</span>
+                   <span class="n">y</span> <span class="o">=</span> <span class="n">V2</span><span class="p">,</span>
+                   <span class="n">label</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">datos</span><span class="p">)))</span><span class="o">+</span>
+          <span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+          <span class="nf">geom_text_repel</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 17 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_1.png"><img alt="../../_images/output_25_1.png" src="../../_images/output_25_1.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Diferencia entre métrico y no métrico</strong></p>
+<p>Se puede observar como el agrupamiento toma un orden dentro los dos
+rangos.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;gridExtra&#39; was built under R version 4.1.3&quot;</span>
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 35 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;ggrepel: 17 unlabeled data points (too many overlaps). Consider increasing max.overlaps&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_27_1.png"><img alt="../../_images/output_27_1.png" src="../../_images/output_27_1.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="determinar-el-k-optimo">
+<h2>Determinar el K óptimo:<a class="headerlink" href="#determinar-el-k-optimo" title="Permalink to this headline"></a></h2>
+<p>Similar a los gráficos de sedimentación realizados en los otros modelos,
+se espera escoger aquel que modelo que lo minimice. Para ello se realiza
+el ajuste de diferentes K, donde se evalua el punto donde se logre
+estabilidad. Recuerde que según la teoría no es recomendable, realizar
+mas de 9 dimensiones.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ajuste para cada K en los datos ordenados</span>
+<span class="n">mds_nmrk1</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">mds_nmrk2</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">)</span> <span class="c1">#por defecto usa K=2</span>
+<span class="n">mds_nmrk3</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">mds_nmrk4</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="n">mds_nmrk5</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="n">mds_nmrk6</span> <span class="o">&lt;-</span> <span class="nf">isoMDS</span><span class="p">(</span><span class="n">empresa_rank</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span>  <span class="n">value</span> <span class="mf">19.798271</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">19.798202</span>
+<span class="n">converged</span>
+<span class="n">initial</span>  <span class="n">value</span> <span class="mf">12.063241</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">12.063215</span>
+<span class="n">converged</span>
+<span class="n">initial</span>  <span class="n">value</span> <span class="mf">11.765570</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">11.765554</span>
+<span class="n">converged</span>
+<span class="n">initial</span>  <span class="n">value</span> <span class="mf">9.928388</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">9.928374</span>
+<span class="n">converged</span>
+<span class="n">initial</span>  <span class="n">value</span> <span class="mf">9.172647</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">9.172632</span>
+<span class="n">converged</span>
+<span class="n">initial</span>  <span class="n">value</span> <span class="mf">7.040586</span>
+<span class="n">final</span>  <span class="n">value</span> <span class="mf">7.040566</span>
+<span class="n">converged</span>
+</pre></div>
+</div>
+<p><strong>Gráfico de sedimentación del STRESS</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">stress</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">mds_nmrk1</span><span class="o">$</span><span class="n">stress</span><span class="p">,</span> <span class="n">mds_nmrk2</span><span class="o">$</span><span class="n">stress</span><span class="p">,</span> <span class="n">mds_nmrk3</span><span class="o">$</span><span class="n">stress</span><span class="p">,</span> <span class="n">mds_nmrk4</span><span class="o">$</span><span class="n">stress</span><span class="p">,</span> <span class="n">mds_nmrk5</span><span class="o">$</span><span class="n">stress</span><span class="p">,</span> <span class="n">mds_nmrk6</span><span class="o">$</span><span class="n">stress</span><span class="p">)</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">6</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">stress</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Number of Dimensions&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Stress&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">stress</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">19.798202</span> <span class="mf">12.063215</span> <span class="mf">11.765554</span>  <span class="mf">9.928374</span>  <span class="mf">9.172632</span>  <span class="mf">7.040566</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_32_1.png"><img alt="../../_images/output_32_1.png" src="../../_images/output_32_1.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Teor%C3%ADa%20Escalamiento%20Multidimensional/Teor%C3%ADa%20Escalamiento%20multidimensional.html" class="btn btn-neutral float-left" title="Escalamiento Multidimensional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Datos%20faltantes/index.html" class="btn btn-neutral float-right" title="Datos faltantes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

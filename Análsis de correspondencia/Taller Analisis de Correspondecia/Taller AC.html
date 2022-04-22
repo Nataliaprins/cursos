@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Análisis de Correspondencias &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ejemplo de Análisis de correspondencia: Simple y Múltiple" href="Ejemplo%20an%C3%A1lisis%20de%20correspondencia%20Artesanos%20Medell%C3%ADn.html" />
+    <link rel="prev" title="Análisis de correspondencias en R" href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis de correspondencia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia/Teor%C3%ADa%20An%C3%A1lisis%20de%20Correspondencia.html">Análisis de correspondencias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html">Análisis de correspondencias en R</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Taller Análisis de Correspondencias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ejemplo%20an%C3%A1lisis%20de%20correspondencia%20Artesanos%20Medell%C3%ADn.html">Ejemplo de Análisis de correspondencia: Simple y Múltiple</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Análisis de correspondencia</a> &raquo;</li>
+      <li>Taller Análisis de Correspondencias</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Análsis de correspondencia/Taller Analisis de Correspondecia/Taller AC.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="taller-analisis-de-correspondencias">
+<h1>Taller Análisis de Correspondencias<a class="headerlink" href="#taller-analisis-de-correspondencias" title="Permalink to this headline"></a></h1>
+<p>Tome la base de datos “participantes_en_mercados_campesinos.csv” para
+realizar este taller. Esta BD contiene información categórica de los
+participantes en mercados campesinos de la ciudad de Medellín, de la
+cual se espera encontrar analisis de relacionamientos que permitan
+describir la dinámica de estos mercados.</p>
+<p><strong>Punto 1: Análisis de correspondencias simple.</strong></p>
+<p>Realice un análisis de corresponcias simple para las variables “tipo” y
+“corregimiento_o_barrio”, con ello queremos describr las similitudes
+encontradas para los tipos de productores y las zonas donde se producen
+los productos de los mercados campesinos. Para ello puede seguir el
+siguiente derrotero:</p>
+<ol class="arabic simple">
+<li><p>Cree una tabla de contingencias, para las frecuencias de cada
+atributo en las dos varaibles y grafíquela.</p></li>
+<li><p>Realice el test de independencia para la tabla de contingencia.</p></li>
+<li><p>Si el test de independencia indica relación entre las variables,
+ajuste un análisis de correspondecia con la librería FactoMiner con
+la función <code class="docutils literal notranslate"><span class="pre">CA(tabla</span> <span class="pre">de</span> <span class="pre">contingencias)</span></code>. Este ajuste relizará
+automáticmente todos los cálculos necesarios para hallar las
+contribuciones.</p></li>
+<li><p>Extraiga las contribuciones por filas y columnas, lo cual podrá
+hacerlo por medio de <code class="docutils literal notranslate"><span class="pre">fviz_contrib(salida</span> <span class="pre">AC,</span> <span class="pre">choice,</span> <span class="pre">axes</span> <span class="pre">=</span> <span class="pre">1)</span></code> ,
+el argumento <code class="docutils literal notranslate"><span class="pre">choice=col</span></code> extraería las contribuciones por columna,
+y <code class="docutils literal notranslate"><span class="pre">choice=row</span></code>extraería las filas. conserve el argumento
+<code class="docutils literal notranslate"><span class="pre">Axes=1</span></code>, que indica la dimensión que se está graficando</p></li>
+<li><p>Muestre en un gráfico de sedimentación los aportes de cada atributo
+por fila y columna a las dimensiones. Esto lo puede realizar con la
+función <code class="docutils literal notranslate"><span class="pre">fviz_contrib(salida</span> <span class="pre">AC,</span> <span class="pre">choice</span> <span class="pre">,</span> <span class="pre">axes</span> <span class="pre">=</span> <span class="pre">1)</span></code>también puede
+cambiar el argumento <code class="docutils literal notranslate"><span class="pre">choice</span></code>. Puede extraer los valores numéricos
+de las contribuciones con la instrucción <code class="docutils literal notranslate"><span class="pre">$row$contrib</span></code> para filas
+y <code class="docutils literal notranslate"><span class="pre">$col$contrib</span></code> para las columas; aplicado al objeto salidad del
+analisis de correspondencias.</p></li>
+<li><p>Ubique las nuevas coordenadas en un Biplot y explique que informacón
+puede interpretarse tanto del biplot como de las contribuciones.</p></li>
+<li><p>Interprete los resultados.</p></li>
+</ol>
+<p>Tome en cuenta que el biplot mostrará las correlaciones pertenecientes a
+cada categoría y su relación con cada dimensión e individuos.</p>
+<p><strong>Punto 2: Análisis de correspondencias Múltiple.</strong></p>
+<p>De la misma BD, analice una reducción de dimensionalidad para las
+siguientes varibales: “tipo”, “corregimiento_o_barrio”, “sexo”,
+“tipo_de_inscripción”, con el fin de encontrar los grupos o dimensiones
+que mejor representen la información. Para hacer el análisis realice lo
+siguiente:</p>
+<ol class="arabic simple">
+<li><p>Cree una tabla de contingencias, para las frecuencias de cada
+atributo en las varaibles.</p></li>
+<li><p>Realice la prueba de independencia de la tabla contingencia para
+determinar si existen o no asociaciones para cada par de variables.</p></li>
+<li><p>Ajuste el análisis de correspondencias, recuerde que por ser
+múltiple, debe ser basado en la matriz de “BURT”, por lo que a la
+función <code class="docutils literal notranslate"><span class="pre">MCA()</span></code>, debe contar con el argumento <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=&quot;BURT&quot;</span></code>.</p></li>
+<li><p>Realice un gráfico de sedimentación que explique la cantidad de
+dimensiones óptima para este conjunto de datos, esto lo puede
+realizar por medio de la función:
+<code class="docutils literal notranslate"><span class="pre">fviz_screeplot(Salida</span> <span class="pre">AC,</span> <span class="pre">addlabels</span> <span class="pre">=</span> <span class="pre">TRUE)</span></code></p></li>
+<li><p>Ubique los individuos en un biplot de la primera y segunda dimensión
+para poder encontrar grupos y relaciones entre ellos. Esto lo puede
+hacer con la función `fviz_screeplot(CA_multiple, addlabels =
+TRUE)``</p></li>
+<li><p>Interprete los resultados.</p></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html" class="btn btn-neutral float-left" title="Análisis de correspondencias en R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Ejemplo%20an%C3%A1lisis%20de%20correspondencia%20Artesanos%20Medell%C3%ADn.html" class="btn btn-neutral float-right" title="Ejemplo de Análisis de correspondencia: Simple y Múltiple" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

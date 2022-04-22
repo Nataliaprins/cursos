@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de Normalidad en RLS &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Prueba de significancia de la regresión" href="../Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n/Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n.html" />
+    <link rel="prev" title="Regresión Lineal Simple (RLS)" href="../Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29/Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29/Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29.html">Regresión Lineal Simple (RLS)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Análisis de Normalidad en RLS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supuestos-de-la-regresion-lineal-simple">Supuestos de la Regresión Lineal Simple:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qq-plot">QQ-Plot:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grafico-de-residuales-con-respecto-a-las-predicciones">Gráfico de Residuales con respecto a las predicciones:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculo-de-los-residuales">Cálculo de los residuales:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graficos-del-modelo-de-rls">Gráficos del modelo de RLS:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n/Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n.html">Prueba de significancia de la regresión</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intervalos%20de%20confianza%20-%20CI/Intervalos%20de%20confianza%20-%20CI.html">Intervalos de confianza - CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Medidas%20de%20desempe%C3%B1o%20RLS/Medidas%20de%20desempe%C3%B1o%20RLS.html">Medidas de desempeño RLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RLS%20con%20ggplot2/RLS%20con%20ggplot2.html">RLS con ggplot2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-logistica">Regresión Logística</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+      <li>Análisis de Normalidad en RLS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Regresión lineal/Análisis de Normalidad en RLS/Análisis de Normalidad en RLS.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="analisis-de-normalidad-en-rls">
+<h1>Análisis de Normalidad en RLS<a class="headerlink" href="#analisis-de-normalidad-en-rls" title="Permalink to this headline"></a></h1>
+<p>La línea de regresión estimada es la mejor aproximación de la relación
+entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>, pero podemos agregar un término
+probabilístico que representará la incertidumbre de la línea recta y se
+llamará el error <span class="math notranslate nohighlight">\((\varepsilon)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\hat{y_i} = \hat{\beta_0}+\hat{\beta_1}X_i+\hat{\varepsilon_i}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\varepsilon_i} = y_i-\hat{y_i}\]</div>
+<p><span class="math notranslate nohighlight">\(\hat{\varepsilon_i}\)</span>: también llamado <strong>residuales.</strong></p>
+<p>El error es la comparación entre el valor real <span class="math notranslate nohighlight">\((y_i)\)</span> y el valor
+predicho <span class="math notranslate nohighlight">\((\hat{y_i})\)</span>. Son las distancias verticales de la
+siguiente <strong>Figura.</strong></p>
+<p>La letra Griega <span class="math notranslate nohighlight">\({\varepsilon_i}\)</span> (sin el <span class="math notranslate nohighlight">\(\hat{}\)</span>) se llama
+<strong>error de predicción</strong> y se representa con la ecuación:
+<span class="math notranslate nohighlight">\(\varepsilon_i=y_i-\overline{y_i}\)</span>. Note que en esta ecuación se
+usa <span class="math notranslate nohighlight">\(\overline{y_i}\)</span> en lugar de <span class="math notranslate nohighlight">\(\hat{y_i}\)</span>.</p>
+<div class="figure align-default" id="id1">
+<img alt="Residuales" src="../../_images/estimada2.png" />
+<p class="caption"><span class="caption-text">Residuales</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<div class="section" id="supuestos-de-la-regresion-lineal-simple">
+<h2>Supuestos de la Regresión Lineal Simple:<a class="headerlink" href="#supuestos-de-la-regresion-lineal-simple" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Independencia:</strong> los errores de la predicción,
+<span class="math notranslate nohighlight">\(\varepsilon_i\)</span>, son estadisticamente independientes entre si.</p></li>
+<li><p><strong>Homocedasticidad (varianza constante):</strong> la varianza de los errores
+es constante a los largo de la distribución <span class="math notranslate nohighlight">\(X\)</span>. Lo contrario
+se llama heterocedasticidad.</p></li>
+<li><p><strong>Normalidad:</strong> los errores son una variable aleatoria normalmente
+distribuida con media igual a cero.
+<span class="math notranslate nohighlight">\(\varepsilon_i \sim N(0,\sigma^2)\)</span>.</p></li>
+<li><p><strong>Linealidad:</strong> el valor medio de <span class="math notranslate nohighlight">\(y\)</span> es una función lineal de
+<span class="math notranslate nohighlight">\(X\)</span>, es decir, <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(X\)</span> tienen una relación
+lineal.</p></li>
+</ul>
+<p>Los tres primeros supuestos anteriores se pueden resumir de la siguiente
+manera:</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_i \sim^{iid}N(0,\sigma^2)\]</div>
+<p><span class="math notranslate nohighlight">\(iid\)</span>: los errores son independientes e idénticamente
+distribuidos. Con esta expresión se mencionan los tres supuestos:
+independencia, homocedasticidad y distribución de los errores.</p>
+<p><img alt="Supuestos" src="../../_images/supuestosRLS.png" /> Fuente: Roback y Legler, 2021.</p>
+</div>
+<div class="section" id="qq-plot">
+<h2>QQ-Plot:<a class="headerlink" href="#qq-plot" title="Permalink to this headline"></a></h2>
+<p>Los residuales son una medida de la variabilidad de la variable
+<span class="math notranslate nohighlight">\(y\)</span> que no es explicada en el modelo de regresión. Con el análisis
+de los residuales se puede determinar los adecuado o inadecuado del
+modelo, en otras palabras, es una forma efectiva de concluir el nivel de
+ajuste del modelo a los datos. Así que el análisis gráfico de los
+residuales es una forma efectiva de comprobar el adecuado ajuste del
+modelo de regresión.</p>
+<p>Las pequeñas desviaciones con respecto a la hipótesis de normalidad de
+los residuales no afectan mucho al modelo, pero una no normalidad grande
+si lo es. Si la distribución de los residuales tiene colas pesadas, el
+ajuste por mínimos cuadrado es muy sensible a cambio en el subconjunto
+de datos. Para comprobar la hipótesis de normalidad de manera rápida es
+trazar la gráfica de normalidad de los residuales donde los cuantiles de
+la distribución normal aparecen en línea recta y los puntos de los
+residuales debería aproximarse a esta línea recta. En análisis de este
+gráfico se centra en los valores centrales y no en los extremos. Las
+grandes diferencias entre los puntos de los residuales y la línea recta
+que representa la distribución normal indican que los errores no siguen
+una distribución normal.Este gráfico se llama QQ-Plot.</p>
+<p>La <strong>Figura 1</strong> es el ideal de un ajuste a distribución normal, las
+demás figuras presentan problemas particulares como los siguientes:</p>
+<ul class="simple">
+<li><p><strong>Figura 2:</strong> Las dos colas de la distribución son demasiado gruesas
+<em>(Fail Tails)</em>.</p></li>
+<li><p><strong>Figura 3:</strong> Colas delgadas.</p></li>
+<li><p><strong>Figura 4:</strong> Asimetría positiva.</p></li>
+<li><p><strong>Figura 5:</strong> Asimetría negativa.</p></li>
+</ul>
+<p>En este gráfico se puede identificar puntos atípicos en los datos.</p>
+<div class="figure align-default" id="id2">
+<img alt="Normalidad" src="../../_images/normalidad.jpg" />
+<p class="caption"><span class="caption-text">Normalidad</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>Fuente: Montgomery, Peck y Vining, 2001.</p>
+</div>
+<div class="section" id="grafico-de-residuales-con-respecto-a-las-predicciones">
+<h2>Gráfico de Residuales con respecto a las predicciones:<a class="headerlink" href="#grafico-de-residuales-con-respecto-a-las-predicciones" title="Permalink to this headline"></a></h2>
+<p>En este gráfico se analiza la dispersión de los errores con respecto a
+la media que es igual a cero. Para tener un comportamiento normal se
+espera que la nube de puntos esté encerrada en un rectángulo como se
+muestra en la <strong>Figura 1</strong> (homocedasticidad), el resultado es que el
+modelo de regresión es adecuado. Los demás patrones que aparecen en las
+demás figuras son síntomas de deficiencias del modelo.</p>
+<ul class="simple">
+<li><p><strong>Figura 2:</strong> Varianza no constante y creciente (heterocedasticidad).</p></li>
+<li><p><strong>Figura 3:</strong> Varianza no constante (heterocedasticidad).</p></li>
+<li><p><strong>Figura 4:</strong> No linealidad.</p></li>
+</ul>
+<p>En este gráfico también se puede identificar puntos atípicos.</p>
+<div class="figure align-default" id="id3">
+<img alt="Homocedasticidad" src="../../_images/residuales.jpg" />
+<p class="caption"><span class="caption-text">Homocedasticidad</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<p>Fuente: Montgomery, Peck y Vining, 2001.</p>
+</div>
+<div class="section" id="codigo-en-r">
+<h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Fecha</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Producción</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">datos</span><span class="o">$</span><span class="n">Exportaciones</span>
+</pre></div>
+</div>
+<p><strong>Ajuste del modelo:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="n">regression</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+<span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>   <span class="n">Producción</span>
+   <span class="mf">235.3538</span>       <span class="mf">0.6769</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-492.02  -85.38   -9.89   82.85  407.53
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 235.35384   29.77755   7.904 7.54e-14 <strong>*
+Producción    0.67687    0.02962  22.853  &lt; 2e-16 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 128 on 262 degrees of freedom
+Multiple R-squared:  0.6659,        Adjusted R-squared:  0.6647
+F-statistic: 522.3 on 1 and 262 DF,  p-value: &lt; 2.2e-16</pre>
+<p><span class="math notranslate nohighlight">\(\hat{\beta_0}\)</span>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="n">beta_0</span>
+</pre></div>
+</div>
+235.353837174437<p><span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+<span class="n">beta_1</span>
+</pre></div>
+</div>
+0.676867843609397</div>
+<div class="section" id="calculo-de-los-residuales">
+<h2>Cálculo de los residuales:<a class="headerlink" href="#calculo-de-los-residuales" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[\hat{\varepsilon_i} = y_i-\hat{y_i}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">regression</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="mi">1</span>        <span class="mi">2</span>        <span class="mi">3</span>        <span class="mi">4</span>        <span class="mi">5</span>        <span class="mi">6</span>
+<span class="mf">680.7329</span> <span class="mf">736.2360</span> <span class="mf">636.0596</span> <span class="mf">949.4494</span> <span class="mf">989.3846</span> <span class="mf">974.4935</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">residuales</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">residuales</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.2360414453919</dd><dt>3</dt><dd>-232.0596005912</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p>Otra forma de extraer los residuales es: <code class="docutils literal notranslate"><span class="pre">$residuals</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>1</dt><dd>-163.732878269429</dd><dt>2</dt><dd>-94.236041445392</dd><dt>3</dt><dd>-232.059600591201</dd><dt>4</dt><dd>-218.449412182351</dd><dt>5</dt><dd>-374.384614955306</dd><dt>6</dt><dd>-105.493522395899</dd></dl><p><strong>Histograma de los residuales:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">residuales</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;gray&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Residuales&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">,</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Histograma de los residuales del modelo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_03.png"><img alt="../../_images/output_25_03.png" src="../../_images/output_25_03.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>QQ-Plot:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qnorm(residuales)</span></code>: grafica los puntos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qqline(residuales)</span></code>: grafica la línea recta que representa la
+distribución normal.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">qqnorm</span><span class="p">(</span><span class="n">residuales</span><span class="p">)</span>
+<span class="nf">qqline</span><span class="p">(</span><span class="n">residuales</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_27_02.png"><img alt="../../_images/output_27_02.png" src="../../_images/output_27_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Gráfico de Residuales con respecto a las predicciones:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">residuales</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Predicciones&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Residuales&quot;</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_29_03.png"><img alt="../../_images/output_29_03.png" src="../../_images/output_29_03.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="graficos-del-modelo-de-rls">
+<h2>Gráficos del modelo de RLS:<a class="headerlink" href="#graficos-del-modelo-de-rls" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="c1"># layout.show(4)  correr esta línea en RStudio. Para quitar la particion correr: dev.off()</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Exportaciones&quot;</span><span class="p">,</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Ajuste de Regresión&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">residuales</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;#4993C0&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Residuales&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">,</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Histograma de los residuales del modelo&quot;</span><span class="p">)</span>
+
+<span class="nf">qqnorm</span><span class="p">(</span><span class="n">residuales</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;#585858&quot;</span><span class="p">)</span>
+<span class="nf">qqline</span><span class="p">(</span><span class="n">residuales</span><span class="p">)</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&quot;#f7f7f7&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">residuales</span><span class="p">,</span>
+    <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Predicciones&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Residuales&quot;</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+    <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Residuales Vs. Predicciones&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_31_03.png"><img alt="../../_images/output_31_03.png" src="../../_images/output_31_03.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29/Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29.html" class="btn btn-neutral float-left" title="Regresión Lineal Simple (RLS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n/Prueba%20de%20significancia%20de%20la%20regresi%C3%B3n.html" class="btn btn-neutral float-right" title="Prueba de significancia de la regresión" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

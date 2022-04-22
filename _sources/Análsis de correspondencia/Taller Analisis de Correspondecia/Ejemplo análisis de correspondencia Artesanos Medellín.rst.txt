@@ -1,0 +1,482 @@
+Ejemplo de Análisis de correspondencia: Simple y Múltiple
+---------------------------------------------------------
+
+**Análisis simple**
+
+.. code:: r
+
+    datos<- read.csv("registro_artesanos.csv", sep=";",header=T)
+    (head(datos))
+
+
+
+.. raw:: html
+
+    <table class="dataframe">
+    <caption>A data.frame: 6 × 13</caption>
+    <thead>
+    	<tr><th></th><th scope=col>edad</th><th scope=col>sexo</th><th scope=col>cabeza_de_hogar</th><th scope=col>caracterizacion_ciudadano</th><th scope=col>tipo_de_emprendimiento</th><th scope=col>idea_de_negocio</th><th scope=col>estrato</th><th scope=col>barrio_vereda_ciudadano</th><th scope=col>comuna_ciudadano</th><th scope=col>zona_ciudadano</th><th scope=col>fecha_de_beneficio_dia</th><th scope=col>fecha_de_beneficio_mes</th><th scope=col>fecha_de_beneficio_aÃ.o</th></tr>
+    	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>1</th><td>63</td><td>masculino</td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>2</td><td>robledo                  </td><td>7 </td><td>nor-occidental </td><td>15</td><td>9</td><td>2017</td></tr>
+    	<tr><th scope=row>2</th><td>56</td><td>masculino</td><td>no</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>bombona                  </td><td>10</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    	<tr><th scope=row>3</th><td>74</td><td>masculino</td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>guayabal                 </td><td>15</td><td>sur-oriental   </td><td>15</td><td>9</td><td>2017</td></tr>
+    	<tr><th scope=row>4</th><td>54</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>4</td><td>america - santa monica #2</td><td>12</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    	<tr><th scope=row>5</th><td>50</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>4</td><td>america - santa monica #2</td><td>12</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    	<tr><th scope=row>6</th><td>52</td><td>femenino </td><td>si</td><td>emprendedor</td><td>artesanal</td><td>emprendedor</td><td>3</td><td>san javier               </td><td>13</td><td>centro-oriental</td><td>15</td><td>9</td><td>2017</td></tr>
+    </tbody>
+    </table>
+    
+
+
+.. code:: r
+
+    #eliminando NAs
+    datos <- na.omit(datos)
+
+.. code:: r
+
+    str(datos)
+
+
+.. parsed-literal::
+
+    'data.frame':	174 obs. of  13 variables:
+     $ edad                     : int  63 56 74 54 50 52 27 61 43 39 ...
+     $ sexo                     : chr  "masculino" "masculino" "masculino" "femenino" ...
+     $ cabeza_de_hogar          : chr  "si" "no" "si" "si" ...
+     $ caracterizacion_ciudadano: chr  "emprendedor" "emprendedor" "emprendedor" "emprendedor" ...
+     $ tipo_de_emprendimiento   : chr  "artesanal" "artesanal" "artesanal" "artesanal" ...
+     $ idea_de_negocio          : chr  "emprendedor" "emprendedor" "emprendedor" "emprendedor" ...
+     $ estrato                  : int  2 3 3 4 4 3 3 3 2 2 ...
+     $ barrio_vereda_ciudadano  : chr  "robledo" "bombona" "guayabal" "america - santa monica #2" ...
+     $ comuna_ciudadano         : chr  "7" "10" "15" "12" ...
+     $ zona_ciudadano           : chr  "nor-occidental" "centro-oriental" "sur-oriental" "centro-oriental" ...
+     $ fecha_de_beneficio_dia   : int  15 15 15 15 15 15 15 15 15 15 ...
+     $ fecha_de_beneficio_mes   : int  9 9 9 9 9 9 9 9 9 9 ...
+     $ fecha_de_beneficio_aÃ.o  : num  2017 2017 2017 2017 2017 ...
+     - attr(*, "na.action")= 'omit' Named int [1:25] 112 122 125 127 131 136 137 138 139 140 ...
+      ..- attr(*, "names")= chr [1:25] "112" "122" "125" "127" ...
+    
+
+Extraemos las variables de interés
+
+.. code:: r
+
+    df<- datos[,c("tipo_de_emprendimiento","zona_ciudadano")]
+    print(head(df))
+
+
+.. parsed-literal::
+
+      tipo_de_emprendimiento  zona_ciudadano
+    1              artesanal  nor-occidental
+    2              artesanal centro-oriental
+    3              artesanal    sur-oriental
+    4              artesanal centro-oriental
+    5              artesanal centro-oriental
+    6              artesanal centro-oriental
+    
+
+Creamos tabla de contingencia
+
+.. code:: r
+
+    contingencia<-table(df)
+    print(contingencia)
+
+
+.. parsed-literal::
+
+                          zona_ciudadano
+    tipo_de_emprendimiento    centro-occidental centro-oriental nor-occidental
+                            0                 4               0              0
+                artesanal   0                 0              51             18
+                artesanias  2                14               4             14
+                basica      0                 1               0              1
+                no formal   0                 1               0              0
+                no_formal   0                 0               0              0
+                          zona_ciudadano
+    tipo_de_emprendimiento nor-oriental occidente oriente otro sur-occidental
+                                      2         0       0    2              1
+                artesanal            16         3       5    0              2
+                artesanias            8         0       0    5             13
+                basica                0         0       0    1              0
+                no formal             0         0       0    0              0
+                no_formal             1         0       0    0              0
+                          zona_ciudadano
+    tipo_de_emprendimiento sur-oriental
+                                      0
+                artesanal             5
+                artesanias            0
+                basica                0
+                no formal             0
+                no_formal             0
+    
+
+Se realiza gráfico de contingencias
+
+.. code:: r
+
+    library(gplots)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'gplots' was built under R version 4.1.3"
+    
+    Attaching package: 'gplots'
+    
+    
+    The following object is masked from 'package:stats':
+    
+        lowess
+    
+    
+    
+
+.. code:: r
+
+    balloonplot(t(contingencia), main ="Caracterización",
+                xlab = "", ylab= "",
+                label = T,           
+                show.margins = T)   
+
+
+
+.. image:: output_11_0.png
+   :width: 420px
+   :height: 420px
+
+
+Test de independencia
+
+.. code:: r
+
+    library(pander)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'pander' was built under R version 4.1.3"
+    
+
+.. code:: r
+
+    print(pander(chisq.test(contingencia)))
+
+
+.. parsed-literal::
+
+    Warning message in chisq.test(contingencia):
+    "Chi-squared approximation may be incorrect"
+    
+
+.. parsed-literal::
+
+    
+    
+    | Test statistic | df |     P value     |
+    |:--------------:|:--:|:---------------:|
+    |      120       | 45 | 9.49e-09  * * * |
+    
+    Table: Pearson's Chi-squared test: `contingencia`
+    
+    NULL
+    
+
+Extracción por AC
+
+.. code:: r
+
+    library(FactoMineR)
+    library(factoextra)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'FactoMineR' was built under R version 4.1.3"
+    Warning message:
+    "package 'factoextra' was built under R version 4.1.3"
+    Loading required package: ggplot2
+    
+    Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+    
+    
+
+.. code:: r
+
+    CA_simple<- CA(contingencia)
+    print(CA_simple)
+
+
+.. parsed-literal::
+
+    **Results of the Correspondence Analysis (CA)**
+    The row variable has  6  categories; the column variable has 10 categories
+    The chi square of independence between the two variables is equal to 120.0362 (p-value =  9.489902e-09 ).
+    *The results are available in the following objects:
+    
+       name              description                   
+    1  "$eig"            "eigenvalues"                 
+    2  "$col"            "results for the columns"     
+    3  "$col$coord"      "coord. for the columns"      
+    4  "$col$cos2"       "cos2 for the columns"        
+    5  "$col$contrib"    "contributions of the columns"
+    6  "$row"            "results for the rows"        
+    7  "$row$coord"      "coord. for the rows"         
+    8  "$row$cos2"       "cos2 for the rows"           
+    9  "$row$contrib"    "contributions of the rows"   
+    10 "$call"           "summary called parameters"   
+    11 "$call$marge.col" "weights of the columns"      
+    12 "$call$marge.row" "weights of the rows"         
+    
+
+
+.. image:: output_17_1.png
+   :width: 420px
+   :height: 420px
+
+
+Obtenemos y analizamos contribuciones columnas
+
+.. code:: r
+
+    fviz_contrib(CA_simple, choice = "col", axes = 1)
+
+
+
+.. image:: output_19_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    print(CA_simple$col$contrib)
+
+
+.. parsed-literal::
+
+                            Dim 1      Dim 2        Dim 3       Dim 4      Dim 5
+    V1                 2.27549859 12.9234349  0.003035806  0.05651337  0.1500657
+    centro-occidental 33.33699063 15.9974851  0.880836721 36.26967998  2.0207547
+    centro-oriental   28.94593235  1.7096477  4.427712262  2.06995300  7.3975893
+    nor-occidental     0.02716778 12.7449870 10.812273634  5.60234253 46.8617649
+    nor-oriental       0.14822371  0.9281056 78.121151270  2.30533427  2.9799437
+    occidente          2.24995127  0.4551492  0.275299399  0.11528355  0.5216493
+    oriente            3.74991878  0.7585820  0.458832331  0.19213924  0.8694156
+    otro              13.50375554 17.7702438  4.156448465 53.03715929  5.7259774
+    sur-occidental    12.01264257 35.9537829  0.405577782  0.15945552 32.6034237
+    sur-oriental       3.74991878  0.7585820  0.458832331  0.19213924  0.8694156
+    
+
+.. code:: r
+
+    fviz_contrib(CA_simple, choice = "row", axes = 1)
+
+
+
+.. image:: output_21_0.png
+   :width: 420px
+   :height: 420px
+
+
+Representación en el biplot
+
+.. code:: r
+
+    fviz_ca_biplot(CA_simple, repel = TRUE)
+
+
+
+.. image:: output_23_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Múltiple**
+
+.. code:: r
+
+    df_m<- datos[,c("tipo_de_emprendimiento","zona_ciudadano","cabeza_de_hogar","sexo")]
+    print(head(df_m))
+
+
+.. parsed-literal::
+
+      tipo_de_emprendimiento  zona_ciudadano cabeza_de_hogar      sexo
+    1              artesanal  nor-occidental              si masculino
+    2              artesanal centro-oriental              no masculino
+    3              artesanal    sur-oriental              si masculino
+    4              artesanal centro-oriental              si  femenino
+    5              artesanal centro-oriental              si  femenino
+    6              artesanal centro-oriental              si  femenino
+    
+
+Ajuste ACM
+
+.. code:: r
+
+    CA_multiple <- MCA(df_m,method = 'Burt')
+    summary(CA_multiple)
+    
+
+
+.. parsed-literal::
+
+    Warning message:
+    "ggrepel: 3 unlabeled data points (too many overlaps). Consider increasing max.overlaps"
+    
+
+.. parsed-literal::
+
+    
+    Call:
+    MCA(X = df_m, method = "Burt") 
+    
+    
+    Eigenvalues
+                           Dim.1   Dim.2   Dim.3   Dim.4   Dim.5   Dim.6   Dim.7
+    Variance               0.245   0.108   0.101   0.090   0.081   0.073   0.067
+    % of var.             20.543   9.055   8.444   7.547   6.796   6.070   5.599
+    Cumulative % of var.  20.543  29.598  38.042  45.589  52.385  58.455  64.054
+                           Dim.8   Dim.9  Dim.10  Dim.11  Dim.12  Dim.13  Dim.14
+    Variance               0.063   0.063   0.062   0.054   0.047   0.044   0.042
+    % of var.              5.280   5.231   5.231   4.545   3.917   3.689   3.490
+    Cumulative % of var.  69.334  74.566  79.797  84.341  88.259  91.948  95.437
+                          Dim.15  Dim.16  Dim.17
+    Variance               0.029   0.021   0.004
+    % of var.              2.458   1.767   0.338
+    Cumulative % of var.  97.895  99.662 100.000
+    
+    Individuals (the 10 first)
+                                         Dim.1    ctr   cos2    Dim.2    ctr   cos2
+    1                                 | -0.671  0.522  0.221 |  0.075  0.010  0.003
+    2                                 | -0.700  0.568  0.300 | -0.428  0.320  0.112
+    3                                 | -0.942  1.030  0.094 | -0.462  0.373  0.023
+    4                                 | -0.584  0.396  0.331 | -0.091  0.015  0.008
+    5                                 | -0.584  0.396  0.331 | -0.091  0.015  0.008
+    6                                 | -0.584  0.396  0.331 | -0.091  0.015  0.008
+    7                                 |  0.030  0.001  0.001 | -0.287  0.144  0.049
+    8                                 | -0.457  0.243  0.085 |  0.310  0.167  0.039
+    9                                 |  0.030  0.001  0.001 | -0.287  0.144  0.049
+    10                                | -0.099  0.011  0.001 | -1.054  1.940  0.123
+                                         Dim.3    ctr   cos2  
+    1                                 | -0.224  0.091  0.025 |
+    2                                 | -0.107  0.021  0.007 |
+    3                                 | -0.029  0.001  0.000 |
+    4                                 |  0.191  0.066  0.035 |
+    5                                 |  0.191  0.066  0.035 |
+    6                                 |  0.191  0.066  0.035 |
+    7                                 | -0.322  0.188  0.062 |
+    8                                 |  0.166  0.050  0.011 |
+    9                                 | -0.322  0.188  0.062 |
+    10                                | -0.200  0.072  0.004 |
+    
+    Categories (the 10 first)
+                                         Dim.1    ctr   cos2 v.test    Dim.2    ctr
+    tipo_de_emprendimiento_           |  0.894  4.211  0.154  2.746 |  0.009  0.001
+    tipo_de_emprendimiento_artesanal  | -0.519 15.776  0.888 -7.937 | -0.124  2.033
+    tipo_de_emprendimiento_artesanias |  0.657 15.180  0.634  6.273 |  0.223  3.960
+    tipo_de_emprendimiento_basica     |  0.963  1.629  0.061  1.678 | -0.675  1.813
+    tipo_de_emprendimiento_no formal  |  1.693  1.677  0.063  1.693 | -2.144  6.103
+    tipo_de_emprendimiento_no_formal  | -0.161  0.015  0.001 -0.161 |  3.085 12.640
+    zona_ciudadano_                   |  0.535  0.335  0.013  0.759 |  0.570  0.862
+    zona_ciudadano_centro-occidental  |  1.099 14.152  0.486  5.211 | -0.395  4.152
+    zona_ciudadano_centro-oriental    | -0.621 12.433  0.548 -5.557 | -0.175  2.235
+    zona_ciudadano_nor-occidental     |  0.016  0.005  0.000  0.099 |  0.027  0.032
+                                        cos2 v.test    Dim.3    ctr   cos2 v.test  
+    tipo_de_emprendimiento_            0.000  0.028 |  1.430 26.209  0.393  4.393 |
+    tipo_de_emprendimiento_artesanal   0.050 -1.892 |  0.031  0.136  0.003  0.473 |
+    tipo_de_emprendimiento_artesanias  0.073  2.127 | -0.376 12.081  0.207 -3.588 |
+    tipo_de_emprendimiento_basica      0.030 -1.175 |  1.277  6.966  0.108  2.225 |
+    tipo_de_emprendimiento_no formal   0.101 -2.144 |  0.705  0.708  0.011  0.705 |
+    tipo_de_emprendimiento_no_formal   0.212  3.085 |  2.060  6.041  0.094  2.060 |
+    zona_ciudadano_                    0.015  0.808 | -1.546  6.807  0.108 -2.193 |
+    zona_ciudadano_centro-occidental   0.063 -1.874 |  0.296  2.488  0.035  1.401 |
+    zona_ciudadano_centro-oriental     0.043 -1.564 |  0.065  0.327  0.006  0.578 |
+    zona_ciudadano_nor-occidental      0.001  0.171 | -0.336  5.294  0.103 -2.136 |
+    
+    Categorical variables (eta2)
+                                        Dim.1 Dim.2 Dim.3  
+    tipo_de_emprendimiento            | 0.763 0.349 0.662 |
+    zona_ciudadano                    | 0.769 0.628 0.548 |
+    cabeza_de_hogar                   | 0.173 0.338 0.050 |
+    sexo                              | 0.277 0.000 0.011 |
+    
+
+Extrayendo los valores propios
+
+.. code:: r
+
+    eig.val = get_eigenvalue(CA_multiple)
+    eig.val
+
+
+
+.. raw:: html
+
+    <table class="dataframe">
+    <caption>A matrix: 17 × 3 of type dbl</caption>
+    <thead>
+    	<tr><th></th><th scope=col>eigenvalue</th><th scope=col>variance.percent</th><th scope=col>cumulative.variance.percent</th></tr>
+    </thead>
+    <tbody>
+    	<tr><th scope=row>Dim.1</th><td>0.245442118</td><td>20.543086</td><td> 20.54309</td></tr>
+    	<tr><th scope=row>Dim.2</th><td>0.108187325</td><td> 9.055094</td><td> 29.59818</td></tr>
+    	<tr><th scope=row>Dim.3</th><td>0.100886345</td><td> 8.444015</td><td> 38.04219</td></tr>
+    	<tr><th scope=row>Dim.4</th><td>0.090164207</td><td> 7.546590</td><td> 45.58878</td></tr>
+    	<tr><th scope=row>Dim.5</th><td>0.081194727</td><td> 6.795860</td><td> 52.38464</td></tr>
+    	<tr><th scope=row>Dim.6</th><td>0.072525536</td><td> 6.070263</td><td> 58.45491</td></tr>
+    	<tr><th scope=row>Dim.7</th><td>0.066895904</td><td> 5.599073</td><td> 64.05398</td></tr>
+    	<tr><th scope=row>Dim.8</th><td>0.063089070</td><td> 5.280447</td><td> 69.33443</td></tr>
+    	<tr><th scope=row>Dim.9</th><td>0.062500000</td><td> 5.231143</td><td> 74.56557</td></tr>
+    	<tr><th scope=row>Dim.10</th><td>0.062500000</td><td> 5.231143</td><td> 79.79671</td></tr>
+    	<tr><th scope=row>Dim.11</th><td>0.054298259</td><td> 4.544672</td><td> 84.34139</td></tr>
+    	<tr><th scope=row>Dim.12</th><td>0.046802939</td><td> 3.917326</td><td> 88.25871</td></tr>
+    	<tr><th scope=row>Dim.13</th><td>0.044074548</td><td> 3.688964</td><td> 91.94768</td></tr>
+    	<tr><th scope=row>Dim.14</th><td>0.041695178</td><td> 3.489815</td><td> 95.43749</td></tr>
+    	<tr><th scope=row>Dim.15</th><td>0.029366877</td><td> 2.457957</td><td> 97.89545</td></tr>
+    	<tr><th scope=row>Dim.16</th><td>0.021105663</td><td> 1.766508</td><td> 99.66196</td></tr>
+    	<tr><th scope=row>Dim.17</th><td>0.004038829</td><td> 0.338043</td><td>100.00000</td></tr>
+    </tbody>
+    </table>
+    
+
+
+Gráfico de sedimentación para identificar dimensiones óptimas
+
+.. code:: r
+
+    fviz_screeplot(CA_multiple, addlabels = TRUE)
+
+
+
+.. image:: output_31_0.png
+   :width: 420px
+   :height: 420px
+
+
+Ubicación en el biplot como representación de las dimensiones
+
+.. code:: r
+
+    fviz_mca_biplot(CA_multiple, repel = TRUE)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "ggrepel: 121 unlabeled data points (too many overlaps). Consider increasing max.overlaps"
+    
+
+
+.. image:: output_33_1.png
+   :width: 420px
+   :height: 420px
+

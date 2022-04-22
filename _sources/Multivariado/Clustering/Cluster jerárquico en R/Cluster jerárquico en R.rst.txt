@@ -1,0 +1,984 @@
+Cluster jerárquico en R
+-----------------------
+
+**Importar datos:**
+
+.. code:: r
+
+    datos <- read.csv("EAM_2019-v2.csv", sep = ";", dec = ",", header = T)
+    print(head(datos))
+
+
+.. parsed-literal::
+
+      ï..gasto_personal inversion_AF    ventas
+    1          32334949     92544622 321070109
+    2           5669798     69317638  86597330
+    3          11081213     50853587  26727389
+    4          47892609     42426113 388005721
+    5          56410101     35164028 390070138
+    6          20536798     27028346 490639882
+    
+
+.. code:: r
+
+    colnames(datos) <- c("Gasto_personal", "Inversión_AF", "Ventas")
+
+.. code:: r
+
+    str(datos)
+
+
+.. parsed-literal::
+
+    'data.frame':	216 obs. of  3 variables:
+     $ Gasto_personal: int  32334949 5669798 11081213 47892609 56410101 20536798 14001910 38533922 21397321 3478034 ...
+     $ Inversión_AF  : int  92544622 69317638 50853587 42426113 35164028 27028346 25150313 23019658 22007282 21924323 ...
+     $ Ventas        : int  321070109 86597330 26727389 388005721 390070138 490639882 379365700 488079500 233432780 9932602 ...
+    
+
+.. code:: r
+
+    dim(datos)
+
+
+
+.. raw:: html
+
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>216</li><li>3</li></ol>
+    
+
+
+.. code:: r
+
+    df <- datos[, c("Gasto_personal", "Ventas")]
+
+.. code:: r
+
+    library(ggplot2)
+
+.. code:: r
+
+    ggplot(data = df, aes(x = Gasto_personal, y = Ventas))+
+        geom_point()
+
+
+
+.. image:: output_8_0.png
+   :width: 420px
+   :height: 420px
+
+
+Escalamiento de variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: r
+
+    df_scaled <- scale(df)
+
+Distancias:
+~~~~~~~~~~~
+
+.. code:: r
+
+    dist <- dist(df_scaled, method = "euclidean")
+
+**Matriz de distancias:**
+
+.. code:: r
+
+    print(as.matrix(dist)[1:6, 1:6])
+
+
+.. parsed-literal::
+
+             1         2         3         4         5        6
+    1 0.000000 2.9088632 3.0901009 1.3159100 1.9144336 1.763064
+    2 2.908863 0.0000000 0.6745543 4.1740457 4.6909913 3.798116
+    3 3.090101 0.6745543 0.0000000 4.2665706 4.7206485 4.227799
+    4 1.315910 4.1740457 4.2665706 0.0000000 0.6410866 2.255214
+    5 1.914434 4.6909913 4.7206485 0.6410866 0.0000000 2.846148
+    6 1.763064 3.7981163 4.2277993 2.2552142 2.8461482 0.000000
+    
+
+Cluster jerárquico:
+~~~~~~~~~~~~~~~~~~~
+
+Usaremos la función ``hclust()`` de la librería ``stat``.
+
+En esta función se debe pasar el vector con las distancias calculadas
+con la función ``dist()``.
+
+Para realizar el agrupamiento la función ``hclust()`` tiene varios
+métodos: ``"ward.D"`` , ``"ward.D2"``, ``"single"``, ``"complete"``,
+``"average"``, ``"mcquitty"``, ``"median"`` o ``"centroid"``.
+
+-  ``"ward.D"`` y ``"ward.D2"``: minimiza la varianza total dentro del
+   cluster. En cada paso, une el par de cluster con una distancia mínima
+   entre clusters. ``"ward.D2"`` eleva al cuadrado las distancias
+   calculadas con ``dist()``.
+
+-  ``"single"``: a diferencia del anterior, lo hace con el valor mínimo.
+   Tiende a producir grupos largo. Es el método de la distancia mínima.
+
+-  ``"complete"``: la distancia entre dos grupos se define como el valor
+   máximo de todas las distancias por pares entre los elementos del
+   grupo 1 y los elementos del grupo 2. Tiene a producir cluster más
+   compactos. Es el método de la distancia máxima.
+
+-  ``"average"``: la distancia entre dos clusters se define como la
+   distancia promedio entre los elementos del cluster 1 y los elementos
+   del cluster 2. Es el método del promedio.
+
+-  ``"mcquitty"``: promedio ponderado.
+
+-  ``"median"``: mediana.
+
+-  ``"centroid"``: usa las distancias entre el centroide 1 y el
+   centroide 2.
+
+.. code:: r
+
+    hc <- hclust(d = dist, method = "ward.D2")
+    print(hc)
+
+
+.. parsed-literal::
+
+    
+    Call:
+    hclust(d = dist, method = "ward.D2")
+    
+    Cluster method   : ward.D2 
+    Distance         : euclidean 
+    Number of objects: 216 
+    
+    
+
+Dendograma:
+~~~~~~~~~~~
+
+Visualizaremos el dendograma con la función ``fviz_dend()`` de la
+librería ``factoextra``.
+
+Los principales argumentos de esta función son:
+
+-  ``x``: el objeto creado con ``hclust()``.
+
+-  ``k``: cantidad de clusters. Primero no especificaremos este valor.
+
+-  ``h``: para cortar el dendograma por altura. Primero no
+   especificaremos este valor.
+
+.. code:: r
+
+    library("factoextra")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'factoextra' was built under R version 4.1.3"
+    Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+    
+    
+
+.. code:: r
+
+    fviz_dend(hc)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_21_1.png
+   :width: 420px
+   :height: 420px
+
+
+Distancia cofenética (cophenetic distances):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Para comprobar si las distancias del árbol reflejan las distancias
+originales. Se calcula la correlación entre las distancias cofenéticas y
+los datos de las distancias originales generadas por la función
+``dist()``.
+
+Cuanto más cerca esté el valor del coeficiente de correlación a 1, con
+mayor precisión la solución de agrupación reflejará sus datos.
+
+La distancia cofenética del árbol se calcula con la función
+``cophenetic()``.
+
+.. code:: r
+
+    coph <- cophenetic(hc)
+
+.. code:: r
+
+    cor(dist, coph)
+
+
+
+.. raw:: html
+
+    0.802735921415624
+
+
+Corte del dendograma:
+~~~~~~~~~~~~~~~~~~~~~
+
+El árbol se puede cortar a una altura determinada o por cantidad de
+clusters.
+
+La función de la base de R, ``cutree()`` permite cortar el árbol
+generado por ``hclust()``\ por cantidad de clusters, ``k``, o por
+altura, ``h``. Devuelve un vector que contiene el número de cluster de
+cada observación.
+
+:math:`k = 3`
+
+.. code:: r
+
+    grp <- cutree(hc, k = 3)
+    print(head(grp))           # vector con los números del cluster de cada observación.
+
+
+.. parsed-literal::
+
+    [1] 1 2 2 1 1 1
+    
+
+**Cantidad de observaciones en cada cluster:**
+
+.. code:: r
+
+    table(grp)
+
+
+
+.. parsed-literal::
+
+    grp
+      1   2   3 
+     17 135  64 
+
+
+**Visualizar el dendograma cortado:**
+
+.. code:: r
+
+    fviz_dend(hc, k = 3,                        # Cortar el árbol en k clusters.
+                color_labels_by_k = TRUE,       # Color por clusters.
+                rect = TRUE)                    # Agragar un rectángulo a cada cluster.
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_33_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Visualizar los clusters en el gráfico de dispersión:**
+
+.. code:: r
+
+    fviz_cluster(list(data = df, cluster = grp),
+                ellipse.type = "convex",                                # Forma del cluster.
+                repel = TRUE,                                           # Para evitar solapar las etiquetas
+                show.clust.cent = TRUE,                                 # Centroides.
+                ggtheme = theme_minimal())
+
+
+.. parsed-literal::
+
+    Warning message:
+    "ggrepel: 148 unlabeled data points (too many overlaps). Consider increasing max.overlaps"
+    
+
+
+.. image:: output_35_1.png
+   :width: 420px
+   :height: 420px
+
+
+Otra forma:
+~~~~~~~~~~~
+
+Tenemos dos funciones del paquete ``cluster`` que calculan el
+agrupamiento aglomerativo y divisivo.
+
+-  ``agnes()``: aglomerativo.
+
+-  ``diana()``: Divisivo.
+
+Con estas funciones no se necesitan ejecutar ``scale()``, ``dist()`` y
+``hclust()`` por separado.
+
+.. code:: r
+
+    library("cluster")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'cluster' was built under R version 4.1.3"
+    
+
+.. code:: r
+
+    agnes <- agnes(x = df,                       # Conjunto de datos original.
+                   stand = TRUE,                  # Escalamiento de las variables.
+                        metric = "euclidean",     # Métodos para las distancias.
+                        method = "ward")         # Método para el agrupamiento.
+                    
+    
+    diana <- diana(x = df,
+                   stand = TRUE, 
+                   metric = "euclidean") 
+
+.. code:: r
+
+    fviz_dend(agnes, k = 3)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_40_1.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    fviz_dend(diana, k = 3)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_41_1.png
+   :width: 420px
+   :height: 420px
+
+
+Visualización del dendograma
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``install.packages("dendextend")``
+
+**Gráfico inicial:**
+
+.. code:: r
+
+    fviz_dend(hc,)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_45_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Títulos y etiquetas:**
+
+.. code:: r
+
+    fviz_dend(hc, cex = 0.5,
+                main = "Dendrogram - ward.D2",
+                xlab = "Objects", ylab = "Distance", sub = "")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_47_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Horizontal:**
+
+.. code:: r
+
+    fviz_dend(hc, cex = 0.5, horiz = TRUE)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_49_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Cluster sombreados:**
+
+.. code:: r
+
+    fviz_dend(hc, k = 3, 
+                cex = 0.5, 
+                k_colors = c("#2E9FDF", "#00AFBB"),
+                color_labels_by_k = TRUE, 
+                rect = TRUE, 
+                rect_border = c("#2E9FDF", "#00AFBB"),
+                rect_fill = TRUE)
+
+
+.. parsed-literal::
+
+    Warning message in get_col(col, k):
+    "Length of color vector was shorter than the number of clusters - color vector was recycled"
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    Warning message in if (color == "cluster") color <- "default":
+    "la condición tiene longitud > 1 y sólo el primer elemento será usado"
+    
+
+
+.. image:: output_51_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Otro tema:**
+
+.. code:: r
+
+    fviz_dend(hc, k = 3, 
+                cex = 0.5, 
+                k_colors = c("#2E9FDF", "#00AFBB"),
+                color_labels_by_k = TRUE, 
+                ggtheme = theme_gray()) 
+
+
+.. parsed-literal::
+
+    Warning message in get_col(col, k):
+    "Length of color vector was shorter than the number of clusters - color vector was recycled"
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_53_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Paleta ``jco``:**
+
+.. code:: r
+
+    fviz_dend(hc, cex = 0.5, k = 3, 
+                k_colors = "jco")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_55_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Horizontal y paleta ``jco``:**
+
+.. code:: r
+
+    fviz_dend(hc, k = 3, cex = 0.4, horiz = TRUE, k_colors = "jco",
+                rect = TRUE, rect_border = "jco", rect_fill = TRUE)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_57_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Circular:**
+
+.. code:: r
+
+    fviz_dend(hc, cex = 0.5, k = 3,
+                k_colors = "jco", type = "circular")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_59_1.png
+   :width: 420px
+   :height: 420px
+
+
+Ejemplo base de datos con etiquetas:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: r
+
+    datos2 <- read.csv("Estado de resultados-2020.csv", sep = ";", dec = ",", header = T)
+
+.. code:: r
+
+    str(datos2)
+
+
+.. parsed-literal::
+
+    'data.frame':	2431 obs. of  25 variables:
+     $ Clasificación.Industrial.Internacional.Uniforme.Versión.4.A.C..CIIU.                                                                                                                                                                                                           : chr  "H4930 - Transporte por tuberías" "H4930 - Transporte por tuberías" "H4930 - Transporte por tuberías" "B0510 - Extracción de hulla (carbón de piedra)" ...
+     $ Departamento.de.la.dirección.del.domicilio                                                                                                                                                                                                                                     : chr  "BOGOTA D.C." "BOGOTA D.C." "BOGOTA D.C." "BOGOTA D.C." ...
+     $ Ciudad.de.la.dirección.del.domicilio                                                                                                                                                                                                                                           : chr  "BOGOTA D.C." "BOGOTA D.C." "BOGOTA D.C." "BOGOTA D.C." ...
+     $ Ingresos.de.actividades.ordinarias                                                                                                                                                                                                                                             : num  1.28e+09 3.45e+08 1.27e+09 5.47e+08 1.05e+07 ...
+     $ Costo.de.ventas                                                                                                                                                                                                                                                                : num  2.11e+08 6.90e+07 2.10e+08 6.68e+08 2.82e+06 ...
+     $ Ganancia.bruta                                                                                                                                                                                                                                                                 : int  1068652505 276350200 1059846508 -120135345 7678364 998518794 2434907 71030143 345277614 11502748 ...
+     $ Otros.ingresos                                                                                                                                                                                                                                                                 : int  518601 1297021 521537 NA 204440 5269820 120010 696112 1200917 886120 ...
+     $ Gastos.de.ventas                                                                                                                                                                                                                                                               : int  10888517 NA 10995074 40370796 NA 11927981 NA NA 162037834 4072887 ...
+     $ Gastos.de.administración                                                                                                                                                                                                                                                       : int  19462303 5326805 19714849 6433695 1172780 18607768 2041618 39451679 93520107 2122394 ...
+     $ Otros.gastos                                                                                                                                                                                                                                                                   : int  NA 7316716 NA NA 2718133 NA 143129 34551428 8240400 636098 ...
+     $ Otras.ganancias..pérdidas.                                                                                                                                                                                                                                                     : int  NA NA NA 127926859 0 NA NA NA NA NA ...
+     $ Ganancia..pérdida..por.actividades.de.operación                                                                                                                                                                                                                                : int  1038820286 265003700 1029658122 -39012977 3991891 973252865 370170 -2276852 82680190 5557489 ...
+     $ Diferencia.entre.el.importe.en.libros.de.dividendos.pagaderos.e.importe.en.libros.de.activos.distribuidos.distintos.al.efectivo                                                                                                                                                : int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ganancias..pérdidas..que.surgen.de.la.baja.en.cuentas.de.activos.financieros.medidos.al.costo.amortizado                                                                                                                                                                       : int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ingresos.financieros                                                                                                                                                                                                                                                           : int  93766912 9573579 NA 3221283 5110192 NA 91804 NA 898026 129379 ...
+     $ Costos.financieros                                                                                                                                                                                                                                                             : int  NA NA 173721640 18086470 5026816 72100638 281008 3185442 383162 4138026 ...
+     $ Deterioro.de.valor.de.ganancias.y.reversión.de.pérdidas.por.deterioro.de.valor..pérdidas.por.deterioro.de.valor..determinado.de.acuerdo.con.la.NIIF.9                                                                                                                          : int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ganancias..pérdidas..que.surgen.de.diferencias.entre.el.costo.amortizado.anterior.y.el.valor.razonable.de.activos.financieros.reclasificados.de.la.categoría.de.medición.costo.amortizado.a.la.categoría.de.medición.de.valor.razonable.con.cambios.en.resultados              : int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ganancia..pérdida..acumulada.anteriormente.reconocida.en.otro.resultado.integral.que.surge.de.la.reclasificación.de.activos.financieros.de.la.categoría.de.medición.de.valor.razonable.con.cambios.en.otro.resultado.integral.a.la.de.valor.razonable.con.cambios.en.resultados: int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ganancias..pérdidas..de.cobertura.por.cobertura.de.un.grupo.de.partidas.con.posiciones.de.riesgo.compensadoras                                                                                                                                                                 : int  NA NA NA NA NA NA NA NA NA 0 ...
+     $ Ganancia..pérdida...antes.de.impuestos                                                                                                                                                                                                                                         : int  1132587198 274577279 855936482 -53878164 4075267 901152227 180966 -5462294 83195054 1548842 ...
+     $ Ingreso..gasto..por.impuestos                                                                                                                                                                                                                                                  : int  253919393 87737163 328295928 30576990 1436579 276491490 -26116 9156763 29562532 364786 ...
+     $ Ganancia..pérdida..procedente.de.operaciones.continuadas                                                                                                                                                                                                                       : int  878667805 186840116 527640554 -84455154 2638688 624660737 207082 -14619057 53632522 1184056 ...
+     $ Ganancia..pérdida..procedente.de.operaciones.discontinuadas                                                                                                                                                                                                                    : int  NA NA NA NA NA NA NA NA NA NA ...
+     $ Ganancia..pérdida.                                                                                                                                                                                                                                                             : int  878667805 186840116 527640554 -84455154 2638688 624660737 207082 -14619057 53632522 1184056 ...
+    
+
+**NA = 0:**
+
+.. code:: r
+
+    datos2[is.na(datos2)] <- 0
+
+**Agrupar los datos por código ciuu y sumar:**
+
+.. code:: r
+
+    library(tidyverse)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "package 'tidyverse' was built under R version 4.1.3"
+    -- [1mAttaching packages[22m --------------------------------------- tidyverse 1.3.1 --
+    
+    [32mv[39m [34mtibble [39m 3.1.6     [32mv[39m [34mdplyr  [39m 1.0.8
+    [32mv[39m [34mtidyr  [39m 1.2.0     [32mv[39m [34mstringr[39m 1.4.0
+    [32mv[39m [34mreadr  [39m 2.1.2     [32mv[39m [34mforcats[39m 0.5.1
+    [32mv[39m [34mpurrr  [39m 0.3.4     
+    
+    Warning message:
+    "package 'readr' was built under R version 4.1.3"
+    -- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
+    [31mx[39m [34mdplyr[39m::[32mfilter()[39m masks [34mstats[39m::filter()
+    [31mx[39m [34mdplyr[39m::[32mlag()[39m    masks [34mstats[39m::lag()
+    
+    
+
+.. code:: r
+
+    df2 <- datos2 %>% 
+            group_by(Clasificación.Industrial.Internacional.Uniforme.Versión.4.A.C..CIIU.) %>% 
+            summarise(Ingresos.de.actividades.ordinarias = sum(Ingresos.de.actividades.ordinarias),
+                     Ganancia..pérdida. = sum(Ganancia..pérdida.))
+
+.. code:: r
+
+    print(head(df2))
+
+
+.. parsed-literal::
+
+    [90m# A tibble: 6 x 3[39m
+      Clasificación.Industrial.Internacional.Unif~ Ingresos.de.act~ Ganancia..pérdi~
+      [3m[90m<chr>[39m[23m                                                   [3m[90m<dbl>[39m[23m            [3m[90m<dbl>[39m[23m
+    [90m1[39m A0112 - Cultivo de arroz                             48[4m6[24m[4m4[24m[4m8[24m526          1[4m2[24m[4m9[24m[4m5[24m439
+    [90m2[39m A0113 - Cultivo de hortalizas, raíces y tub~         61[4m3[24m[4m7[24m[4m2[24m344          4[4m8[24m[4m2[24m[4m0[24m954
+    [90m3[39m A0121 - Cultivo de frutas tropicales y subt~         14[4m2[24m[4m2[24m[4m3[24m971         -[31m5[4m4[24m[4m2[24m[39m[31m[4m9[24m345[39m
+    [90m4[39m A0122 - Cultivo de plátano y banano                [4m1[24m135[4m6[24m[4m7[24m[4m7[24m192         52[4m5[24m[4m4[24m[4m7[24m865
+    [90m5[39m A0123 - Cultivo de café                               3[4m6[24m[4m2[24m[4m0[24m827          -[31m[4m3[24m[4m4[24m[4m3[24m[39m[31m548[39m
+    [90m6[39m A0124 - Cultivo de caña de azúcar                    53[4m1[24m[4m2[24m[4m1[24m589          5[4m7[24m[4m1[24m[4m8[24m585
+    
+
+**Eliminar los código ciuu y dejar solo los nombres de las actividades
+económicas:**
+
+.. code:: r
+
+    df2$ciiu <- str_split_fixed(df2$Clasificación.Industrial.Internacional.Uniforme.Versión.4.A.C..CIIU., "-", 2)[,2]
+    df2$Clasificación.Industrial.Internacional.Uniforme.Versión.4.A.C..CIIU. <- NULL
+
+.. code:: r
+
+    print(head(df2))
+
+
+.. parsed-literal::
+
+    [90m# A tibble: 6 x 3[39m
+      Ingresos.de.actividades.ordinarias Ganancia..pérdida. ciiu                    
+                                   [3m[90m<dbl>[39m[23m              [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m                   
+    [90m1[39m                           48[4m6[24m[4m4[24m[4m8[24m526            1[4m2[24m[4m9[24m[4m5[24m439 [90m"[39m Cultivo de arroz[90m"[39m     
+    [90m2[39m                           61[4m3[24m[4m7[24m[4m2[24m344            4[4m8[24m[4m2[24m[4m0[24m954 [90m"[39m Cultivo de hortalizas~
+    [90m3[39m                           14[4m2[24m[4m2[24m[4m3[24m971           -[31m5[4m4[24m[4m2[24m[39m[31m[4m9[24m345[39m [90m"[39m Cultivo de frutas tro~
+    [90m4[39m                         [4m1[24m135[4m6[24m[4m7[24m[4m7[24m192           52[4m5[24m[4m4[24m[4m7[24m865 [90m"[39m Cultivo de plátano y ~
+    [90m5[39m                            3[4m6[24m[4m2[24m[4m0[24m827            -[31m[4m3[24m[4m4[24m[4m3[24m[39m[31m548[39m [90m"[39m Cultivo de café[90m"[39m      
+    [90m6[39m                           53[4m1[24m[4m2[24m[4m1[24m589            5[4m7[24m[4m1[24m[4m8[24m585 [90m"[39m Cultivo de caña de az~
+    
+
+**Asignar el index (los nombres de las filas):**
+
+.. code:: r
+
+    df2 <- as.data.frame(df2)
+
+.. code:: r
+
+    rownames(df2) <- df2$ciiu
+    df2$ciiu <- NULL
+
+.. code:: r
+
+    print(head(df2))
+
+
+.. parsed-literal::
+
+                                                  Ingresos.de.actividades.ordinarias
+     Cultivo de arroz                                                       48648526
+     Cultivo de hortalizas, raíces y tubérculos                             61372344
+     Cultivo de frutas tropicales y subtropicales                           14223971
+     Cultivo de plátano y banano                                          1135677192
+     Cultivo de café                                                         3620827
+     Cultivo de caña de azúcar                                              53121589
+                                                  Ganancia..pérdida.
+     Cultivo de arroz                                        1295439
+     Cultivo de hortalizas, raíces y tubérculos              4820954
+     Cultivo de frutas tropicales y subtropicales           -5429345
+     Cultivo de plátano y banano                            52547865
+     Cultivo de café                                         -343548
+     Cultivo de caña de azúcar                               5718585
+    
+
+**Cambiar el nombre de las columnas (variables):**
+
+.. code:: r
+
+    colnames(df2) <- c("Ingresos", "Utilidad_Neta")
+
+.. code:: r
+
+    df2 <- df2[1:20,]
+
+.. code:: r
+
+    print(head(df2))
+
+
+.. parsed-literal::
+
+                                                    Ingresos Utilidad_Neta
+     Cultivo de arroz                               48648526       1295439
+     Cultivo de hortalizas, raíces y tubérculos     61372344       4820954
+     Cultivo de frutas tropicales y subtropicales   14223971      -5429345
+     Cultivo de plátano y banano                  1135677192      52547865
+     Cultivo de café                                 3620827       -343548
+     Cultivo de caña de azúcar                      53121589       5718585
+    
+
+.. code:: r
+
+    ggplot(data = df2, aes(x = Ingresos, y = Utilidad_Neta))+
+        geom_point()
+
+
+
+.. image:: output_80_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Escalamiento de variables:**
+
+.. code:: r
+
+    df2_scaled <- scale(df2)
+
+**Distancias:**
+
+.. code:: r
+
+    dist2 <- dist(df2_scaled, method = "euclidean")
+
+**Matriz de distancias:**
+
+.. code:: r
+
+    print(as.matrix(dist2)[1:6, 1:6])
+
+
+.. parsed-literal::
+
+                                                   Cultivo de arroz
+     Cultivo de arroz                                     0.0000000
+     Cultivo de hortalizas, raíces y tubérculos           0.1532693
+     Cultivo de frutas tropicales y subtropicales         0.2954620
+     Cultivo de plátano y banano                          2.9120916
+     Cultivo de café                                      0.1057447
+     Cultivo de caña de azúcar                            0.1904133
+                                                   Cultivo de hortalizas, raíces y tubérculos
+     Cultivo de arroz                                                              0.15326934
+     Cultivo de hortalizas, raíces y tubérculos                                    0.00000000
+     Cultivo de frutas tropicales y subtropicales                                  0.44855235
+     Cultivo de plátano y banano                                                   2.78395735
+     Cultivo de café                                                               0.24405950
+     Cultivo de caña de azúcar                                                     0.04122236
+                                                   Cultivo de frutas tropicales y subtropicales
+     Cultivo de arroz                                                                 0.2954620
+     Cultivo de hortalizas, raíces y tubérculos                                       0.4485524
+     Cultivo de frutas tropicales y subtropicales                                     0.0000000
+     Cultivo de plátano y banano                                                      3.1736733
+     Cultivo de café                                                                  0.2195407
+     Cultivo de caña de azúcar                                                        0.4843143
+                                                   Cultivo de plátano y banano
+     Cultivo de arroz                                                 2.912092
+     Cultivo de hortalizas, raíces y tubérculos                       2.783957
+     Cultivo de frutas tropicales y subtropicales                     3.173673
+     Cultivo de plátano y banano                                      0.000000
+     Cultivo de café                                                  3.016988
+     Cultivo de caña de azúcar                                        2.765486
+                                                   Cultivo de café
+     Cultivo de arroz                                    0.1057447
+     Cultivo de hortalizas, raíces y tubérculos          0.2440595
+     Cultivo de frutas tropicales y subtropicales        0.2195407
+     Cultivo de plátano y banano                         3.0169883
+     Cultivo de café                                     0.0000000
+     Cultivo de caña de azúcar                           0.2747690
+                                                   Cultivo de caña de azúcar
+     Cultivo de arroz                                             0.19041328
+     Cultivo de hortalizas, raíces y tubérculos                   0.04122236
+     Cultivo de frutas tropicales y subtropicales                 0.48431431
+     Cultivo de plátano y banano                                  2.76548585
+     Cultivo de café                                              0.27476897
+     Cultivo de caña de azúcar                                    0.00000000
+    
+
+**Cluster jerárquico:**
+
+.. code:: r
+
+    hc2 <- hclust(d = dist2, method = "ward.D2")
+    print(hc2)
+
+
+.. parsed-literal::
+
+    
+    Call:
+    hclust(d = dist2, method = "ward.D2")
+    
+    Cluster method   : ward.D2 
+    Distance         : euclidean 
+    Number of objects: 20 
+    
+    
+
+**Dendograma:**
+
+.. code:: r
+
+    fviz_dend(hc2)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_90_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Distancia cofenética (cophenetic distances):**
+
+.. code:: r
+
+    coph2 <- cophenetic(hc2)
+
+.. code:: r
+
+    cor(dist2, coph2)
+
+
+
+.. raw:: html
+
+    0.859184362589393
+
+
+**Corte del dendograma:**
+
+:math:`k = 2`
+
+.. code:: r
+
+    grp2 <- cutree(hc2, k = 2)
+    print(head(grp2))           # vector con los números del cluster de cada observación.
+
+
+.. parsed-literal::
+
+                                 Cultivo de arroz 
+                                                1 
+       Cultivo de hortalizas, raíces y tubérculos 
+                                                1 
+     Cultivo de frutas tropicales y subtropicales 
+                                                1 
+                      Cultivo de plátano y banano 
+                                                2 
+                                  Cultivo de café 
+                                                1 
+                        Cultivo de caña de azúcar 
+                                                1 
+    
+
+**Cantidad de observaciones en cada cluster:**
+
+.. code:: r
+
+    table(grp2)
+
+
+
+.. parsed-literal::
+
+    grp2
+     1  2 
+    16  4 
+
+
+**Visualizar el dendograma:**
+
+.. code:: r
+
+    fviz_dend(hc2, k = 2, horiz = TRUE)
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_100_1.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    fviz_dend(hc2, cex = 0.5, k = 2, type = "circular")
+
+
+.. parsed-literal::
+
+    Warning message:
+    "`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead."
+    
+
+
+.. image:: output_101_1.png
+   :width: 420px
+   :height: 420px
+
+
+**Visualizar los clusters en el gráfico de dispersión:**
+
+.. code:: r
+
+    fviz_cluster(list(data = df2, cluster = grp2),
+                ellipse.type = "convex",                                # Forma del cluster.
+                repel = TRUE,                                           # Para evitar solapar las etiquetas
+                show.clust.cent = TRUE,                                 # Centroides.
+                ggtheme = theme_minimal())
+
+
+.. parsed-literal::
+
+    Warning message:
+    "ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps"
+    
+
+
+.. image:: output_103_1.png
+   :width: 420px
+   :height: 420px
+

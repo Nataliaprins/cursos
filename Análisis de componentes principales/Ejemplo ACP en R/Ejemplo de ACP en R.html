@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejemplo de ACP en R &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Clustering" href="../../Clustering/index.html" />
+    <link rel="prev" title="Análisis de Componentes Principales" href="../ACP/An%C3%A1lisis%20de%20Componentes%20Principales.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis de componentes principales</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Repaso%20%C3%A1lgebra%20lineal/Repaso%20%C3%81lgebra%20Lineal.html">Repaso Álgebra Lineal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ACP/An%C3%A1lisis%20de%20Componentes%20Principales.html">Análisis de Componentes Principales</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ejemplo de ACP en R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acp">ACP:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numero-de-componentes-principales">Número de Componentes Principales:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusión:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../Multivariado/index.html">Análisis Multivariado</a> &raquo;</li>
+          <li><a href="../index.html">Análisis de componentes principales</a> &raquo;</li>
+      <li>Ejemplo de ACP en R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Análisis de componentes principales/Ejemplo ACP en R/Ejemplo de ACP en R.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="ejemplo-de-acp-en-r">
+<h1>Ejemplo de ACP en R<a class="headerlink" href="#ejemplo-de-acp-en-r" title="Permalink to this headline"></a></h1>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;EAM_2019.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">ï</span><span class="o">..</span><span class="n">ciiu</span> <span class="n">personal_mujer</span> <span class="n">personal_hombre</span> <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>    <span class="mi">1051</span>             <span class="mi">36</span>             <span class="mi">140</span>        <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>    <span class="mi">1030</span>             <span class="mi">40</span>             <span class="mi">176</span>        <span class="mi">7334998</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>    <span class="mi">3290</span>             <span class="mi">15</span>             <span class="mi">172</span>        <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>    <span class="mi">3091</span>             <span class="mi">88</span>             <span class="mi">373</span>       <span class="mi">22088759</span>         <span class="mi">35203208</span>
+<span class="mi">5</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+  <span class="n">costos_gastos_produccion</span> <span class="n">gastos_adm_ventas</span> <span class="n">inversion_AF</span>    <span class="n">ventas</span>
+<span class="mi">1</span>                  <span class="mi">6846304</span>          <span class="mi">22920307</span>      <span class="mi">4979745</span> <span class="mi">192609248</span>
+<span class="mi">2</span>                  <span class="mi">5941761</span>          <span class="mi">12310286</span>      <span class="mi">5615593</span> <span class="mi">115741258</span>
+<span class="mi">3</span>                  <span class="mi">6996020</span>           <span class="mi">2564695</span>       <span class="mi">773444</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>                  <span class="mi">4175751</span>         <span class="mi">171278876</span>     <span class="mi">10501572</span> <span class="mi">162509864</span>
+<span class="mi">5</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span> <span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">personal_mujer</span> <span class="n">personal_hombre</span> <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>             <span class="mi">36</span>             <span class="mi">140</span>        <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>             <span class="mi">40</span>             <span class="mi">176</span>        <span class="mi">7334998</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>             <span class="mi">15</span>             <span class="mi">172</span>        <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>             <span class="mi">88</span>             <span class="mi">373</span>       <span class="mi">22088759</span>         <span class="mi">35203208</span>
+<span class="mi">5</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+  <span class="n">costos_gastos_produccion</span> <span class="n">gastos_adm_ventas</span> <span class="n">inversion_AF</span>    <span class="n">ventas</span>
+<span class="mi">1</span>                  <span class="mi">6846304</span>          <span class="mi">22920307</span>      <span class="mi">4979745</span> <span class="mi">192609248</span>
+<span class="mi">2</span>                  <span class="mi">5941761</span>          <span class="mi">12310286</span>      <span class="mi">5615593</span> <span class="mi">115741258</span>
+<span class="mi">3</span>                  <span class="mi">6996020</span>           <span class="mi">2564695</span>       <span class="mi">773444</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>                  <span class="mi">4175751</span>         <span class="mi">171278876</span>     <span class="mi">10501572</span> <span class="mi">162509864</span>
+<span class="mi">5</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+</pre></div>
+</div>
+<div class="section" id="acp">
+<h2>ACP:<a class="headerlink" href="#acp" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">&lt;-</span> <span class="nf">prcomp</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">scale.</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">acp</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Importance</span> <span class="n">of</span> <span class="n">components</span><span class="p">:</span>
+                          <span class="n">PC1</span>    <span class="n">PC2</span>    <span class="n">PC3</span>    <span class="n">PC4</span>     <span class="n">PC5</span>    <span class="n">PC6</span>     <span class="n">PC7</span>
+<span class="n">Standard</span> <span class="n">deviation</span>     <span class="mf">1.8881</span> <span class="mf">1.2332</span> <span class="mf">1.0115</span> <span class="mf">0.9572</span> <span class="mf">0.74549</span> <span class="mf">0.5514</span> <span class="mf">0.30452</span>
+<span class="n">Proportion</span> <span class="n">of</span> <span class="n">Variance</span> <span class="mf">0.4456</span> <span class="mf">0.1901</span> <span class="mf">0.1279</span> <span class="mf">0.1145</span> <span class="mf">0.06947</span> <span class="mf">0.0380</span> <span class="mf">0.01159</span>
+<span class="n">Cumulative</span> <span class="n">Proportion</span>  <span class="mf">0.4456</span> <span class="mf">0.6357</span> <span class="mf">0.7636</span> <span class="mf">0.8782</span> <span class="mf">0.94763</span> <span class="mf">0.9856</span> <span class="mf">0.99722</span>
+                           <span class="n">PC8</span>
+<span class="n">Standard</span> <span class="n">deviation</span>     <span class="mf">0.14911</span>
+<span class="n">Proportion</span> <span class="n">of</span> <span class="n">Variance</span> <span class="mf">0.00278</span>
+<span class="n">Cumulative</span> <span class="n">Proportion</span>  <span class="mf">1.00000</span>
+</pre></div>
+</div>
+<p>Se obtienen ocho (<span class="math notranslate nohighlight">\(p = 8\)</span>) Componentes Principales. Cada uno
+explica un porcentaje de la variación total en el conjunto de datos.</p>
+<p>PC1 explica el 44,56% de la varianza total, esto significa que casi la
+mitad de la información del conjunto de datos que contiene ocho variable
+puede encapsularse en solo este Componente Principal.</p>
+<p>PC2 explica el 19,01% de la varianza total. Entonces, al resumir la
+información en los primeros dos Componentes Principales se puede
+explicar el 63,57% de la varianza.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Standard</span> <span class="n">deviations</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">..</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1.8881364</span> <span class="mf">1.2332124</span> <span class="mf">1.0114793</span> <span class="mf">0.9572381</span> <span class="mf">0.7454911</span> <span class="mf">0.5513719</span> <span class="mf">0.3045164</span>
+<span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="mf">0.1491134</span>
+
+<span class="n">Rotation</span> <span class="p">(</span><span class="n">n</span> <span class="n">x</span> <span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span> <span class="n">x</span> <span class="mi">8</span><span class="p">):</span>
+                               <span class="n">PC1</span>         <span class="n">PC2</span>         <span class="n">PC3</span>         <span class="n">PC4</span>
+<span class="n">personal_mujer</span>           <span class="mf">0.2106928</span>  <span class="mf">0.57578375</span> <span class="o">-</span><span class="mf">0.02214712</span>  <span class="mf">0.02361349</span>
+<span class="n">personal_hombre</span>          <span class="mf">0.3585481</span>  <span class="mf">0.46745657</span> <span class="o">-</span><span class="mf">0.08352398</span>  <span class="mf">0.04828165</span>
+<span class="n">gasto_personal</span>           <span class="mf">0.4548743</span>  <span class="mf">0.32937778</span> <span class="o">-</span><span class="mf">0.04737869</span> <span class="o">-</span><span class="mf">0.02403973</span>
+<span class="n">gasto_financiero</span>         <span class="mf">0.1115576</span>  <span class="mf">0.01348448</span>  <span class="mf">0.74003083</span> <span class="o">-</span><span class="mf">0.65388863</span>
+<span class="n">costos_gastos_produccion</span> <span class="mf">0.4461470</span> <span class="o">-</span><span class="mf">0.21007377</span>  <span class="mf">0.01448462</span> <span class="o">-</span><span class="mf">0.02746956</span>
+<span class="n">gastos_adm_ventas</span>        <span class="mf">0.4336228</span> <span class="o">-</span><span class="mf">0.39544860</span> <span class="o">-</span><span class="mf">0.11741035</span> <span class="o">-</span><span class="mf">0.03425391</span>
+<span class="n">inversion_AF</span>             <span class="mf">0.1238028</span> <span class="o">-</span><span class="mf">0.05636775</span>  <span class="mf">0.64060409</span>  <span class="mf">0.75295144</span>
+<span class="n">ventas</span>                   <span class="mf">0.4530927</span> <span class="o">-</span><span class="mf">0.37094199</span> <span class="o">-</span><span class="mf">0.13518240</span> <span class="o">-</span><span class="mf">0.00996259</span>
+                                  <span class="n">PC5</span>         <span class="n">PC6</span>         <span class="n">PC7</span>           <span class="n">PC8</span>
+<span class="n">personal_mujer</span>           <span class="o">-</span><span class="mf">0.772202925</span>  <span class="mf">0.11726775</span> <span class="o">-</span><span class="mf">0.09769967</span>  <span class="mf">0.0586448480</span>
+<span class="n">personal_hombre</span>           <span class="mf">0.542176918</span>  <span class="mf">0.14380998</span> <span class="o">-</span><span class="mf">0.57271625</span> <span class="o">-</span><span class="mf">0.0312928834</span>
+<span class="n">gasto_personal</span>            <span class="mf">0.253374106</span> <span class="o">-</span><span class="mf">0.09286009</span>  <span class="mf">0.77820633</span> <span class="o">-</span><span class="mf">0.0578830139</span>
+<span class="n">gasto_financiero</span>          <span class="mf">0.021041260</span>  <span class="mf">0.09724572</span> <span class="o">-</span><span class="mf">0.03932248</span>  <span class="mf">0.0266717602</span>
+<span class="n">costos_gastos_produccion</span> <span class="o">-</span><span class="mf">0.136769241</span> <span class="o">-</span><span class="mf">0.82513357</span> <span class="o">-</span><span class="mf">0.23007970</span> <span class="o">-</span><span class="mf">0.0580479890</span>
+<span class="n">gastos_adm_ventas</span>        <span class="o">-</span><span class="mf">0.155556129</span>  <span class="mf">0.41861887</span> <span class="o">-</span><span class="mf">0.04299362</span> <span class="o">-</span><span class="mf">0.6628311912</span>
+<span class="n">inversion_AF</span>              <span class="mf">0.003127729</span>  <span class="mf">0.06144540</span>  <span class="mf">0.01999398</span> <span class="o">-</span><span class="mf">0.0009877992</span>
+<span class="n">ventas</span>                   <span class="o">-</span><span class="mf">0.046822464</span>  <span class="mf">0.29601441</span> <span class="o">-</span><span class="mf">0.01070724</span>  <span class="mf">0.7408130522</span>
+</pre></div>
+</div>
+<p>La matriz de rotación muestra las cargas que cada Componente Principal
+le otorga a cada variable original, por ejemplo, en el PC1, la variable
+de mayor peso es Gasto de personal porque tiene la carga más alta, la
+siguiente en importancia es Ventas.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">acp</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'sdev'</li><li>'rotation'</li><li>'center'</li><li>'scale'</li><li>'x'</li></ol><table class="docutils align-default">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Objeto</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sdev</span></code></p></td>
+<td><p>Desviación estándar de cada Componente
+Principal. Los Eigenvalores son
+<code class="docutils literal notranslate"><span class="pre">sdev^2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rotation</span></code></p></td>
+<td><p>Matriz con las cargas por cada variable y
+Componente Principal. Las columnas son
+los Eigenvectores.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></td>
+<td><p>Promedio de cada variable original</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scale</span></code></p></td>
+<td><p>Desviación estándar de cada variable
+original</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>Proyección de cada variable sobre las
+Componentes Principales</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="numero-de-componentes-principales">
+<h2>Número de Componentes Principales:<a class="headerlink" href="#numero-de-componentes-principales" title="Permalink to this headline"></a></h2>
+<p>Para tomar la decisión de cuántos Componentes Principales emplear y
+reducir la dimensión se aplica la técnica del codo con el Scree plot.</p>
+<p>Los Eigenvalores se grafican en orden descendente en magnitud. En el eje
+<span class="math notranslate nohighlight">\(x\)</span> están los Componentes Principales en el mismo orden que
+aparecen en <code class="docutils literal notranslate"><span class="pre">summary()</span></code> y en el eje <span class="math notranslate nohighlight">\(y\)</span> la varianza asociada
+<span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p><strong>Scree plot:</strong></p>
+<p>En este gráfico se muestra la varianza que logra capturar cada
+Componente Principal en orden de importancia.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">screeplot</span><span class="p">(</span><span class="n">acp</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Screeplot&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;lines&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_14_0.png"><img alt="../../_images/output_14_0.png" src="../../_images/output_14_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Biplot:</strong></p>
+<p>El Biplot es una comparación de las cargas de las variables en las
+primera Componentes Principales.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">biplot</span><span class="p">(</span><span class="n">acp</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_16_0.png"><img alt="../../_images/output_16_0.png" src="../../_images/output_16_0.png" style="width: 420px; height: 420px;" /></a>
+<p>Las variables con mayores cargas en PC1 son las siguientes ordenadas de
+mayor a menor:</p>
+<ul class="simple">
+<li><p>Gasto personal.</p></li>
+<li><p>Ventas.</p></li>
+<li><p>Costos y gastos de producción.</p></li>
+<li><p>Gastos en administración y ventas.</p></li>
+</ul>
+<p>En el Biplot estas cuatro variables se muestran con las de mayor
+desplazamiento en el eje <span class="math notranslate nohighlight">\(x\)</span>, PC1.</p>
+<p>Las dos variables con las cargas más bajas en PC1 son Gasto financiero e
+Inversión en AF. En el Biplot se muestran como las de menor
+desplazamiento horizontal. Son las más cercanas al centro.</p>
+<p>Para PC2 se deben observar los desplazamientos verticales. La variable
+con mayor carga en valor absoluto es Personal mujer, seguido de Personal
+hombre y de tercera Gastos en administración y ventas, esta última
+variable con una carga negativa, por eso el desplazamiento es hacia
+abajo.</p>
+<p>Los vectores más cercanos entre sí indican alta correlación. Así que
+Ventas y Gastos en administración y ventas están muy correlacionadas.</p>
+<p>PC1 está positivamente correlacionado con todas las variables.</p>
+<p>PC2 está positivamente correlacionado con Personal mujer, Personal
+hombre, Gasto personal y Gasto financiero. Además, está negativamente
+correlacionado con Inversión en AF, Costos y gastos de producción y
+Gastos en administración y ventas.</p>
+<p>Lo anterior también se puede analizar con la matriz de rotación.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusión:<a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
+<p>Por el criterio del codo escogemos las primeras tres Componentes
+Principales. Así se resumen las ocho variables en tres dimensiones, las
+cuales resumen el 76,36% de la varianza total.</p>
+<p>Las tres variables son la multiplicación de cada carga por las variables
+del conjunto de datos.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">PC1</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">acp</span><span class="o">$</span><span class="n">rotation</span><span class="p">[,</span> <span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="n">datos</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span>
+<span class="n">PC2</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">acp</span><span class="o">$</span><span class="n">rotation</span><span class="p">[,</span> <span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">datos</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span>
+<span class="n">PC3</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">acp</span><span class="o">$</span><span class="n">rotation</span><span class="p">[,</span> <span class="m">3</span><span class="p">]</span><span class="o">*</span><span class="n">datos</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span>
+
+<span class="n">PC</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">PC1</span><span class="p">,</span> <span class="n">PC2</span><span class="p">,</span> <span class="n">PC3</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">PC</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="dataframe">
+<caption>A matrix: 6 × 3 of type dbl</caption>
+<thead>
+    <tr><th scope=col>PC1</th><th scope=col>PC2</th><th scope=col>PC3</th></tr>
+</thead>
+<tbody>
+    <tr><td>102065975</td><td> -33763325</td><td>  2699749</td></tr>
+    <tr><td> 62936669</td><td> -42387137</td><td>-16784958</td></tr>
+    <tr><td> 12595763</td><td>   2010874</td><td> 30508600</td></tr>
+    <tr><td>171289275</td><td>-136378975</td><td>-22673169</td></tr>
+    <tr><td> 32005092</td><td>  55046810</td><td> -1972086</td></tr>
+    <tr><td> 47079967</td><td>  39589641</td><td>-11339209</td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ACP/An%C3%A1lisis%20de%20Componentes%20Principales.html" class="btn btn-neutral float-left" title="Análisis de Componentes Principales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Clustering/index.html" class="btn btn-neutral float-right" title="Clustering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+Mercado de Renta fija
+==========================================================
+
+Bonos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+El mercado de renta fija es una forma de inversión que promete al inversionista una rentabilidad determinada desde el inicio de la operación.
+Este mercado se caracteriza por una baja volatilidad por lo que las inversiones tienden a considerarse mas seguras. En esta sección se estudiarán 
+los tipos de instrumentos de renta fija existentes en el mercado, asimismo, la valoración de estos insturmentos como su insersión a las carteras de renta variable. 
+
+**El tiempo recomendado para el estudio de esta unidad temática es de 4 semanas.**  
+
+
+**Material:**
+
+	**Lecturas:**
+
+	**1. RENTA FIJA:** Guía de estudio de renta fija. BVC. **Descargue** :download:`aquí <Guia-de-Estudio-Renta-Fija.pdf>` el documento.
+
+
+	**Videos:**
+
+	* **1. Ver vídeo explicativo:** `Generalidades Renta fija <https://youtu.be/bssU4X5xlac>`_
+
+	* **2. Ver vídeo explicativo:** `Generalidades Bonos <https://youtu.be/yUI7jBsyHTE>`_
+
+	* **3. Ver vídeo explicativo:** `Comportamiento de precios <https://youtu.be/3Z7RvhIF7Pc>`_
+
+	* **4. Ver vídeo explicativo:** `Precio Sucio y Limpio <https://youtu.be/f9_B6ZiGHnM>`_
+
+	* **5. Ver vídeo explicativo:** `Precio sucio y limpio en excel <https://youtu.be/xgVjkGFnXdM>`_
+
+	* **6. Ver vídeo explicativo:** `Principios de bonos <https://youtu.be/sOPE3X5EztQ>`_	
+
+	* **7. Ver vídeo explicativo:** `Duración y convexidad <https://youtu.be/u6LY0Eis7oo>`_	
+
+	* **8. Ver vídeo explicativo:** `Duración y convexidad en excel <https://youtu.be/gF2w4i-xYgw>`_	
+
+	* **9. Ver vídeo explicativo:** `Descargar negociación de Bonos <https://youtu.be/sS8Ktzivwks>`_
+
+	* **9. Ver vídeo explicativo:** `Descargar renta fija Investing <https://youtu.be/ElP2fYrHP7c>`_
+
+**Archivos en Excel**
+
+	* **Descargue** :download:`aquí <Precio Sucio y Limpio.xlsx>` el archivo de ejemplo para precio sucio y limpio.
+	
+	* **Descargue** :download:`aquí <Duración y convexidad.xlsx>` el archivo de ejemplo para duración y convexidad.
+
+**Diapositivas**
+
+	* **Descargue** :download:`aquí <1.Mercado de Renta fija.pptx>` las diapositivas de Generalidades del mercado de renta fija.
+	
+	* **Descargue** :download:`aquí <2.Generalidades bonos.pptx>` las diapositivas de Generalidades de los bonos.
+
+	* **Descargue** :download:`aquí <3.Comportamiento precios.pptx>` las diapositivas de comportamiento preciso de bonos.
+
+	* **Descargue** :download:`aquí <4. Precio Sucio y Limpio de los Bonos.pptx>` las diapositivas de precio sucio y limpio.
+
+	* **Descargue** :download:`aquí <5. Principios de los bonos.pptx>` las diapositivas de Principios de los bonos.
+
+	* **Descargue** :download:`aquí <6. Duración y Sensibilidad de los Bonos.pptx>` las diapositivas de duración y sensibilidad.
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contenido:
+
+   
+   Cartera con renta fija/Practica.rst
+
+   Cartera con renta fija/Portafolio con Activo Renta Fija.rst
+
+

@@ -1,0 +1,360 @@
+Gráficos en R
+-------------
+
+.. code:: r
+
+    datos = read.csv("Datos.csv", sep = ";", dec = ",", header = T)
+    datos
+
+
+
+.. raw:: html
+
+    <table>
+    <caption>A data.frame: 8 × 5</caption>
+    <thead>
+    	<tr><th scope=col>Nombre</th><th scope=col>Edad</th><th scope=col>Género</th><th scope=col>Peso</th><th scope=col>Estrato</th></tr>
+    	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+    </thead>
+    <tbody>
+    	<tr><td>Ángela </td><td>22</td><td>F</td><td> 62.5</td><td>3</td></tr>
+    	<tr><td>José   </td><td>10</td><td>M</td><td> 75.8</td><td>4</td></tr>
+    	<tr><td>Juan   </td><td>15</td><td>M</td><td> 54.4</td><td>3</td></tr>
+    	<tr><td>Manuela</td><td>35</td><td>F</td><td> 73.6</td><td>3</td></tr>
+    	<tr><td>Maribel</td><td>50</td><td>F</td><td> 70.0</td><td>5</td></tr>
+    	<tr><td>Antonio</td><td>45</td><td>M</td><td>180.0</td><td>4</td></tr>
+    	<tr><td>Alicia </td><td> 1</td><td>F</td><td> 15.7</td><td>1</td></tr>
+    	<tr><td>Luis   </td><td>32</td><td>M</td><td>103.5</td><td>5</td></tr>
+    </tbody>
+    </table>
+    
+
+
+Histograma:
+~~~~~~~~~~~
+
+Función ``hist()``
+
+Por defecto muestra la frecuencia muestra la cantidad de elementos.
+
+.. code:: r
+
+    hist(datos$Peso)
+
+
+
+.. image:: output_3_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Argumentos:**
+
+-  ``breaks =`` - número que da la cantidad de celdas.
+
+-  ``freq =``- Valor ``logical``: si es ``TRUE`` (por defecto) la
+   frecuencia muestra la cantidad de elementos (conteo). Si es ``FALSE``
+   la frecuencia muestra las probabilidades (frecuencia relativa), es la
+   densidad de los resultados. El área del histograma es 1,0.
+
+.. code:: r
+
+    hist(datos$Peso, breaks = 10, freq = T) # Por conteo (por defecto)
+
+
+
+.. image:: output_5_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    hist(datos$Peso, breaks = 10, freq = F) # Frecuencia relativa
+
+
+
+.. image:: output_6_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Densidad:**
+
+Se agrega una línea de código con la densidad de la distribución de la
+variable:
+
+``lines(density(datos de la variable))``.
+
+.. code:: r
+
+    hist(datos$Peso,
+         breaks = 10,   
+         main = "Distribución del Peso", 
+         freq = F,           
+         xlab = "Peso",                                          
+         ylab = "Frecuencia relativa", 
+         xlim = c(5,130),    
+         ylim =c (0,0.030),  
+         col = "blue",       
+         border = "white")
+    lines(density(datos$Peso), col="black", lwd=5) # Densidad
+
+
+
+.. image:: output_8_0.png
+   :width: 420px
+   :height: 420px
+
+
+La curva de la distribución normal se agrega con:
+
+``curve(dnorm(x, mean=mean(datos de la variable), sd=sd(datos de la variable)), add=TRUE)``
+
+.. code:: r
+
+    hist(datos$Peso,
+         breaks = 10,   
+         main = "Distribución del Peso", 
+         freq = F,           
+         xlab = "Peso",                                          
+         ylab = "Frecuencia relativa", 
+         xlim = c(5,130),    
+         ylim =c (0,0.030),  
+         col = "blue",       
+         border = "white")
+    curve(dnorm(x, mean=mean(datos$Peso), sd=sd(datos$Peso)), 
+          add=TRUE, col="red", lwd=3)
+
+
+
+.. image:: output_10_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Agregar líneas:**
+
+Útiles para mostrar la media de los datos.
+
+Se agrega una línea de código con:
+
+``abline()``, argumento ``v`` para líneas verticales y ``h`` para
+horizontales.
+
+.. code:: r
+
+    hist(datos$Peso,
+         breaks = 10,   
+         main = "Distribución del Peso", 
+         freq = F,           
+         xlab = "Peso",                                          
+         ylab = "Frecuencia relativa", 
+         xlim = c(5,130),    
+         ylim =c (0,0.030),  
+         col = "blue",       
+         border = "white")
+    abline(v = mean(datos$Peso), lwd=5, lty=2, col="darkturquoise")
+
+
+
+.. image:: output_12_0.png
+   :width: 420px
+   :height: 420px
+
+
+Boxplot (diagrama de caja y bigotes):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Función ``boxplot()``
+
+Útiles para analizar los datos e identificar datos atípicos ( *outliers*
+).
+
+.. figure:: Boxplot.png
+   :alt: Boxplot
+
+   Boxplot
+
+.. figure:: Diagrama_de_caja.jpg
+   :alt: Diagrama
+
+   Diagrama
+
+.. code:: r
+
+    boxplot(datos$Peso)
+
+
+
+.. image:: output_16_0.png
+   :width: 420px
+   :height: 420px
+
+
+.. code:: r
+
+    boxplot(datos$Peso,
+            main = "Peso",
+            ylab = "Peso",
+            col = "deepskyblue",
+            border = "black")
+
+
+
+.. image:: output_17_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Agregar puntos:**
+
+Se agrega una línea de código con la función ``points()``
+
+.. code:: r
+
+    boxplot(datos$Peso,
+            main = "Peso",
+            ylab = "Peso",
+            xlab = "Género",   
+            col = "deepskyblue",
+            border = "black")
+    points(mean(datos$Peso), pch = 3, lwd = 5, bg = "pink")
+
+
+
+.. image:: output_19_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Clasificar los datos:**
+
+Las variable inicial se puede clasificar en función de otra utilizando
+el símbolo ``~``
+
+.. code:: r
+
+    boxplot(datos$Peso ~ datos$Género,
+            main = "Peso según género",
+            ylab = "Peso",
+            xlab = "Género",    # se agrega el nombre de la X
+            col = "deepskyblue",
+            border = "black")
+
+
+
+.. image:: output_21_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Cambiar la etiqueta de la variable X:**
+
+Se cambia con el argumento ``names`` y se ingresan los nombres en un
+vector.
+
+.. code:: r
+
+    boxplot(datos$Peso ~ datos$Género,
+            main = "Peso según género",
+            ylab = "Peso",
+            xlab = "Género",   
+            col = "deepskyblue",
+            border = "black",
+            names = c("Mujeres", "Hombres"))
+
+
+
+.. image:: output_23_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Gráfico horizontal:**
+
+Agregar en la función ``boxplot()`` el argumento ``horizontal = T``
+
+.. code:: r
+
+    boxplot(datos$Peso ~ datos$Género,
+            main = "Peso según género",
+            ylab = "Peso",
+            xlab = "Género",   
+            col = "deepskyblue",
+            border = "black",
+            names = c("Mujeres", "Hombres"),
+            horizontal = T)
+
+
+
+.. image:: output_25_0.png
+   :width: 420px
+   :height: 420px
+
+
+Diagrama de barras:
+~~~~~~~~~~~~~~~~~~~
+
+Función ``barplot()``
+
+Primero se debe obtener la tabla de frecuencias así con la función
+``table()``
+
+.. code:: r
+
+    table(datos$Estrato)
+
+
+
+.. parsed-literal::
+
+    
+    1 3 4 5 
+    1 3 2 2 
+
+
+.. code:: r
+
+    barplot(table(datos$Estrato))
+
+
+
+.. image:: output_29_0.png
+   :width: 420px
+   :height: 420px
+
+
+**Barras horizontales:**
+
+Se agrega el argumento ``horiz = T``
+
+.. code:: r
+
+    barplot(table(datos$Estrato), horiz = T)
+
+
+
+.. image:: output_31_0.png
+   :width: 420px
+   :height: 420px
+
+
+Gráfico de Pie o sectores:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Función ``pie``
+
+Primero se debe obtener la tabla de frecuencias así con la función
+``table()``
+
+.. code:: r
+
+    pie(table(datos$Estrato))
+
+
+
+.. image:: output_33_0.png
+   :width: 420px
+   :height: 420px
+

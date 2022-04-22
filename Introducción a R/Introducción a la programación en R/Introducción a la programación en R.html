@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducción a la programación en R &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Importar archivos en R" href="../Importar%20archivos%20en%20R/Importar%20archivos%20en%20R.html" />
+    <link rel="prev" title="Introducción a R" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introducción a R</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introducción a la programación en R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tipos-de-datos">Tipos de datos:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numeric">Numeric:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#character-o-string">Character o String:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logical-o-boolean">Logical o Boolean:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operaciones-matematicas-en-r">Operaciones matemáticas en R:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operadores-de-comparacion">Operadores de comparación:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operadores-logicos">Operadores lógicos:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estructuras-de-datos">Estructuras de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vectores">Vectores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrices">Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agregar-filas-y-columnas">Agregar filas y columnas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remover-filas-y-columnas">Remover filas y columnas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dimension-de-una-matriz">Dimensión de una matriz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-frame">Data Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Importar%20archivos%20en%20R/Importar%20archivos%20en%20R.html">Importar archivos en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gr%C3%A1ficos%20en%20R/Gr%C3%A1ficos%20en%20R.html">Gráficos en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gr%C3%A1fico%20de%20dispersi%C3%B3n/Gr%C3%A1fico%20de%20dispersi%C3%B3n.html">Gráfico de dispersión</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../An%C3%A1lisis%20de%20datos/An%C3%A1lisis%20de%20datos.html">Análisis de datos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Introducción a R</a> &raquo;</li>
+      <li>Introducción a la programación en R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Introducción a R/Introducción a la programación en R/Introducción a la programación en R.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="introduccion-a-la-programacion-en-r">
+<h1>Introducción a la programación en R<a class="headerlink" href="#introduccion-a-la-programacion-en-r" title="Permalink to this headline"></a></h1>
+<div class="section" id="tipos-de-datos">
+<h2>Tipos de datos:<a class="headerlink" href="#tipos-de-datos" title="Permalink to this headline"></a></h2>
+<p>Las variables pueden almacenar datos de diferentes tipos. En R las
+variables no necesitan ser declaradas con cualquier tipo, incluso las
+variables pueden cambiar de tipo.</p>
+<p><strong>Tipos de datos básicos:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">numeric</span></code> - (27, 03, 1990, 31.88, 32.10) - números reales.</p>
+<p><code class="docutils literal notranslate"><span class="pre">integer</span></code> - (100, 1, 25800, 24, 33) - número enteros (subset de
+<code class="docutils literal notranslate"><span class="pre">numeric</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">character</span></code> - (“Alicia”, “programación”, “h”) - cadenas de texto -
+<code class="docutils literal notranslate"><span class="pre">string</span></code>. Están entre <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">logical</span></code> - (<code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>) -
+solo tiene dos posibles elementos <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>. Es un tipo de
+datos <code class="docutils literal notranslate"><span class="pre">boolean</span></code>. Note que no están entre <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code></p>
+<p>Con la función <code class="docutils literal notranslate"><span class="pre">class()</span></code> determinamos el tipo de datos y las
+siguientes funciones arrojan como resultado <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> o <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> al
+preguntar el tipo dato de una variable:</p>
+<p><code class="docutils literal notranslate"><span class="pre">is.numeric()</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">is.integer()</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">is.character()</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">is.logical()</span></code></p>
+</div>
+<div class="section" id="numeric">
+<h2>Numeric:<a class="headerlink" href="#numeric" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">22.5</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">22.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+'numeric'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+TRUEFALSEFALSEFALSE</div>
+<div class="section" id="character-o-string">
+<h2>Character o String:<a class="headerlink" href="#character-o-string" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="s">&quot;Esta es una línea de código&quot;</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Esta es una línea de código&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+'character'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+FALSEFALSETRUEFALSE</div>
+<div class="section" id="logical-o-boolean">
+<h2>Logical o Boolean:<a class="headerlink" href="#logical-o-boolean" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">TRUE</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+'logical'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nf">is.logical</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+FALSEFALSEFALSETRUE<p>Se puede convertir un tipo de dato a otro con las siguientes funciones:</p>
+<p><code class="docutils literal notranslate"><span class="pre">as.numeric()</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">as.integer()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">50.8</span>
+<span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">FALSE</span>
+<span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> es Falso.</p>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> es verdadero.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
+<span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operaciones-matematicas-en-r">
+<h2>Operaciones matemáticas en R:<a class="headerlink" href="#operaciones-matematicas-en-r" title="Permalink to this headline"></a></h2>
+<p>R puede ser usado como calculadora:</p>
+<p><code class="docutils literal notranslate"><span class="pre">+</span></code> - suma</p>
+<p><code class="docutils literal notranslate"><span class="pre">-</span></code> - resta</p>
+<p><code class="docutils literal notranslate"><span class="pre">*</span></code> - multiplicación</p>
+<p><code class="docutils literal notranslate"><span class="pre">/</span></code> - división</p>
+<p><code class="docutils literal notranslate"><span class="pre">^</span></code> - potencia</p>
+<p><code class="docutils literal notranslate"><span class="pre">**</span></code> - potencia</p>
+<p><code class="docutils literal notranslate"><span class="pre">sqrt</span></code> - raíz cuadrada.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span></code> - extraer el máximo de un conjunto de datos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">min</span></code> - extraer el mínimo de un conjunto de datos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">abs</span></code> - valor absoluto (positivo) de un número.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ceiling</span></code> - redondea un número al entero de arriba.</p>
+<p><code class="docutils literal notranslate"><span class="pre">floor</span></code> - redondea un número al entero de abajo.</p>
+<div class="section" id="operadores-de-comparacion">
+<h3>Operadores de comparación:<a class="headerlink" href="#operadores-de-comparacion" title="Permalink to this headline"></a></h3>
+<p>Se usan para comparar dos valores.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 49%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Nombre</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>Igual</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>No igual</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">!=</span> <span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>Mayor que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p>Menor que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>Mayor o igual que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;=</span> <span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p>Menor o igual que</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="operadores-logicos">
+<h2>Operadores lógicos:<a class="headerlink" href="#operadores-logicos" title="Permalink to this headline"></a></h2>
+<p>Se usan para combinar dos declaraciones.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> - AND</p>
+<p><code class="docutils literal notranslate"><span class="pre">|</span></code> - OR</p>
+<p><code class="docutils literal notranslate"><span class="pre">!</span></code> - NOT</p>
+</div>
+<div class="section" id="estructuras-de-datos">
+<h2>Estructuras de datos<a class="headerlink" href="#estructuras-de-datos" title="Permalink to this headline"></a></h2>
+<div class="figure align-default" id="id1">
+<img alt="Vector" src="../../_images/scal_vec.png" />
+<p class="caption"><span class="caption-text">Vector</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="vectores">
+<h2>Vectores<a class="headerlink" href="#vectores" title="Permalink to this headline"></a></h2>
+<p>Son una lista de elementos que son del mismo tipo.</p>
+<p>Para crear un vector a partir de una lista de elementos se usa la
+función <code class="docutils literal notranslate"><span class="pre">c()</span></code> y cada elemento se debe separar por <code class="docutils literal notranslate"><span class="pre">,</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">80</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">50</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span> <span class="c1"># con la función print() aparece el index</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">80</span> <span class="mi">15</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">otros_numeros</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">otros_numeros</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ciudades</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Medellín&quot;</span><span class="p">,</span> <span class="s">&quot;Cali&quot;</span><span class="p">,</span> <span class="s">&quot;Barranquilla&quot;</span><span class="p">,</span> <span class="s">&quot;Santa Marta&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Medellín&quot;</span>     <span class="s2">&quot;Cali&quot;</span>         <span class="s2">&quot;Barranquilla&quot;</span> <span class="s2">&quot;Santa Marta&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">logico</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">logico</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="n">TRUE</span> <span class="n">FALSE</span> <span class="n">FALSE</span>  <span class="n">TRUE</span>  <span class="n">TRUE</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Hola, mi número es:&quot;</span><span class="p">,</span> <span class="m">1254</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Hola, mi número es:&quot;</span> <span class="s2">&quot;1254&quot;</span>
+</pre></div>
+</div>
+<p>Convirtió el número en string.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+'character'<p>Para saber la cantidad de elementos en un vector se usa la función
+<code class="docutils literal notranslate"><span class="pre">length()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+
+<span class="nf">length</span><span class="p">(</span><span class="n">otros_numeros</span><span class="p">)</span>
+
+<span class="nf">length</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+
+<span class="nf">length</span><span class="p">(</span><span class="n">logico</span><span class="p">)</span>
+
+<span class="nf">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+35452<p>Para ordenar numéricamente o alfabéticamente los elementos de un vector
+se usa la función <code class="docutils literal notranslate"><span class="pre">sort()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sort</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+<span class="nf">sort</span><span class="p">(</span><span class="n">otros_numeros</span><span class="p">)</span>
+<span class="nf">sort</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+<span class="nf">sort</span><span class="p">(</span><span class="n">logico</span><span class="p">)</span>
+<span class="nf">sort</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>15</li><li>50</li><li>80</li></ol><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ol><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Barranquilla'</li><li>'Cali'</li><li>'Medellín'</li><li>'Santa Marta'</li></ol><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>TRUE</li><li>TRUE</li></ol><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'1254'</li><li>'Hola, mi número es:'</li></ol><p>Para acceder a los elementos de un vector se usa el número de index
+entre <code class="docutils literal notranslate"><span class="pre">[]</span></code>. En R el primer index es 1, en Python es 0.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ciudades</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+'Medellín'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># elementos entre el 1 y el 3</span>
+
+<span class="n">ciudades</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Medellín'</li><li>'Cali'</li><li>'Barranquilla'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># solo los elementos 1 y 3</span>
+
+<span class="n">ciudades</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Medellín'</li><li>'Barranquilla'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Todos los elementos exepto el primero</span>
+
+<span class="n">ciudades</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Cali'</li><li>'Barranquilla'</li><li>'Santa Marta'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Todos los elementos exepto el tercero</span>
+
+<span class="n">ciudades</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">-3</span><span class="p">)]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Medellín'</li><li>'Cali'</li><li>'Santa Marta'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para cambiar el valor de un elemento</span>
+
+<span class="n">ciudades</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Rionegro&quot;</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;Rionegro&quot;</span>     <span class="s2">&quot;Cali&quot;</span>         <span class="s2">&quot;Barranquilla&quot;</span> <span class="s2">&quot;Santa Marta&quot;</span>
+</pre></div>
+</div>
+<div class="figure align-default" id="id2">
+<img alt="Matríz-Array" src="../../_images/mat_array.png" />
+<p class="caption"><span class="caption-text">Matríz-Array</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline"></a></h2>
+<p>Un matriz es un conjunto de datos de dos dimensiones con filas y
+columnas.</p>
+<p>Para crear una matriz se usa la función <code class="docutils literal notranslate"><span class="pre">matrix()</span></code> y se especifica la
+cantidad de filas <code class="docutils literal notranslate"><span class="pre">nrow</span></code>y de columnas <code class="docutils literal notranslate"><span class="pre">ncol</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">matriz</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span> <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>    <span class="mi">1</span>    <span class="mi">4</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>    <span class="mi">2</span>    <span class="mi">5</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span>    <span class="mi">3</span>    <span class="mi">6</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">otra_matriz</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="c1"># no se usaron nrow y ncol</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span> <span class="p">[,</span><span class="mi">2</span><span class="p">]</span> <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>    <span class="mi">1</span>    <span class="mi">7</span>   <span class="mi">13</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>    <span class="mi">2</span>    <span class="mi">8</span>   <span class="mi">14</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span>    <span class="mi">3</span>    <span class="mi">9</span>   <span class="mi">15</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span>    <span class="mi">4</span>   <span class="mi">10</span>   <span class="mi">16</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span>    <span class="mi">5</span>   <span class="mi">11</span>   <span class="mi">17</span>
+<span class="p">[</span><span class="mi">6</span><span class="p">,]</span>    <span class="mi">6</span>   <span class="mi">12</span>   <span class="mi">18</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">otra_matriz</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="c1"># los 18 valores los organiza en dos filas</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span> <span class="p">[,</span><span class="mi">2</span><span class="p">]</span> <span class="p">[,</span><span class="mi">3</span><span class="p">]</span> <span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="p">[,</span><span class="mi">6</span><span class="p">]</span> <span class="p">[,</span><span class="mi">7</span><span class="p">]</span> <span class="p">[,</span><span class="mi">8</span><span class="p">]</span> <span class="p">[,</span><span class="mi">9</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>    <span class="mi">1</span>    <span class="mi">3</span>    <span class="mi">5</span>    <span class="mi">7</span>    <span class="mi">9</span>   <span class="mi">11</span>   <span class="mi">13</span>   <span class="mi">15</span>   <span class="mi">17</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>    <span class="mi">2</span>    <span class="mi">4</span>    <span class="mi">6</span>    <span class="mi">8</span>   <span class="mi">10</span>   <span class="mi">12</span>   <span class="mi">14</span>   <span class="mi">16</span>   <span class="mi">18</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">otra_matriz</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">6</span><span class="p">)</span> <span class="c1"># los 18 valores los organiza en seis columnas</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span> <span class="p">[,</span><span class="mi">2</span><span class="p">]</span> <span class="p">[,</span><span class="mi">3</span><span class="p">]</span> <span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="p">[,</span><span class="mi">6</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span>    <span class="mi">1</span>    <span class="mi">4</span>    <span class="mi">7</span>   <span class="mi">10</span>   <span class="mi">13</span>   <span class="mi">16</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span>    <span class="mi">2</span>    <span class="mi">5</span>    <span class="mi">8</span>   <span class="mi">11</span>   <span class="mi">14</span>   <span class="mi">17</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span>    <span class="mi">3</span>    <span class="mi">6</span>    <span class="mi">9</span>   <span class="mi">12</span>   <span class="mi">15</span>   <span class="mi">18</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;manzana&quot;</span><span class="p">,</span> <span class="s">&quot;pera&quot;</span><span class="p">,</span> <span class="s">&quot;banano&quot;</span><span class="p">,</span> <span class="s">&quot;fresa&quot;</span><span class="p">,</span> <span class="s">&quot;uva&quot;</span><span class="p">,</span> <span class="s">&quot;piña&quot;</span><span class="p">),</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>    <span class="s2">&quot;uva&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>
+</pre></div>
+</div>
+<p>Para acceder a los elementos de una matriz se <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">,</span> <span class="pre">]</span></code>. En el primer
+campo se especifica la posición de las filas y las columnas en el
+segundo.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+'pera'<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Todos los elementos de la fila 2</span>
+
+<span class="n">frutas</span><span class="p">[</span><span class="m">2</span><span class="p">,]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'pera'</li><li>'uva'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Todos los elementos de la columna 1</span>
+
+<span class="n">frutas</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'manzana'</li><li>'pera'</li><li>'banano'</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filas entre la 2 y la 3 con todas las columnas</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">,])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>   <span class="s2">&quot;uva&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span> <span class="s2">&quot;piña&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solo filas 1 y 3 con todas las columnas</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>
+</pre></div>
+</div>
+<p>Note que el resultado es otra matriz de 2x2.</p>
+</div>
+<div class="section" id="agregar-filas-y-columnas">
+<h2>Agregar filas y columnas<a class="headerlink" href="#agregar-filas-y-columnas" title="Permalink to this headline"></a></h2>
+<p>Se usa la función <code class="docutils literal notranslate"><span class="pre">cbind()</span></code> para adicionar columnas en una matriz.</p>
+<p>Se usa la función <code class="docutils literal notranslate"><span class="pre">rbind()</span></code> para adicionar filas en una matriz.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">frutas</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;cereza&quot;</span><span class="p">,</span> <span class="s">&quot;mango&quot;</span><span class="p">,</span> <span class="s">&quot;sandia&quot;</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>    <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span> <span class="s2">&quot;cereza&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>    <span class="s2">&quot;uva&quot;</span>   <span class="s2">&quot;mango&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>  <span class="s2">&quot;sandia&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">frutas</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;limon&quot;</span><span class="p">,</span> <span class="s">&quot;mora&quot;</span><span class="p">,</span> <span class="s">&quot;naranja&quot;</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>    <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span> <span class="s2">&quot;cereza&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>    <span class="s2">&quot;uva&quot;</span>   <span class="s2">&quot;mango&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>  <span class="s2">&quot;sandia&quot;</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s2">&quot;limon&quot;</span>   <span class="s2">&quot;mora&quot;</span>  <span class="s2">&quot;naranja&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">frutas</span><span class="p">,</span> <span class="s">&quot;frutas&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>    <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span> <span class="s2">&quot;cereza&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>    <span class="s2">&quot;uva&quot;</span>   <span class="s2">&quot;mango&quot;</span>   <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>  <span class="s2">&quot;sandia&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s2">&quot;limon&quot;</span>   <span class="s2">&quot;mora&quot;</span>  <span class="s2">&quot;naranja&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">frutas</span><span class="p">,</span> <span class="s">&quot;frutas&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;manzana&quot;</span> <span class="s2">&quot;fresa&quot;</span>  <span class="s2">&quot;cereza&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;pera&quot;</span>    <span class="s2">&quot;uva&quot;</span>    <span class="s2">&quot;mango&quot;</span>   <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;banano&quot;</span>  <span class="s2">&quot;piña&quot;</span>   <span class="s2">&quot;sandia&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s2">&quot;limon&quot;</span>   <span class="s2">&quot;mora&quot;</span>   <span class="s2">&quot;naranja&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,]</span> <span class="s2">&quot;frutas&quot;</span>  <span class="s2">&quot;frutas&quot;</span> <span class="s2">&quot;frutas&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remover-filas-y-columnas">
+<h2>Remover filas y columnas<a class="headerlink" href="#remover-filas-y-columnas" title="Permalink to this headline"></a></h2>
+<p>Para eliminar filas y columnas se usa <code class="docutils literal notranslate"><span class="pre">-</span></code> y el número de la fila o
+columna a eliminar</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="n">frutas</span><span class="p">[</span><span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>      <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;uva&quot;</span>    <span class="s2">&quot;mango&quot;</span>   <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;piña&quot;</span>   <span class="s2">&quot;sandia&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;mora&quot;</span>   <span class="s2">&quot;naranja&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,]</span> <span class="s2">&quot;frutas&quot;</span> <span class="s2">&quot;frutas&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="n">frutas</span><span class="p">[</span><span class="m">-3</span><span class="p">,]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;uva&quot;</span>    <span class="s2">&quot;mango&quot;</span>  <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;piña&quot;</span>   <span class="s2">&quot;sandia&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;frutas&quot;</span> <span class="s2">&quot;frutas&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">&lt;-</span> <span class="n">frutas</span><span class="p">[,</span><span class="m">-2</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="p">[,</span><span class="mi">1</span><span class="p">]</span>     <span class="p">[,</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,]</span> <span class="s2">&quot;uva&quot;</span>    <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,]</span> <span class="s2">&quot;piña&quot;</span>   <span class="s2">&quot;frutas&quot;</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,]</span> <span class="s2">&quot;frutas&quot;</span> <span class="s2">&quot;frutas&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dimension-de-una-matriz">
+<h2>Dimensión de una matriz<a class="headerlink" href="#dimension-de-una-matriz" title="Permalink to this headline"></a></h2>
+<p>Para conocer el número de filas y columnas se usa la función <code class="docutils literal notranslate"><span class="pre">dim()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">length()</span></code> muestra la cantidad de elementos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nrow()</span></code> muestra la cantidad de filas.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ncol()</span></code> muestra la cantidad de columnas.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3</li><li>6</li></ol><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+18<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">nrow</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+3<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ncol</span><span class="p">(</span><span class="n">otra_matriz</span><span class="p">)</span>
+</pre></div>
+</div>
+6</div>
+<div class="section" id="data-frame">
+<h2>Data Frame<a class="headerlink" href="#data-frame" title="Permalink to this headline"></a></h2>
+<p>Un Data Frame son datos como en formato de tabla. Puede tener diferentes
+tipos de datos con la primera columna siendo un <code class="docutils literal notranslate"><span class="pre">character</span></code>, pero cada
+columna debe tener el mismo tipo de datos.</p>
+<p>Se crean con la función <code class="docutils literal notranslate"><span class="pre">data.frame()</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+    <span class="n">acciones</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;ECO&quot;</span><span class="p">,</span> <span class="s">&quot;PFB&quot;</span><span class="p">,</span> <span class="s">&quot;ISA&quot;</span><span class="p">),</span>
+    <span class="n">precio</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3000</span><span class="p">,</span> <span class="m">35000</span><span class="p">,</span> <span class="m">22000</span><span class="p">),</span>
+    <span class="n">cantidad</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1000</span><span class="p">,</span> <span class="m">500</span><span class="p">,</span> <span class="m">800</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">acciones</span> <span class="n">precio</span> <span class="n">cantidad</span>
+<span class="mi">1</span>      <span class="n">ECO</span>   <span class="mi">3000</span>     <span class="mi">1000</span>
+<span class="mi">2</span>      <span class="n">PFB</span>  <span class="mi">35000</span>      <span class="mi">500</span>
+<span class="mi">3</span>      <span class="n">ISA</span>  <span class="mi">22000</span>      <span class="mi">800</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3</li><li>3</li></ol><p>Note que las filas están enumeradas y las columnas tienen nombres
+(acciones, precio y cantidad).</p>
+<p>Para acceder a los elementos de Data Frame se <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">,</span> <span class="pre">]</span></code>, dobles <code class="docutils literal notranslate"><span class="pre">[[]]</span></code>
+o <code class="docutils literal notranslate"><span class="pre">$</span></code> para una sola columna.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">acciones</span>
+<span class="mi">1</span>      <span class="n">ECO</span>
+<span class="mi">2</span>      <span class="n">PFB</span>
+<span class="mi">3</span>      <span class="n">ISA</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s">&quot;acciones&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>ECO</li><li>PFB</li><li>ISA</li></ol>
+
+<details>
+    <summary style=display:list-item;cursor:pointer>
+            <strong>Levels</strong>:
+    </summary>
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'ECO'</li><li>'ISA'</li><li>'PFB'</li></ol>
+</details><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">$</span><span class="n">acciones</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>ECO</li><li>PFB</li><li>ISA</li></ol>
+
+<details>
+    <summary style=display:list-item;cursor:pointer>
+            <strong>Levels</strong>:
+    </summary>
+    <style>
+    .list-inline {list-style: none; margin:0; padding: 0}
+    .list-inline>li {display: inline-block}
+    .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+    </style>
+    <ol class=list-inline><li>'ECO'</li><li>'ISA'</li><li>'PFB'</li></ol>
+</details><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
+</pre></div>
+</div>
+500<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">precio</span> <span class="n">cantidad</span>
+<span class="mi">1</span>   <span class="mi">3000</span>     <span class="mi">1000</span>
+<span class="mi">2</span>  <span class="mi">35000</span>      <span class="mi">500</span>
+<span class="mi">3</span>  <span class="mi">22000</span>      <span class="mi">800</span>
+</pre></div>
+</div>
+<p>Con los Data Frames también se pueden usar las funciones <code class="docutils literal notranslate"><span class="pre">length()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dim()</span></code>, <code class="docutils literal notranslate"><span class="pre">ncol()</span></code>, <code class="docutils literal notranslate"><span class="pre">nrow()</span></code>, <code class="docutils literal notranslate"><span class="pre">rbind()</span></code> y <code class="docutils literal notranslate"><span class="pre">cbind()</span></code></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Introducción a R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Importar%20archivos%20en%20R/Importar%20archivos%20en%20R.html" class="btn btn-neutral float-right" title="Importar archivos en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

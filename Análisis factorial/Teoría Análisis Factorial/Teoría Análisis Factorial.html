@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teoría Análisis Factorial &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis Factorial" href="../An%C3%A1lisis%20Factorial/An%C3%A1lisis%20Factorial.html" />
+    <link rel="prev" title="Análisis Factorial" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis Factorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Teoría Análisis Factorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supuestos-del-analisis-factorial">Supuestos del análisis factorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estimacion-de-parametros-en-analisis-factorial">Estimación de Parámetros en Análisis Factorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metodos-de-rotacion-de-factores">Metodos de rotación de factores:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procedimiento-para-aplicar-analisis-factorial">Procedimiento para aplicar Análisis Factorial:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../An%C3%A1lisis%20Factorial/An%C3%A1lisis%20Factorial.html">Análisis Factorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Análisis Factorial</a> &raquo;</li>
+      <li>Teoría Análisis Factorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Análisis factorial/Teoría Análisis Factorial/Teoría Análisis Factorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="teoria-analisis-factorial">
+<h1>Teoría Análisis Factorial<a class="headerlink" href="#teoria-analisis-factorial" title="Permalink to this headline"></a></h1>
+<p>El Análisis Factorial es un método estadístico que se utiliza para
+descubrir estructuras latentes que hipotéticamente pueden subyacer a la
+covarianza o correlación entre variables típicamente observadas de forma
+continua.</p>
+<p>Existe una similitud entre el Análisis de Componentes Principales (ACP)
+y el Análisis Factorial, ya que ambos procuran por extraer
+características comunes de los datos observados y pretenden reducir la
+dimensionalidad de los datos. Sin embargo, existen diferencias marcadas
+en el concepto del Análisis Factorial. Mientras que el Análisis de
+Componentes Principales busca generar combinaciones lineales de
+variables aleatorias observadas, en el Análisis Factorial, son las
+variables observadas las que se hipotetizan como combinaciones lineales
+de factores subyacentes hipotéticos. Mientras que la prioridad del ACP
+era explicar la mayor cantidad posible de la varianza total de las
+variables, la prioridad del Análisis Factorial es explicar la covarianza
+o correlación, o más generalmente, la similitud entre las variables.</p>
+<p>Específicamente, en el Análisis Factorial podemos buscar variables que
+se encuentren correlacionadas entre sí, para determinar que pertenecen a
+algún grupo.</p>
+<p>La relación entre variables es expresada por el <em>:math:`r^2`</em>
+coeficiente de determinación que sería la correlación de Pearson al
+cuadrado, esto explica la varianza común o conjunta, es decir, si dos
+variables tienen un 0.9 de correlación su varianza conjunta será:</p>
+<div class="math notranslate nohighlight">
+\[r^2=(0.9)^2= 0.81\]</div>
+<p>Para analizar solo las varianzas comunes de las variables, se debe
+sustituir de la matriz de correlaciones los <span class="math notranslate nohighlight">\(1\)</span> que se muestran en
+la diagonal, por las varianzas en común que cada ítem con los demás. A
+este proceso se le conoce como estimación de las comunalidades, y no hay
+un cálculo único para hacerlo.</p>
+<p>Si le damos un vistazo a la siguiente salida de un Análisis Factorial de
+algunas variables, podremos observar lo expresado:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 64%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Factor 1</p></th>
+<th class="head"><p>Factor 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Percepción visual</p></td>
+<td><p>0,354</p></td>
+<td><p>0,376</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cubos</p></td>
+<td><p>0,232</p></td>
+<td><p>0,219</p></td>
+</tr>
+<tr class="row-even"><td><p>Pastillas</p></td>
+<td><p>0,3664</p></td>
+<td><p>0,293</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comprensión de párrafos</p></td>
+<td><p>0,866</p></td>
+<td><p>0,112</p></td>
+</tr>
+<tr class="row-even"><td><p>Completar oraciones</p></td>
+<td><p>0,794</p></td>
+<td><p>0,205</p></td>
+</tr>
+<tr class="row-odd"><td><p>Significado de palabras</p></td>
+<td><p>0,815</p></td>
+<td><p>0,114</p></td>
+</tr>
+<tr class="row-even"><td><p>Adición</p></td>
+<td><p>0,126</p></td>
+<td><p>0,624</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contar puntos</p></td>
+<td></td>
+<td><p>0,864</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretación líneas-curvas</p></td>
+<td><p>0,288</p></td>
+<td><p>0,635</p></td>
+</tr>
+</tbody>
+</table>
+<p>En la tabla anterior, se pueden observar los factores hipotéticos
+creados como una combinación lineal de la varianza de las variables,
+desde el punto de vista contextual, podemos decir que se tratan de
+constructos hipotéticos extraídos por el procedimiento de Análisis
+Factorial. Cada una de las columnas, muestran la correlación entre las
+variables y cada factor hipotético, por tanto, podemos asumir que por
+ejemplo; las variables compresión de párrafos, completar oraciones, y
+significado de palabras se pueden agrupar en el Factor 1, ya que las
+mayores correlaciones se encuentran en él, y las variables adición,
+contar puntos e interpretación de líneas podrían pertenecer o explicar
+al Factor 2. Desde el punto de vista interpretativo, podemos decir que
+el modelo de Análisis Factorial creó dos factores que reducen la
+dimensionalidad del problema a explicarse por ejemplo por las variables
+que comprenden la compresión lectora y las que comprenden el análisis
+gráfico. Con respecto a las demás variables se puede decir que no
+explican la suficiente correlación o covarianza a ninguno de los
+factores (podrían ser descartables o a decisión del investigador
+ingresarlas al factor que mayor relación tenga).</p>
+<p>Para tener mas clara la interpretación dentro de los factores, podemos
+decir que <strong>los pesos pueden ser grandes o pequeños, positivos o
+negativos y en cada factor serán los pesos grandes los que definen al
+factor, sin importar su relación</strong>, es decir que en la matriz de carga
+de los factores aquellos con mayor valor absoluto serán los que definan
+el factor.</p>
+<p>El modelo tradicionalmente asumido en la mayoría de los trabajos
+analíticos factoriales exploratorios es el siguiente, generalmente
+denominado modelo analítico factorial común:</p>
+<div class="math notranslate nohighlight">
+\[X= \mu+\Lambda f+\mu+\varepsilon\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(X\)</span> es un vector de variables aleatorias que se asumen
+observables, <span class="math notranslate nohighlight">\(\mu\)</span> es el vector de medias para las variables
+aleatorias en <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\Lambda\)</span> es una matriz de carga de los
+factores (Scores), <span class="math notranslate nohighlight">\(f\)</span> es un vector de factores no observados y ε
+es el vector de la variación no explicada por <span class="math notranslate nohighlight">\(\mu+\Lambda f\)</span>.</p>
+<p>Si descomprimimos el modelo para <span class="math notranslate nohighlight">\(p\)</span> variables y <span class="math notranslate nohighlight">\(m\)</span>
+factores tendremos:</p>
+<p><span class="math notranslate nohighlight">\(x-\mu=\Lambda f+\varepsilon\)</span></p>
+<p><span class="math notranslate nohighlight">\(X_1-\mu_1=L_{11}f_1+L_{12}+...+L_{1m}f-m+\varepsilon_1\)</span></p>
+<p><span class="math notranslate nohighlight">\(X_2-\mu_1=L_{21}f_1+L_{22}+...+L_{2m}f_m+\varepsilon_2\)</span></p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p><span class="math notranslate nohighlight">\(X_p-\mu_p=L_{p1}f_1+L_{p2}+...+L_{pm}f_m+\varepsilon_1\)</span></p>
+<p>Note que el modelo es similar a una regresión</p>
+<div class="section" id="supuestos-del-analisis-factorial">
+<h2>Supuestos del análisis factorial<a class="headerlink" href="#supuestos-del-analisis-factorial" title="Permalink to this headline"></a></h2>
+<p>Como en cualquier modelo estadístico, los supuestos son relevantes para
+este caso los que se deben cumplir son:</p>
+<ol class="arabic simple">
+<li><p>La media del vector latente <span class="math notranslate nohighlight">\(f\)</span> es igual a 0. Es decir,
+<span class="math notranslate nohighlight">\(E(f) = 0\)</span>.</p></li>
+<li><p>Los factores no covarían. Es decir, en una matriz de covarianza de
+factores estimados, esperaríamos que las covarianzas por pares entre
+los factores fueran iguales a cero (ortogonalidad). La matriz de
+covarianza de factores que esperaríamos sea una matriz identidad.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}cov(f) = \begin{bmatrix} 1 &amp; 0\\ 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Los errores en el modelo son iguales a 0. Dado que la matriz de
+errores, <span class="math notranslate nohighlight">\(\varepsilon\)</span>, es un vector aleatorio, la suposición
+es que <span class="math notranslate nohighlight">\(E(\varepsilon) = 0\)</span>. Esta suposición es similar a la
+suposición del término de error en el modelo clásico de regresión
+múltiple.</p></li>
+<li><p>Suponemos que los errores y las varianzas específicas en ε, no
+covarían. Es decir, la variación no explicada de cada variable
+observada no tiene nada en común con la variación no explicada de
+otra variable observada. Se espera entonces que el producto punto de
+los errores sea igual a:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Psi = \begin{bmatrix} \Psi_1 &amp; 0\\ 0 &amp; \Psi_2 \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Finalmente, se asume que el factor estimado y su varianza específica
+(o “única”) no varían. Es decir, <span class="math notranslate nohighlight">\(E(\varepsilon f) = 0\)</span>. La
+suposición análoga en la regresión (aunque incorporando una variable
+“observada” en lugar de una latente) es que
+<span class="math notranslate nohighlight">\(E(\varepsilon x) = 0\)</span>, es decir, la covarianza entre el
+término de error y el predictor variable es igual a 0.</p></li>
+</ol>
+</div>
+<div class="section" id="estimacion-de-parametros-en-analisis-factorial">
+<h2>Estimación de Parámetros en Análisis Factorial<a class="headerlink" href="#estimacion-de-parametros-en-analisis-factorial" title="Permalink to this headline"></a></h2>
+<p>Al igual que en otros modelos estadísticos, en AF requerimos estimar
+parámetros, la estimación puede hacerse por diversos métodos, sin
+embargo, solo examinamos dos, el de factor principal (o factorización
+del eje principal) y el de máxima verosimilitud, ya que son los más
+utilizados.</p>
+<p><strong>Método de extracción por Factorización del eje principal o Factor
+Principal:</strong></p>
+<p>También conocido como el método Bartlett es un método común para estimar
+factores es el del factor principal. Esta es una técnica de estimación
+de mínimos cuadrados y cumple su función minimizando los mínimos
+cuadrados no ponderados o los mínimos cuadrados ordinarios de la matriz
+residual. En este método, las comunalidades iniciales se estiman y se
+ingresan en la diagonal de la matriz de covarianza o correlación. Por
+ejemplo, considere la siguiente matriz de correlación en cinco variables
+observadas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 1 &amp; 0,02 &amp; 0,96 &amp; 0,42 &amp; 0,01 \\ 0,02 &amp; 1 &amp; 0,13 &amp; 0,71 &amp; 0,85 \\ 0,96 &amp; 0,13 &amp; 1 &amp; 0,50 &amp; 0,11 \\ 0,42 &amp; 0,71 &amp; 0,50 &amp; 1 &amp; 0,79 \\ 0,01 &amp; 0,85 &amp; 0,11 &amp; 0,79 &amp; 1\end{bmatrix}\end{split}\]</div>
+<p>Una inspección visual inicial revela que las variables 1 y 3 están
+altamente correlacionadas (0,96) junto con las variables 2 y 5 (0,85) y
+4 y 5 (0,79). Otras correlaciones bivariadas son bastante pequeñas, por
+ejemplo, 1 y 2 (0,02), así como 1 y 5 (0,01)</p>
+<p>Recuerde que, en el ACP, los valores de 1,0 aparecían a lo largo de la
+diagonal de la matriz de correlación para indicar que cada variable
+contribuía con 1 unidad de varianza al problema. Dado que el Análisis
+Factorial normalmente está interesado en analizar la similitud en lugar
+de la varianza total, estos números a lo largo de la diagonal principal
+serán diferentes en Análisis Factorial que en PCA.</p>
+<p>La factorización del eje principal reemplaza estos 1 con estimaciones
+iniciales de comunalidad antes de estimar los parámetros relevantes. Un
+estimador popular para estos elementos diagonales en la matriz de
+correlación es:</p>
+<div class="math notranslate nohighlight">
+\[h^2_i=R^2_i=1- \frac{1}{r^{ii}}\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(h^2_i\)</span> es la comunalidad estimada para la variable
+<span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(R^2_i\)</span> es el coeficiente de Determinación para la
+variable <span class="math notranslate nohighlight">\(i\)</span> en regresión sobre todas las demás variables
+observadas, y <span class="math notranslate nohighlight">\(r^{ii}\)</span> es el i-ésimo elemento diagonal de la
+inversa de la matriz de correlación <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>La comunalidad de una variable dada se estima utilizando todas las demás
+variables en el conjunto de datos para predecir la variable en
+consideración. De esta manera, estamos interesados en saber cuánta
+varianza de la variable dada se comparte con otras variables en el
+conjunto.</p>
+<p>Por otra parte, si se analiza la matriz de covarianza <span class="math notranslate nohighlight">\(S\)</span> en lugar
+de la matriz de correlación, un estimador apropiado es
+<span class="math notranslate nohighlight">\(h^2_i = ss_{ii}R^2_i\)</span></p>
+<p>Donde <span class="math notranslate nohighlight">\(ss_{ii}\)</span> es ahora el i-ésimo elemento diagonal de
+<span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>La principal desventaja de este modelo es que en ocasiones no
+proporciona convergencia ni una solución para los factores, sobre todo
+si se trata de muestras pequeñas.</p>
+<p>También están disponibles otras formas de estimar las comunalidades; sin
+embargo, el punto clave a retener es el concepto de que estos números se
+estiman como un “punto de partida” para realizar el análisis factorial.
+Las comunalidades estimadas, en cierto sentido, inician el procedimiento
+analítico factorial.</p>
+<p><strong>Método de extracción: Máxima Verosimilitud:</strong></p>
+<p>Uno de los métodos más comunes para estimar parámetros en el contexto
+del Análisis Factorial es el de estimación por máxima verosimilitud.
+Recordemos que este es un mecanismo para la estimación de parámetros que
+hace a los datos observados los más probables de ocurrir, ya que define
+una distribución de probabilidad que depende de la muestra.</p>
+<p>Cuando se tiene un modelo o una variable que se genera por datos
+normales, se estiman sus parámetros con el Logarítmo de la
+verosimilitud, por tanto, el estimador correcto en este caso está dado
+por:</p>
+<div class="math notranslate nohighlight">
+\[F_{ML}=ln|\Lambda \Lambda'+ \Psi|+tr(S|\Lambda \Lambda'+\Psi|^{−1}) −ln |S| −p\]</div>
+<p><strong>Comparación de los métodos de extracción:</strong></p>
+<p>Algunos aspectos a tener en cuenta cuando se debe elegir el metodo de
+extracción son los siguientes:</p>
+<ul class="simple">
+<li><p>Cuando existen comunalidades altas <span class="math notranslate nohighlight">\((&gt;0,6)\)</span> todas las técnicas
+de extracción tienden a expresar la misma solución</p></li>
+<li><p>Cuando las comunalidades son bajas el ACP tiende a brindar solución
+diferente al resto.</p></li>
+<li><p>Cuando existe un numero alto de variables <span class="math notranslate nohighlight">\((&gt;30)\)</span> las
+comunalidades influyen menos, así que todos los métodos tienen a dar
+la misma solución</p></li>
+<li><p>Si el número de variables es bajo afectará la comunalidad por lo que
+dependará del método de estimación. *. Siempre será mas robusto
+utilizar un modelo</p></li>
+</ul>
+</div>
+<div class="section" id="metodos-de-rotacion-de-factores">
+<h2>Metodos de rotación de factores:<a class="headerlink" href="#metodos-de-rotacion-de-factores" title="Permalink to this headline"></a></h2>
+<p>La interpretación de la solución extraída resulta difícil cuando nos
+preguntamos si se define o no los factores verdaderos. La rotación de
+factores es un procedimiento utilizado con el fin de facilitar la
+interpretación de factores derivados con el fin de encontrar una
+estructura más simple.</p>
+<p>Para entender el concepto de rotación, primero, se debe tener claro el
+concepto ortogonalidad,</p>
+<p>Tengamos en cuenta que una matriz <span class="math notranslate nohighlight">\(X\)</span> es ortogonal si cumple con
+la siguiente condición:</p>
+<div class="math notranslate nohighlight">
+\[TT'=T'T=I\]</div>
+<p>Cuando se introduce una matriz ortogonal en el modelo factorial
+original, podemos producir la misma matriz de covarianza que antes. Por
+esta razón, la rotación de factores en el análisis factorial es
+permisible porque a pesar de la rotación, la generación de los factores
+no se altera.</p>
+<p>Si tomamos la matriz de cargas <span class="math notranslate nohighlight">\(\Lambda\)</span> y la multiplicamos por
+una matriz ortogonal <span class="math notranslate nohighlight">\(\omicron\)</span>, obtendríamos una matriz
+<span class="math notranslate nohighlight">\(\Lambda_R\)</span>, la cual sería la matriz de cargas rotada en un ángulo
+determinado, tal como se muestra en la siguiente imagen:</p>
+<div class="figure align-default" id="id1">
+<img alt="Rotación" src="../../_images/Rotación.png" />
+<p class="caption"><span class="caption-text">Rotación</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p>Para obtener los nuevos planos <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span> la matriz
+<span class="math notranslate nohighlight">\(\omicron\)</span> por la que se multiplicó es <span class="math notranslate nohighlight">\(\omicron_2\)</span>, que
+produce un movimiento en contra de las manecillas del reloj, si se
+quisiera rotar en el sentido horario, se multiplicaría por
+<span class="math notranslate nohighlight">\(\omicron_1\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\omicron_1 = \begin{bmatrix}
+ cosθ &amp; senθ \\
+ -senθ &amp; cosθ
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\omicron_2 = \begin{bmatrix}
+ cosθ &amp; -senθ \\
+ senθ &amp; cosθ
+\end{bmatrix}\end{split}\]</div>
+<p><strong>Método de rotación VARIMAX y QUARTIMAX:</strong></p>
+<p>Existen numerosos métodos para rotar los factores, sin embargo, los más
+utilizados son varimax y quartimax, ya que ambos son rotaciones
+ortogonales, también existen rotaciones oblicuas, que no son tan usuales
+en la literatura.</p>
+<p><strong>Varimax:</strong></p>
+<p>El objetivo de la rotación varimax es maximizar la varianza dentro del
+factor, esto sucederá cunado haya mucha dispersión dentro de la matriz
+de cargas. En otras palabras, las cargas que son altas (cerca de |1.0|)
+o pequeñas (cerca de 0.0) en una matriz de correlación son preferibles a
+las cargas “mediocres”, ya que las cargas que se acercan a los límites
+superior e inferior de |1.0| y 0.0 sirven para maximizar la
+variabilidad, por esto, lo que hace el Varimax es <strong>dirigir las cargas
+grandes a ser aún mas grandes y las pequeñas a ser aún mas pequeñas</strong>,
+esto interrumpe el patrón de varianza mínima, haciendo los factores
+significativos e interpretables.</p>
+<p>Para lograrse, los factores se deben multiplicar por la siguiente
+cantidad:</p>
+<div class="math notranslate nohighlight">
+\[V= \sum_{i=1}^p(l_{ij}^2-{\overline{l^2_j}})^2\]</div>
+<p>donde <span class="math notranslate nohighlight">\(l_{ij}^2\)</span> son las cargas al cuadrado en la posición
+<span class="math notranslate nohighlight">\(i\)</span> hasta <span class="math notranslate nohighlight">\(p\)</span> para cada factor, <span class="math notranslate nohighlight">\(\overline{l^2_j}\)</span> es
+el promedio de las cargas al cuadrado.</p>
+<p><span class="math notranslate nohighlight">\(V\)</span> generalmente se maximiza utilizando técnicas iterativas, por
+lo tanto, su maximización depende de un algoritmo informático por
+facilidad y eficiencia computacional.</p>
+<p><strong>Quartimax:</strong></p>
+<p>La rotación Quartimax se enfoca en las filas de la matriz de carga,
+buscando maximizar la varianza de las cargas a través de factores en
+lugar de dentro de los factores. Quartimax, está dado por:</p>
+<div class="math notranslate nohighlight">
+\[Q= ∑_{j=1}^m (l_{ij}^2 - \overline{l^2_j})^2\]</div>
+<p>Ahora la suma es a través de los factores <span class="math notranslate nohighlight">\(j = 1\)</span> a través de m.
+<span class="math notranslate nohighlight">\(Q\)</span> en este caso impulsa cargas a través de factores hacia 0 o
+|1| en una matriz de correlación en lugar de dentro de los factores.</p>
+</div>
+<div class="section" id="procedimiento-para-aplicar-analisis-factorial">
+<h2>Procedimiento para aplicar Análisis Factorial:<a class="headerlink" href="#procedimiento-para-aplicar-analisis-factorial" title="Permalink to this headline"></a></h2>
+<p>La metodología a seguirse puede resumirse en la siguiente figura:</p>
+<div class="figure align-default" id="id2">
+<img alt="Procedimiento" src="../../_images/Procedimiento.png" />
+<p class="caption"><span class="caption-text">Procedimiento</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>Con la ayuda de cualquier paquete estadístico, es posible ajustar un
+modelo de Análisis Factorial exploratorio, para ello, se deben realizar
+algunas pruebas iniciales de correlación que permitirán asegurar que el
+modelo es aplicable a un conjunto de datos específico.</p>
+<p><strong>1. Análisis de la Matriz de correlación:</strong></p>
+<p>Como ya lo analizamos anteriormente, de la matriz de correlaciones,
+podemos identificar rápidamente si existen relaciones relevantes o no,
+con aquellas variables que cuenten con valores superiores a |0.2|. Sin
+embargo, no es del todo confiable porque en el modelo de Análisis
+Factorial, no estamos interesados en hacer inferencia sobre cada par de
+variables, sino por factores.</p>
+<p>Si las correlaciones son bastante pequeñas por ejemplo inferiores a 0,10
+a 0,20, es posible que no valga la pena realizar el análisis.</p>
+<p><strong>1.1. Bartlett Test:</strong></p>
+<p>Con el fin de evaluar si las magnitudes de las correlaciones son
+suficiente para el Análisis Factorial, se recomienda hacer una prueba de
+esfericidad de Bartlett, en la que se contrasta que la <span class="math notranslate nohighlight">\(H_0\)</span>
+responde a una matriz de correlaciones igual a la matriz identidad
+<span class="math notranslate nohighlight">\(I\)</span>. Este test está dado por:</p>
+<div class="math notranslate nohighlight">
+\[X^2= -[(n-1)- \frac{(2p+5)}{6}]ln|R|\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(p\)</span> es el número de variables, <span class="math notranslate nohighlight">\(n\)</span> el de observaciones
+y <span class="math notranslate nohighlight">\(ln|R|\)</span> es el logaritmo del determinante de la matriz de
+correlaciones, y la expresión <span class="math notranslate nohighlight">\(-(n-1) \frac{(2p+5)}{6}\)</span> hará que
+permanezca constante tendiente a 6, y lo que hará variar será en función
+de <span class="math notranslate nohighlight">\(|R|\)</span>.</p>
+<p>Hipótesis:</p>
+<div class="math notranslate nohighlight">
+\[H_0: Correlación= I\]</div>
+<div class="math notranslate nohighlight">
+\[H_1: = Correlación \neq I\]</div>
+<p><strong>1.2. Kaiser- Meyer- Olkin Test:</strong></p>
+<p>Este test es una relación entre la suma de las correlaciones al cuadrado
+y las correlaciones parciales al cuadrados Por lo general, se prefieren
+los valores superiores a 0,7–0,8, aunque siempre que los valores no sean
+demasiado bajos (por ejemplo; 0,6 o menos), por lo general no es motivo
+de preocupación. Esto es:</p>
+<div class="math notranslate nohighlight">
+\[KMO&lt; 0,6, Inaceptable\]</div>
+<div class="math notranslate nohighlight">
+\[0,6 &lt;= KMO &lt; 0,7, Aceptable\]</div>
+<div class="math notranslate nohighlight">
+\[KMO &gt;= 0,7, Ideal\]</div>
+<p><strong>2. Extracción de comunalidades:</strong></p>
+<p>AL extraer las comunalidades tendremos una medida de cuánto tiene en
+común la variable observada dada, con los factores derivados, después de
+que la rutina del Análisis Factorial ha hecho su trabajo. Esto lo
+realiza cualquier paquete estadístico, ajustando una regresión para una
+variable <span class="math notranslate nohighlight">\(X\)</span>, contra el resto del conjunto, y tomando
+sucesivamente todo el conjunto.</p>
+<p>Conocer las comunalidades ayuda a definir la existencia sustantiva y la
+naturaleza de un factor, generalmente buscamos variables observadas que
+tengan correlaciones de magnitud relativamente alta con el factor dado.
+Nos podemos ayudar del Scree plot.</p>
+<p><strong>3. Determinación del número de factores:</strong></p>
+<p>Determinar el numero de factores puede ser complejo ya que en primer
+lugar se trata de cumplir con el criterio de parsimonia, pero, asu vez
+se pretende captar la mayor información posible, por ello podemos elegir
+el criterio para determinar el número de factores, desde un punto de
+vista teórico o hacia criterios mas robustos.</p>
+<p><strong>Criterios:</strong></p>
+<ul class="simple">
+<li><p>A priori</p></li>
+<li><p>Regla Kaiser</p></li>
+<li><p>Porcentaje de Varianza</p></li>
+<li><p>Sedimentación (scree plot)</p></li>
+</ul>
+<p><strong>4.Interpretar los factores:</strong></p>
+<p>Para esto se identifican las variables cuyas correlaciones con el factor
+son mas elevada, en valor absoluto.</p>
+<p>Se debe intentar dar un nombre a los factores.</p>
+<p>Se puede hacer una representación gráfica de los factores con sus
+correlaciones.</p>
+<p>Y se pueden eliminar aquellas cargas factoriales bajas para evitar
+información redundante.</p>
+<p><strong>5. Rotar la matriz:</strong></p>
+<p>Como ya lo vimos anteriormente, luego de extraer los factores, para
+convertir en un modelo interpretable y brindarle el máximo de
+variabilidad los factores, debe rotarse la matriz con alguno de los
+criterios explicados Varimax y Quartimax.</p>
+<p><strong>6. Calcular las puntuaciones factoriales:</strong></p>
+<p>Una vez calculados los factores rotados , se procede a calcular las
+matices de puntuaciones factoriales.</p>
+<p><strong>7. Validar el modelo:</strong></p>
+<p>Realizar pruebas de bondad de ajuste donde la <span class="math notranslate nohighlight">\(H_0\)</span> implica que la
+correlación observada entre las variables puede atribuirse a factores
+comunes es decir, que el número de factores son apropiados para explicar
+las varianzas originales.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Análisis Factorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../An%C3%A1lisis%20Factorial/An%C3%A1lisis%20Factorial.html" class="btn btn-neutral float-right" title="Análisis Factorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imputación de datos &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Análisis de correspondencia" href="../An%C3%A1lsis%20de%20correspondencia/index.html" />
+    <link rel="prev" title="Datos faltantes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Multivariado/index.html">Análisis Multivariado</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Datos faltantes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Imputación de datos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imputacion-con-la-media">Imputación con la Media:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#imputacion-por-regresion">Imputación por Regresión:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#imputacion-por-regresion-estocastica">Imputación por Regresión Estocástica:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aplicacion-de-imputacion-de-datos">Aplicación de imputación de datos:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Datos faltantes</a> &raquo;</li>
+      <li>Imputación de datos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Datos faltantes/Datos faltantes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="imputacion-de-datos">
+<h1>Imputación de datos<a class="headerlink" href="#imputacion-de-datos" title="Permalink to this headline"></a></h1>
+<p>Los métodos tradicionales de imputación de datos son:</p>
+<ol class="arabic simple">
+<li><p>Imputación con la Media.</p></li>
+<li><p>Imputación por Regresión.</p></li>
+<li><p>Imputación por Regresión Estocástica.</p></li>
+</ol>
+<p>Se usará la función <code class="docutils literal notranslate"><span class="pre">mice()</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">mice</span></code>.</p>
+<p>Instalar la librería: <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;mice&quot;)</span></code></p>
+<div class="section" id="imputacion-con-la-media">
+<h2>Imputación con la Media:<a class="headerlink" href="#imputacion-con-la-media" title="Permalink to this headline"></a></h2>
+<p>Una solución rápida para los datos que faltan es reemplazarlos por la
+media de los datos de cada variable.</p>
+<p><code class="docutils literal notranslate"><span class="pre">imp_data_mean</span> <span class="pre">&lt;-</span> <span class="pre">mice(data,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;mean&quot;,</span> <span class="pre">m</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">maxit</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">print</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></p>
+<p>Con el argumento <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;mean&quot;</span></code> se especifica la imputación con la
+media. El argumento <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">1</span></code> para indicar que no es imputación
+múltiple, solo es un conjunto de datos. Con <code class="docutils literal notranslate"><span class="pre">maxit</span> <span class="pre">=</span> <span class="pre">1</span></code> se establece
+el número de iteraciones como 1 que es sin iteraciones.</p>
+<p>Con <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> se evita que vaya imprimiendo en consola los
+resultados que va realizando.</p>
+<p>La imputación con la media es una solución rápida y se recomienda usarla
+sólo cuando faltan pocos datos. Con esta imputación se subestima la
+varianza y se altera las correlaciones entre las variables</p>
+</div>
+<div class="section" id="imputacion-por-regresion">
+<h2>Imputación por Regresión:<a class="headerlink" href="#imputacion-por-regresion" title="Permalink to this headline"></a></h2>
+<p>Incorpora el conocimiento de otras variables con la idea de producir
+imputaciones. Se hace un ajuste de regresión lineal con los datos
+observados y con las predicciones de los datos faltantes del modelo
+ajustado se hace la imputación.</p>
+<p>En la función <code class="docutils literal notranslate"><span class="pre">mice()</span></code> el método de regresión lineal se llama
+<code class="docutils literal notranslate"><span class="pre">&quot;norm.predict&quot;</span></code> y se agrega en el argumento <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">imp_data_regre</span> <span class="pre">&lt;-</span> <span class="pre">mice(data,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;norm.predict&quot;,</span> <span class="pre">m</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">maxit</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">print</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></p>
+<p>Con imputación por regresión se producen estimaciones no sesgadas de las
+medias; sin embargo, las correlaciones aumentarán y disminuirá la
+variabilidad de los datos. La subestimación de la varianza de los datos
+dependerá de la varianza explicada y de cantidad de datos faltantes.</p>
+</div>
+<div class="section" id="imputacion-por-regresion-estocastica">
+<h2>Imputación por Regresión Estocástica:<a class="headerlink" href="#imputacion-por-regresion-estocastica" title="Permalink to this headline"></a></h2>
+<p>Realiza un ajuste de regresión lineal, pero agrega ruido a las
+predicciones. Primero calcula los coeficientes del modelo de regresión y
+de la varianza de los errores, luego calcula el valor pronosticado para
+cada dato faltante y agrega un valor aleatorio (ruido) del residual a la
+predicción.</p>
+<p>Se agrega el argumento <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;norm.nob&quot;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">imp_data_stoch</span> <span class="pre">&lt;-</span> <span class="pre">mice(data,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;norm.nob&quot;,</span> <span class="pre">m</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">maxit</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">print</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></p>
+<p>Con la imputación por regresión estocástica se podría conservar la
+correlación entre las variables.</p>
+</div>
+<div class="section" id="aplicacion-de-imputacion-de-datos">
+<h2>Aplicación de imputación de datos:<a class="headerlink" href="#aplicacion-de-imputacion-de-datos" title="Permalink to this headline"></a></h2>
+<p><strong>Base de datos:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;EAM_2019.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">ï</span><span class="o">..</span><span class="n">ciiu</span> <span class="n">personal_mujer</span> <span class="n">personal_hombre</span> <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>    <span class="mi">1051</span>             <span class="mi">36</span>             <span class="mi">140</span>        <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>    <span class="mi">1030</span>             <span class="mi">40</span>             <span class="mi">176</span>        <span class="mi">7334998</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>    <span class="mi">3290</span>             <span class="mi">15</span>             <span class="mi">172</span>        <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>    <span class="mi">3091</span>             <span class="mi">88</span>             <span class="mi">373</span>       <span class="mi">22088759</span>         <span class="mi">35203208</span>
+<span class="mi">5</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+  <span class="n">costos_gastos_produccion</span> <span class="n">gastos_adm_ventas</span> <span class="n">inversion_AF</span>    <span class="n">ventas</span>
+<span class="mi">1</span>                  <span class="mi">6846304</span>          <span class="mi">22920307</span>      <span class="mi">4979745</span> <span class="mi">192609248</span>
+<span class="mi">2</span>                  <span class="mi">5941761</span>          <span class="mi">12310286</span>      <span class="mi">5615593</span> <span class="mi">115741258</span>
+<span class="mi">3</span>                  <span class="mi">6996020</span>           <span class="mi">2564695</span>       <span class="mi">773444</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>                  <span class="mi">4175751</span>         <span class="mi">171278876</span>     <span class="mi">10501572</span> <span class="mi">162509864</span>
+<span class="mi">5</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+</pre></div>
+</div>
+<p>Con una base de datos conocida generaremos aleatoriamente unos datos
+faltantes. Se realizará con la función <code class="docutils literal notranslate"><span class="pre">ampute()</span></code> de la librería
+<code class="docutils literal notranslate"><span class="pre">mice</span></code>. La base de datos nueva con los datos faltantes se extraer con
+<code class="docutils literal notranslate"><span class="pre">$amp</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;mice&#39; was built under R version 4.1.3&quot;</span>
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;mice&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:stats&#39;</span><span class="p">:</span>
+
+    <span class="nb">filter</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:base&#39;</span><span class="p">:</span>
+
+    <span class="n">cbind</span><span class="p">,</span> <span class="n">rbind</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;gasto_personal&quot;</span><span class="p">,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">ampute</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">$</span><span class="n">amp</span>
+</pre></div>
+</div>
+<p>Supongamos que la base de datos es de tres variables: las primeras dos
+tienen datos faltantes y la última no tiene este problema. La última
+variable serán las <code class="docutils literal notranslate"><span class="pre">ventas</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">$</span><span class="n">ventas</span> <span class="o">&lt;-</span> <span class="n">datos</span><span class="p">[,</span> <span class="s">&quot;ventas&quot;</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>             <span class="c1"># En las primeras filas se pueden ver los NAs.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>    <span class="n">ventas</span>
+<span class="mi">1</span>         <span class="mi">9352991</span>          <span class="mi">3240559</span> <span class="mi">192609248</span>
+<span class="mi">2</span>              <span class="n">NA</span>          <span class="mi">1468298</span> <span class="mi">115741258</span>
+<span class="mi">3</span>         <span class="mi">6668544</span>          <span class="mi">1547666</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>        <span class="mi">22088759</span>               <span class="n">NA</span> <span class="mi">162509864</span>
+<span class="mi">5</span>              <span class="n">NA</span>          <span class="mi">2861773</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>         <span class="mi">5219070</span>               <span class="n">NA</span>  <span class="mi">87324374</span>
+<span class="mi">7</span>              <span class="n">NA</span>           <span class="mi">647945</span>  <span class="mi">33370073</span>
+<span class="mi">8</span>         <span class="mi">4756263</span>           <span class="mi">630568</span>  <span class="mi">59514053</span>
+<span class="mi">9</span>              <span class="n">NA</span>         <span class="mi">20390274</span>  <span class="mi">26727389</span>
+<span class="mi">10</span>             <span class="n">NA</span>           <span class="mi">542136</span>  <span class="mi">57342249</span>
+</pre></div>
+</div>
+<p><strong>Cantidad de NAs:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">210</span>
+</pre></div>
+</div>
+<p><strong>Cantidad de NAs por columna:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>           <span class="n">ventas</span>
+           <span class="mi">113</span>               <span class="mi">97</span>                <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Visualización de los NAs:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;VIM&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">VIM</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;VIM&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">colorspace</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">grid</span>
+
+<span class="n">VIM</span> <span class="ow">is</span> <span class="n">ready</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span>
+
+
+<span class="n">Suggestions</span> <span class="ow">and</span> <span class="n">bug</span><span class="o">-</span><span class="n">reports</span> <span class="n">can</span> <span class="n">be</span> <span class="n">submitted</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">statistikat</span><span class="o">/</span><span class="n">VIM</span><span class="o">/</span><span class="n">issues</span>
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;VIM&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:datasets&#39;</span><span class="p">:</span>
+
+    <span class="n">sleep</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">aggr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">numbers</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">sortVar</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variables</span> <span class="nb">sorted</span> <span class="n">by</span> <span class="n">number</span> <span class="n">of</span> <span class="n">missings</span><span class="p">:</span>
+        <span class="n">Variable</span>     <span class="n">Count</span>
+  <span class="n">gasto_personal</span> <span class="mf">0.2690476</span>
+<span class="n">gasto_financiero</span> <span class="mf">0.2309524</span>
+          <span class="n">ventas</span> <span class="mf">0.0000000</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_33_12.png"><img alt="../_images/output_33_12.png" src="../_images/output_33_12.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Imputación con la media:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">imp_data_mean</span> <span class="o">&lt;-</span> <span class="nf">mice</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;gasto_personal&quot;</span><span class="p">,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">)],</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;mean&quot;</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">maxit</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">print</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El valor medio imputado a cada variable se extrae con:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">imp_data$imp$gasto_personal</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imp_data$imp$gasto_financiero</span></code></p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">imp_data_mean</span><span class="o">$</span><span class="n">imp</span><span class="o">$</span><span class="n">gasto_personal</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">1</span>
+<span class="mi">2</span>  <span class="mi">18203281</span>
+<span class="mi">5</span>  <span class="mi">18203281</span>
+<span class="mi">7</span>  <span class="mi">18203281</span>
+<span class="mi">9</span>  <span class="mi">18203281</span>
+<span class="mi">10</span> <span class="mi">18203281</span>
+<span class="mi">13</span> <span class="mi">18203281</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">imp_data_mean</span><span class="o">$</span><span class="n">imp</span><span class="o">$</span><span class="n">gasto_financiero</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="mi">1</span>
+<span class="mi">4</span>  <span class="mi">2482088</span>
+<span class="mi">6</span>  <span class="mi">2482088</span>
+<span class="mi">11</span> <span class="mi">2482088</span>
+<span class="mi">14</span> <span class="mi">2482088</span>
+<span class="mi">24</span> <span class="mi">2482088</span>
+<span class="mi">29</span> <span class="mi">2482088</span>
+</pre></div>
+</div>
+<p>Estos dos valores medios también los podemos calcular con la función de
+la base de <code class="docutils literal notranslate"><span class="pre">R</span></code> llamada <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, pero debemos agregar el argumento
+<code class="docutils literal notranslate"><span class="pre">na.rm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> para que realice el cálculo omitiendo los valores
+<code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span> <span class="s">&quot;gasto_personal&quot;</span><span class="p">],</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">18203281</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">],</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">2482088</span>
+</pre></div>
+</div>
+<p>Usamos la función <code class="docutils literal notranslate"><span class="pre">mice()</span></code> porque realiza el cálculo de imputación y
+crea la columna con los datos imputados.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xyplot</span><span class="p">(</span><span class="n">imp_data_mean</span><span class="p">,</span> <span class="n">gasto_personal</span> <span class="o">~</span> <span class="n">gasto_financiero</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_43_02.png"><img alt="../_images/output_43_02.png" src="../_images/output_43_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Datos imputados:</strong></p>
+<p>Usaremos <code class="docutils literal notranslate"><span class="pre">mice::complete()</span></code> para combinar los datos faltantes con los
+imputados, note que se crea una base de datos solo con las variables
+imputadas, falta la variable <code class="docutils literal notranslate"><span class="pre">ventas</span></code> que no tenía datos faltantes.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">complete_data_mean</span> <span class="o">&lt;-</span> <span class="n">mice</span><span class="o">::</span><span class="nf">complete</span><span class="p">(</span><span class="n">imp_data_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">complete_data_mean</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>   <span class="c1"># En las primeras 10 filas no hay NAs.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>         <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>        <span class="mi">18203281</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>         <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>        <span class="mi">22088759</span>          <span class="mi">2482088</span>
+<span class="mi">5</span>        <span class="mi">18203281</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>         <span class="mi">5219070</span>          <span class="mi">2482088</span>
+<span class="mi">7</span>        <span class="mi">18203281</span>           <span class="mi">647945</span>
+<span class="mi">8</span>         <span class="mi">4756263</span>           <span class="mi">630568</span>
+<span class="mi">9</span>        <span class="mi">18203281</span>         <span class="mi">20390274</span>
+<span class="mi">10</span>       <span class="mi">18203281</span>           <span class="mi">542136</span>
+</pre></div>
+</div>
+<p><strong>Comparación datos faltantes con imputación:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_personal</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_mean</span><span class="p">[,</span> <span class="s">&quot;gasto_personal&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 113 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_50_1.png"><img alt="../_images/output_50_1.png" src="../_images/output_50_1.png" style="width: 420px; height: 420px;" /></a>
+<p>El gráfico de densidad azul es la variable con la imputación de datos,
+se observa que los datos se concentran más en la media.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_financiero</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_mean</span><span class="p">[,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 97 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_52_1.png"><img alt="../_images/output_52_1.png" src="../_images/output_52_1.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Imputación por Regresión:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">imp_data_regre</span> <span class="o">&lt;-</span> <span class="nf">mice</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;gasto_personal&quot;</span><span class="p">,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">)],</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;norm.predict&quot;</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">maxit</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">print</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">complete_data_regre</span> <span class="o">&lt;-</span> <span class="n">mice</span><span class="o">::</span><span class="nf">complete</span><span class="p">(</span><span class="n">imp_data_regre</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xyplot</span><span class="p">(</span><span class="n">imp_data_regre</span><span class="p">,</span> <span class="n">gasto_personal</span> <span class="o">~</span> <span class="n">gasto_financiero</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_56_0.png"><img alt="../_images/output_56_0.png" src="../_images/output_56_0.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_personal</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_regre</span><span class="p">[,</span> <span class="s">&quot;gasto_personal&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 113 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_57_11.png"><img alt="../_images/output_57_11.png" src="../_images/output_57_11.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_financiero</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_regre</span><span class="p">[,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 97 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_58_1.png"><img alt="../_images/output_58_1.png" src="../_images/output_58_1.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Imputación por Regresión Estocástica:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">imp_data_stoch</span> <span class="o">&lt;-</span> <span class="nf">mice</span><span class="p">(</span><span class="n">df</span><span class="p">[,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;gasto_personal&quot;</span><span class="p">,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">)],</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;norm.nob&quot;</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">maxit</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">print</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">complete_data_stoch</span> <span class="o">&lt;-</span> <span class="n">mice</span><span class="o">::</span><span class="nf">complete</span><span class="p">(</span><span class="n">imp_data_stoch</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xyplot</span><span class="p">(</span><span class="n">imp_data_stoch</span><span class="p">,</span> <span class="n">gasto_personal</span> <span class="o">~</span> <span class="n">gasto_financiero</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_62_01.png"><img alt="../_images/output_62_01.png" src="../_images/output_62_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_personal</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_stoch</span><span class="p">[,</span> <span class="s">&quot;gasto_personal&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Personal&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 113 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_63_1.png"><img alt="../_images/output_63_1.png" src="../_images/output_63_1.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">gasto_financiero</span><span class="p">),</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">complete_data_stoch</span><span class="p">[,</span> <span class="s">&quot;gasto_financiero&quot;</span><span class="p">]),</span>
+                   <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;darkblue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Densidad variable Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;Antes de imputación y después de imputación&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Gasto Financiero&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Frecuencia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 97 rows containing non-finite values (stat_density).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/output_64_1.png"><img alt="../_images/output_64_1.png" src="../_images/output_64_1.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Datos faltantes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../An%C3%A1lsis%20de%20correspondencia/index.html" class="btn btn-neutral float-right" title="Análisis de correspondencia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
