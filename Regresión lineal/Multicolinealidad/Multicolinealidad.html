@@ -59,6 +59,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
 <ul>
@@ -235,7 +236,7 @@ importante para el modelo.</p></li>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chart.Correlation</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;PrecioInterno&quot;</span><span class="p">,</span> <span class="s">&quot;PrecioInternacional&quot;</span><span class="p">,</span> <span class="s">&quot;Producción&quot;</span><span class="p">,</span> <span class="s">&quot;TRM&quot;</span><span class="p">,</span> <span class="s">&quot;EUR&quot;</span><span class="p">)])</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_10_06.png"><img alt="../../_images/output_10_06.png" src="../../_images/output_10_06.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_10_05.png"><img alt="../../_images/output_10_05.png" src="../../_images/output_10_05.png" style="width: 420px; height: 420px;" /></a>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">GGally</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -259,7 +260,7 @@ importante para el modelo.</p></li>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">corrplot</span><span class="p">(</span><span class="n">correlacion</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;circle&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;upper&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_14_07.png"><img alt="../../_images/output_14_07.png" src="../../_images/output_14_07.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_14_05.png"><img alt="../../_images/output_14_05.png" src="../../_images/output_14_05.png" style="width: 420px; height: 420px;" /></a>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
 </pre></div>

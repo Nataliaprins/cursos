@@ -20,6 +20,7 @@ natalia.acevedop@udea.edu.co
    ggplot2/index
    Regresión lineal/index
    Multivariado/index
+   Series de tiempo/index
 
    
 
