@@ -13,6 +13,8 @@ En esta sesión se explicarán los métodos convencionales para modelar las seri
    Modelos Autorregresivos - AR/Modelos Autorregresivos - AR.rst
    Pronóstico con AR/Pronóstico con AR.rst
    autoplot para series de tiempo/autoplot para series de tiempo.rst
+   Modelos de promedio móvil - MA/Modelos de promedio móvil - MA.rst
+   Modelos ARMA/Modelos ARMA.rst
    
 
 .. important::

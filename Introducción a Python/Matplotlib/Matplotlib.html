@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matplotlib &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis gráfico" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html" />
+    <link rel="prev" title="NumPy" href="../NumPy/NumPy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introducción a Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Introducci%C3%B3n%20a%20Python/Introducci%C3%B3n%20a%20Python.html">Introducción a Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pandas/Pandas.html">Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NumPy/NumPy.html">NumPy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Matplotlib</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scatter-plot">Scatter plot:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-plot">Line Plot:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bar-plot">Bar Plot:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pie-chart">Pie Chart:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#histograma">Histograma:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Introducción a Python</a> &raquo;</li>
+      <li>Matplotlib</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Introducción a Python/Matplotlib/Matplotlib.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="matplotlib">
+<h1>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline"></a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<pre class="literal-block">  Unnamed: 0  PrecioInterno  PrecioInternacional  Producción  Exportaciones  0     ene-00       371375.0               130.12         658          517.0
+1     feb-00       354297.0               124.72         740          642.0
+2     mar-00       360016.0               119.51         592          404.0
+3     abr-00       347538.0               112.67        1055          731.0
+4     may-00       353750.0               110.31        1114          615.0
+
+       TRM     EUR
+0  1923.57  1916.0
+1  1950.64  1878.5
+2  1956.25  1875.0
+3  1986.77  1832.0
+4  2055.69  1971.5</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 264 entries, 0 to 263
+Data columns (total 7 columns):
+ #   Column               Non-Null Count  Dtype
+---  ------               --------------  -----
+ 0   Unnamed: 0           264 non-null    object
+ 1   PrecioInterno        264 non-null    float64
+ 2   PrecioInternacional  264 non-null    float64
+ 3   Producción           264 non-null    int64
+ 4   Exportaciones        264 non-null    float64
+ 5   TRM                  264 non-null    float64
+ 6   EUR                  264 non-null    float64
+dtypes: float64(5), int64(1), object(1)
+memory usage: 14.6+ KB
+</pre></div>
+</div>
+<p>Instalar <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matplotlib</span></code></p>
+<p>El submódulo <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> de Matplotlib tiene muchas utilidades y lo más
+común es importarlo con el alias de <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>Con <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> se grafica de la siguiente manera:
+<code class="docutils literal notranslate"><span class="pre">plt.tipo</span> <span class="pre">de</span> <span class="pre">gráfico</span></code>.</p>
+<p><strong>General:</strong></p>
+<p>Del módulo al que hemos renombrado <code class="docutils literal notranslate"><span class="pre">plt</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.title()</span></code> para añadir un título al plot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.xlabel()</span></code> para añadir una etiqueta al eje horizontal del plot 2D.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ylabel()</span></code> para añadir una etiqueta al eje vertical del plot 2D.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.legend()</span></code> para mostrar una leyenda.</p></li>
+</ul>
+<div class="section" id="scatter-plot">
+<h2>Scatter plot:<a class="headerlink" href="#scatter-plot" title="Permalink to this headline"></a></h2>
+<p>Se usa el método <code class="docutils literal notranslate"><span class="pre">.scatter</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">plt</span></code>: <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Producción&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">PathCollection</span> <span class="n">at</span> <span class="mh">0x1994acabdc0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_11_1.png" src="../../_images/output_11_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Producción&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># para eliminar el comentario &lt;matplotlib.collections.PathCollection at...&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_12_02.png" src="../../_images/output_12_02.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Producción&quot;</span><span class="p">])</span>
+<span class="c1"># el ; para eliminar el comentario &lt;matplotlib.collections.PathCollection at...&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">PathCollection</span> <span class="n">at</span> <span class="mh">0x1994adbe9a0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_13_1.png" src="../../_images/output_13_1.png" />
+<p><strong>Tamaño del gráfico:</strong></p>
+<p>En la primera línea de código se agrega:</p>
+<p><code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(10,10))</span></code>: cambiar los valores 10,10 para el
+tamaño que desee.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;TRM vs Producción&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Producción&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Producción&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">PathCollection</span> <span class="n">at</span> <span class="mh">0x1994adec430</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_15_1.png" src="../../_images/output_15_1.png" />
+<p>Algunos de los parámetros son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: scalar, array o lista que indica la primera coordenada de las
+observaciones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: scalar, array o lista que indica la segunda coordenada de las
+observaciones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c</span></code>: para cambiar el color de relleno.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edgecolors</span></code>: para cambiar el color del contorno.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: para cambiar la transparencia.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">marker</span></code>: para cambiar la <a class="reference external" href="https://matplotlib.org/3.2.1/api/markers_api.html#module-matplotlib.markers">forma del
+punto</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code>: para cambiar el tamaño de los puntos (se mide en puntos).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linewidths</span></code>: para cambiar el grosor del contorno.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;TRM vs Producción&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Producción&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Producción&quot;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;lightskyblue&quot;</span><span class="p">,</span>
+    <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;lightskyblue&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">PathCollection</span> <span class="n">at</span> <span class="mh">0x1994ae723d0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_17_12.png" src="../../_images/output_17_12.png" />
+</div>
+<div class="section" id="line-plot">
+<h2>Line Plot:<a class="headerlink" href="#line-plot" title="Permalink to this headline"></a></h2>
+<p>Para hacer un gráfico Line plot, usamos el método <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> del módulo
+<code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<p>Algunos de los parámetros de este método son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: scalar, array o lista que indica la primera coordenada de las
+observaciones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: scalar, array o lista que indica la segunda coordenada de las
+observaciones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: para cambiar el color de relleno. También podemos
+referirnos a este parámetro por su diminutivo <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt</span></code>: para establecer un formato básico rápidamente como string.
+Por ejemplo, <code class="docutils literal notranslate"><span class="pre">&quot;or&quot;</span></code> son círculos rojos. El orden recomendado para
+introducir el formato de este modo es
+<code class="docutils literal notranslate"><span class="pre">&quot;[marker][linestyle][color]&quot;</span></code> aunque también se admite
+<code class="docutils literal notranslate"><span class="pre">&quot;[color][marker][linestyle]&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linewidth</span></code>: para cambiar el grosor de la línea. También podemos
+referirnos a este parámetro por su diminutivo <code class="docutils literal notranslate"><span class="pre">lw</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linestyle</span></code>: para cambiar el estilo de la línea. También podemos
+referirnos a este parámetro por su diminutivo <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: para cambiar la transparencia.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">marker</span></code>: para cambiar la <a class="reference external" href="https://matplotlib.org/3.2.1/api/markers_api.html#module-matplotlib.markers">forma del
+punto</a>.
+Si no indicamos este parámetro, no se dibujan los puntos..</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markersize</span></code>: para cambiar el tamaño de los puntos. También podemos
+referirnos a este parámetro por su diminutivo <code class="docutils literal notranslate"><span class="pre">ms</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markeredgecolor</span></code>: para cambiar el color del contorno del punto.
+También podemos referirnos a este parámetro por su diminutivo
+<code class="docutils literal notranslate"><span class="pre">mec</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markerfacecolor</span></code>: para cambiar el color de relleno del punto.
+También podemos referirnos a este parámetro por su diminutivo
+<code class="docutils literal notranslate"><span class="pre">mfc</span></code>.</p></li>
+</ul>
+<p>Para el parámetro <code class="docutils literal notranslate"><span class="pre">fmt</span></code>, las opciones disponibles para <code class="docutils literal notranslate"><span class="pre">marker</span></code>,
+<code class="docutils literal notranslate"><span class="pre">linestyle</span></code> y <code class="docutils literal notranslate"><span class="pre">color</span></code> son</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>``
+marker``</p></th>
+<th class="head"><p>forma</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">lin</span>
+<span class="pre">estyle</span></code></p></th>
+<th class="head"><p>estilo
+de línea</p></th>
+<th class="head"><p>`
+<cite>color`</cite></p></th>
+<th class="head"><p>color</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code></p></td>
+<td><p>punto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;-&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;</span>
+<span class="pre">solid&quot;</span></code></p></td>
+<td><p>sólido</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code>
+o
+``
+&quot;blue&quot;``</p></td>
+<td><p>azul</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;,&quot;</span></code></p></td>
+<td><p>píxel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;--&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;d</span>
+<span class="pre">ashed&quot;</span></code></p></td>
+<td><p>dis
+continuo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;g&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;</span>
+<span class="pre">green&quot;</span></code></p></td>
+<td><p>verde</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;o&quot;</span></code></p></td>
+<td><p>círculo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;-.&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;da</span>
+<span class="pre">shdot&quot;</span></code></p></td>
+<td><p>gui
+ón-punto</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>
+o
+`
+<cite>&quot;red&quot;`</cite></p></td>
+<td><p>rojo</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;v&quot;</span></code></p></td>
+<td><p>t
+riángulo
+hacia
+abajo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;:&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;d</span>
+<span class="pre">otted&quot;</span></code></p></td>
+<td><p>puntos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;c&quot;</span></code>
+o
+``
+&quot;cyan&quot;``</p></td>
+<td><p>cian</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;^&quot;</span></code></p></td>
+<td><p>t
+riángulo
+hacia
+arriba</p></td>
+<td><p>``
+&quot;None&quot;``</p></td>
+<td><p>sin
+línea</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;m&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;ma</span>
+<span class="pre">genta&quot;</span></code></p></td>
+<td><p>magenta</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;&quot;</span></code></p></td>
+<td><p>t
+riángulo
+hacia
+i
+zquierda</p></td>
+<td></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;y&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;y</span>
+<span class="pre">ellow&quot;</span></code></p></td>
+<td><p>amarillo</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;&gt;&quot;</span></code></p></td>
+<td><p>t
+riángulo
+hacia
+derecha</p></td>
+<td></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;k&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;</span>
+<span class="pre">black&quot;</span></code></p></td>
+<td><p>negro</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code></p></td>
+<td><p>tri
+hacia
+abajo</p></td>
+<td></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code>
+o
+<code class="docutils literal notranslate"><span class="pre">&quot;</span>
+<span class="pre">white&quot;</span></code></p></td>
+<td><p>blanco</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;2&quot;</span></code></p></td>
+<td><p>tri
+hacia
+arriba</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;3&quot;</span></code></p></td>
+<td><p>tri
+hacia
+i
+zquierda</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;4&quot;</span></code></p></td>
+<td><p>tri
+hacia
+derecha</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code></p></td>
+<td><p>cuadrado</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;p&quot;</span></code></p></td>
+<td><p>p
+entágono</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code></p></td>
+<td><p>estrella</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;h&quot;</span></code></p></td>
+<td><p>hexágono
+1</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;H&quot;</span></code></p></td>
+<td><p>hexágono
+2</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code></p></td>
+<td><p>cruz</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code></p></td>
+<td><p>x</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code></p></td>
+<td><p>diamante</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;d&quot;</span></code></p></td>
+<td><p>diamante
+fino</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;\|&quot;</span></code></p></td>
+<td><p>barra
+vertical</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;_&quot;</span></code></p></td>
+<td><p>barra
+ho
+rizontal</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observación:</strong> Si no indicamos parámetro <code class="docutils literal notranslate"><span class="pre">x</span></code>, se consideran como
+primeras coordenadas los números enteros 0, 1, 2, …, <span class="math notranslate nohighlight">\(n-1\)</span>, siendo
+<span class="math notranslate nohighlight">\(n\)</span> el número total de observaciones:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Evolución TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x1994aec3ac0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_22_1.png" src="../../_images/output_22_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Evolución TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x1994ae34dc0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_23_11.png" src="../../_images/output_23_11.png" />
+<p><strong>Observación.</strong> En un mismo plot podemos dibujar más de una línea:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Evolución TRM y EURO&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;TRM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;EUR&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x1994ad34c10</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_25_11.png" src="../../_images/output_25_11.png" />
+</div>
+<div class="section" id="bar-plot">
+<h2>Bar Plot:<a class="headerlink" href="#bar-plot" title="Permalink to this headline"></a></h2>
+<p>Para hacer un gráfico de barras, usamos el método <code class="docutils literal notranslate"><span class="pre">.bar()</span></code> del módulo
+<code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<p>Algunos de los parámetros de este método son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: float, array o lista que indica las categorías o coordenadas
+de las barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: float, array o lista que indica las alturas de las
+barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code>: para cambiar el ancho de las barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linewidth</span></code>: para cambiar el tamaño del borde de las barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bottom</span></code>: para cambiar el valor vertical mínimo de las barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">align</span></code>: posición de la marca del eje horizontal con respecto a la
+base de las barras. Por defecto vale “center”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code> para cambiar los colores de las barras. Si pasamos una
+lista, podemos asignar un color diferente a cada barra.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edgecolor</span></code>: para cambiar el color del borde de las barras.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">valores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;PrecioInterno&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">percentiles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Precio Interno&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percentiles&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">percentiles</span><span class="p">,</span> <span class="n">valores</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#ff7f7d&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffc07d&quot;</span><span class="p">,</span> <span class="s2">&quot;#817dff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7dff86&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">BarContainer</span> <span class="nb">object</span> <span class="n">of</span> <span class="mi">4</span> <span class="n">artists</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_28_1.png" src="../../_images/output_28_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Perdió&quot;</span><span class="p">,</span> <span class="s2">&quot;Aprobó&quot;</span><span class="p">,</span> <span class="s2">&quot;Excelente&quot;</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#ff7f7d&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffc07d&quot;</span><span class="p">,</span> <span class="s2">&quot;#817dff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7dff86&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Notas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Número estudiantes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Notas de los estudiantes de una clase&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Notas de los estudiantes de una clase&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_29_1.png" src="../../_images/output_29_1.png" />
+<p>Note que en el código anterior se cambió el orden de las líneas de
+código, pero al final siempre se termina con <code class="docutils literal notranslate"><span class="pre">;</span></code> o podría ser
+<code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p>
+<p>Para barras horizontales se usa <code class="docutils literal notranslate"><span class="pre">.barh()</span></code>.</p>
+<p>El ancho de las barras horizontales se cambia con <code class="docutils literal notranslate"><span class="pre">height</span></code> y no con
+<code class="docutils literal notranslate"><span class="pre">width</span></code></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Perdió&quot;</span><span class="p">,</span> <span class="s2">&quot;Aprobó&quot;</span><span class="p">,</span> <span class="s2">&quot;Excelente&quot;</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#ff7f7d&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffc07d&quot;</span><span class="p">,</span> <span class="s2">&quot;#817dff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7dff86&quot;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Notas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Número estudiantes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Notas de los estudiantes de una clase&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Notas de los estudiantes de una clase&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_32_11.png" src="../../_images/output_32_11.png" />
+</div>
+<div class="section" id="pie-chart">
+<h2>Pie Chart:<a class="headerlink" href="#pie-chart" title="Permalink to this headline"></a></h2>
+<p>Para hacer un gráfico de sectores, usamos el método <code class="docutils literal notranslate"><span class="pre">.pie()</span></code> del
+módulo <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<p>Algunos de los parámetros de este método son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: array 1D o lista.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">labels</span></code>: para especificar las etiquetas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colors</span></code>: para cambiar los colores de los sectores. Si pasamos una
+lista, podemos asignar un color diferente a cada sector circular.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autopct</span></code>: para editar el formato en que se muestra el porcentaje.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">labeldistance</span></code>: para ajustar la distancia radial de las etiquetas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code>: para modificar el radio del gráfico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startangle</span></code>: para cambiar el ángulo (en grados) con el que se
+empieza (por defecto es 0).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">explode</span></code>: vector de distancias para indicar cómo de separado
+queremos que esté el sector correspondiente del resto.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shadow</span></code>: para añadir sombra a los sectores.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Con&quot;</span><span class="p">,</span> <span class="s2">&quot;Sin&quot;</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s2">&quot;silver&quot;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%0.1f%%</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;¿Pizza con o sin piña?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;¿Pizza con o sin piña?&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_35_11.png" src="../../_images/output_35_11.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Con&quot;</span><span class="p">,</span> <span class="s2">&quot;Sin&quot;</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span>
+    <span class="n">count</span><span class="p">,</span>
+    <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s2">&quot;silver&quot;</span><span class="p">],</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+    <span class="n">autopct</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%0.1f%%</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">explode</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;¿Pizza con o sin piña?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;¿Pizza con o sin piña?&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_36_1.png" src="../../_images/output_36_1.png" />
+</div>
+<div class="section" id="histograma">
+<h2>Histograma:<a class="headerlink" href="#histograma" title="Permalink to this headline"></a></h2>
+<p>Para hacer un histograma, usamos el método <code class="docutils literal notranslate"><span class="pre">.hist()</span></code> del módulo
+<code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<p>Algunos de los parámetros de este método son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: array o lista de observaciones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins</span></code>: para especificar el tamaño de los intervalos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range</span></code>: para especificar el mínimo y el máximo de las bins.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">histtype</span></code>: para indicar qué tipo de histograma queremos dibujar.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">align</span></code>: para configurar la alineación de las barras del
+histograma.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orientation</span></code>: para modificar la orientación del histograma
+(vertical u horizontal).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: para modificar el color de las barras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edgecolor</span></code>: para modficar el color de contorno de las barras.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TRM&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;silver&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;silver&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_39_01.png" src="../../_images/output_39_01.png" />
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../NumPy/NumPy.html" class="btn btn-neutral float-left" title="NumPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html" class="btn btn-neutral float-right" title="Análisis gráfico" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

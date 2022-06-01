@@ -21,6 +21,7 @@ natalia.acevedop@udea.edu.co
    Regresión lineal/index
    Multivariado/index
    Series de tiempo/index
+   Introducción a Python/index
 
    
 

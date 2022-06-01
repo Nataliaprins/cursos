@@ -52,9 +52,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html">autoplot para series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA/Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA.html">Modelos de promedio móvil - MA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20ARMA/Modelos%20ARMA.html">Modelos ARMA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#lecturas">Lecturas</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
 <ul>
@@ -215,7 +218,7 @@ pronóstico se aproxima a la varianza de <span class="math notranslate nohighlig
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_26_02.png"><img alt="../../_images/output_26_02.png" src="../../_images/output_26_02.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_26_03.png"><img alt="../../_images/output_26_03.png" src="../../_images/output_26_03.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Ajuste modelo AR(1):</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ar</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
 <span class="n">ar</span>
@@ -315,7 +318,7 @@ los <span class="math notranslate nohighlight">\(\hat{z_h}(\ell)\)</span> con su
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/output_42_03.png"><img alt="../../_images/output_42_03.png" src="../../_images/output_42_03.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_42_04.png"><img alt="../../_images/output_42_04.png" src="../../_images/output_42_04.png" style="width: 420px; height: 420px;" /></a>
 <p><strong>Pronóstico para 10 períodos hacia adelante:</strong></p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
 <span class="n">forecast</span>
