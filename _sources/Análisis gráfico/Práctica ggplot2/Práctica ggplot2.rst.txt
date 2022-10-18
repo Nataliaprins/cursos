@@ -1,0 +1,30 @@
+Práctica ggplot2
+----------------
+
+Con el archivo ``creditos_otorgados_a_microempresarios.csv`` realizar
+los siguientes gráficos. Deben quedar exactamente iguales.
+
+.. figure:: pie.png
+   :alt: Figura 1
+
+   Figura 1
+
+.. figure:: histograma_Boxplot.png
+   :alt: Figura 2
+
+   Figura 2
+
+.. figure:: point_y_violin.png
+   :alt: Figura 3
+
+   Figura 3
+
+.. figure:: point_y_marginal.png
+   :alt: Figura 4
+
+   Figura 4
+
+.. figure:: jitter_y_boxplot.png
+   :alt: Figura 5
+
+   Figura 5

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pronóstico con AR &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="autoplot para series de tiempo" href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html" />
+    <link rel="prev" title="Modelos Autorregresivos - AR" href="../Modelos%20Autorregresivos%20-%20AR/Modelos%20Autorregresivos%20-%20AR.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Series de tiempo</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Caracter%C3%ADsticas%20de%20las%20series%20de%20tiempo/Caracter%C3%ADsticas%20de%20las%20series%20de%20tiempo.html">Características de las series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ACF/ACF.html">ACF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20Autorregresivos%20-%20AR/Modelos%20Autorregresivos%20-%20AR.html">Modelos Autorregresivos - AR</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pronóstico con AR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#codigo-en-r-para-pronosticar-modelos-ar">Código en <code class="docutils literal notranslate"><span class="pre">R</span></code> para pronosticar modelos AR:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html">autoplot para series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA/Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA.html">Modelos de promedio móvil - MA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20ARMA/Modelos%20ARMA.html">Modelos ARMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lecturas">Lecturas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Series de tiempo</a> &raquo;</li>
+      <li>Pronóstico con AR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Series de tiempo/Pronóstico con AR/Pronóstico con AR.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="pronostico-con-ar">
+<h1>Pronóstico con AR<a class="headerlink" href="#pronostico-con-ar" title="Permalink to this headline"></a></h1>
+<p>Supongamos que estamos en el período con índice <span class="math notranslate nohighlight">\(h\)</span> y el
+pronóstico se realiza para el período <span class="math notranslate nohighlight">\(h+\ell\)</span>, donde
+<span class="math notranslate nohighlight">\(\ell \geq 1\)</span>. El índice <span class="math notranslate nohighlight">\(h\)</span> es llamado origen del
+pronóstico (forecast origin) y <span class="math notranslate nohighlight">\(\ell\)</span> es el horizonte de
+pronóstico (forecast horizon).</p>
+<p>Así que, <span class="math notranslate nohighlight">\(\hat{z_h}(\ell)\)</span> es la predicción de <span class="math notranslate nohighlight">\(z_{h+\ell}\)</span>.</p>
+<p>El pronóstico se realiza con el modelo AR(p) ajustado y con la
+información histórica disponible que la llamaremos
+<span class="math notranslate nohighlight">\(F_h = \{ z_h, z_{h-1}, z_{h-2},...\}\)</span></p>
+<p><strong>Pronóstico para un paso hacia adelante:</strong></p>
+<p>El modelo AR(p) para pronosticar un período hacia adelante (1-Step Ahead
+Forecast), donde <span class="math notranslate nohighlight">\(\ell = 1\)</span>, para el período <span class="math notranslate nohighlight">\(h+1\)</span>, es:</p>
+<div class="math notranslate nohighlight">
+\[z_{h+1} = \phi_0+\phi_1 z_h+\phi_2 z_{h-1} + ... + \phi_p z_{h+1-p} + a_{h+1}\]</div>
+<p>El ajuste de <span class="math notranslate nohighlight">\(z_{h+1}\)</span> es <span class="math notranslate nohighlight">\(\hat{z_h}(1)\)</span>, que es el ajuste
+del modelo AR(p) para un período hacia adelante.</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_h}(1) = E(z_{h+1}|F_h) = \phi_0+\sum_{i=1}^p{\phi_i z_{h+1-i}}\]</div>
+<p>Donde,</p>
+<div class="math notranslate nohighlight">
+\[e_h(1) = z_{h+1}-\hat{z_h}(1) = a_{h+1}\]</div>
+<p>La varianza del error de predicción de un período hacia adelante es:</p>
+<div class="math notranslate nohighlight">
+\[Var[e_h(1)] = Var(a_{h+1}) = \sigma_a^2\]</div>
+<p>Como <span class="math notranslate nohighlight">\(a_t\)</span> se distribuye normal, entonces un intervalo del 95%
+para el período pronosticado es
+<span class="math notranslate nohighlight">\(\hat{z_h}(1) \pm 1,96 \times \sigma_a\)</span></p>
+<p><strong>Pronóstico para dos pasos hacia adelante:</strong></p>
+<p>El modelo AR(p) para pronosticar dos períodos hacia adelante (2-Step
+Ahead Forecast), donde <span class="math notranslate nohighlight">\(\ell = 2\)</span>, para el período <span class="math notranslate nohighlight">\(h+2\)</span>,
+es:</p>
+<div class="math notranslate nohighlight">
+\[z_{h+2} = \phi_0+\phi_1 z_h+\phi_2 z_{h-1} + ... + \phi_p z_{h+2-p} + a_{h+2}\]</div>
+<p>El ajuste de <span class="math notranslate nohighlight">\(z_{h+2}\)</span> es <span class="math notranslate nohighlight">\(\hat{z_h}(2)\)</span>, que es el ajuste
+del modelo AR(p) para dos períodos hacia adelante.</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_h}(2) = E(z_{h+2}|F_h) = \phi_0+\phi_1 \hat{z_h}(1) + \phi_2 z_h + ... + \phi_p z_{h+2-p}\]</div>
+<p>El error de la predicción es:</p>
+<div class="math notranslate nohighlight">
+\[e_h(2) = z_{h+2}-\hat{z_h}(2) = \phi_1[z_{h+1}-\hat{z_h}(1)]+a_{h+2}\]</div>
+<div class="math notranslate nohighlight">
+\[e_h(2) = a_{h+2}+\phi_1 a_{h+1}\]</div>
+<p>La varianza del error del pronóstico:</p>
+<div class="math notranslate nohighlight">
+\[Var[e_h(2)] = (1+\phi_1^2)\sigma_a^2\]</div>
+<p>El intervalo del pronóstico puede ser calculado de la misma forma que el
+anterior, <span class="math notranslate nohighlight">\(z_{h+1}\)</span>.</p>
+<p>En estos modelos se cumple que <span class="math notranslate nohighlight">\(Var[e_h(2)] \geq Var[e_h(1)]\)</span>.
+Esto significa que a medida que aumenta el horizonte de pronóstico,
+también aumenta la incertidumbre del pronóstico. En otras palabras,
+tenemos más incertiducmbre acerca de <span class="math notranslate nohighlight">\(z_{h+2}\)</span> que de
+<span class="math notranslate nohighlight">\(z_{h+1}\)</span>.</p>
+<p><strong>Pronóstico para múltiples pasos hacia adelante:</strong></p>
+<p>En general, tememos:</p>
+<div class="math notranslate nohighlight">
+\[z_{h+\ell} = \phi_0+\phi_1 z_{h+\ell -1} + ... + \phi_p z_{h+\ell-p}+a_{h+\ell}\]</div>
+<p>El modelo estimado para el pronóstico sería:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_h}(\ell) = \phi_0+\sum_{i=1}^p{\phi_i \hat{z_h}(\ell -i)}\]</div>
+<p>Para <span class="math notranslate nohighlight">\(i=1,2,3,...,\ell-1\)</span></p>
+<p>El error de predicción en el período <span class="math notranslate nohighlight">\(h+\ell\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[e_h(\ell) = z_{h+\ell} - \hat{z_h}(\ell)\]</div>
+<p>Es fácil demostrar que cuando <span class="math notranslate nohighlight">\(\ell \rightarrow \infty\)</span>, es decir,
+pronosticar muchos períodos hacia adelante, <span class="math notranslate nohighlight">\(\hat{z_h}(\ell)\)</span>
+converge a <span class="math notranslate nohighlight">\(E[z_t]\)</span>. El pronóstico puntual a largo plazo se
+aproxima a su media incondicional. Esta propiedad se conoce como
+<strong>reversión a la media</strong>.</p>
+<p>Para el modelo AR(1), la velocidad de reversión a la media se mide como
+<span class="math notranslate nohighlight">\(k = ln(\frac{0,5}{|\phi_1|})\)</span> y la varianza del error del
+pronóstico se aproxima a la varianza de <span class="math notranslate nohighlight">\(z_t\)</span></p>
+<div class="section" id="codigo-en-r-para-pronosticar-modelos-ar">
+<h2>Código en <code class="docutils literal notranslate"><span class="pre">R</span></code> para pronosticar modelos AR:<a class="headerlink" href="#codigo-en-r-para-pronosticar-modelos-ar" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;forecast&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Registered</span> <span class="n">S3</span> <span class="n">method</span> <span class="n">overwritten</span> <span class="n">by</span> <span class="s1">&#39;quantmod&#39;</span><span class="p">:</span>
+  <span class="n">method</span>            <span class="kn">from</span>
+  <span class="nn">as.zoo.data.frame</span> <span class="n">zoo</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">estacional</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">estacional2</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad2.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">tendencia</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Tendencia.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">ruidoblanco</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;ruidoblanco.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo 1: serie estacional</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_05.png"><img alt="../../_images/output_25_05.png" src="../../_images/output_25_05.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_26_03.png"><img alt="../../_images/output_26_03.png" src="../../_images/output_26_03.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ajuste modelo AR(1):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ar</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+<span class="n">ar</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">estacional</span><span class="p">[,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>  <span class="n">intercept</span>
+      <span class="mf">0.9895</span>     <span class="mf">5.5923</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0118</span>     <span class="mf">3.2046</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">0.3253</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">87.68</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">181.36</span>
+</pre></div>
+</div>
+<p>Antes de realizar el pronóstico podemos ajustar el modelo AR(1) a las
+observaciones de la serie de tiempo original.</p>
+<p>El modelo estimado es:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = 0,9895 z_{t-1}\]</div>
+<p>El coeficiente <span class="math notranslate nohighlight">\(\phi_1\)</span> se extrae con <code class="docutils literal notranslate"><span class="pre">$coef[1]</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">phi_1</span> <span class="o">&lt;-</span> <span class="n">ar</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">phi_1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">ar1</span>
+<span class="mf">0.9894924</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">&lt;-</span> <span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="m">1</span>              <span class="c1"># AR (1)</span>
+
+<span class="n">fitted</span> <span class="o">&lt;-</span> <span class="nf">vector</span><span class="p">()</span>  <span class="c1"># vector para almacenar los valores ajustados sobre la serie de tiempo</span>
+
+<span class="nf">for</span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="nf">length</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">:</span><span class="m">2</span><span class="p">){</span>
+
+    <span class="n">fitted</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">phi_1</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="n">p</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">fitted</span><span class="p">))</span>  <span class="c1"># El primer término es NA porque no hay más datos históricos</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>        <span class="n">NA</span> <span class="mf">1.1900454</span> <span class="mf">1.8174858</span> <span class="mf">1.2311345</span> <span class="mf">0.7646015</span> <span class="mf">0.5281369</span>
+</pre></div>
+</div>
+<p><strong>Gráfico de la serie original con los valores ajustados:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fitted</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 1 row(s) containing missing values (geom_path).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_34_1.png"><img alt="../../_images/output_34_1.png" src="../../_images/output_34_1.png" style="width: 420px; height: 420px;" /></a>
+<p>El ajuste anterior, sobre la serie de tiempo, se puede hacer con la
+función <code class="docutils literal notranslate"><span class="pre">fitted()</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="nf">fitted</span><span class="p">(</span><span class="n">ar</span><span class="p">)))</span> <span class="c1"># Hay una diferencia con el cálculo manual porque se usan diferente cantidad de decimales.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Time</span> <span class="n">Series</span><span class="p">:</span>
+<span class="n">Start</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">End</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Frequency</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1.8373579</span> <span class="mf">1.2488073</span> <span class="mf">1.8762477</span> <span class="mf">1.2898964</span> <span class="mf">0.8233634</span> <span class="mf">0.5868988</span>
+</pre></div>
+</div>
+<p><strong>Pronóstico (Forecasting):</strong></p>
+<p>Se usa la función <code class="docutils literal notranslate"><span class="pre">forecast()</span></code>. Se debe indicar lo siguiente:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span></code>: cantidad de períodos hacia adelante para pronosticas
+<span class="math notranslate nohighlight">\((\ell)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span> <span class="pre">=</span></code>: intervalo de confianza para el pronóstico. Usualmente es
+95% o 99%.</p></li>
+</ul>
+<p><strong>Pronóstico para 5 períodos hacia adelante:</strong></p>
+<p>La serie de tiempo tiene <span class="math notranslate nohighlight">\(N=100\)</span> y como <span class="math notranslate nohighlight">\(\ell = 5\)</span>, entonces
+los <span class="math notranslate nohighlight">\(\hat{z_h}(\ell)\)</span> con su respectivo intervalo de confianza al
+99% son:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="n">forecast</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Point</span> <span class="n">Forecast</span>    <span class="n">Lo</span> <span class="mi">99</span>    <span class="n">Hi</span> <span class="mi">99</span>
+<span class="mi">101</span>       <span class="mf">10.55864</span> <span class="mf">9.089502</span> <span class="mf">12.02777</span>
+<span class="mi">102</span>       <span class="mf">10.50645</span> <span class="mf">8.439670</span> <span class="mf">12.57323</span>
+<span class="mi">103</span>       <span class="mf">10.45482</span> <span class="mf">7.936753</span> <span class="mf">12.97288</span>
+<span class="mi">104</span>       <span class="mf">10.40372</span> <span class="mf">7.511242</span> <span class="mf">13.29620</span>
+<span class="mi">105</span>       <span class="mf">10.35317</span> <span class="mf">7.136040</span> <span class="mf">13.57029</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_42_04.png"><img alt="../../_images/output_42_04.png" src="../../_images/output_42_04.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Pronóstico para 10 períodos hacia adelante:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="n">forecast</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Point</span> <span class="n">Forecast</span>    <span class="n">Lo</span> <span class="mi">99</span>    <span class="n">Hi</span> <span class="mi">99</span>
+<span class="mi">101</span>       <span class="mf">10.55864</span> <span class="mf">9.089502</span> <span class="mf">12.02777</span>
+<span class="mi">102</span>       <span class="mf">10.50645</span> <span class="mf">8.439670</span> <span class="mf">12.57323</span>
+<span class="mi">103</span>       <span class="mf">10.45482</span> <span class="mf">7.936753</span> <span class="mf">12.97288</span>
+<span class="mi">104</span>       <span class="mf">10.40372</span> <span class="mf">7.511242</span> <span class="mf">13.29620</span>
+<span class="mi">105</span>       <span class="mf">10.35317</span> <span class="mf">7.136040</span> <span class="mf">13.57029</span>
+<span class="mi">106</span>       <span class="mf">10.30314</span> <span class="mf">6.797162</span> <span class="mf">13.80912</span>
+<span class="mi">107</span>       <span class="mf">10.25364</span> <span class="mf">6.486244</span> <span class="mf">14.02104</span>
+<span class="mi">108</span>       <span class="mf">10.20466</span> <span class="mf">6.197802</span> <span class="mf">14.21152</span>
+<span class="mi">109</span>       <span class="mf">10.15620</span> <span class="mf">5.928000</span> <span class="mf">14.38439</span>
+<span class="mi">110</span>       <span class="mf">10.10824</span> <span class="mf">5.674025</span> <span class="mf">14.54246</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_45_01.png"><img alt="../../_images/output_45_01.png" src="../../_images/output_45_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Predicciones:</strong></p>
+<p>Las predicciones se pueden extraer con <code class="docutils literal notranslate"><span class="pre">$mean</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">forecast</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Time</span> <span class="n">Series</span><span class="p">:</span>
+<span class="n">Start</span> <span class="o">=</span> <span class="mi">101</span>
+<span class="n">End</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="n">Frequency</span> <span class="o">=</span> <span class="mi">1</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">10.55864</span> <span class="mf">10.50645</span> <span class="mf">10.45482</span> <span class="mf">10.40372</span> <span class="mf">10.35317</span> <span class="mf">10.30314</span> <span class="mf">10.25364</span> <span class="mf">10.20466</span>
+ <span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="mf">10.15620</span> <span class="mf">10.10824</span>
+</pre></div>
+</div>
+<p>Los modelos AR(p) tienen una reversión a la media de la serie original.
+Pronosticar muchos períodos hacia adelante, <span class="math notranslate nohighlight">\(\hat{z_h}(\ell)\)</span>
+converge a <span class="math notranslate nohighlight">\(E[z_t]\)</span>. Hagamos el ejemplo de pronosticar 200
+períodos hacia adelante.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">200</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_50_03.png"><img alt="../../_images/output_50_03.png" src="../../_images/output_50_03.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ejemplo 2: serie estacional, varianza no cosntante</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_52_02.png"><img alt="../../_images/output_52_02.png" src="../../_images/output_52_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ajuste modelo AR(1):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ar</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+<span class="n">ar</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">estacional2</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>  <span class="n">intercept</span>
+      <span class="mf">0.9749</span>     <span class="mf">1.6177</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0215</span>     <span class="mf">0.7873</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">0.06952</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.09</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">26.17</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">&lt;-</span> <span class="nf">fitted</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional2</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional2</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fitted</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 2&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_56_01.png"><img alt="../../_images/output_56_01.png" src="../../_images/output_56_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Pronóstico (Forecasting):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_58_02.png"><img alt="../../_images/output_58_02.png" src="../../_images/output_58_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ejemplo 3: serie con tendencia, varianza constante</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_60_02.png"><img alt="../../_images/output_60_02.png" src="../../_images/output_60_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ajuste modelo AR(2):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ar</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+<span class="n">ar</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">tendencia</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>     <span class="n">ar2</span>  <span class="n">intercept</span>
+      <span class="mf">0.4305</span>  <span class="mf">0.5639</span>   <span class="mf">985.1726</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0860</span>  <span class="mf">0.0863</span>   <span class="mf">839.8509</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mi">14648</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">623.71</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">1255.42</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">&lt;-</span> <span class="nf">fitted</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">tendencia</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">tendencia</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fitted</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_64_02.png"><img alt="../../_images/output_64_02.png" src="../../_images/output_64_02.png" style="width: 420px; height: 420px;" /></a>
+<p>La gráfica anterior la podemos hacer de forma manual siguiente la
+siguiente ecuación de estimación para un AR(2):</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = \phi_1z_{t-1}+\phi_2z_{t-2}\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">phi_1</span> <span class="o">&lt;-</span> <span class="n">ar</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">phi_1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">ar1</span>
+<span class="mf">0.4304606</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">phi_2</span> <span class="o">&lt;-</span> <span class="n">ar</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">phi_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">ar2</span>
+<span class="mf">0.5638954</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">&lt;-</span> <span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="m">2</span>              <span class="c1"># AR (2)</span>
+
+<span class="n">fitted</span> <span class="o">&lt;-</span> <span class="nf">vector</span><span class="p">()</span>  <span class="c1"># vector para almacenar los valores ajustados sobre la serie de tiempo</span>
+
+<span class="nf">for</span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="nf">length</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">:</span><span class="m">3</span><span class="p">){</span>
+
+    <span class="n">fitted</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">phi_1</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="n">p</span><span class="m">+1</span><span class="p">]</span> <span class="o">+</span> <span class="n">phi_2</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="n">p</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">fitted</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>         <span class="n">NA</span>         <span class="n">NA</span>   <span class="mf">5.944229</span> <span class="mf">189.616020</span> <span class="mf">134.291362</span>  <span class="mf">42.786254</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">tendencia</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">tendencia</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fitted</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Removed 2 row(s) containing missing values (geom_path).&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_69_1.png"><img alt="../../_images/output_69_1.png" src="../../_images/output_69_1.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Pronóstico (Forecasting):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_71_01.png"><img alt="../../_images/output_71_01.png" src="../../_images/output_71_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ejemplo 4: serie Ruido Blanco</strong></p>
+<p>Ya sabemos que no se tiene una buen ajuste a las series de tiempo ruido
+blanco, pero hagamos el ejercicio.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_74_01.png"><img alt="../../_images/output_74_01.png" src="../../_images/output_74_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ajuste modelo AR(1):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ar</span> <span class="o">&lt;-</span> <span class="nf">arima</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+<span class="n">ar</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">ruidoblanco</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+          <span class="n">ar1</span>      <span class="n">ar2</span>  <span class="n">intercept</span>
+      <span class="o">-</span><span class="mf">0.0600</span>  <span class="o">-</span><span class="mf">0.0061</span>    <span class="o">-</span><span class="mf">0.1104</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>   <span class="mf">0.0709</span>   <span class="mf">0.0711</span>     <span class="mf">0.0683</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">1.061</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">289.71</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">587.42</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitted</span> <span class="o">&lt;-</span> <span class="nf">fitted</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fitted</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 4&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_78_01.png"><img alt="../../_images/output_78_01.png" src="../../_images/output_78_01.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Pronóstico (Forecasting):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">&lt;-</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_80_02.png"><img alt="../../_images/output_80_02.png" src="../../_images/output_80_02.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Modelos%20Autorregresivos%20-%20AR/Modelos%20Autorregresivos%20-%20AR.html" class="btn btn-neutral float-left" title="Modelos Autorregresivos - AR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html" class="btn btn-neutral float-right" title="autoplot para series de tiempo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

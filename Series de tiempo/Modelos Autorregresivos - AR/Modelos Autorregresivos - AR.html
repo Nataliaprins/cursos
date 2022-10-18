@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos Autorregresivos - AR &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pronóstico con AR" href="../Pron%C3%B3stico%20con%20AR/Pron%C3%B3stico%20con%20AR.html" />
+    <link rel="prev" title="ACF" href="../ACF/ACF.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Series de tiempo</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Caracter%C3%ADsticas%20de%20las%20series%20de%20tiempo/Caracter%C3%ADsticas%20de%20las%20series%20de%20tiempo.html">Características de las series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ACF/ACF.html">ACF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modelos Autorregresivos - AR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ar-1">AR(1):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ar-p">AR(p):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estimacion-de-los-parametros">Estimación de los parámetros:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#identificacion-del-orden-p-de-ar">Identificación del orden p de AR:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partial-autocorrelation-function-pacf">Partial Autocorrelation Function (PACF):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-pacf-de-r">Función <code class="docutils literal notranslate"><span class="pre">pacf</span></code> de R:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ajuste-modelo-ar-en-r">Ajuste modelo AR en <code class="docutils literal notranslate"><span class="pre">R</span></code>:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Pron%C3%B3stico%20con%20AR/Pron%C3%B3stico%20con%20AR.html">Pronóstico con AR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html">autoplot para series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA/Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA.html">Modelos de promedio móvil - MA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20ARMA/Modelos%20ARMA.html">Modelos ARMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lecturas">Lecturas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Series de tiempo</a> &raquo;</li>
+      <li>Modelos Autorregresivos - AR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Series de tiempo/Modelos Autorregresivos - AR/Modelos Autorregresivos - AR.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="modelos-autorregresivos-ar">
+<h1>Modelos Autorregresivos - AR<a class="headerlink" href="#modelos-autorregresivos-ar" title="Permalink to this headline"></a></h1>
+<p>Una serie de tiempo puede ser lineal si puede ser representada como:</p>
+<div class="math notranslate nohighlight">
+\[z_t = \mu+\sum_{i=0}^{\infty}{\Psi_i a_{t-i}}\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(\mu\)</span> es la media de <span class="math notranslate nohighlight">\(z_t\)</span>, <span class="math notranslate nohighlight">\(\Psi_0=1\)</span> y
+<span class="math notranslate nohighlight">\(a_t\)</span> es una secuencia de variables aleatorias independientes e
+idénticamente distribuidas con media cero (podría ser un ruido blanco).</p>
+<p><span class="math notranslate nohighlight">\(a_t\)</span> también es llamado las <strong>innovaciones</strong> o <strong>shock</strong> en el
+período <span class="math notranslate nohighlight">\(t\)</span> y representa la nueva información en el período
+<span class="math notranslate nohighlight">\(t\)</span> de la serie de tiempo.</p>
+<p>La serie de tiempo <span class="math notranslate nohighlight">\(z_t\)</span> depende de los coeficientes
+<span class="math notranslate nohighlight">\(\Psi_i\)</span>, que son llamados los pesos de <span class="math notranslate nohighlight">\(z_t\)</span>.</p>
+<div class="section" id="ar-1">
+<h2>AR(1):<a class="headerlink" href="#ar-1" title="Permalink to this headline"></a></h2>
+<p>Los <strong>modelos autorregresivos (Autoregressive Models) de orden 1 -
+AR(1)</strong> - se describen de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[z_t = \phi_0 + \phi_1 z_{t-1} + a_t\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(a_t\)</span> se asume que es una serie <strong>ruido blanco</strong> con media
+cero y varianza constante. Este modelo es de la forma de una <strong>regresión
+lineal simple</strong> en que <span class="math notranslate nohighlight">\(z_t\)</span> es la variable dependiente y
+<span class="math notranslate nohighlight">\(z_{t-1}\)</span> es la variable explicativa.</p>
+<div class="math notranslate nohighlight">
+\[E(z_t|z_{t-1}) = \phi_0 + \phi_1 z_{t-1}\]</div>
+<div class="math notranslate nohighlight">
+\[Var(z_t|z_{t-1}) = Var(a_t) = \sigma_a^2\]</div>
+<p>Esto es que, dado el valor pasado $z_{t-1} $, el actual valor
+<span class="math notranslate nohighlight">\(z_t\)</span> está centrado en <span class="math notranslate nohighlight">\(\phi_0 + \phi_1 z_{t-1}\)</span> con
+desviación estándar <span class="math notranslate nohighlight">\(\sigma_a^2\)</span>.</p>
+<p><strong>Propiedades del modelo AR(1):</strong></p>
+<p>Podemos determinar la media, varianza y las autocorrelaciones del modelo
+AR (1).</p>
+<p>Partiendo de la ecuación del AR(1):</p>
+<div class="math notranslate nohighlight">
+\[z_t = \phi_0 + \phi_1 z_{t-1} + a_t\]</div>
+<p>Sabemos que <span class="math notranslate nohighlight">\(E(a_t)=0\)</span> porque se supone que <span class="math notranslate nohighlight">\(a_t\)</span> es una
+secuencia de variables aleatorias independientes e idénticamente
+distribuidas con media cero (ruido blanco), entonces:</p>
+<div class="math notranslate nohighlight">
+\[E(z_t) = \phi_0 + \phi_1 E(z_{t-1})\]</div>
+<p>Bajo la condición de estacionariedad, <span class="math notranslate nohighlight">\(E(z_t) = E(z_{t-1})= \mu\)</span>
+porque la media es constante, por tanto:</p>
+<div class="math notranslate nohighlight">
+\[\mu = \phi_0 + \phi_1 \mu\]</div>
+<div class="math notranslate nohighlight">
+\[\mu = \frac{\phi_0}{1-\phi_1}\]</div>
+<p>Lo anterior tiene dos implicaciones:</p>
+<ol class="arabic simple">
+<li><p>La media de <span class="math notranslate nohighlight">\(z_t\)</span> existe si <span class="math notranslate nohighlight">\(\phi_1 \neq 1\)</span>.</p></li>
+<li><p>La media de <span class="math notranslate nohighlight">\(z_t\)</span> es cero si <span class="math notranslate nohighlight">\(\phi_0 = 0\)</span>.</p></li>
+</ol>
+<p>Despejando <span class="math notranslate nohighlight">\(\phi_0\)</span> tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\phi_0 = (1 - \phi_1)\mu\]</div>
+<p>Podemos reescribir el modelo AR(1) reemplazando <span class="math notranslate nohighlight">\(\phi_0\)</span> en
+<span class="math notranslate nohighlight">\(z_t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[z_t - \mu = \phi_1(z_{t-1}-\mu) + a_t\]</div>
+</div>
+<div class="section" id="ar-p">
+<h2>AR(p):<a class="headerlink" href="#ar-p" title="Permalink to this headline"></a></h2>
+<p>De forma generalizada, los modelos autorregresivo de orden <span class="math notranslate nohighlight">\(p\)</span> -
+<strong>AR(p)</strong> se describen:</p>
+<div class="math notranslate nohighlight">
+\[z_t = \phi_0 + \phi_1 z_{t-1}+ \phi_2 z_{t-2}+...+ \phi_p z_{p-1} + a_t\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(p\)</span> es un entero positivo. Este modelo dice que las
+<span class="math notranslate nohighlight">\(p\)</span> valores pasados (rezagos) de <span class="math notranslate nohighlight">\(z_{t-i}\)</span>
+<span class="math notranslate nohighlight">\((i= 1,2,...,p)\)</span> determinan <span class="math notranslate nohighlight">\(z_t\)</span>. Este modelo es de la
+misma forma que un modelo de <strong>regresión lineal múltiple</strong> con los
+rezagos como variables explicativas.</p>
+<div class="math notranslate nohighlight">
+\[E(z_t) = \frac{\phi_0}{1-\phi_1-...-\phi_p}\]</div>
+</div>
+<div class="section" id="estimacion-de-los-parametros">
+<h2>Estimación de los parámetros:<a class="headerlink" href="#estimacion-de-los-parametros" title="Permalink to this headline"></a></h2>
+<p>El modelo AR(p) se especifica de la siguiente forma:</p>
+<div class="math notranslate nohighlight">
+\[z_t = \phi_0 + \phi_1 z_{t-1}+ \phi_2 z_{t-2}+...+ \phi_p z_{p-1} + a_t\]</div>
+<p>Esta es la forma de una regresión lineal múltiple y los parámetros
+pueden ser estimados por el método de mínimos cuadrados. Por tanto, el
+modelo estimado sería:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = \hat{\phi_0} + \hat{\phi_1} z_{t-1}+ \hat{\phi_2} z_{t-2}+...+ \hat{\phi_p} z_{p-1}\]</div>
+<p>El <strong>residual (residual series)</strong> es:</p>
+<div class="math notranslate nohighlight">
+\[\hat{a_t} = z_t - \hat{z_t}\]</div>
+<p>La varianza del residual es:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma_a^2} = \frac{\sum_{t=p+1}^n{\hat{a_t^2}}}{n-2p-1}\]</div>
+</div>
+<div class="section" id="identificacion-del-orden-p-de-ar">
+<h2>Identificación del orden p de AR:<a class="headerlink" href="#identificacion-del-orden-p-de-ar" title="Permalink to this headline"></a></h2>
+<p>Se pueden usar dos enfoques para determinar el orden <span class="math notranslate nohighlight">\(p\)</span> del
+modelo AR: Usar PACF o algún el criterio de información (AIC o BIC).</p>
+<ul class="simple">
+<li><p><strong>Con PACF:</strong> se selecciona el orden con el último lag de los valores
+más grandes.</p></li>
+<li><p><strong>Con AIC:</strong> se selecciona el orden que tenga el menor valor del AIC.</p></li>
+</ul>
+</div>
+<div class="section" id="partial-autocorrelation-function-pacf">
+<h2>Partial Autocorrelation Function (PACF):<a class="headerlink" href="#partial-autocorrelation-function-pacf" title="Permalink to this headline"></a></h2>
+<p>La ACF mide la relación lineal entre <span class="math notranslate nohighlight">\(z_t\)</span> y <span class="math notranslate nohighlight">\(z_{t-k}\)</span>, pero
+esta medida está relacionada con el encadenamiento que hay entre
+<span class="math notranslate nohighlight">\(z_t\)</span> y <span class="math notranslate nohighlight">\(z_{t-k}\)</span> a través de las variables
+<span class="math notranslate nohighlight">\(z_{t-1}, \dotso , z_{t-k+1}\)</span>. En cambio, la <strong>PACF (Partial
+Autocorrelation Function)</strong> mide la relación entre <span class="math notranslate nohighlight">\(z_t\)</span> y
+<span class="math notranslate nohighlight">\(z_{t-k}\)</span> sin el efecto de las variables intermedias.</p>
+<div class="figure align-default" id="id1">
+<img alt="PACFvsACF" src="../../_images/PACFvsACF.png" />
+<p class="caption"><span class="caption-text">PACFvsACF</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p>El <strong>coeficiente de autocorrelación parcial</strong> entre <span class="math notranslate nohighlight">\(z_t\)</span> y
+<span class="math notranslate nohighlight">\(z_{t-k}\)</span> se denota como <span class="math notranslate nohighlight">\(\rho_{kk}\)</span> y es proporcional a la
+correlación entre <span class="math notranslate nohighlight">\(z_t\)</span> y <span class="math notranslate nohighlight">\(z_{t-k}\)</span> menos la parte que puede
+ser explicada por las variables intermedias.</p>
+<p>La PACF para el rezago <span class="math notranslate nohighlight">\(k\)</span> es el <strong>último coeficiente</strong> de un
+modelo AR(k).</p>
+<p>La PACF para <span class="math notranslate nohighlight">\(k=0\)</span> es uno y para <span class="math notranslate nohighlight">\(k=1\)</span> es igual al valor de
+la ACF porque no hay variables intermedias.</p>
+<p>A diferencia que el ACF, la PACF tiene como hipótesis nula que la serie
+es realmente un AR(p). Se buscar con la PACF el orden <span class="math notranslate nohighlight">\(p\)</span> con el
+rezago con el valor que supere la franja de decisión y que los valores
+de la PACF para el rezago superiores <span class="math notranslate nohighlight">\(p\)</span> sean cero.</p>
+<p>Al igual que en ACF, se usa el límite de <span class="math notranslate nohighlight">\(2\pm se[\rho_{kk}]\)</span>,
+pero para la PACF se busca el orden <span class="math notranslate nohighlight">\(p\)</span> para los modelos AR(p).
+Los valores de <span class="math notranslate nohighlight">\(\rho_k\)</span> mayores a <span class="math notranslate nohighlight">\(2\pm se[\rho_{kk}]\)</span> se
+concluyen que son mayores que cero.</p>
+<p>Si <span class="math notranslate nohighlight">\(\rho_{kk}\)</span> está por fuera del rango
+<span class="math notranslate nohighlight">\(\frac{2}{\sqrt{(N)}}\)</span>, la serie de tiempo se puede modelar como
+un AR(p).</p>
+</div>
+<div class="section" id="funcion-pacf-de-r">
+<h2>Función <code class="docutils literal notranslate"><span class="pre">pacf</span></code> de R:<a class="headerlink" href="#funcion-pacf-de-r" title="Permalink to this headline"></a></h2>
+<p>Para calcular el PACF y graficarlo usamos en <code class="docutils literal notranslate"><span class="pre">R</span></code> la función <code class="docutils literal notranslate"><span class="pre">pacf()</span></code>
+de la librería <code class="docutils literal notranslate"><span class="pre">tseries</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">estacional</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">estacional2</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad2.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">tendencia</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Tendencia.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">ruidoblanco</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;ruidoblanco.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">estacional2</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 2&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+
+<span class="n">p3</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">tendencia</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+
+<span class="n">p4</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">()</span><span class="o">+</span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">)),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 4&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Tiempo&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">)</span><span class="o">+</span>
+        <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#39;mono&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">),</span>
+              <span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">)),</span>
+              <span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="n">vjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;gridExtra&#39; was built under R version 4.1.3&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span>
+             <span class="n">layout_matrix</span> <span class="o">=</span> <span class="nf">cbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_27_03.png"><img alt="../../_images/output_27_03.png" src="../../_images/output_27_03.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">pacf</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">)</span>
+<span class="nf">pacf</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 2&quot;</span><span class="p">)</span>
+<span class="nf">pacf</span><span class="p">(</span><span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">)</span>
+<span class="nf">pacf</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 4&quot;</span><span class="p">)</span>
+<span class="c1">#layout.show(2) # Muestra las dos particiones</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_28_02.png"><img alt="../../_images/output_28_02.png" src="../../_images/output_28_02.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="ajuste-modelo-ar-en-r">
+<h2>Ajuste modelo AR en <code class="docutils literal notranslate"><span class="pre">R</span></code>:<a class="headerlink" href="#ajuste-modelo-ar-en-r" title="Permalink to this headline"></a></h2>
+<p>Instalar la librería <code class="docutils literal notranslate"><span class="pre">forecast</span></code> para usar la función <code class="docutils literal notranslate"><span class="pre">arima()</span></code>. Esta
+función se aplica a series de tiempo univariadas.</p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;forecast&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;forecast&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Registered</span> <span class="n">S3</span> <span class="n">method</span> <span class="n">overwritten</span> <span class="n">by</span> <span class="s1">&#39;quantmod&#39;</span><span class="p">:</span>
+  <span class="n">method</span>            <span class="kn">from</span>
+  <span class="nn">as.zoo.data.frame</span> <span class="n">zoo</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">arima(serie</span> <span class="pre">de</span> <span class="pre">tiempo,</span> <span class="pre">orde</span> <span class="pre">=</span> <span class="pre">c(p,</span> <span class="pre">0,</span> <span class="pre">0))</span></code>: Para los modelos AR(p).
+El orden de <span class="math notranslate nohighlight">\(p\)</span> se determina con la PACF.</p>
+<p><strong>Ejemplo 1: serie estacional</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_34_02.png"><img alt="../../_images/output_34_02.png" src="../../_images/output_34_02.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_35_01.png"><img alt="../../_images/output_35_01.png" src="../../_images/output_35_01.png" style="width: 420px; height: 420px;" /></a>
+<p>El orden es <span class="math notranslate nohighlight">\(p=1\)</span> porque es el único significativo. Está por fuera
+de las líneas azules (está por fuera del rango
+<span class="math notranslate nohighlight">\(\frac{2}{\sqrt{(N)}}\)</span>).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">arima</span><span class="p">(</span><span class="n">estacional</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">estacional</span><span class="p">[,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>  <span class="n">intercept</span>
+      <span class="mf">0.9895</span>     <span class="mf">5.5923</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0118</span>     <span class="mf">3.2046</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">0.3253</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">87.68</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">181.36</span>
+</pre></div>
+</div>
+<p>El modelo estimado sería:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = \hat{\phi_1} z_{t-1}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = 0,9895 z_{t-1}\]</div>
+<p>El primer rezago es muy importante para modelar la serie de tiempo
+porque tiene un peso de 0,9895. La serie de tiempo depende de su
+historia.</p>
+<p><strong>Ejemplo 2: serie estacional, varianza no cosntante</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_41_01.png"><img alt="../../_images/output_41_01.png" src="../../_images/output_41_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_42_02.png"><img alt="../../_images/output_42_02.png" src="../../_images/output_42_02.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>AR(1):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">arima</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">estacional2</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>  <span class="n">intercept</span>
+      <span class="mf">0.9749</span>     <span class="mf">1.6177</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0215</span>     <span class="mf">0.7873</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">0.06952</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.09</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">26.17</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo 3: serie con tendencia, varianza constante</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p3</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_46_02.png"><img alt="../../_images/output_46_02.png" src="../../_images/output_46_02.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_47_0.png"><img alt="../../_images/output_47_0.png" src="../../_images/output_47_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>AR(2):</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">arima</span><span class="p">(</span><span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">estacional2</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+         <span class="n">ar1</span>      <span class="n">ar2</span>  <span class="n">intercept</span>
+      <span class="mf">1.2752</span>  <span class="o">-</span><span class="mf">0.3108</span>     <span class="mf">1.6528</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>  <span class="mf">0.0967</span>   <span class="mf">0.0979</span>     <span class="mf">0.6029</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">0.06309</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.3</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">18.59</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\hat{z_t} = 1,6528 + 1,2752 z_{t-1}-0,3108 z_{t-2}\]</div>
+<p><strong>Ejemplo 4: serie Ruido Blanco</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p4</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_52_01.png"><img alt="../../_images/output_52_01.png" src="../../_images/output_52_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pacf</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Serie de tiempo 4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_53_04.png"><img alt="../../_images/output_53_04.png" src="../../_images/output_53_04.png" style="width: 420px; height: 420px;" /></a>
+<p>No es una serie con dependencia a los valores históricos. Se puede hacer
+la estimación de cualquier modelo AR(p), pero el valor de los
+coeficientes será cercanos a cero, son no significativos. No tiene
+sentido modelar un ruido blanco. En la siguiente estimación de un AR(1)
+el coeficiente <span class="math notranslate nohighlight">\(\phi_1\)</span> tien un valor cercano a cero.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">arima</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">arima</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">ruidoblanco</span><span class="p">[,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">order</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+          <span class="n">ar1</span>  <span class="n">intercept</span>
+      <span class="o">-</span><span class="mf">0.0597</span>    <span class="o">-</span><span class="mf">0.1104</span>
+<span class="n">s</span><span class="o">.</span><span class="n">e</span><span class="o">.</span>   <span class="mf">0.0708</span>     <span class="mf">0.0688</span>
+
+<span class="n">sigma</span><span class="o">^</span><span class="mi">2</span> <span class="n">estimated</span> <span class="k">as</span> <span class="mf">1.061</span><span class="p">:</span>  <span class="n">log</span> <span class="n">likelihood</span> <span class="o">=</span> <span class="o">-</span><span class="mf">289.72</span><span class="p">,</span>  <span class="n">aic</span> <span class="o">=</span> <span class="mf">585.43</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ACF/ACF.html" class="btn btn-neutral float-left" title="ACF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Pron%C3%B3stico%20con%20AR/Pron%C3%B3stico%20con%20AR.html" class="btn btn-neutral float-right" title="Pronóstico con AR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

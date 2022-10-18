@@ -1,0 +1,66 @@
+Material cursos
+==========================================================
+**Profesora: Natalia Acevedo Prins**
+
+Profesora de carrera UdeA
+
+Facultad de Ciencias Económicas
+
+Departamento de Estadística y Matemáticas
+
+Contacto:
+^^^^^^^^^^^^^^^^^^^^^
+natalia.acevedop@udea.edu.co
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Análisis de datos:
+   
+   Introducción a R/index
+   ggplot2/index
+   Regresión lineal/index
+   Multivariado/index
+   Series de tiempo/index
+   Introducción a Python/index
+
+   
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Análisis exploratorio de datos:
+   
+   Análisis gráfico/index
+   Análisis multivariado de datos/index
+   Análisis de componentes principales/index
+   Análisis factorial/index
+   Clustering/index
+   Escalamiento Multidimensional/index
+   Datos faltantes/index
+   Análsis de correspondencia/index
+
+
+
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Teoría de portafolios:
+   
+   Generalidades del Mercado Colombiano/index
+   Manejo de R-Studio/index
+   Conceptos Básicos de Estadística/index
+   Teoría de Portafolios/index
+   Selección de Carteras/index
+   Mercado de Renta Fija/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Modelación:
+   :titlesonly:
+
+   
+   Caracterización de las series de tiempo/index
+   Modelos autorregresivos/index
+   Deep Learning para pronóstico/index
+   

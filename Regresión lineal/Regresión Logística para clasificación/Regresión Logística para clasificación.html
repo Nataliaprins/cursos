@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regresión Logística para clasificación &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Regresión Logística para clasificación en R" href="../Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R.html" />
+    <link rel="prev" title="Regresión Logística en R" href="../Regresi%C3%B3n%20Log%C3%ADstica%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20en%20R.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-logistica">Regresión Logística</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica/Teor%C3%ADa%20Regresi%C3%B3n%20Log%C3%ADstica.html">Teoría Regresión Logística</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Regresi%C3%B3n%20Log%C3%ADstica%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20en%20R.html">Regresión Logística en R</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Regresión Logística para clasificación</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#metricas">Métricas:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R.html">Regresión Logística para clasificación en R</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+      <li>Regresión Logística para clasificación</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Regresión lineal/Regresión Logística para clasificación/Regresión Logística para clasificación.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="regresion-logistica-para-clasificacion">
+<h1>Regresión Logística para clasificación<a class="headerlink" href="#regresion-logistica-para-clasificacion" title="Permalink to this headline"></a></h1>
+<p>La regresión logística se utiliza muchas veces como herramienta de
+clasificación; sin embargo, cabe señalar que la capacidad de clasificar
+o discriminar entre los dos niveles de la variable respuesta se debe más
+al grado de separación entre los niveles y al tamaño de los coeficientes
+de regresión que al propio modelo logístico.</p>
+<p>Hay dos herramientas de clasificación que se utilizan con la regresión
+logística:</p>
+<ol class="arabic simple">
+<li><p>Curva ROC (Receiver Operating Characteristics).</p></li>
+<li><p>Matriz de confusión.</p></li>
+</ol>
+<p>Cada una de estas herramientas se basan en un punto de corte. El punto
+de corte es la probabilidad óptima con que se separan las observaciones
+en 1 y 0. Así se analizan las predicciones acertadas y las no acertadas.</p>
+<p>Los modelos de regresión logística pueden hacer una buena clasificación
+y no siempre son modelos bien ajustados. Si el interés es estrictamente
+la clasificación, no es tan importante el ajuste del modelo. Asimismo,
+un modelo logístico bien ajustado puede no diferenciar claramente los
+dos niveles de la variable respuesta.</p>
+<p><strong>Curva ROC:</strong></p>
+<p>La curva ROC se usa para examinar el equilibrio entre la detección de
+verdaderos positivos y evitar los falsos positivos. La curva se define
+con la proporción de verdaderos positivos en el eje vertical y la
+proporción de faltos positivos en el eje horizontal.</p>
+<p><strong>Punto de corte:</strong> para clasificar las predicciones en <span class="math notranslate nohighlight">\(1\)</span> y
+<span class="math notranslate nohighlight">\(0\)</span> se debe definir un punto de corte, este es la probabilidad que
+debemos definir y las predicciones iguales o mayores que esta
+probabilidad las etiquetaremos como <span class="math notranslate nohighlight">\(1\)</span> y las predicciones con
+probabilidades menores como <span class="math notranslate nohighlight">\(0\)</span>. Por ejemplo, si definimos el
+punto de corte como 0,70, las observaciones con probabilidades mayores o
+iguales que 0,50 será la categoría <span class="math notranslate nohighlight">\(1\)</span> y las demás observaciones
+serán <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Después de definir el punto de corte y de realizar la clasificación, la
+matriz de confusión nos mostrará las observaciones que fueron bien
+clasificadas y las que se les asignó una clasificación incorrecta.</p>
+<p>Los puntos que comprende la curva ROC indican la tasa de verdaderos
+positivos en diferentes umbrales de falsos positivos. Para crear la
+curva, las predicciones de la clasificación se ordenan según la
+probabilidad estimada del modelo para la clase positiva, con los valores
+grandes primero. Comenzando en el origen, el impacto de cada predicción
+en la tasa de verdaderos positivos y la tasa de falsos positivos dará
+como resultado una curva que se traza verticalmente (para una predicción
+correcta) u horizontal (para una predicción incorrecta).</p>
+<p>La línea diagonal desde la esquina inferior izquierda hasta la esquina
+superior derecha del diagrama representa un clasificador sin valor
+predictivo. Este tipo de clasificador detecta verdaderos positivos y
+falsos positivos exactamente a la misma velocidad, lo que implica que el
+clasificador no puede discriminar entre las dos categorías (<span class="math notranslate nohighlight">\(1\)</span> y
+<span class="math notranslate nohighlight">\(0\)</span>). Esta es la línea de base por la cual se pueden juzgar otros
+clasificadores. Las curvas ROC que caen cerca de esta línea indican
+modelos que no son muy útiles.</p>
+<p>De manera similar, el clasificador perfecto tiene una curva que pasa por
+el punto con una tasa de 100 por ciento de verdaderos positivos y 0 por
+ciento de tasa de falsos positivos. Es capaz de identificar
+correctamente todos los verdaderos positivos antes de clasificar
+incorrectamente cualquier resultado negativo.</p>
+<div class="figure align-default" id="id1">
+<img alt="CurvaROC" src="../../_images/CurvaROC.JPG" />
+<p class="caption"><span class="caption-text">CurvaROC</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Sensitivity:</strong> es la tasa de los verdaderos positivos.</p>
+<p><strong>Specificity:</strong> es la tasa de los falsos positivos (1 - Specificity).</p>
+<p>Cuanto más cerca esté la curva del clasificador perfecto, mejor será
+para identificar valores positivos. Esto se puede medir utilizando una
+estadística conocida como el área bajo la curva ROC - AUC (area under
+the ROC curve). El AUC mide el área total bajo la curva ROC. AUC varía
+de 0,5 (para un clasificador sin valor predictivo) a 1,0 (para un
+clasificador perfecto). Una convención para interpretar las puntuaciones
+AUC utiliza un sistema similar a las calificaciones académicas con
+letras:</p>
+<ul class="simple">
+<li><p>0.9 – 1.0 = Excelente</p></li>
+<li><p>0,8 – 0,9 = Bueno</p></li>
+<li><p>0.7 – 0.8 = Aceptable</p></li>
+<li><p>0.6 – 0.7 = Pobre</p></li>
+<li><p>0,5 – 0,6 = Sin discriminación</p></li>
+</ul>
+<p>El área bajo la curva ROC (AUC) es una métrica que evalúa qué tan bien
+un modelo de regresión logística clasifica los resultados positivos y
+negativos en todos los límites posibles.</p>
+<p>Resulta que el AUC es la probabilidad de que si tomara un par de
+observaciones al azar, una con <span class="math notranslate nohighlight">\(Y=1\)</span> y otra con <span class="math notranslate nohighlight">\(Y=0\)</span>, la
+observación con <span class="math notranslate nohighlight">\(Y=1\)</span> tiene una probabilidad predicha más alta que
+la otra. El AUC, por lo tanto, da la probabilidad de que el modelo
+clasifique correctamente tales pares de observaciones.</p>
+<p>También vale la pena señalar que dos curvas ROC pueden tener una forma
+muy diferente y, sin embargo, tener un AUC idéntico. Por esta razón, AUC
+puede ser extremadamente engañoso. La mejor práctica es usar AUC en
+combinación con un examen cualitativo de la curva ROC. De manera
+similar, el clasificador perfecto tiene una curva que pasa por el punto
+con una tasa de 100 por ciento de verdaderos positivos y 0 por ciento de
+tasa de falsos positivos. Es capaz de identificar correctamente todos
+los verdaderos positivos antes de clasificar incorrectamente cualquier
+resultado negativo.</p>
+<p><strong>Matriz de confusión:</strong></p>
+<p>Una matriz de confusión es una tabla que clasifica las predicciones
+según sí coinciden con el valor real de los datos. Una de las
+dimensiones de la tabla indica las posibles categorías de valores
+predichos mientras que la otra dimensión indica lo mismo para los
+valores reales. Aunque solo vemos matrices de confusión de 2 x 2, se
+puede crear una matriz para un modelo que predice cualquier número de
+categorías.</p>
+<p>Cuando el valor predicho es el mismo que el valor real, esta es una
+clasificación correcta. Las predicciones correctas caen en la diagonal
+de la matriz de confusión. Las celdas de la matriz fuera de la diagonal
+indican los casos en los que el valor predicho difiere del valor real.
+Estas son predicciones incorrectas. Las medidas de rendimiento para los
+modelos de clasificación se basan en los recuentos de predicciones que
+entran y salen de la diagonal en estas tablas.</p>
+<div class="figure align-default" id="id2">
+<img alt="MatrizConfusion" src="../../_images/MatrizConfusion.JPG" />
+<p class="caption"><span class="caption-text">MatrizConfusion</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>La matriz de confusión tabula las predicciones en cuatro categorías:</p>
+<ol class="arabic simple">
+<li><p><strong>Verdadero Positivo - TP (True Positive):</strong> clasifica correctamente
+la categoría <span class="math notranslate nohighlight">\(1\)</span> de la variable de interés.</p></li>
+<li><p><strong>Verdadero Negativo - TN (True Negative):</strong> clasifica correctamente
+la categoría <span class="math notranslate nohighlight">\(0\)</span> de la variable de interés.</p></li>
+<li><p><strong>Falso positivo - FP (False Positive):</strong> clasifica incorrectamente
+la categoría <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p><strong>Falso negativo - FN (False Negative):</strong> clasificia incorrectamente
+la categoría <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+</ol>
+<div class="figure align-default" id="id3">
+<img alt="MatrizConfusion2" src="../../_images/MatrizConfusion2.JPG" />
+<p class="caption"><span class="caption-text">MatrizConfusion2</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<div class="section" id="metricas">
+<h2>Métricas:<a class="headerlink" href="#metricas" title="Permalink to this headline"></a></h2>
+<p>Con la matriz de confusión podemos calcular las siguientes métricas.</p>
+<p><strong>Accuracy:</strong></p>
+<div class="math notranslate nohighlight">
+\[accuracy = \frac{TP+TN}{TP+TN+FP+FN}\]</div>
+<p>El <strong>accuracy</strong> es la proporción que representa el número de verdaderos
+positivos y verdaderos negativos dividido por el número total de
+predicciones.</p>
+<div class="figure align-default" id="id4">
+<img alt="Accuracy" src="../../_images/Accuracy.JPG" />
+<p class="caption"><span class="caption-text">Accuracy</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Error Rate:</strong></p>
+<p>Lo contrario al accuracy es el <strong>error.</strong></p>
+<div class="math notranslate nohighlight">
+\[ErrorRate = \frac{FP+FN}{TP+TN+FP+FN} = 1 - accuracy\]</div>
+<div class="figure align-default" id="id5">
+<img alt="ErrorRate" src="../../_images/ErrorRate.JPG" />
+<p class="caption"><span class="caption-text">ErrorRate</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Sensitivity:</strong></p>
+<p>La sensibilidad de un modelo <strong>(Sensitivity)</strong>, también denominada tasa
+de verdaderos positivos (TP), mide la proporción de observaciones
+positivas que se clasificaron correctamente. Por lo tanto, como se
+muestra en la siguiente fórmula, se calcula como el número de verdaderos
+positivos dividido por el número total de positivos en los datos: los
+clasificados correctamente (los verdaderos positivos), así como los
+clasificados incorrectamente (los falsos negativos).</p>
+<div class="math notranslate nohighlight">
+\[sensitivity = \frac{TP}{TP+FN}\]</div>
+<div class="figure align-default" id="id6">
+<img alt="Sensitivity" src="../../_images/Sensitivity.JPG" />
+<p class="caption"><span class="caption-text">Sensitivity</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Specificity:</strong></p>
+<p>La especificidad de un modelo <strong>(Specificity)</strong>, también llamada tasa de
+negativos verdaderos (TN), mide la proporción de observaciones negativas
+que se clasificaron correctamente. Al igual que con la sensibilidad,
+esto se calcula como el número de negativos verdaderos dividido por el
+número total de negativos: los negativos verdaderos más los falsos
+positivos.</p>
+<div class="math notranslate nohighlight">
+\[specificity = \frac{TN}{TN+FP}\]</div>
+<div class="figure align-default" id="id7">
+<img alt="Specificity" src="../../_images/Specificity.JPG" />
+<p class="caption"><span class="caption-text">Specificity</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</div>
+<p>Otras dos medidas de desempeño relacionadas con la sensitivity y la
+specificity son <strong>precision</strong> y <strong>recall</strong>.</p>
+<p><strong>Precision:</strong></p>
+<p><strong>Precision</strong> es la proporción de observaciones positivas que son
+positivo verdadero (TP), en otras palabras, cuando el modelo de
+clasificación predice la categoría de <span class="math notranslate nohighlight">\(1\)</span>, esta métrica indica la
+frecuencia de estar en lo cierto. Un modelo preciso solo predecirá la
+categoría positiva <span class="math notranslate nohighlight">\((1)\)</span> en casos muy probables de ser positivos.</p>
+<div class="math notranslate nohighlight">
+\[precision = \frac{TP}{TP+FP}\]</div>
+<div class="figure align-default" id="id8">
+<img alt="Precision" src="../../_images/Precision.JPG" />
+<p class="caption"><span class="caption-text">Precision</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Recall:</strong></p>
+<p><strong>Recall</strong> es una medida de qué tan completos son los resultados. Es el
+número de positivos verdaderos (TP) sobre el total de positivos. Esto es
+lo mismo que la sensibilidad, pero se podría interpretar diferente. Un
+modelo con alto recall captura gran parte de las observaciones
+positivas, lo que significa que tienen una gran amplitud.</p>
+<div class="math notranslate nohighlight">
+\[recall = \frac{TP}{TP+FN}\]</div>
+<div class="figure align-default" id="id9">
+<img alt="Precision-recall" src="../../_images/Precision-recall.JPG" />
+<p class="caption"><span class="caption-text">Precision-recall</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</div>
+<p><strong>F-measure:</strong></p>
+<p>Una medida del rendimiento del modelo que combina 𝑝𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 y 𝑟𝑒𝑐𝑎𝑙𝑙 en
+un solo número se conoce como <strong>medida F</strong> (F-measure), a veces también
+llamada puntuación F1 o puntuación F. La medida F combina 𝑝𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 y
+𝑟𝑒𝑐𝑎𝑙𝑙 utilizando la media armónica. Se utiliza la media armónica en
+lugar de la media aritmética, ya que tanto 𝑝𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 como 𝑟𝑒𝑐𝑎𝑙𝑙 se
+expresan como proporciones entre cero y uno.</p>
+<div class="math notranslate nohighlight">
+\[F-measure = \frac{2 \times precision \times recall}{recall + precision} = \frac{2 \times TP}{2 \times TP + FP + FN}\]</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Regresi%C3%B3n%20Log%C3%ADstica%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20en%20R.html" class="btn btn-neutral float-left" title="Regresión Logística en R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R/Regresi%C3%B3n%20Log%C3%ADstica%20para%20clasificaci%C3%B3n%20en%20R.html" class="btn btn-neutral float-right" title="Regresión Logística para clasificación en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

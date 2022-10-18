@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de correspondencias &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Análisis de correspondencias en R" href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html" />
+    <link rel="prev" title="Análisis de correspondencia" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis de correspondencia</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Análisis de correspondencias</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabla-de-contingencia">Tabla de contingencia:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distancia-entre-los-perfiles">Distancia entre los perfiles:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independencia-de-las-tablas-de-correspondencias">Independencia de las tablas de correspondencias:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analisis-de-correspondencias-clasico">Análisis de Correspondencias Clásico:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analisis-de-correspondencias-multiple">Análisis de correspondencias Múltiple:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interpretacion">Interpretación</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ejemplo-de-matrices-disyuntivas-matriz-z-y-matriz-de-burt-z-z">Ejemplo de Matrices disyuntivas (matriz Z) y Matriz de Burt (Z.Z’)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html">Análisis de correspondencias en R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Taller%20Analisis%20de%20Correspondecia/Taller%20AC.html">Taller Análisis de Correspondencias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Taller%20Analisis%20de%20Correspondecia/Ejemplo%20an%C3%A1lisis%20de%20correspondencia%20Artesanos%20Medell%C3%ADn.html">Ejemplo de Análisis de correspondencia: Simple y Múltiple</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Análisis de correspondencia</a> &raquo;</li>
+      <li>Análisis de correspondencias</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Análsis de correspondencia/Teoría Análisis de Correspondencia/Teoría Análisis de Correspondencia.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="analisis-de-correspondencias">
+<h1>Análisis de correspondencias<a class="headerlink" href="#analisis-de-correspondencias" title="Permalink to this headline"></a></h1>
+<p>Es una técnica gráfica para representar la información en una <strong>tabla de
+contingencia</strong> de doble entrada, que contiene los recuentos
+(frecuencias) de elementos para una clasificación cruzada de dos
+<strong>variables categóricas.</strong> Con el análisis de correspondencia, se
+construye una gráfica que muestra la interacción de las dos variables
+categóricas junto con la relación de las filas entre sí y de las
+columnas entre sí.</p>
+<p><strong>Ventajas:</strong></p>
+<ol class="arabic simple">
+<li><p>Pueden representar relaciones entre filas y columnas, que permitan la
+comparación entre atributos y variables; por ejemplo: Marcas vs
+características.</p></li>
+<li><p>Permite el relacionamiento de los atributos; por ejemplo, si se
+cuenta con múltiples atributos y estos son similares para todos los
+productos, se podrían agrupar.</p></li>
+<li><p>En caso de contar con grupos cercanos, el análisis permitiría
+identificar grupos caracterizados por los atributos que se encuentren
+muy relacionados</p></li>
+</ol>
+<p>Se puede decir que la técnica permite la extracción de grupos de una
+forma similar al análisis de componentes principales, pero en este caso
+para variables categóricas.</p>
+<p><strong>Su principal desventaja es ser una técnica netamente descriptiva por
+lo que no es apta para inferencias.</strong></p>
+<p>En el análisis de correspondencias, trazamos un punto para cada fila y
+un punto para cada columna de la tabla de contingencia. Estos puntos son
+proyecciones de las filas y columnas de la tabla de contingencia sobre
+un espacio euclidiano bidimensional.</p>
+<p>El objetivo es preservar en la medida de lo posible la relación de las
+filas (o columnas) entre sí en un espacio bidimensional.</p>
+<p>Si dos puntos de fila están muy juntos, los perfiles de las dos filas (a
+lo largo de las columnas) son similares. Del mismo modo, dos puntos de
+columna que están muy juntos representan columnas con perfiles similares
+en las filas.</p>
+<div class="section" id="tabla-de-contingencia">
+<h2>Tabla de contingencia:<a class="headerlink" href="#tabla-de-contingencia" title="Permalink to this headline"></a></h2>
+<p>Una tabla de contingencia se puede definir como una representación
+tabular donde se visualizan las distribuciones de frecuencias de dos
+variables categóricas. Estas frecuencias pueden ser frecuencias
+absolutas o relativas.</p>
+<p>Las sumas de las frecuencias de las columnas describen la distribución
+marginal de las variables <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, y se les conoce como
+perfiles marginales entre variables. La suma de las filas indica los
+perfiles marginales de la variable <span class="math notranslate nohighlight">\(X\)</span>, condicionado a los
+atributos de <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="figure align-default" id="id1">
+<img alt="contingencia" src="../../_images/contingencia.png" />
+<p class="caption"><span class="caption-text">contingencia</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p><strong>La tabla de contingencias en frecuencias relativas también se conoce
+como la matriz de correspondencias.</strong></p>
+<p>Las frecuencias relativas no son más que el peso de cada sumatoria de
+frecuencias sobre el total de la fila o la columna.</p>
+</div>
+<div class="section" id="distancia-entre-los-perfiles">
+<h2>Distancia entre los perfiles:<a class="headerlink" href="#distancia-entre-los-perfiles" title="Permalink to this headline"></a></h2>
+<p>Así como en los métodos anteriores se pretendía analizar las distancias
+para encontrar similitudes, en este análisis se pretende el mismo
+objetivo; sin embargo, las distancias utilizadas para este método están
+determinadas por la distancia Chi-square.</p>
+<p>Distancias <span class="math notranslate nohighlight">\(X^2\)</span> para las columnas:</p>
+<div class="math notranslate nohighlight">
+\[D_{ij}^c=\frac{1}{N_1}\left[\frac{n_{1i}}{N_i}-\frac{n_{1j}}{Nj} \right]^2\]</div>
+<p>Distancias <span class="math notranslate nohighlight">\(X^2\)</span> para las filas:</p>
+<div class="math notranslate nohighlight">
+\[D_{ij}=\sum_{h=1}^m\frac{1}{N_h} \left[\frac{n_{ih}}{N_i}-\frac{n_{jh}}{N_j}\right]^2\]</div>
+<p>La distancia chi‐cuadrado cumple el principio de la equivalencia
+distribucional, que postula que si dos categorías tienen perfiles
+idénticos pueden ser sustituidas por una sola categoría que sea la suma
+de sus pesos, sin que con ello se modifique la distancia entre las filas
+o columnas.</p>
+</div>
+<div class="section" id="independencia-de-las-tablas-de-correspondencias">
+<h2>Independencia de las tablas de correspondencias:<a class="headerlink" href="#independencia-de-las-tablas-de-correspondencias" title="Permalink to this headline"></a></h2>
+<p>Para conocer si existe alguna relación entre las variables <span class="math notranslate nohighlight">\(X\)</span> y
+<span class="math notranslate nohighlight">\(Y\)</span> se debe realizar un contraste de hipótesis sobre la
+independencia de las variables, el test comúnmente se realiza bajo el
+estadístico de Chi-cuadrado, dado el cálculo de las distancias y con el
+fin de corroborar la propiedad de equivalencia. En este caso se prueban
+las siguientes hipótesis:</p>
+<p><span class="math notranslate nohighlight">\(H_0=\)</span> Ambas variables son independientes.</p>
+<p><span class="math notranslate nohighlight">\(H_1=\)</span> Existe una relación de dependencia.</p>
+<p>De esta forma podemos hacer inferencia a través del <span class="math notranslate nohighlight">\(valor-p\)</span> a un
+<span class="math notranslate nohighlight">\(\alpha\)</span> determinado, por tanto, si:</p>
+<p><span class="math notranslate nohighlight">\(Vp\leq 0.05\)</span> se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> y se infiere que <span class="math notranslate nohighlight">\(X\)</span> y
+<span class="math notranslate nohighlight">\(Y\)</span> son dependientes y en este caso conviene analizar los perfiles
+condicionales fila y columna, así como los residuos del modelo para
+estudiar qué tipo dependencia existe entre ellas.</p>
+</div>
+<div class="section" id="analisis-de-correspondencias-clasico">
+<h2>Análisis de Correspondencias Clásico:<a class="headerlink" href="#analisis-de-correspondencias-clasico" title="Permalink to this headline"></a></h2>
+<p>Una vez obtenidos los perfiles de filas y columnas, se elabora una
+matriz de coordenadas chi-cuadrado, calculando la relación entre la
+tabla de datos analizada y una tabla de datos sin relación entre
+variables.</p>
+<p>En general, la idea es construir un sistema de coordenadas bidimensional
+asociado a las filas y columnas de la tabla de contingencia reflejando
+las relaciones entre ellas.</p>
+<p><strong>Paso 1: Obtención de los centros de gravedad e inercias</strong></p>
+<p>Para este método no se miden las distancias entre filas y columnas, sino
+que con la distancias media ponderada a su masa (proporción del
+conjunto).</p>
+<p>Este perfil medio, se conoce como el centro de gravedad y la distancia
+media de las filas se conoce como inercia, y análogamente con las
+columnas, se conocerá como inercia de las columnas. Esto reflejará la
+matriz de varianzas y covarianzas entre las variables y sus atributos</p>
+<p><strong>Paso 2: Diagonalizar la matriz</strong></p>
+<p>Se procede a diagonalizar la matriz de varianzas y covarianzas, para
+obtener los valores propios que definen los ejes de proyección de las
+nuevas coordenadas, en este caso su obtención estará basada en la
+inercia y podrá representarse de forma gráfica en 2 o 3 dimensiones para
+tener una visión simplificada de las relaciones</p>
+<p>En resumen, se buscará encontrar dos matrices (A,B) de coordenadas
+cartesianas</p>
+<div class="figure align-default" id="id2">
+<img alt="matrizAB" src="../../_images/matrizAB.png" />
+<p class="caption"><span class="caption-text">matrizAB</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Paso 3: Interpretación</strong></p>
+<p>Su interpretación puede ser análoga al caso de componentes principales.
+Donde se está cuantificando el grado de dependía entre las variables
+<span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>En este caso particular, se calculan las proporciones de inercia total
+explicada para cada dimensión, que ponderan la importancia de cada
+dimensión basado en las dependencias observadas.</p>
+<p>La inercia acumulada permitirá conocer el número óptimo de dimensiones
+necesarias para explicar al máximo las dependencias.</p>
+<p><strong>Contribuciones Totales y Relativas:</strong></p>
+<p>También de forma similar al ACP o al AF se calcularán las
+<strong>contribuciones totales</strong> de cada variable a los ejes, de esta forma se
+materializan los ejes por medio del análisis de correspondencias.</p>
+<p>Por su parte las <strong>contribuciones relativas</strong> miden la importancia de
+cada factor para explicar la posición en el diagrama cartesiano,
+representando así la distancia al origen de coordenadas de cada factor.</p>
+<p>De las formas que en otros modelos hablamos de disimilitudes, o
+unicidades, aquí podemos encontrar los <strong>elementos suplementarios</strong> que
+son elementos de las tablas de contingencia no fueron utilizados para
+encontrar los ejes.</p>
+</div>
+<div class="section" id="analisis-de-correspondencias-multiple">
+<h2>Análisis de correspondencias Múltiple:<a class="headerlink" href="#analisis-de-correspondencias-multiple" title="Permalink to this headline"></a></h2>
+<p>Para esta técnica se aplican tablas de contingencia, pero ya no se
+comparan entre si las variables, sino que se pretende encontrar
+relaciones entre <span class="math notranslate nohighlight">\(n\)</span> filas que contienen individuos u
+observaciones y <span class="math notranslate nohighlight">\(s\)</span> variables categóricas con <span class="math notranslate nohighlight">\(p\)</span>
+categorías.</p>
+<p>En este caso, la tabla de contingencia tiene una forma disyuntiva, es
+decir, se calculará la frecuencia, de forma que si el individuo i-ésimo
+elije una modalidad <span class="math notranslate nohighlight">\(j\)</span> se le asignará <span class="math notranslate nohighlight">\(1\)</span> y si no la elije
+se le asignará <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>En este caso, el análisis de correspondencia se basa en la construcción
+de esta matriz, que se conoce como matriz de <strong>BURT</strong>, esta matriz se
+construye a partir de bloques, en los bloques diagonales se reportan las
+matrices diagonales con las frecuencias marginales de cada variable, y
+fuera de la diagonal están las tablas de frecuencias cruzadas de
+correspondientes a las combinaciones de dos variables analizadas (cada
+par).</p>
+<p>En este caso, se tomará como contribución aquellas que la distribución
+de la inercias supera <span class="math notranslate nohighlight">\(1/p\)</span></p>
+<div class="figure align-default" id="id3">
+<img alt="matriz_burt" src="../../_images/matriz_burt.png" />
+<p class="caption"><span class="caption-text">matriz_burt</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<p>El algoritmo de solución incluye igualmente la diagonalización de la
+matriz de distancias e inercias entre categorías, con esto también se
+busca la reducción de dimensionalidad a factores que representen estas
+inercias.</p>
+</div>
+<div class="section" id="interpretacion">
+<h2>Interpretación<a class="headerlink" href="#interpretacion" title="Permalink to this headline"></a></h2>
+<p>En este método podemos hacer interpretaciones tanto desde el
+relacionamiento de los individuos, igualmente, desde las modalidades de
+las variables diferentes, y entre las mismas variables.</p>
+<p><strong>Proximidades entre los individuos(semejanzas):</strong> los individuos son
+parecidos si elijen las mismas modalidades.</p>
+<p><strong>Proximidad entre modalidades de las variables diferentes:</strong> las
+modalidades son cercanas cuando globalmente son elegidas por los mismos
+individuos.</p>
+<p><strong>Proximidad entre modalidades en una misma variable:</strong> las modalidades
+de la variable son excluyentes entre si desde la construcción del
+instrumento, es decir, un individuo no pertenece a dos modalidades de
+una misma variable. Sin embargo, podría decirse que pueden ser cercanas
+si los individuos que la poseen presentan el mismo comportamiento en las
+otras variables.</p>
+</div>
+<div class="section" id="ejemplo-de-matrices-disyuntivas-matriz-z-y-matriz-de-burt-z-z">
+<h2>Ejemplo de Matrices disyuntivas (matriz Z) y Matriz de Burt (Z.Z’)<a class="headerlink" href="#ejemplo-de-matrices-disyuntivas-matriz-z-y-matriz-de-burt-z-z" title="Permalink to this headline"></a></h2>
+<p>Supongamos que cuenta con la BD de un instrumento de variables
+categóricas, formada por 3 variables y 10 individuos.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 17%" />
+<col style="width: 39%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Individuos</strong></p></th>
+<th class="head"><p><strong>Género</strong></p></th>
+<th class="head"><p><strong>Años de experiencia</strong></p></th>
+<th class="head"><p><strong>Ingresos</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>mujer</p></td>
+<td><p>5</p></td>
+<td><p>medio</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>mujer</p></td>
+<td><p>3</p></td>
+<td><p>alto</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>hombre</p></td>
+<td><p>4</p></td>
+<td><p>bajo</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>mujer</p></td>
+<td><p>1</p></td>
+<td><p>bajo</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>mujer</p></td>
+<td><p>2</p></td>
+<td><p>medio</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>hombre</p></td>
+<td><p>5</p></td>
+<td><p>alto</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>mujer</p></td>
+<td><p>2</p></td>
+<td><p>medio</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>hombre</p></td>
+<td><p>3</p></td>
+<td><p>bajo</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>hombre</p></td>
+<td><p>1</p></td>
+<td><p>alto</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>mujer</p></td>
+<td><p>4</p></td>
+<td><p>medio</p></td>
+</tr>
+</tbody>
+</table>
+<p>La matriz disyuntiva y su transpuesta resultante sería la siguiente:</p>
+<div class="figure align-default" id="id4">
+<img alt="disyuntiva" src="../../_images/disyuntiva.png" />
+<p class="caption"><span class="caption-text">disyuntiva</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id5">
+<img alt="BURT" src="../../_images/BURT.png" />
+<p class="caption"><span class="caption-text">BURT</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</div>
+<p>Cabe aclarar que la matriz Burt sería la resultante entre las matrices
+<span class="math notranslate nohighlight">\(Z\)</span> y <span class="math notranslate nohighlight">\(Z'\)</span>, de esta forma <span class="math notranslate nohighlight">\(B=Z.Z'\)</span>:</p>
+<div class="figure align-default" id="id6">
+<img alt="ejemplo_burt" src="../../_images/ejemplo_burt.png" />
+<p class="caption"><span class="caption-text">ejemplo_burt</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</div>
+<p>Una vez construida la matriz, se debe realizar el test chi-cuadrado para
+determinar la significancia de las relaciones, tal como se realizó en el
+método simple, sin embargo para hacerlo, se deberá aplicar para cada par
+(bloque) de variables</p>
+<p>Bibliografía: Fernández, R. S. M. (2011). Análisis de correspondencias
+simples y múltiples. Universidad Autónoma de Madrid: Facultad de
+Ciencias Económicas y Empresariales.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Análisis de correspondencia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../An%C3%A1lisis%20de%20correspondencias%20en%20R/An%C3%A1lisis%20de%20correspondencias%20en%20R.html" class="btn btn-neutral float-right" title="Análisis de correspondencias en R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

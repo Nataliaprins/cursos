@@ -1,0 +1,18 @@
+Datos faltantes
+==========================================================
+
+En esta sesión se explicarán algunos métodos para imputación de datos.
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   Datos faltantes.rst
+   
+
+.. important::
+    Archivo para trabajar esta sesión:
+
+    * **Descargue** :download:`EAM_2019.csv <EAM_2019.csv>`
+

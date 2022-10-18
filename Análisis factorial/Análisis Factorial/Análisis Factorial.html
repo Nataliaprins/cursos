@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis Factorial &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Escalamiento Multidimensional" href="../../Escalamiento%20Multidimensional/index.html" />
+    <link rel="prev" title="Teoría Análisis Factorial" href="../Teor%C3%ADa%20An%C3%A1lisis%20Factorial/Teor%C3%ADa%20An%C3%A1lisis%20Factorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análisis Factorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Teor%C3%ADa%20An%C3%A1lisis%20Factorial/Teor%C3%ADa%20An%C3%A1lisis%20Factorial.html">Teoría Análisis Factorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Análisis Factorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pruebas-para-el-analisis-factorial">Pruebas para el Análisis Factorial:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#determinacion-de-la-cantidad-de-factores">Determinación de la cantidad de factores:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extraccion-de-factores">Extracción de factores:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotacion-de-los-factores">Rotación de los factores:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculo-de-las-puntuaciones-o-cargas-factoriales">Cálculo de las puntuaciones o cargas factoriales:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Análisis Factorial</a> &raquo;</li>
+      <li>Análisis Factorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Análisis factorial/Análisis Factorial/Análisis Factorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="analisis-factorial">
+<h1>Análisis Factorial<a class="headerlink" href="#analisis-factorial" title="Permalink to this headline"></a></h1>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;EAM_2019.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">ï</span><span class="o">..</span><span class="n">ciiu</span> <span class="n">personal_mujer</span> <span class="n">personal_hombre</span> <span class="n">gasto_personal</span> <span class="n">gasto_financiero</span>
+<span class="mi">1</span>    <span class="mi">1051</span>             <span class="mi">36</span>             <span class="mi">140</span>        <span class="mi">9352991</span>          <span class="mi">3240559</span>
+<span class="mi">2</span>    <span class="mi">1030</span>             <span class="mi">40</span>             <span class="mi">176</span>        <span class="mi">7334998</span>          <span class="mi">1468298</span>
+<span class="mi">3</span>    <span class="mi">3290</span>             <span class="mi">15</span>             <span class="mi">172</span>        <span class="mi">6668544</span>          <span class="mi">1547666</span>
+<span class="mi">4</span>    <span class="mi">3091</span>             <span class="mi">88</span>             <span class="mi">373</span>       <span class="mi">22088759</span>         <span class="mi">35203208</span>
+<span class="mi">5</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+<span class="mi">6</span>    <span class="mi">3290</span>             <span class="mi">18</span>              <span class="mi">53</span>        <span class="mi">5219070</span>          <span class="mi">2861773</span>
+  <span class="n">costos_gastos_produccion</span> <span class="n">gastos_adm_ventas</span> <span class="n">inversion_AF</span>    <span class="n">ventas</span>
+<span class="mi">1</span>                  <span class="mi">6846304</span>          <span class="mi">22920307</span>      <span class="mi">4979745</span> <span class="mi">192609248</span>
+<span class="mi">2</span>                  <span class="mi">5941761</span>          <span class="mi">12310286</span>      <span class="mi">5615593</span> <span class="mi">115741258</span>
+<span class="mi">3</span>                  <span class="mi">6996020</span>           <span class="mi">2564695</span>       <span class="mi">773444</span>  <span class="mi">44580029</span>
+<span class="mi">4</span>                  <span class="mi">4175751</span>         <span class="mi">171278876</span>     <span class="mi">10501572</span> <span class="mi">162509864</span>
+<span class="mi">5</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+<span class="mi">6</span>                 <span class="mi">11037978</span>          <span class="mi">13691919</span>      <span class="mi">6423171</span>  <span class="mi">87324374</span>
+</pre></div>
+</div>
+<div class="section" id="pruebas-para-el-analisis-factorial">
+<h2>Pruebas para el Análisis Factorial:<a class="headerlink" href="#pruebas-para-el-analisis-factorial" title="Permalink to this headline"></a></h2>
+<p><strong>Matriz de correlaciones:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;corrplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corrplot</span> <span class="mf">0.92</span> <span class="n">loaded</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">&lt;-</span> <span class="nf">cor</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">corrplot</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;circle&quot;</span><span class="p">)</span>
+<span class="nf">corrplot</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_6_0.png"><img alt="../../_images/output_6_0.png" src="../../_images/output_6_0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../../_images/output_6_1.png"><img alt="../../_images/output_6_1.png" src="../../_images/output_6_1.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Determinante de la matriz de correlaciones:</strong></p>
+<p>Determinante cercano a cerco indica alta multicolinealidad. Esto
+significa que algunas variables son linealmente dependientes y una o más
+variables podrían ser expresadas como combinación lineal de otras variables
+y la técnica del Análisis Factorial es pertinente para analizar las
+variables.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">det</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
+</pre></div>
+</div>
+0.00177061888189585<p><strong>Test de Bartlett o test de esfericidad:</strong></p>
+<p>Se evalúa si la matriz de correlaciones es la identidad <span class="math notranslate nohighlight">\(I\)</span>.
+Significa que las intercorrelaciones entre las variables son cero y el
+modelo de Análisis Factorial es inadecuado.</p>
+<div class="math notranslate nohighlight">
+\[H_0: Corr = I\]</div>
+<div class="math notranslate nohighlight">
+\[H_0: Corr \neq I\]</div>
+<p>Se acepta la hipótesis nula si <span class="math notranslate nohighlight">\(Valor-p &gt; 0,05\)</span></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">bartlett.test</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Bartlett</span> <span class="n">test</span> <span class="n">of</span> <span class="n">homogeneity</span> <span class="n">of</span> <span class="n">variances</span>
+
+<span class="n">data</span><span class="p">:</span>  <span class="n">datos</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">Bartlett</span><span class="s1">&#39;s K-squared = 29209, df = 7, p-value &lt; 2.2e-16</span>
+</pre></div>
+</div>
+<p>Se rechaza la hipótesis nula porque <span class="math notranslate nohighlight">\(Valor-p = 2,2e-16 &lt; 0,05\)</span>, la
+matriz de correlaciones no es la Identidad. La aplicación del Análisis
+Factorial es adecuada. Esta afirmación también está soportada por el
+Determinante cercano a cero.</p>
+<p><strong>Kaiser-Meyer-Olkin - KMO:</strong></p>
+<p>Con esta prueba se busca si entre las variables hay factores comunes. Si
+las variables comparten factores comunes, el coeficiente de correlación
+parcial entre pares de variables es cercano a cero. Con los coeficientes
+de correlación parcial se mide el grado de relación lineal entre dos
+variables sin el efecto de las demás. Si se tienen coeficientes de
+correlación parcial altos, la aplicación del Análisis Factorial no es el
+adecuado.</p>
+<p>Para comprobar lo anterior se calcula una Medida de Adecuación de la
+Muestra de KMO, <span class="math notranslate nohighlight">\(0&lt;=KMO&lt;=1\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[KMO &lt;0,6 --&gt; Inaceptable\]</div>
+<div class="math notranslate nohighlight">
+\[KMO &gt;=0,6 --&gt; Aceptable\]</div>
+<div class="math notranslate nohighlight">
+\[KMO &gt;=0,7 --&gt; Bien\]</div>
+<p>Con KMO cercano a cero indica que las correlaciones entre pares de
+variables no pueden ser explicadas por otras variables.</p>
+<div class="math notranslate nohighlight">
+\[KMO = \frac{\sum_{j\neq i}\sum_{i\neq j}r^2_{ij}}{\sum_{j\neq i}\sum_{i\neq j}r^2_{ij}+\sum_{j\neq i}\sum_{i\neq j}r^2_{ij(p)}}\]</div>
+<p>Donde,</p>
+<p><span class="math notranslate nohighlight">\(r^2_{ij(p)}\)</span>: coeficiente de correlación parcial entre
+<span class="math notranslate nohighlight">\((X_i, X_i)\)</span>.</p>
+<p>Para esta prueba instalar el paquete: <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;psych&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">psych</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">KMO</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Kaiser</span><span class="o">-</span><span class="n">Meyer</span><span class="o">-</span><span class="n">Olkin</span> <span class="n">factor</span> <span class="n">adequacy</span>
+<span class="n">Call</span><span class="p">:</span> <span class="n">KMO</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">])</span>
+<span class="n">Overall</span> <span class="n">MSA</span> <span class="o">=</span>  <span class="mf">0.67</span>
+<span class="n">MSA</span> <span class="k">for</span> <span class="n">each</span> <span class="n">item</span> <span class="o">=</span>
+          <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+                    <span class="mf">0.63</span>                     <span class="mf">0.63</span>                     <span class="mf">0.67</span>
+        <span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+                    <span class="mf">0.47</span>                     <span class="mf">0.85</span>                     <span class="mf">0.64</span>
+            <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+                    <span class="mf">0.84</span>                     <span class="mf">0.63</span>
+</pre></div>
+</div>
+<p>Como <span class="math notranslate nohighlight">\(KMO = 0,67\)</span> es aceptable aplicar el Análisis Factorial
+porque sí hay presencia de factores comunes.</p>
+</div>
+<div class="section" id="determinacion-de-la-cantidad-de-factores">
+<h2>Determinación de la cantidad de factores:<a class="headerlink" href="#determinacion-de-la-cantidad-de-factores" title="Permalink to this headline"></a></h2>
+<p><strong>1. Determinación “a priori”.</strong></p>
+<p><strong>2. Regla de Kaiser:</strong> Eigenvalores mayores que 1,0.</p>
+<p><strong>3. Criterio del porcentaje de la varianza:</strong> varianza explicada por
+encima del 70%.</p>
+<p><strong>4. Criterio de Sedimentación:</strong> técnica del codo.</p>
+<p><strong>Regla de Kaiser y criterio de sedimentación:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">eigen</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span><span class="o">$</span><span class="n">values</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_0.png"><img alt="../../_images/output_23_0.png" src="../../_images/output_23_0.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Criterio del porcentaje de la varianza:</strong></p>
+<p>Se usará la función <code class="docutils literal notranslate"><span class="pre">factanal()</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">stats</span></code>.</p>
+<p>Se hará una prueba con 4 factores: <code class="docutils literal notranslate"><span class="pre">factors</span> <span class="pre">=</span> <span class="pre">4</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">factanal</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">factanal</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">Uniquenesses</span><span class="p">:</span>
+          <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+                   <span class="mf">0.611</span>                    <span class="mf">0.209</span>                    <span class="mf">0.005</span>
+        <span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+                   <span class="mf">0.908</span>                    <span class="mf">0.166</span>                    <span class="mf">0.005</span>
+            <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+                   <span class="mf">0.958</span>                    <span class="mf">0.005</span>
+
+<span class="n">Loadings</span><span class="p">:</span>
+                         <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span> <span class="n">Factor4</span>
+<span class="n">personal_mujer</span>                    <span class="mf">0.531</span>           <span class="mf">0.325</span>
+<span class="n">personal_hombre</span>           <span class="mf">0.150</span>   <span class="mf">0.869</span>   <span class="mf">0.118</span>
+<span class="n">gasto_personal</span>            <span class="mf">0.326</span>   <span class="mf">0.880</span>   <span class="mf">0.278</span>   <span class="mf">0.192</span>
+<span class="n">gasto_financiero</span>                                  <span class="mf">0.272</span>
+<span class="n">costos_gastos_produccion</span>  <span class="mf">0.593</span>   <span class="mf">0.218</span>   <span class="mf">0.593</span>   <span class="mf">0.289</span>
+<span class="n">gastos_adm_ventas</span>         <span class="mf">0.971</span>   <span class="mf">0.104</span>   <span class="mf">0.141</span>   <span class="mf">0.143</span>
+<span class="n">inversion_AF</span>                              <span class="mf">0.153</span>
+<span class="n">ventas</span>                    <span class="mf">0.939</span>   <span class="mf">0.173</span>   <span class="mf">0.289</span>
+
+               <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span> <span class="n">Factor4</span>
+<span class="n">SS</span> <span class="n">loadings</span>      <span class="mf">2.319</span>   <span class="mf">1.907</span>   <span class="mf">0.580</span>   <span class="mf">0.328</span>
+<span class="n">Proportion</span> <span class="n">Var</span>   <span class="mf">0.290</span>   <span class="mf">0.238</span>   <span class="mf">0.072</span>   <span class="mf">0.041</span>
+<span class="n">Cumulative</span> <span class="n">Var</span>   <span class="mf">0.290</span>   <span class="mf">0.528</span>   <span class="mf">0.601</span>   <span class="mf">0.642</span>
+
+<span class="n">Test</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="mi">4</span> <span class="n">factors</span> <span class="n">are</span> <span class="n">sufficient</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">chi</span> <span class="n">square</span> <span class="n">statistic</span> <span class="ow">is</span> <span class="mf">7.29</span> <span class="n">on</span> <span class="mi">2</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="ow">is</span> <span class="mf">0.0262</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extraccion-de-factores">
+<h2>Extracción de factores:<a class="headerlink" href="#extraccion-de-factores" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Método de Eje principal o Factor Principal.</p></li>
+<li><p>Máxima Verosimilitud.</p></li>
+</ol>
+<p>En esta sesión se extraerán los factores por Máxima Verosimilitud. La
+función <code class="docutils literal notranslate"><span class="pre">factanal()</span></code> solo extraer los factores por este método. Para
+aplicar los otros métodos se recomienda usar la función <code class="docutils literal notranslate"><span class="pre">fa()</span></code> de la
+librería <code class="docutils literal notranslate"><span class="pre">psych</span></code>, con el argumento <code class="docutils literal notranslate"><span class="pre">fm</span> <span class="pre">=</span> <span class="pre">&quot;pa&quot;</span></code> para el método de Eje
+principal o Factor Principal.</p>
+<p>Por ejemplo:
+<code class="docutils literal notranslate"><span class="pre">fa(datos[,2:9],</span> <span class="pre">nfactors</span> <span class="pre">=</span> <span class="pre">4,</span> <span class="pre">rotate</span> <span class="pre">=</span> <span class="pre">&quot;none&quot;,</span> <span class="pre">fm</span> <span class="pre">=</span> <span class="pre">&quot;pa&quot;)</span></code></p>
+</div>
+<div class="section" id="rotacion-de-los-factores">
+<h2>Rotación de los factores:<a class="headerlink" href="#rotacion-de-los-factores" title="Permalink to this headline"></a></h2>
+<p>La función <code class="docutils literal notranslate"><span class="pre">factanal()</span></code> por defecto rota los factores por Varimax,
+pero se puede cambiar el método de rotación con el argumento:</p>
+<p><code class="docutils literal notranslate"><span class="pre">rotation</span> <span class="pre">=</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;varimax&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;quartimax&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;equamax&quot;</span></code>. Estos
+métodos son rotaciones ortogonales.</p>
+<p>Para algunos métodos de rotación instalar la librería
+<code class="docutils literal notranslate"><span class="pre">install.packages(&quot;GPArotation&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">GPArotation</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">factanal</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="s">&quot;varimax&quot;</span><span class="p">)</span>
+<span class="n">fit</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">factanal</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="s2">&quot;varimax&quot;</span><span class="p">)</span>
+
+<span class="n">Uniquenesses</span><span class="p">:</span>
+          <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+                   <span class="mf">0.660</span>                    <span class="mf">0.162</span>                    <span class="mf">0.005</span>
+        <span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+                   <span class="mf">0.902</span>                    <span class="mf">0.296</span>                    <span class="mf">0.048</span>
+            <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+                   <span class="mf">0.971</span>                    <span class="mf">0.005</span>
+
+<span class="n">Loadings</span><span class="p">:</span>
+                         <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span>
+<span class="n">personal_mujer</span>                    <span class="mf">0.527</span>   <span class="mf">0.247</span>
+<span class="n">personal_hombre</span>           <span class="mf">0.203</span>   <span class="mf">0.892</span>
+<span class="n">gasto_personal</span>            <span class="mf">0.408</span>   <span class="mf">0.869</span>   <span class="mf">0.271</span>
+<span class="n">gasto_financiero</span>                          <span class="mf">0.299</span>
+<span class="n">costos_gastos_produccion</span>  <span class="mf">0.722</span>   <span class="mf">0.249</span>   <span class="mf">0.349</span>
+<span class="n">gastos_adm_ventas</span>         <span class="mf">0.971</span>
+<span class="n">inversion_AF</span>              <span class="mf">0.131</span>
+<span class="n">ventas</span>                    <span class="mf">0.986</span>   <span class="mf">0.141</span>
+
+               <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span>
+<span class="n">SS</span> <span class="n">loadings</span>      <span class="mf">2.666</span>   <span class="mf">1.923</span>   <span class="mf">0.362</span>
+<span class="n">Proportion</span> <span class="n">Var</span>   <span class="mf">0.333</span>   <span class="mf">0.240</span>   <span class="mf">0.045</span>
+<span class="n">Cumulative</span> <span class="n">Var</span>   <span class="mf">0.333</span>   <span class="mf">0.574</span>   <span class="mf">0.619</span>
+
+<span class="n">Test</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="mi">3</span> <span class="n">factors</span> <span class="n">are</span> <span class="n">sufficient</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">chi</span> <span class="n">square</span> <span class="n">statistic</span> <span class="ow">is</span> <span class="mf">50.96</span> <span class="n">on</span> <span class="mi">7</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="ow">is</span> <span class="mf">9.38e-09</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Uniquenesses</span></code> - <span class="math notranslate nohighlight">\(\Psi\)</span>: Unicidad: proporción de la varianza no
+explicada.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">fit</span><span class="o">$</span><span class="n">uniquenesses</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+      <span class="mf">0.66023136</span>               <span class="mf">0.16158472</span>               <span class="mf">0.00500000</span>
+<span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+      <span class="mf">0.90243324</span>               <span class="mf">0.29566162</span>               <span class="mf">0.04824951</span>
+    <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+      <span class="mf">0.97090998</span>               <span class="mf">0.00500000</span>
+</pre></div>
+</div>
+<p><strong>Comunalidad</strong> - <span class="math notranslate nohighlight">\(\Lambda\)</span>: <span class="math notranslate nohighlight">\(1-\Psi\)</span>. Proporción de la
+varianza que sí se puede explicar por cada variable. También son suma de
+las cargas al cuadrado por cada variable.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">fit</span><span class="o">$</span><span class="n">loadings</span><span class="o">^</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+      <span class="mf">0.33971591</span>               <span class="mf">0.83841043</span>               <span class="mf">0.99500077</span>
+<span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+      <span class="mf">0.09756084</span>               <span class="mf">0.70433543</span>               <span class="mf">0.95175045</span>
+    <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+      <span class="mf">0.02914470</span>               <span class="mf">0.99505497</span>
+</pre></div>
+</div>
+<p><strong>``SS loadings:``</strong> suma de las cargas al cuadrado por cada factor. La
+regla de Kaiser dice que cada factor debe tener un valor mayor a 1.</p>
+<p><strong>Valor p:</strong> <span class="math notranslate nohighlight">\(H_0\)</span> es que los factores seleccionados son los
+adecuados. Se acepta si valor p &gt; 0,05. Se rechaza si valor p es pequeño
+(&lt; 0,05).</p>
+</div>
+<div class="section" id="calculo-de-las-puntuaciones-o-cargas-factoriales">
+<h2>Cálculo de las puntuaciones o cargas factoriales:<a class="headerlink" href="#calculo-de-las-puntuaciones-o-cargas-factoriales" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Método de Regresión.</p></li>
+<li><p>Método de Barlett.</p></li>
+</ol>
+<p>Se agrega el argumento:</p>
+<p><code class="docutils literal notranslate"><span class="pre">scores</span> <span class="pre">=</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;regression&quot;</span></code> o <code class="docutils literal notranslate"><span class="pre">&quot;Bartlett&quot;</span></code>. Por defecto hace el
+cálculo con <code class="docutils literal notranslate"><span class="pre">scores</span> <span class="pre">=</span> <span class="pre">&quot;regression&quot;</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">factanal</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="s">&quot;varimax&quot;</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="s">&quot;regression&quot;</span><span class="p">)</span>
+<span class="n">fit</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">factanal</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">factors</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="s2">&quot;regression&quot;</span><span class="p">,</span>     <span class="n">rotation</span> <span class="o">=</span> <span class="s2">&quot;varimax&quot;</span><span class="p">)</span>
+
+<span class="n">Uniquenesses</span><span class="p">:</span>
+          <span class="n">personal_mujer</span>          <span class="n">personal_hombre</span>           <span class="n">gasto_personal</span>
+                   <span class="mf">0.660</span>                    <span class="mf">0.162</span>                    <span class="mf">0.005</span>
+        <span class="n">gasto_financiero</span> <span class="n">costos_gastos_produccion</span>        <span class="n">gastos_adm_ventas</span>
+                   <span class="mf">0.902</span>                    <span class="mf">0.296</span>                    <span class="mf">0.048</span>
+            <span class="n">inversion_AF</span>                   <span class="n">ventas</span>
+                   <span class="mf">0.971</span>                    <span class="mf">0.005</span>
+
+<span class="n">Loadings</span><span class="p">:</span>
+                         <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span>
+<span class="n">personal_mujer</span>                    <span class="mf">0.527</span>   <span class="mf">0.247</span>
+<span class="n">personal_hombre</span>           <span class="mf">0.203</span>   <span class="mf">0.892</span>
+<span class="n">gasto_personal</span>            <span class="mf">0.408</span>   <span class="mf">0.869</span>   <span class="mf">0.271</span>
+<span class="n">gasto_financiero</span>                          <span class="mf">0.299</span>
+<span class="n">costos_gastos_produccion</span>  <span class="mf">0.722</span>   <span class="mf">0.249</span>   <span class="mf">0.349</span>
+<span class="n">gastos_adm_ventas</span>         <span class="mf">0.971</span>
+<span class="n">inversion_AF</span>              <span class="mf">0.131</span>
+<span class="n">ventas</span>                    <span class="mf">0.986</span>   <span class="mf">0.141</span>
+
+               <span class="n">Factor1</span> <span class="n">Factor2</span> <span class="n">Factor3</span>
+<span class="n">SS</span> <span class="n">loadings</span>      <span class="mf">2.666</span>   <span class="mf">1.923</span>   <span class="mf">0.362</span>
+<span class="n">Proportion</span> <span class="n">Var</span>   <span class="mf">0.333</span>   <span class="mf">0.240</span>   <span class="mf">0.045</span>
+<span class="n">Cumulative</span> <span class="n">Var</span>   <span class="mf">0.333</span>   <span class="mf">0.574</span>   <span class="mf">0.619</span>
+
+<span class="n">Test</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="mi">3</span> <span class="n">factors</span> <span class="n">are</span> <span class="n">sufficient</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">chi</span> <span class="n">square</span> <span class="n">statistic</span> <span class="ow">is</span> <span class="mf">50.96</span> <span class="n">on</span> <span class="mi">7</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="ow">is</span> <span class="mf">9.38e-09</span>
+</pre></div>
+</div>
+<p><strong>Realizar el Análisis Factorial con más factores y otros métodos de
+rotación</strong>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Teor%C3%ADa%20An%C3%A1lisis%20Factorial/Teor%C3%ADa%20An%C3%A1lisis%20Factorial.html" class="btn btn-neutral float-left" title="Teoría Análisis Factorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Escalamiento%20Multidimensional/index.html" class="btn btn-neutral float-right" title="Escalamiento Multidimensional" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

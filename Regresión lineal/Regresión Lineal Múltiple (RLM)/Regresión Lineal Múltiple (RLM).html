@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regresión Lineal Múltiple (RLM) &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ANOVA" href="../ANOVA/ANOVA.html" />
+    <link rel="prev" title="RLS con ggplot2" href="../RLS%20con%20ggplot2/RLS%20con%20ggplot2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Regresión Lineal Múltiple (RLM)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#minimo-cuadrados">Mínimo cuadrados:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-en-r">Código en R:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ANOVA/ANOVA.html">ANOVA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Multicolinealidad/Multicolinealidad.html">Multicolinealidad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Comparaci%C3%B3n%20de%20modelos/Comparaci%C3%B3n%20de%20modelos.html">Comparación de modelos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../An%C3%A1lisis%20de%20Normalidad%20en%20RLM/An%C3%A1lisis%20de%20Normalidad%20en%20RLM.html">Análisis de Normalidad en RLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Variables%20indicadoras/Variables%20indicadoras.html">Variables indicadoras</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-logistica">Regresión Logística</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+      <li>Regresión Lineal Múltiple (RLM)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Regresión lineal/Regresión Lineal Múltiple (RLM)/Regresión Lineal Múltiple (RLM).rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="regresion-lineal-multiple-rlm">
+<h1>Regresión Lineal Múltiple (RLM)<a class="headerlink" href="#regresion-lineal-multiple-rlm" title="Permalink to this headline"></a></h1>
+<p>En la regresión lineal múltiple tenemos más de una variable regresora o
+independiente. Este modelo se representa por la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[y = \beta_0+\beta_1 x_1 +\beta_2 x_2 + ... + \beta_k x_x +\varepsilon\]</div>
+<p>Donde,</p>
+<p><span class="math notranslate nohighlight">\(y\)</span>: variable dependiente o variable respuesta.</p>
+<p><span class="math notranslate nohighlight">\(x_j\)</span>: variables independientes o regresoras. También llamadas
+variables explicativas.</p>
+<p><span class="math notranslate nohighlight">\(\beta_j\)</span>: coeficientes de regresión.</p>
+<p><span class="math notranslate nohighlight">\(k\)</span>: cantidad de variables regresoras o explicativas.</p>
+<p><span class="math notranslate nohighlight">\(\varepsilon\)</span>: error</p>
+<p>El modelo de regresión lineal múltiple con <span class="math notranslate nohighlight">\(k\)</span> regresores es un
+hiperplano en el espacio <span class="math notranslate nohighlight">\(k\)</span> dimensiones. El parámetro
+<span class="math notranslate nohighlight">\(\beta_j\)</span> representa el cambio esperado en la variable <span class="math notranslate nohighlight">\(y\)</span>
+por un cambio unitario de <span class="math notranslate nohighlight">\(x_j\)</span> cuando las demás variables
+explicativas <span class="math notranslate nohighlight">\(x_i\)</span> <span class="math notranslate nohighlight">\((i \neq i\)</span> se mantienen constantes. Por
+esta razón, los <span class="math notranslate nohighlight">\(\beta_j\)</span> se pueden llamar coeficientes de
+regresión parcial.</p>
+<p>Este modelo es lineal porque la ecuación es una función lineal de los
+parámetros desconocidos <span class="math notranslate nohighlight">\(\beta_j\)</span>.</p>
+<p>Los parámetros se pueden estimar a partir de datos muestrales. La
+siguiente tabla muestra la forma de los datos para <span class="math notranslate nohighlight">\(n\)</span>
+observaciones, <span class="math notranslate nohighlight">\(k\)</span> variables independientes y una &amp;y&amp; variable
+dependiente.</p>
+<p>En este modelo se supone que <span class="math notranslate nohighlight">\(n&gt;k\)</span>, <span class="math notranslate nohighlight">\(E(\varepsilon) = 0\)</span>,
+<span class="math notranslate nohighlight">\(Var(\varepsilon)= \sigma^2\)</span> y que los errores no están
+correlacionados.</p>
+<div class="figure align-default" id="id1">
+<img alt="Tabla" src="../../_images/Tabla.JPG" />
+<p class="caption"><span class="caption-text">Tabla</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p>Con los datos muestrales, el modelo se puede expresar de la siguiente
+forma:</p>
+<div class="math notranslate nohighlight">
+\[y_i = \beta_0 + \sum_{j=1}^k {\beta_j x_{ij}} + \varepsilon_i\]</div>
+<div class="section" id="minimo-cuadrados">
+<h2>Mínimo cuadrados:<a class="headerlink" href="#minimo-cuadrados" title="Permalink to this headline"></a></h2>
+<p>El método de mínimos cuadrado se aplica para estimar los coeficientes de
+regresión <span class="math notranslate nohighlight">\((\beta_j)\)</span>. La función de mínimos cuadrados es:</p>
+<div class="math notranslate nohighlight">
+\[S(\beta_0,\beta_1,...,\beta_k)=\sum_{i=i}^n{\varepsilon_i^2}\]</div>
+<div class="math notranslate nohighlight">
+\[S(\beta_0,\beta_1,...,\beta_k)=\sum_{i=1}^n{(y_i-\beta_0-\sum_{j=1}^k {\beta_j x_{ij}})^2}\]</div>
+<p>El objetivo es minimizar la función <span class="math notranslate nohighlight">\(S\)</span> respecto a los Betas.</p>
+<p>El modelo de regresión lineal múltiple se puede expresar en forma
+matricial:</p>
+<div class="math notranslate nohighlight">
+\[y = X\beta+\varepsilon\]</div>
+<p>Donde,</p>
+<p><span class="math notranslate nohighlight">\(y = \begin{bmatrix} y_1 \\ y_2 \\ . \\ y_n \end{bmatrix}, X = \begin{bmatrix} 1 &amp; x_{11} &amp; x_{12} &amp; ... &amp; x_{1k} \\ 1 &amp; x_{21} &amp; x_{22} &amp; ... &amp; x_{2k} \\ . &amp; . &amp; . &amp; ... &amp; . \\ 1 &amp; x_{n1} &amp; x_{n2} &amp; ... &amp; x_{nk} \end{bmatrix}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\beta=\begin{bmatrix} \beta_0 \\ \beta_1 \\ . \\ \beta_k \end{bmatrix}, \varepsilon = \begin{bmatrix} \varepsilon_1 \\ \varepsilon_1 \\ . \\ \varepsilon_n \end{bmatrix}\)</span></p>
+<p><span class="math notranslate nohighlight">\(y\)</span> es un vector de <span class="math notranslate nohighlight">\(n\times 1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(X\)</span> es una matriz de <span class="math notranslate nohighlight">\(n\times p\)</span>. <span class="math notranslate nohighlight">\(p\)</span> cantidad de
+variables regresoras.</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span> es un vector de <span class="math notranslate nohighlight">\(p\times 1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\varepsilon\)</span> es un vector de <span class="math notranslate nohighlight">\(n\times 1\)</span>.</p>
+<p><strong>Estimación de los Betas:</strong></p>
+<p>Con el método de mínimos cuadrados se busca determinar el vector
+<span class="math notranslate nohighlight">\(\hat{\beta}\)</span> que minimice la ecuación de <span class="math notranslate nohighlight">\(S\)</span>. En forma
+matricial este vector se halla así:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta} = (X^´X)^{-1}X^´y\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(X^´\)</span> es la transpuesta de la matriz <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Se obtiene una solución si existe la inversa de <span class="math notranslate nohighlight">\((X^´X)^{-1}\)</span>.
+Esta matriz existe si las regresoras son linealmente independientes,
+esto es, que ninguna columna de <span class="math notranslate nohighlight">\(X\)</span> sea una combinación lineal de
+las demás columnas.</p>
+<p>El modelo de regresión ajustado se expresa con la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[\hat y = x^´\hat{\beta} = \hat{\beta_0}+\sum_{j=1}^k{\hat{\beta_j}x_j}\]</div>
+<p>El residual es la diferencia entre el valor observado, <span class="math notranslate nohighlight">\(y_i\)</span>, y el
+valor ajustado <span class="math notranslate nohighlight">\(\hat y\)</span> así:
+<span class="math notranslate nohighlight">\(\hat{\varepsilon_i} = y_i-\hat{y_i}\)</span>. Para <span class="math notranslate nohighlight">\(n\)</span>
+observaciones se tiene <span class="math notranslate nohighlight">\(n\)</span> residuales.</p>
+</div>
+<div class="section" id="codigo-en-r">
+<h2>Código en R:<a class="headerlink" href="#codigo-en-r" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;DatosCafe.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">Fecha</span> <span class="n">PrecioInterno</span> <span class="n">PrecioInternacional</span> <span class="n">Producción</span> <span class="n">Exportaciones</span>     <span class="n">TRM</span>
+<span class="mi">1</span> <span class="n">ene</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">371375</span>              <span class="mf">130.12</span>        <span class="mi">658</span>           <span class="mi">517</span> <span class="mf">1923.57</span>
+<span class="mi">2</span> <span class="n">feb</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">354297</span>              <span class="mf">124.72</span>        <span class="mi">740</span>           <span class="mi">642</span> <span class="mf">1950.64</span>
+<span class="mi">3</span> <span class="n">mar</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">360016</span>              <span class="mf">119.51</span>        <span class="mi">592</span>           <span class="mi">404</span> <span class="mf">1956.25</span>
+<span class="mi">4</span> <span class="n">abr</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">347538</span>              <span class="mf">112.67</span>       <span class="mi">1055</span>           <span class="mi">731</span> <span class="mf">1986.77</span>
+<span class="mi">5</span> <span class="n">may</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">353750</span>              <span class="mf">110.31</span>       <span class="mi">1114</span>           <span class="mi">615</span> <span class="mf">2055.69</span>
+<span class="mi">6</span> <span class="n">jun</span><span class="o">-</span><span class="mi">00</span>        <span class="mi">341688</span>              <span class="mf">100.30</span>       <span class="mi">1092</span>           <span class="mi">869</span> <span class="mf">2120.17</span>
+     <span class="n">EUR</span>
+<span class="mi">1</span> <span class="mf">1916.0</span>
+<span class="mi">2</span> <span class="mf">1878.5</span>
+<span class="mi">3</span> <span class="mf">1875.0</span>
+<span class="mi">4</span> <span class="mf">1832.0</span>
+<span class="mi">5</span> <span class="mf">1971.5</span>
+<span class="mi">6</span> <span class="mf">2053.5</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>264</li><li>7</li></ol><p><strong>Matriz de correlaciones:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;PerformanceAnalytics&quot;)</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">PerformanceAnalytics</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;PerformanceAnalytics&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">xts</span>
+
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;xts&#39; was built under R version 4.1.3&quot;</span>
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">zoo</span>
+
+<span class="ne">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;package &#39;zoo&#39; was built under R version 4.1.3&quot;</span>
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;zoo&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:base&#39;</span><span class="p">:</span>
+
+    <span class="k">as</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="k">as</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">numeric</span>
+
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="s1">&#39;PerformanceAnalytics&#39;</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">masked</span> <span class="kn">from</span> <span class="s1">&#39;package:graphics&#39;</span><span class="p">:</span>
+
+    <span class="n">legend</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chart.Correlation</span><span class="p">(</span><span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">7</span><span class="p">])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_17_03.png"><img alt="../../_images/output_17_03.png" src="../../_images/output_17_03.png" style="width: 420px; height: 420px;" /></a>
+<p><strong>Ajuste del modelo 1:</strong></p>
+<div class="math notranslate nohighlight">
+\[y = \beta_0+\beta_1 x_1 +\beta_2 x_2 + +\beta_3 x_3 + +\beta_4 x_4 + +\beta_5 x_5 +\varepsilon\]</div>
+<div class="math notranslate nohighlight">
+\[Exportaciones = \beta_0+\beta_1Producción +\beta_2 PrecioInternacional +\beta_3 PrecioInterno ++\beta_4TRM +\beta_5 EUR +\varepsilon\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">PrecioInterno</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="n">regression</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">:</span>
+<span class="n">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span>
+    <span class="n">PrecioInterno</span> <span class="o">+</span> <span class="n">TRM</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+
+<span class="n">Coefficients</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>           <span class="n">Producción</span>  <span class="n">PrecioInternacional</span>
+          <span class="mf">2.800e+02</span>            <span class="mf">5.806e-01</span>           <span class="o">-</span><span class="mf">1.045e+00</span>
+      <span class="n">PrecioInterno</span>                  <span class="n">TRM</span>                  <span class="n">EUR</span>
+          <span class="mf">1.878e-04</span>           <span class="o">-</span><span class="mf">3.049e-02</span>            <span class="mf">5.335e-02</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + PrecioInternacional +
+    PrecioInterno + TRM + EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-507.57  -73.29   -2.66   74.68  400.44
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)          2.800e+02  1.172e+02   2.390   0.0176 *
+Producción           5.806e-01  3.284e-02  17.681   &lt;2e-16 <strong>*
+PrecioInternacional -1.045e+00  6.248e-01  -1.673   0.0956 .
+PrecioInterno        1.878e-04  1.311e-04   1.432   0.1533
+TRM                 -3.049e-02  5.367e-02  -0.568   0.5704
+EUR                  5.335e-02  2.725e-02   1.958   0.0513 .
+---
+Signif. codes:  0 '*</strong>' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.1 on 258 degrees of freedom
+Multiple R-squared:  0.7055,        Adjusted R-squared:  0.6998
+F-statistic: 123.6 on 5 and 258 DF,  p-value: &lt; 2.2e-16</pre>
+<p><strong>Coeficientes:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span>          <span class="n">Producción</span> <span class="n">PrecioInternacional</span>       <span class="n">PrecioInterno</span>
+ <span class="mf">2.800080e+02</span>        <span class="mf">5.806015e-01</span>       <span class="o">-</span><span class="mf">1.045120e+00</span>        <span class="mf">1.877758e-04</span>
+          <span class="n">TRM</span>                 <span class="n">EUR</span>
+<span class="o">-</span><span class="mf">3.049381e-02</span>        <span class="mf">5.335477e-02</span>
+</pre></div>
+</div>
+<p><strong>Residuales:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">residuals</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="mi">1</span>          <span class="mi">2</span>          <span class="mi">3</span>          <span class="mi">4</span>          <span class="mi">5</span>          <span class="mi">6</span>
+<span class="o">-</span><span class="mf">122.35878</span>  <span class="o">-</span><span class="mf">44.57864</span> <span class="o">-</span><span class="mf">202.81077</span> <span class="o">-</span><span class="mf">146.20990</span> <span class="o">-</span><span class="mf">305.43969</span>  <span class="o">-</span><span class="mf">49.27200</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">regression</span><span class="o">$</span><span class="n">residuals</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">264</span>
+</pre></div>
+</div>
+<p><strong>Ajuste del modelo 2:</strong></p>
+<div class="math notranslate nohighlight">
+\[Exportaciones = \beta_0+\beta_1Producción +\beta_2 PrecioInternacional +\beta_3 EUR +\varepsilon\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">PrecioInternacional</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + PrecioInternacional +
+    EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-508.69  -75.56    1.87   72.06  423.92
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)         133.89907   43.16546   3.102  0.00213 **
+Producción            0.59395    0.03210  18.502  &lt; 2e-16 <strong>*
+PrecioInternacional  -0.25609    0.13838  -1.851  0.06535 .
+EUR                   0.07345    0.01321   5.560 6.69e-08 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 121.4 on 260 degrees of freedom
+Multiple R-squared:  0.7017,        Adjusted R-squared:  0.6982
+F-statistic: 203.8 on 3 and 260 DF,  p-value: &lt; 2.2e-16</pre>
+<p><strong>Ajuste del modelo 3:</strong></p>
+<div class="math notranslate nohighlight">
+\[Exportaciones = \beta_0+\beta_1Producción  +\beta_2 EUR +\varepsilon\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">regression</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Exportaciones</span> <span class="o">~</span> <span class="n">Producción</span> <span class="o">+</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">datos</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">regression</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Call:
+lm(formula = Exportaciones ~ Producción + EUR, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-512.46  -81.73   -2.56   78.98  441.24
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 97.73831   38.66817   2.528   0.0121 *
+Producción   0.61093    0.03091  19.767  &lt; 2e-16 <strong>*
+EUR          0.06732    0.01285   5.240 3.32e-07 *</strong>
+---
+Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 122 on 261 degrees of freedom
+Multiple R-squared:  0.6977,        Adjusted R-squared:  0.6954
+F-statistic: 301.2 on 2 and 261 DF,  p-value: &lt; 2.2e-16</pre>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../RLS%20con%20ggplot2/RLS%20con%20ggplot2.html" class="btn btn-neutral float-left" title="RLS con ggplot2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ANOVA/ANOVA.html" class="btn btn-neutral float-right" title="ANOVA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

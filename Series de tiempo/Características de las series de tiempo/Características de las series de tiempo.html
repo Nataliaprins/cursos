@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Características de las series de tiempo &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ACF" href="../ACF/ACF.html" />
+    <link rel="prev" title="Series de tiempo" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Regresi%C3%B3n%20lineal/index.html">Regresión lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Series de tiempo</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Características de las series de tiempo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variacion-estacional">Variación estacional:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metodos-de-descomposicion">Métodos de descomposición:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#descomposicion-multiplicativa">Descomposición multiplicativa:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#descomposicion-aditiva">Descomposición aditiva:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#descomposicion-de-las-series-en-r">Descomposición de las series en <code class="docutils literal notranslate"><span class="pre">R</span></code>:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estacionariedad">Estacionariedad:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#media-y-varianza">Media y varianza:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procesos-estocasticos">Procesos estocásticos:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ruido-blanco">Ruido blanco:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ACF/ACF.html">ACF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20Autorregresivos%20-%20AR/Modelos%20Autorregresivos%20-%20AR.html">Modelos Autorregresivos - AR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pron%C3%B3stico%20con%20AR/Pron%C3%B3stico%20con%20AR.html">Pronóstico con AR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autoplot%20para%20series%20de%20tiempo/autoplot%20para%20series%20de%20tiempo.html">autoplot para series de tiempo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA/Modelos%20de%20promedio%20m%C3%B3vil%20-%20MA.html">Modelos de promedio móvil - MA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Modelos%20ARMA/Modelos%20ARMA.html">Modelos ARMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lecturas">Lecturas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Series de tiempo</a> &raquo;</li>
+      <li>Características de las series de tiempo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Series de tiempo/Características de las series de tiempo/Características de las series de tiempo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="caracteristicas-de-las-series-de-tiempo">
+<h1>Características de las series de tiempo<a class="headerlink" href="#caracteristicas-de-las-series-de-tiempo" title="Permalink to this headline"></a></h1>
+<p>Las series de tiempo son datos secuenciales ordenados por el tiempo, en
+otras palabras, las series de tiempo son variables que dependen del
+tiempo. Para cada punto en el tiempo <span class="math notranslate nohighlight">\(t\)</span> existe un único valor de
+<span class="math notranslate nohighlight">\(y\)</span>. Cada intervalo de tiempo tiene la misma distancia temporal.</p>
+<p>Para la modelación de las series temporales primero se debe introducir
+los conceptos que son insumos para determinar el tipo de variable con la
+cual se está trabajando.</p>
+<div class="section" id="variacion-estacional">
+<h2>Variación estacional:<a class="headerlink" href="#variacion-estacional" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Variación estacional constante:</strong> la dimensión de los cambios
+estacionales es la misma. La magnitud del cambio estacional no
+depende del nivel de la serie de tiempo.</p></li>
+</ul>
+<div class="figure align-default" id="id1">
+<img alt="Estacionalidad" src="../../_images/Estacionalidad.png" />
+<p class="caption"><span class="caption-text">Estacionalidad</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<ul class="simple">
+<li><p><strong>variación estacional creciente (decreciente):</strong> la magnitud del
+cambio estacional es mayor (menor) a través del tiempo.</p></li>
+</ul>
+<div class="figure align-default" id="id2">
+<img alt="Estacionalidad2" src="../../_images/Estacionalidad2.png" />
+<p class="caption"><span class="caption-text">Estacionalidad2</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>Cuando una serie de tiempo muestra una variación estacional creciente,
+lo común es aplicar una transformación a los datos para generar una
+serie de tiempo con variación estacional constante. Se puede aplicar
+alguna de las siguientes transformaciones:</p>
+<p><span class="math notranslate nohighlight">\(y* = y^{\lambda}\)</span> donde <span class="math notranslate nohighlight">\(0&lt;\lambda&lt;1\)</span></p>
+<p>Cuando <span class="math notranslate nohighlight">\(\lambda\)</span> se aproxima a cero, la transformación se
+convierte en: <span class="math notranslate nohighlight">\(y* = ln[y]\)</span></p>
+</div>
+<div class="section" id="metodos-de-descomposicion">
+<h2>Métodos de descomposición:<a class="headerlink" href="#metodos-de-descomposicion" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="descomposicion-multiplicativa">
+<h2>Descomposición multiplicativa:<a class="headerlink" href="#descomposicion-multiplicativa" title="Permalink to this headline"></a></h2>
+<p>Para las series de tiempo con variación estacional creciente o
+decreciente.</p>
+<div class="math notranslate nohighlight">
+\[y = TR_t \times SN_t \times CL_t \times IR_t\]</div>
+<p>Donde,</p>
+<p><span class="math notranslate nohighlight">\(TR_t\)</span>: componente de la tendencia en el período <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(SN_t\)</span>: componente o factor estacional en el período <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(CL_t\)</span>: componente o factor cíclico en el período <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(IR_t\)</span>: componente o factor irregular en el período <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>El componente cíclico, <span class="math notranslate nohighlight">\(CL_t\)</span>, son los movimientos recurrentes
+hacia arriba y hacia abajo con respecto a los niveles de la tendencia.</p>
+</div>
+<div class="section" id="descomposicion-aditiva">
+<h2>Descomposición aditiva:<a class="headerlink" href="#descomposicion-aditiva" title="Permalink to this headline"></a></h2>
+<p>Para series de tiempo con variación estacional constante.</p>
+<div class="math notranslate nohighlight">
+\[y = TR_t + SN_t + CL_t + IR_t\]</div>
+<div class="figure align-default" id="id3">
+<img alt="ClasificaciónPegel" src="../../_images/ClasificaciónPegel.JPG" />
+<p class="caption"><span class="caption-text">ClasificaciónPegel</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="descomposicion-de-las-series-en-r">
+<h2>Descomposición de las series en <code class="docutils literal notranslate"><span class="pre">R</span></code>:<a class="headerlink" href="#descomposicion-de-las-series-en-r" title="Permalink to this headline"></a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">estacional</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Primero debemos convertir el objeto de la serie de tiempo a un objeto
+<code class="docutils literal notranslate"><span class="pre">ts</span></code> para que se pueda cargar en <code class="docutils literal notranslate"><span class="pre">decompose()</span></code> que en la función
+para descomponer la serie de tiempo.</p>
+<p>Esto es muy común en la modelación de las series de tiempo, antes de
+aplicar los modelos, convertir los datos en <code class="docutils literal notranslate"><span class="pre">ts</span></code>.</p>
+<p>Las funciones <code class="docutils literal notranslate"><span class="pre">ts()</span></code> y<code class="docutils literal notranslate"><span class="pre">decompose()</span></code> son de la librería <code class="docutils literal notranslate"><span class="pre">stats</span></code>.</p>
+<p>Con <code class="docutils literal notranslate"><span class="pre">ts()</span></code> se puede especificar la fecha inicial y final de la serie
+de tiempo con los siguientes argumentos:
+<code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">=</span> <span class="pre">c(año,mes),</span> <span class="pre">end</span> <span class="pre">=</span> <span class="pre">c(año,mes)</span></code>. Para especificar la frecuencia
+de los datos se agrega el argumento: <code class="docutils literal notranslate"><span class="pre">frequency</span> <span class="pre">=</span></code>. Si los datos son
+mensuales se pone <code class="docutils literal notranslate"><span class="pre">12</span></code>, si son trimestrales, <code class="docutils literal notranslate"><span class="pre">4</span></code>, etc.</p>
+<p>La serie de tiempo <code class="docutils literal notranslate"><span class="pre">estacional</span></code> no es una serie real, solo se creó
+para los ejemplos. En <code class="docutils literal notranslate"><span class="pre">ts()</span></code> no especificaremos las fechas de las
+serie de tiempo, pero si la frecuencia para poder utilizar la función
+<code class="docutils literal notranslate"><span class="pre">decompose()</span></code>, se tendrá el supuesto de que la serie de tiempo es
+mensual, por tanto, <code class="docutils literal notranslate"><span class="pre">frequency</span> <span class="pre">=</span> <span class="pre">12</span></code>. Si se asume otra frecuencia el
+resultado de la descomposición cambia.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">estacional</span> <span class="o">&lt;-</span> <span class="nf">ts</span><span class="p">(</span><span class="n">estacional</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">decompose</span> <span class="o">&lt;-</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">estacional</span><span class="p">)</span>
+<span class="n">decompose</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$x
+         Jan        Feb        Mar        Apr        May        Jun        Jul
+1  1.2026828  1.8367861  1.2442082  0.7727209  0.5337453 -0.6102938 -0.5144100
+2  2.6251946  2.4515889  2.8351613  2.2859972  1.8694217  1.5721461  1.0502858
+3  3.2992367  3.7647258  4.1327094  3.9925741  3.4241588  2.8354822  2.0184399
+4  3.9628845  5.1106396  5.1782534  5.3047738  5.0001233  4.3337633  3.2865388
+5  4.9317941  5.8472142  6.2735598  6.9872686  6.4809596  6.5183766  5.2941263
+6  6.0252207  6.6477995  7.1865786  7.6562103  7.7373140  7.5709648  7.0182733
+7  6.5818510  7.3234092  8.1061113  8.8865823  9.0500176  9.2761011  8.5709034
+8  7.5651845  8.4569446  9.3495594  9.9424333 10.0839361 10.4694078  9.5882462
+9  8.2572978  8.9481321  9.6600890 10.6113738
+         Aug        Sep        Oct        Nov        Dec
+1 -0.6384637 -0.5429922  0.4702575  1.4013552  2.0399015
+2  0.5198622  0.5767464  0.8949620  2.0003338  2.5936841
+3  2.0155806  1.7642253  2.2740441  2.7467055  3.3497802
+4  3.2220106  2.9047779  3.3205185  3.4709205  4.0312092
+5  5.1192112  4.4485744  4.6122909  4.9252277  4.8494827
+6  6.5712279  6.2794672  5.7871986  5.6814357  6.3617022
+7  7.8934253  7.4763065  6.9536320  6.9388675  7.3991301
+8  9.4137737  8.8180279  8.5792719  8.2329555  8.3538300
+9
+
+$seasonal
+          Jan         Feb         Mar         Apr         May         Jun
+1  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+2  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+3  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+4  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+5  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+6  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+7  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+8  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+9  0.07740675  0.61614510  0.99482020  1.17567569
+          Jul         Aug         Sep         Oct         Nov         Dec
+1 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+2 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+3 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+4 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+5 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+6 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+7 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+8 -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+9
+
+$trend
+        Jan       Feb       Mar       Apr       May       Jun       Jul
+1        NA        NA        NA        NA        NA        NA 0.6588961
+2 1.3864588 1.4999181 1.5948374 1.6591892 1.7018427 1.7498744 1.8010338
+3 2.4640699 2.5667312 2.6785311 2.7854712 2.8740317 2.9366346 2.9957906
+4 3.6411052 3.7442106 3.8420016 3.9331277 4.0069064 4.0654749 4.1342390
+5 4.8565785 5.0192780 5.1626529 5.2808016 5.3952216 5.4899125 5.5695666
+6 6.0779229 6.2102630 6.3470509 6.4722926 6.5527558 6.6472736 6.7334756
+7 7.3083077 7.4280922 7.5330520 7.6315217 7.7325161 7.8281353 7.9123337
+8 8.4673668 8.5731039 8.6923569 8.8159969 8.9376522 9.0313517 9.0999690
+9        NA        NA        NA        NA
+        Aug       Sep       Oct       Nov       Dec
+1 0.7437842 0.8356907 0.9650336 1.0837400 1.2303282
+2 1.8838329 1.9926114 2.1177833 2.2536714 2.3710911
+3 3.0795223 3.1791664 3.2774057 3.3977458 3.5258394
+4 4.2053008 4.2816292 4.3973709 4.5291764 4.6819035
+5 5.6484838 5.7198840 5.7857990 5.8660197 5.9622256
+6 6.7848190 6.8512832 6.9408626 7.0468241 7.1725674
+7 8.0005365 8.0995775 8.1953816 8.2824554 8.3752564
+8 9.1492732 9.1826780 9.2234893        NA        NA
+9
+
+$random
+           Jan          Feb          Mar          Apr          May          Jun
+1           NA           NA           NA           NA           NA           NA
+2  1.161329022  0.335525733  0.245503715 -0.548867753 -0.717748884 -0.831996319
+3  0.757760120  0.581849506  0.459358113  0.031427296 -0.335200898 -0.755420346
+4  0.244372532  0.750283856  0.341431608  0.195970451  0.107888936 -0.385979544
+5 -0.002191147  0.211791060  0.116086735  0.530791336  0.200410123  0.374196143
+6 -0.130108939 -0.178608610 -0.155292559  0.008242036  0.299230271  0.269423191
+7 -0.803863475 -0.720828054 -0.421760910  0.079384887  0.432173539  0.793697806
+8 -0.979589108 -0.732304486 -0.337617697 -0.049239248  0.260955917  0.783788073
+9           NA           NA           NA           NA
+           Jul          Aug          Sep          Oct          Nov          Dec
+1 -0.813806568 -0.674495321 -0.291122569  0.541979656  1.109400347  1.229863426
+2 -0.391248352 -0.656218086 -0.328304645 -0.186065484  0.538447569  0.642883056
+3 -0.617851071 -0.356189069 -0.327380623  0.033394272  0.140744779  0.244230887
+4 -0.488200632 -0.275537652 -0.289290940 -0.040096647 -0.266470806 -0.230404211
+5  0.084059248  0.178480051 -0.183749152 -0.136752215 -0.149006843 -0.692452745
+6  0.644297206  0.494161512  0.515744329 -0.116908209 -0.573603260 -0.390575166
+7  1.018069349  0.600641390  0.464289365 -0.204993793 -0.551802782 -0.555836242
+8  0.847776825  0.972253180  0.722910239  0.392538426           NA           NA
+9
+
+$figure
+ [1]  0.07740675  0.61614510  0.99482020  1.17567569  0.88532792  0.65426799
+ [7] -0.35949957 -0.70775262 -1.08756040 -1.03675583 -0.79178512 -0.42029011
+
+$type
+[1] &quot;additive&quot;
+
+attr(,&quot;class&quot;)
+[1] &quot;decomposed.ts&quot;
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">decompose</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_22_01.png"><img alt="../../_images/output_22_01.png" src="../../_images/output_22_01.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">estacional2</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Estacionalidad2.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">estacional2</span> <span class="o">&lt;-</span> <span class="n">estacional2</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">estacional2</span> <span class="o">&lt;-</span> <span class="nf">ts</span><span class="p">(</span><span class="n">estacional2</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">decompose</span><span class="p">(</span><span class="n">estacional2</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_23_06.png"><img alt="../../_images/output_23_06.png" src="../../_images/output_23_06.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tendencia</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Tendencia.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">tendencia</span> <span class="o">&lt;-</span> <span class="n">tendencia</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">tendencia</span> <span class="o">&lt;-</span> <span class="nf">ts</span><span class="p">(</span><span class="n">tendencia</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">decompose</span><span class="p">(</span><span class="n">tendencia</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_24_05.png"><img alt="../../_images/output_24_05.png" src="../../_images/output_24_05.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ejemplo3</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;ejemplo3.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">ejemplo3</span> <span class="o">&lt;-</span> <span class="n">ejemplo3</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">ejemplo3</span> <span class="o">&lt;-</span> <span class="nf">ts</span><span class="p">(</span><span class="n">ejemplo3</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">decompose</span><span class="p">(</span><span class="n">ejemplo3</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_25_04.png"><img alt="../../_images/output_25_04.png" src="../../_images/output_25_04.png" style="width: 420px; height: 420px;" /></a>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ruidoblanco</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;ruidoblanco.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">ruidoblanco</span> <span class="o">&lt;-</span> <span class="n">ruidoblanco</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">ruidoblanco</span> <span class="o">&lt;-</span> <span class="nf">ts</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">,</span> <span class="n">frequency</span> <span class="o">=</span> <span class="m">12</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">decompose</span><span class="p">(</span><span class="n">ruidoblanco</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_26_01.png"><img alt="../../_images/output_26_01.png" src="../../_images/output_26_01.png" style="width: 420px; height: 420px;" /></a>
+</div>
+<div class="section" id="estacionariedad">
+<h2>Estacionariedad:<a class="headerlink" href="#estacionariedad" title="Permalink to this headline"></a></h2>
+<p>La estacionariedad es una característica de algunas series de tiempo.
+Toda serie de tiempo tiene una tendencia y una oscilación alrededor de
+la tendencia, una serie de tiempo es <strong>estacionaria</strong> si la tendencia
+siempre es la misma a los largo del horizonte de tiempo de análisis y
+además, las variaciones de la serie de tiempo oscilan alrededor de esta
+tendencia. Lo anterior significa que las series estacionarias tienen una
+<strong>media constante</strong> y una <strong>varianza constante</strong>. Se dice que tiene un
+equilibrio estadístico con propiedades probabilísticas que no cambian a
+través del tiempo.</p>
+<p>Identifique cuáles de los siguientes ejemplos de series temporales
+tienen la condición de estacionariedad y cuáles no.</p>
+<div class="figure align-default" id="id4">
+<img alt="EjemploWhiteNoise" src="../../_images/EjemploWhiteNoise.png" />
+<p class="caption"><span class="caption-text">EjemploWhiteNoise</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id5">
+<img alt="EjemploTendencia" src="../../_images/EjemploTendencia.png" />
+<p class="caption"><span class="caption-text">EjemploTendencia</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id6">
+<img alt="Ejemplo3" src="../../_images/Ejemplo3.png" />
+<p class="caption"><span class="caption-text">Ejemplo3</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id7">
+<img alt="Ejemplo4" src="../../_images/Ejemplo4.png" />
+<p class="caption"><span class="caption-text">Ejemplo4</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id8">
+<img alt="Estacionalidad" src="../../_images/Estacionalidad.png" />
+<p class="caption"><span class="caption-text">Estacionalidad</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id9">
+<img alt="Estacionalidad2" src="../../_images/Estacionalidad2.png" />
+<p class="caption"><span class="caption-text">Estacionalidad2</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="media-y-varianza">
+<h2>Media y varianza:<a class="headerlink" href="#media-y-varianza" title="Permalink to this headline"></a></h2>
+<p>Los gráficos de series de tiempo tienen en el eje <span class="math notranslate nohighlight">\(X\)</span> la variable
+tiempo <span class="math notranslate nohighlight">\(t\)</span> y en el eje <span class="math notranslate nohighlight">\(y\)</span> el valor que toma la serie, así
+que <span class="math notranslate nohighlight">\(y\)</span> depende de <span class="math notranslate nohighlight">\(t\)</span> y se denota <span class="math notranslate nohighlight">\(y_t\)</span>. <span class="math notranslate nohighlight">\(y_t\)</span>
+son los valores de la serie de tiempo original; sin embargo, como se
+verá más adelante, los valores originales pueden ser transformados y se
+obtendrá otra serie temporal. Esta es una condición para poder aplicar
+los modelos convencionales de series de tiempo. De esta manera,
+utilizaremos la notación <span class="math notranslate nohighlight">\(z_t\)</span> para referirnos ya sea a la serie
+de tiempo original o a la transformada.</p>
+<p>Si <span class="math notranslate nohighlight">\(z_t\)</span> es la variable que estamos trabajando, podemos calcular
+la <strong>media</strong> <span class="math notranslate nohighlight">\(\overline{z}\)</span> de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\overline{z} = \frac{1}{N}\sum_{t=1}^N{z_t}\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(N\)</span> es la cantidad total de valores que tenemos de la serie
+de tiempo. Si tenemos <span class="math notranslate nohighlight">\(N=100\)</span> precios de una acción (100 valores
+para <span class="math notranslate nohighlight">\(z_t\)</span>), tenemos 100 puntos en el tiempo <span class="math notranslate nohighlight">\(t\)</span>. El
+intervalo entre cada punto en el tiempo es el mismo.</p>
+<p>La forma de medir el grado de oscilación de las observaciones alrededor
+de la media es por medio de la <strong>varianza</strong> <span class="math notranslate nohighlight">\(\sigma_z^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_z^2=\frac{1}{N}\sum_{t=1}^N{(z_t-\overline{z})^2}\]</div>
+</div>
+<div class="section" id="procesos-estocasticos">
+<h2>Procesos estocásticos:<a class="headerlink" href="#procesos-estocasticos" title="Permalink to this headline"></a></h2>
+<p>Un fenómeno estadístico que evoluciona en el tiempo de acuerdo con leyes
+probabilísticas se denomina proceso estocástico. A veces se denomina
+solo proceso.</p>
+<p>Existe una clase de procesos estocásticos llamados procesos
+estacionarios. Un proceso <strong>estrictamente estacionario</strong> es aquel donde
+las propiedades estadísticas no cambian en el tiempo. Para cualquier
+intervalo de tiempo, la distribución de probabilidad es invariante.</p>
+<p>El supuesto de estacionariedad implica que una serie de tiempo
+<span class="math notranslate nohighlight">\(z_t\)</span> tiene una distribución de probabilidad <span class="math notranslate nohighlight">\(p(z_t)\)</span>
+invariante para todos los intervalos de tiempo y puede ser reescrita
+como <span class="math notranslate nohighlight">\(p(z)\)</span>. Así que el proceso estocástico tiene media constante:</p>
+<div class="math notranslate nohighlight">
+\[\mu = E[z_t] = \int_{-\infty}^{\infty}{zp(z)dz}\]</div>
+<p>La media en el proceso estocástico puede ser estimada como
+<span class="math notranslate nohighlight">\(\overline{z}= \frac{1}{N}\sum_{t=1}^N{z_t}\)</span>. Esta media es el
+nivel de fluctuación de las observaciones.</p>
+<p>La varianza constante es:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_z^2=E[(z_t-\mu)^2]=\int_{-\infty}^{\infty}{(z-\mu)^2p(z)dz}\]</div>
+<p>La varianza del proceso estocástico puede ser estimada como
+<span class="math notranslate nohighlight">\(\sigma_z^2=\frac{1}{N}\sum_{t=1}^N{(z_t-\overline{z})^2}\)</span>.</p>
+<p>El supuesto de estacionariedad también implica que la distribución de
+probabilidad conjunta <span class="math notranslate nohighlight">\(p(z_{t_1},z_{t_2})\)</span> es la misma para todos
+los puntos en el tiempo <span class="math notranslate nohighlight">\(t_1\)</span> y <span class="math notranslate nohighlight">\(t_2\)</span>. Esto indica que la
+<strong>covarianza</strong> entre los valores <span class="math notranslate nohighlight">\(z_t\)</span> y <span class="math notranslate nohighlight">\(z_{t+k}\)</span> separados
+por intervalo de tiempo <span class="math notranslate nohighlight">\(k\)</span>, o por un rezago (lag) <span class="math notranslate nohighlight">\(k\)</span>,
+debería ser la misma para todos los intervalos de tiempo.</p>
+<p>Para un proceso estacionario, la varianza <span class="math notranslate nohighlight">\(\sigma_z^2=\gamma_0\)</span> es
+la misma en el tiempo <span class="math notranslate nohighlight">\(𝑡 + 𝑘\)</span> como en el tiempo <span class="math notranslate nohighlight">\(𝑡\)</span>. Por lo
+tanto, la autocorrelación en el rezago <span class="math notranslate nohighlight">\(𝑘\)</span>, es decir, la
+correlación entre <span class="math notranslate nohighlight">\(z_t\)</span> y <span class="math notranslate nohighlight">\(z_{t+k}\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[\rho_k = \frac{\gamma_k}{\gamma_0}\]</div>
+<p>Lo anterior implica que <span class="math notranslate nohighlight">\(\rho_0=1\)</span>, lo que es obvio.</p>
+<p>Más adelante se explicará con mayor profundidad la autocorrelación.</p>
+</div>
+<div class="section" id="ruido-blanco">
+<h2>Ruido blanco:<a class="headerlink" href="#ruido-blanco" title="Permalink to this headline"></a></h2>
+<p>El ruido blanco (white noise) es un ejemplo de un proceso estacionario y
+es una secuencia de <strong>variables aleatorias independientes e
+idénticamente distribuidas</strong> denotadas
+<span class="math notranslate nohighlight">\(a_1, a_2, a_3, \dotso, a_t\)</span> que es común asumir que tienen media
+cero y varianza constante <span class="math notranslate nohighlight">\(\sigma_a^2\)</span>. Este proceso es
+<strong>estrictamente estacionario.</strong></p>
+<p>La independencia implica que los rezagos de <span class="math notranslate nohighlight">\(a_t\)</span> están
+incorrelacionados y tienen la siguiente función de autocovarianza:</p>
+<ul class="simple">
+<li><p><em>Si</em> <span class="math notranslate nohighlight">\(k=0\)</span>: <span class="math notranslate nohighlight">\(\gamma_k=\sigma_a^2\)</span></p></li>
+<li><p><em>Si</em> <span class="math notranslate nohighlight">\(k\neq0\)</span>: <span class="math notranslate nohighlight">\(\gamma_k=0\)</span></p></li>
+</ul>
+<p>Los procesos de ruido blanco tienen un papel muy importante en la
+construcción de los modelos para series de tiempo.</p>
+<p>El ruido blanco es una secuencia de datos aleatorios donde cada valor
+tiene un período de tiempo asociado y la serie de tiempo tiene un
+comportamiento aleatorio y no se puede proyectar el futuro.</p>
+<p>Un ruido blanco es una serie temporal que no tiene un patrón y por lo
+cual no se puede predecir el futuro.</p>
+<p>Para que la serie de tiempo sea Ruido Blanco debe tener:</p>
+<ol class="arabic simple">
+<li><p>Media constante.</p></li>
+<li><p>Varianza constante.</p></li>
+<li><p>Sin autocorrelaciones en ningún período (no tiene estacionalidad).</p></li>
+</ol>
+<p>El proceso de ruido blanco se puede resumir con la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[a_t \sim^{iid}N(0,\sigma^2)\]</div>
+<div class="figure align-default" id="id10">
+<img alt="RuidoBlanco" src="../../_images/RuidoBlanco.png" />
+<p class="caption"><span class="caption-text">RuidoBlanco</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Series de tiempo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ACF/ACF.html" class="btn btn-neutral float-right" title="ACF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
