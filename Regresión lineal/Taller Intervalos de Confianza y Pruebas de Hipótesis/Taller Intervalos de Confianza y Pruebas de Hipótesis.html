@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="y" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Intervalos de Confianza y Pruebas de Hipótesis &mdash; Material Curso 1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Regresión Lineal Simple (RLS)" href="../Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29/Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29.html" />
+    <link rel="prev" title="Regresión lineal" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Material Curso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Análisis de datos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20R/index.html">Introducción a R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ggplot2/index.html">ggplot2</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Regresión lineal</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Taller Intervalos de Confianza y Pruebas de Hipótesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pruebas-de-hipotesis">Pruebas de hipótesis:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#taller">Taller:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-simple-rls">Regresión Lineal Simple - RLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-lineal-multiple-rlm">Regresión Lineal Múltiple - RLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regresion-logistica">Regresión Logística</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Multivariado/index.html">Análisis Multivariado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Series%20de%20tiempo/index.html">Series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Introducci%C3%B3n%20a%20Python/index.html">Introducción a Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Análisis exploratorio de datos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20gr%C3%A1fico/index.html">Análisis gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20multivariado%20de%20datos/index.html">Análisis multivariado de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20de%20componentes%20principales/index.html">Análisis de componentes principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lisis%20factorial/index.html">Análisis Factorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Clustering/index.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Escalamiento%20Multidimensional/index.html">Escalamiento Multidimensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datos%20faltantes/index.html">Datos faltantes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../An%C3%A1lsis%20de%20correspondencia/index.html">Análisis de correspondencia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Teoría de portafolios:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Generalidades%20del%20Mercado%20Colombiano/index.html">Generalidades del Mercado Colombiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Manejo%20de%20R-Studio/index.html">Conceptos Previos: Introducción a R y R-Studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Conceptos%20B%C3%A1sicos%20de%20Estad%C3%ADstica/index.html">Conceptos Básicos de Estadística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Teor%C3%ADa%20de%20Portafolios/index.html">Teoría de Portafolios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Selecci%C3%B3n%20de%20Carteras/index.html">Selección de Cartera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Mercado%20de%20Renta%20Fija/index.html">Mercado de Renta fija</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modelación:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Caracterizaci%C3%B3n%20de%20las%20series%20de%20tiempo/index.html">Caracterización de las series de tiempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Modelos%20autorregresivos/index.html">ARIMA: autoregresivo integrado de medias móviles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Deep%20Learning%20para%20pron%C3%B3stico/index.html">Deep Learning para pronóstico</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Material Curso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Regresión lineal</a> &raquo;</li>
+      <li>Taller Intervalos de Confianza y Pruebas de Hipótesis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Regresión lineal/Taller Intervalos de Confianza y Pruebas de Hipótesis/Taller Intervalos de Confianza y Pruebas de Hipótesis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="taller-intervalos-de-confianza-y-pruebas-de-hipotesis">
+<h1>Taller Intervalos de Confianza y Pruebas de Hipótesis<a class="headerlink" href="#taller-intervalos-de-confianza-y-pruebas-de-hipotesis" title="Permalink to this headline"></a></h1>
+<p><strong>Importar datos:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">america</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;america.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">asia</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;asia.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">america</span><span class="p">)</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">asia</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:       43 obs. of  3 variables:
+ $ X        : int  14 16 18 20 22 36 58 64 80 82 ...
+ $ SALESORG : Factor w/ 1 level &quot;AMER&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ NETAMOUNT: num  61392 18545 65825 24076 332 ...
+&#39;data.frame&#39;:       77 obs. of  3 variables:
+ $ X        : int  5 7 9 17 23 27 31 37 41 43 ...
+ $ SALESORG : Factor w/ 1 level &quot;EMEA&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ NETAMOUNT: num  62724 152239 111828 35605 6081 ...
+</pre></div>
+</div>
+<p><strong>Tamaño de muestras:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">america</span><span class="p">)</span>
+<span class="n">ny</span><span class="o">=</span><span class="nf">nrow</span><span class="p">(</span><span class="n">asia</span><span class="p">)</span>
+
+<span class="n">alpha</span><span class="o">=</span><span class="m">0.05</span>
+<span class="n">p_alpha</span><span class="o">=</span><span class="nf">qnorm</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="c1">#probabilidad de la normal</span>
+</pre></div>
+</div>
+<p><strong>Medias y desviaciones estándar:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">media_x</span><span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">)</span>
+<span class="n">media_y</span><span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">)</span>
+<span class="n">sd_x</span><span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">)</span>
+<span class="n">sd_y</span><span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>QQ-plot:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">qqplot</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span> <span class="c1"># las muestras parecen provenir de la misma distribución,</span>
+            <span class="c1"># podemos asumirlas como normales</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/output_8_03.png"><img alt="../../_images/output_8_03.png" src="../../_images/output_8_03.png" style="width: 420px; height: 420px;" /></a>
+<p>La función <code class="docutils literal notranslate"><span class="pre">t.test</span></code> de la libreria <code class="docutils literal notranslate"><span class="pre">stats</span></code> se utiliza para calcular
+intervalos de confianza para la media y diferencia de medias, con
+muestras independientes y pareadas.</p>
+<p><strong>Para una población:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">conf.level</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span><span class="o">$</span><span class="n">conf.int</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">43338.84</span> <span class="mf">65191.48</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;conf.level&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+<p><strong>Para la diferencia de medias:</strong></p>
+<p>Se requiere definir mínimo los siguientes argumentos: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>,
+<code class="docutils literal notranslate"><span class="pre">paired=T</span></code> (si son datos pareados), <code class="docutils literal notranslate"><span class="pre">paired=</span> <span class="pre">F</span></code> (si nos son
+pareados)-</p>
+<p><code class="docutils literal notranslate"><span class="pre">var.equal</span></code>: indica que las varianzas son desconocidas y diferentes,
+si la varianzas se pueden considerar iguales se coloca
+<code class="docutils literal notranslate"><span class="pre">var.equal=TRUE</span></code></p>
+<p><strong>conf.level:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span>
+             <span class="n">paired</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">var.equal</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+             <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span><span class="o">$</span><span class="n">conf.int</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="mf">19302.818</span>   <span class="mf">8539.797</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;conf.level&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+<p><strong>Intervalo de confianza unilateral para la media:</strong></p>
+<p>Para modificar la cola de intervalo se cambia el argumento
+<code class="docutils literal notranslate"><span class="pre">alternative=less</span></code> (si se quiere cola izquierda) o <code class="docutils literal notranslate"><span class="pre">=greater</span></code>(para
+la cola derecha).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">t.test</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;less&quot;</span><span class="p">,</span> <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span><span class="o">$</span><span class="n">conf.int</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>     <span class="o">-</span><span class="n">Inf</span> <span class="mf">63371.61</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;conf.level&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+<p><strong>Intervalos de proporciones:</strong></p>
+<p>¿Cuántas ventas superan los 55.000 USD en america?</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">exito</span><span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="nf">subset</span><span class="p">(</span><span class="n">america</span><span class="p">,</span> <span class="n">NETAMOUNT</span> <span class="o">&gt;=</span> <span class="m">55000</span><span class="p">))</span>
+<span class="n">total</span><span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">america</span><span class="p">)</span>
+
+<span class="n">p_muestra</span><span class="o">=</span> <span class="n">exito</span><span class="o">/</span><span class="n">total</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">prop.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">exito</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">conf.level</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span><span class="o">$</span><span class="n">conf.int</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.2940528</span> <span class="mf">0.5999197</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;conf.level&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+<p>Si se quiere realiza la diferencia se proporciones los argumentos <code class="docutils literal notranslate"><span class="pre">x</span></code>
+y <code class="docutils literal notranslate"><span class="pre">n</span></code> se deben colocar como vectores; por ejemplo: <code class="docutils literal notranslate"><span class="pre">x=c(80,50)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">n=c(500,</span> <span class="pre">1000)</span></code>.</p>
+<p>Si se cambia el argumento <code class="docutils literal notranslate"><span class="pre">alternative</span></code>, se cambia la lateralidad:
+<code class="docutils literal notranslate"><span class="pre">alternative=c(&quot;two.sided&quot;,</span> <span class="pre">&quot;less&quot;,</span> <span class="pre">&quot;greater&quot;)</span></code>.</p>
+<div class="section" id="pruebas-de-hipotesis">
+<h2>Pruebas de hipótesis:<a class="headerlink" href="#pruebas-de-hipotesis" title="Permalink to this headline"></a></h2>
+<p><strong>Media</strong> <span class="math notranslate nohighlight">\(\mu\)</span> <strong>de una población normal:</strong></p>
+<div class="math notranslate nohighlight">
+\[H0 : \mu =50000\]</div>
+<div class="math notranslate nohighlight">
+\[H1 : \mu &lt;&gt; 500\]</div>
+<p>Para esta hipótesis debe colocarse el argumento
+<code class="docutils literal notranslate"><span class="pre">alternative=</span> <span class="pre">&quot;two.sided&quot;</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&#39;two.sided&#39;</span><span class="p">,</span>
+       <span class="n">conf.level</span><span class="o">=</span><span class="m">0.95</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="m">54261</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    One Sample t-test
+
+data:  america$NETAMOUNT
+t = 0.00076833, df = 42, p-value = 0.9994
+alternative hypothesis: true mean is not equal to 54261
+95 percent confidence interval:
+ 43338.84 65191.48
+sample estimates:
+mean of x
+ 54265.16
+</pre></div>
+</div>
+<p><strong>Intervalo para comparación de varianzas prueba F:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">var.test</span><span class="p">(</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span><span class="o">$</span><span class="n">conf.int</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.4913745</span> <span class="mf">1.4438581</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;conf.level&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">0.95</span>
+</pre></div>
+</div>
+<p><strong>Prueba de hipótesis para una proporción:</strong></p>
+<p>Asumiremos una proporción poblacional del 50% ya que no contamos con un
+estudio previo.</p>
+<div class="math notranslate nohighlight">
+\[H0: P=0.5\]</div>
+<div class="math notranslate nohighlight">
+\[H1: P \neq 0.5\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">prop.test</span><span class="p">(</span><span class="n">exito</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">alternative</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;two.sided&quot;</span><span class="p">),</span> <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> <span class="n">correct</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="mi">1</span><span class="o">-</span><span class="n">sample</span> <span class="n">proportions</span> <span class="n">test</span> <span class="k">with</span> <span class="n">continuity</span> <span class="n">correction</span>
+
+<span class="n">data</span><span class="p">:</span>  <span class="n">exito</span> <span class="n">out</span> <span class="n">of</span> <span class="n">total</span><span class="p">,</span> <span class="n">null</span> <span class="n">probability</span> <span class="mf">0.5</span>
+<span class="n">X</span><span class="o">-</span><span class="n">squared</span> <span class="o">=</span> <span class="mf">0.37209</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.5419</span>
+<span class="n">alternative</span> <span class="n">hypothesis</span><span class="p">:</span> <span class="n">true</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">equal</span> <span class="n">to</span> <span class="mf">0.5</span>
+<span class="mi">95</span> <span class="n">percent</span> <span class="n">confidence</span> <span class="n">interval</span><span class="p">:</span>
+ <span class="mf">0.2940528</span> <span class="mf">0.5999197</span>
+<span class="n">sample</span> <span class="n">estimates</span><span class="p">:</span>
+        <span class="n">p</span>
+<span class="mf">0.4418605</span>
+</pre></div>
+</div>
+<p><strong>Prueba de hipótesis para las diferencias de medias:</strong></p>
+<div class="math notranslate nohighlight">
+\[H0: \mu_x - \mu_y=40000\]</div>
+<div class="math notranslate nohighlight">
+\[H1: \mu_x - \mu_y \neq 40000\]</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;two.sided&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="m">40000</span><span class="p">,</span>
+       <span class="n">paired</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">var.equal</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">conf.level</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    Two Sample t-test
+
+data:  america$NETAMOUNT and asia$NETAMOUNT
+t = -6.297, df = 118, p-value = 5.386e-09
+alternative hypothesis: true difference in means is not equal to 40000
+95 percent confidence interval:
+ -19652.919   8889.898
+sample estimates:
+mean of x mean of y
+ 54265.16  59646.67
+</pre></div>
+</div>
+<p><strong>Prueba de hipótesis para diferencias de varianza:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">america</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">asia</span><span class="o">$</span><span class="n">NETAMOUNT</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">,</span>
+         <span class="n">null.value</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    F test to compare two variances
+
+data:  america$NETAMOUNT and asia$NETAMOUNT
+F = 0.8247, num df = 42, denom df = 76, p-value = 0.5012
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.4913745 1.4438581
+sample estimates:
+ratio of variances
+         0.8247037
+</pre></div>
+</div>
+</div>
+<div class="section" id="taller">
+<h2>Taller:<a class="headerlink" href="#taller" title="Permalink to this headline"></a></h2>
+<p>Responda las siguientes preguntas haciendo uso de los mismos datos, y
+argumente su respuesta.</p>
+<ol class="arabic simple">
+<li><p>Indique si se puede establecer con un 90% de confianza que las ventas
+promedio de bicicletas en Asia son de 19500 USD.</p></li>
+<li><p>Vamos a asumir que las muestras de Asia y América son pareadas, por
+tanto, borraremos las ultimas filas en Asia que no cuentan con su
+respectivo par en América:</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">asia_par=asia[-c(44:77),]</span></code> Para que ambas muestras quedarán con 43
+datos.</p>
+<p>Calcule el IC para las muestras pareadas e indique las diferencias con
+el intervalo con muestras independientes.</p>
+<ol class="arabic simple" start="3">
+<li><p>Se puede decir que un nivel del 90% de confianza para las ventas de
+bicicletas en Asia superarán los 45000 USD.</p></li>
+<li><p>El director financiero de la regional de Asia le pide comprobar con
+un nivel de significancia del 10%, si las ventas medias son
+inferiores a 30.000 USD donde incurrirá en pérdidas.</p></li>
+<li><p>Argumente si las muestras pareadas de las regiones de Asia y América
+pueden ser menores de 50000 USD a un nivel de significancia del 95%.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Regresión lineal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29/Regresi%C3%B3n%20Lineal%20Simple%20%28RLS%29.html" class="btn btn-neutral float-right" title="Regresión Lineal Simple (RLS)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Natalia Acevedo Prins.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

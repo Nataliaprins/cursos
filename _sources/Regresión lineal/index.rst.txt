@@ -10,6 +10,17 @@ En esta sesión abordaremos los conceptos de la Regresión Lineal.
 
     * **Pruebas de hipótesis:** descargue :download:`aquí <PRUEBAS DE HIPÓTESIS.pdf>` diapositivas.
 
+    .. toctree::
+       :maxdepth: 1
+       :titlesonly:
+       
+       Taller Intervalos de Confianza y Pruebas de Hipótesis/Taller Intervalos de Confianza y Pruebas de Hipótesis
+
+    
+    * **Descargue** :download:`america.csv <america.csv>`
+
+    * **Descargue** :download:`asia.csv <asia.csv>`
+
 
 Regresión Lineal Simple - RLS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
